@@ -1,6 +1,7 @@
 ﻿import type { MenuNode, CategoryCard, SearchResult } from '../types'
 import { arasDocMenu } from './aras-menu'
 import type { ArasDocNode } from './aras-menu'
+import { pmMenu } from './pm-menu'
 
 export const menuData: MenuNode[] = [
   { id: 'home', label: '首页', icon: 'HomeFilled', path: '/', description: '博客首页，总览所有板块' },
@@ -19,7 +20,8 @@ export const menuData: MenuNode[] = [
     children: [
       { id: 'be-dotnet', label: '.NET / C#', icon: 'Coin', path: '/backend/dotnet', description: '.NET 生态、C# 语言特性、ASP.NET' },
       { id: 'be-db', label: '数据库', icon: 'Coin', path: '/backend/database', description: 'SQL Server、EF Core、数据库设计' },
-      { id: 'be-api', label: 'API 设计', icon: 'Share', path: '/backend/api-design', description: 'RESTful API 设计原则与实践' }
+      { id: 'be-api', label: 'API 设计', icon: 'Share', path: '/backend/api-design', description: 'RESTful API 设计原则与实践' },
+      { id: 'be-pm', label: '项目管理', icon: 'DataLine', path: '/pm', description: 'Aras 项目基线、WBS 递归获取、CPM 排程实践' }
     ]
   },
   {
@@ -43,7 +45,8 @@ export const categoryCardsMap: Record<string, CategoryCard[]> = {
   backend: [
     { icon: '🟣', title: '.NET / C#', description: 'C# 新特性、LINQ、异步编程、依赖注入', path: '/backend/dotnet' },
     { icon: '🗄️', title: '数据库', description: 'SQL 优化、EF Core 映射、数据库设计规范', path: '/backend/database' },
-    { icon: '🌐', title: 'API 设计', description: 'RESTful 规范、接口版本管理、文档生成', path: '/backend/api-design' }
+    { icon: '🌐', title: 'API 设计', description: 'RESTful 规范、接口版本管理、文档生成', path: '/backend/api-design' },
+    { icon: '📊', title: '项目管理', description: 'WBS 递归获取、基线快照、CPM 排程与基线比对', path: '/pm' }
   ],
   notes: [
     { icon: '📝', title: '工作日志', description: '每日工作记录、问题追踪、经验复盘', path: '/notes/daily' },
@@ -73,3 +76,14 @@ function buildArasSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
   }
 }
 buildArasSearchIndex(arasDocMenu)
+
+function buildPmSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
+  for (const node of nodes) {
+    const category = parentLabel ? `${parentLabel} > ${node.name}` : node.name
+    if (node.type === 'item' && node.path) {
+      searchableItems.push({ id: 'pm-' + node.id, title: node.name, category, path: node.path, description: `项目管理 - ${category}` })
+    }
+    if (node.children) buildPmSearchIndex(node.children, category)
+  }
+}
+buildPmSearchIndex(pmMenu)

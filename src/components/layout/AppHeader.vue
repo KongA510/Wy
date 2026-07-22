@@ -10,13 +10,19 @@
     </div>
     <div class="header-right">
       <a class="header-link" href="https://github.com" target="_blank">GitHub</a>
-      <span class="header-link active">文档</span>
-      <span class="header-link">关于</span>
+      <router-link to="/aras-docs" class="header-link" :class="{ active: isDocs }">文档</router-link>
+      <router-link to="/about" class="header-link" :class="{ active: isAbout }">关于</router-link>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+const isDocs = computed(() => route.path.startsWith('/aras-docs'))
+const isAbout = computed(() => route.path === '/about')
 </script>
 
 <style scoped>

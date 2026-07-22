@@ -2,7 +2,7 @@
   <div class="app-layout">
     <AppHeader />
     <AppSidebar />
-    <main class="app-main" :class="{ 'wide-main': isArasDocs }">
+    <main class="app-main" :class="{ 'wide-main': isDocZone }">
       <router-view />
     </main>
   </div>
@@ -15,7 +15,7 @@ import AppHeader from './AppHeader.vue'
 import AppSidebar from './AppSidebar.vue'
 
 const route = useRoute()
-const isArasDocs = computed(() => route.path.startsWith('/aras-docs') || route.path.startsWith('/aras-api'))
+const isDocZone = computed(() => route.path.startsWith('/aras-docs') || route.path.startsWith('/aras-api') || route.path.startsWith('/pm'))
 </script>
 
 <style scoped>

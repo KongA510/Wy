@@ -12,6 +12,8 @@ const routes: RouteRecordRaw[] = [
   { path: '/backend/:articleId', name: 'BackendArticle', component: () => import('../views/ArticleView.vue'), meta: { title: '文章详情' } },
   { path: '/notes', name: 'NotesCategory', component: () => import('../views/CategoryView.vue'), meta: { title: '日常笔记', categoryId: 'notes' } },
   { path: '/notes/:articleId', name: 'NotesArticle', component: () => import('../views/ArticleView.vue'), meta: { title: '文章详情' } },
+  { path: '/pm', name: 'PmIndex', component: () => import('../views/PmIndex.vue'), meta: { title: '项目管理' } },
+  { path: '/pm/:docId', name: 'PmDoc', component: () => import('../views/PmDocView.vue'), meta: { title: '项目管理笔记' } },
 ]
 
 const router = createRouter({
