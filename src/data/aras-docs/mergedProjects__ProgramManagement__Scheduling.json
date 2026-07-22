@@ -1,0 +1,5 @@
+{
+  "title": "计划",
+  "html": "<html><head></head><body><div>\n<h1>计划</h1>\n<ol class=\"Bullet_list\"><li>在版本 8.1 中，计划在服务器端计算；在之前的版本中，计划在客户端计算</li><li>要执行的计划计算可以为每个单独的项目按名称指定</li><li>另请参阅 <a href=\"#\" class=\"internal-doc-link\">选择何时计划项目</a></li><li>名为 'server_update_schedule' 的标准计划计算：<ol><li>使用<a href=\"#\" class=\"internal-doc-link\">关键路径法</a>计算所有活动的最早和最晚开始及完成天数</li><li>使用 Innovator 工作日<a href=\"#\" class=\"internal-doc-link\">日历</a>以及项目的 scheduling_type 和项目开始及完成日期，将天数转换为日历日期，<a href=\"#\" class=\"internal-doc-link\">参见关于计划</a></li><li>选择活动计划的开始和完成日期，<a href=\"#\" class=\"internal-doc-link\">参见活动目标日期</a></li><li>计算活动的状态（包括状态颜色），并汇总到 WBS</li></ol></li><li>可以使用自定义的 Innovator 方法创建备选的计划计算</li></ol>\n\n\n\n\n\n\n\n\n<p class=\"Procedure_Title\">选择默认计划方法</p>\n<ol class=\"Numbered_list\"><li>编辑项目 ItemType（物料类型）</li><li>编辑 schedule_method 属性以选择默认方法</li></ol>\n\n\n\n\n<p class=\"Procedure_Title\">为单个项目启用备选计划方法</p>\n<ol class=\"Numbered_list\"><li style=\"counter-set: item1 0;\">使用方法实现自定义行为</li></ol>\n\n\n\n\n</div></body></html>",
+  "sourceFile": "mergedProjects/ProgramManagement/Scheduling.htm"
+}

@@ -1,0 +1,5 @@
+{
+  "title": "关于保险库",
+  "html": "<html><head></head><body><div>\n  <h1>关于保险库</h1>\n  <p class=\"Content_body\">Innovator 的架构包含对保险库的支持，用于提供安全的文件存储。Innovator 使用其数据库来管理存储在保险库中的文件元数据。保险库本身没有独立的数据库或登录方式。文档、图纸或 CAD 对象等物理文件在一个或多个独立的文件保险库中进行管理，这些保险库在 Innovator 管理员界面中进行配置。该架构允许独立的保险库服务器与 Innovator 应用服务器分离。每个保险库服务器必须在其自身的目录树中包含运行所需的所有代码。</p>\n\n</div></body></html>",
+  "sourceFile": "About_Vaults.htm"
+}

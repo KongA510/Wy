@@ -1,0 +1,5 @@
+{
+  "title": "寻源",
+  "html": "<html><head></head><body><div>\n  <h1>寻源</h1>\n  <p class=\"Content_body\">Aras 产品工程的这一部分用于简化寻源，即零件采购流程。该概念的核心是制造商零件，如下图所示。</p>\n  <p class=\"Content_body_indented\"><img alt=\"\" class=\"Image\" src=\"/aras-images/images/ManufacDataModel.jpg\"></p>\n  \n  <p class=\"Content_body\">每个已定义的零件可以关联一个或多个制造商零件。对于每个制造商零件，只有一个制造商生产它，但可以有多个供应商销售它。</p>\n  <p class=\"Content_body\">浏览寻源信息最简便的方式如下：</p>\n  <ol class=\"Decimal\">\n    <li><a href=\"#\" class=\"internal-doc-link\">创建制造商</a></li>\n    <li><a href=\"#\" class=\"internal-doc-link\">创建制造商零件</a></li>\n    <li><a href=\"#\" class=\"internal-doc-link\">创建供应商</a></li>\n    <li>将制造商零件添加到相应零件的 <a href=\"#\" class=\"internal-doc-link\">AML</a> 中。</li>\n  </ol>\n\n</div></body></html>",
+  "sourceFile": "mergedProjects/ProductEngineering/Sourcing.htm"
+}

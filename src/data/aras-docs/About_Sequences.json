@@ -1,0 +1,5 @@
+{
+  "title": "关于序列",
+  "html": "<html><head></head><body><div>\n  <h1>关于序列</h1>\n  <p class=\"Content_body\">为了实现自动编号，Aras Innovator 为管理员用户提供了一项称为\"序列\"的功能。管理员可以定义序列并将其应用为 ItemType（物料类型）的属性。序列将遵循已定义的模式并自动递增。</p>\n  <p class=\"Content_body\">有关创建或修改序列的说明，<a href=\"#\" class=\"internal-doc-link\">请点击此处</a>。</p>\n\n</div></body></html>",
+  "sourceFile": "About_Sequences.htm"
+}

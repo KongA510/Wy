@@ -1,0 +1,5 @@
+{
+  "title": "My Innovator",
+  "html": "<html><head></head><body><div>\n  <h1>My Innovator</h1>\n  <p class=\"Content_body\">产品内置了一个标准界面，允许终端用户访问：</p>\n  <ul style=\"list-style-type: disc;\">\n    <li class=\"Bulleted_list\"><a href=\"#\" class=\"internal-doc-link\">我的讨论</a></li>\n    <li class=\"Bulleted_list\"><a href=\"#\" class=\"internal-doc-link\">我的工作篮</a></li>\n  </ul>\n\n</div></body></html>",
+  "sourceFile": "My_Innovator.htm"
+}

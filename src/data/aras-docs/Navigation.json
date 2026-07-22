@@ -1,0 +1,5 @@
+{
+  "title": "导航",
+  "html": "<html><head></head><body><div>\n  <h1>我的 Innovator</h1>\n  <p class=\"Content_body\">产品内置了一个标准界面，允许终端用户访问以下功能：</p>\n  <!--?rh-list_start class=\"Bullet_list\" style=\"list-style: rh-list; list-style: rh-list;\" ?-->\n    <p class=\"Bulleted_list\" style=\"margin-left: 50px;\"><a href=\"#\" class=\"internal-doc-link\">我的讨论</a> – <span style=\"mso-bidi-language: AR-SA;\">提供一个易于使用的社交协作界面，并可在 Aras Innovator 中查看标记功能。</span></p>\n    <!--?rh-list_end ?-->\n      <!--?rh-list_start class=\"Bullet_list\" style=\"list-style: rh-list; list-style: rh-list;\" ?-->\n        <!--?rh-list_end ?-->\n          <!--?rh-list_start class=\"Bullet_list\" style=\"list-style: rh-list; list-style: rh-list;\" ?-->\n            <p class=\"Bulleted_list\" style=\"margin-left: 50px;\"><a href=\"#\" class=\"internal-doc-link\">我的工作篮</a> – 工作流中创建的分配任务的目的地。</p>\n            <!--?rh-list_end ?-->\n              <!--?rh-list_start class=\"Bullet_list\" style=\"list-style: rh-list; list-style: rh-list;\" ?-->\n                \n                <!--?rh-list_end ?-->\n\n</div></body></html>",
+  "sourceFile": "Navigation.htm"
+}
