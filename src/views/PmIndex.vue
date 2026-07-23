@@ -1,8 +1,8 @@
 <template>
   <div class="pm-index">
     <div class="page-header">
-      <h1 class="page-title">??????</h1>
-      <p class="page-desc">Aras Innovator ???????????????? WBS ????????????CPM ????? {{ totalDocs }} ??</p>
+      <h1 class="page-title">项目管理专区</h1>
+      <p class="page-desc">Aras Innovator 项目管理开发笔记，涵盖项目基线快照、WBS 递归解析、CPM 关键路径等 {{ totalDocs }} 篇</p>
     </div>
 
     <div class="category-grid">
@@ -16,8 +16,8 @@
         <h3 class="card-title">{{ cat.name }}</h3>
         <p class="card-desc">{{ getCategoryDesc(cat) }}</p>
         <div class="card-meta">
-          <span class="meta-count">{{ countDocs(cat) }} ???</span>
-          <span class="card-arrow">?</span>
+          <span class="meta-count">{{ countDocs(cat) }} 篇文档</span>
+          <span class="card-arrow">→</span>
         </div>
       </div>
     </div>
@@ -40,14 +40,14 @@ const totalDocs = computed(() => {
 })
 
 const iconMap: Record<string, string> = {
-  '???????': '??'
+  '项目基线快照': '📸'
 }
 
-function getCategoryIcon(name: string) { return iconMap[name] || '??' }
+function getCategoryIcon(name: string) { return iconMap[name] || '📄' }
 function getCategoryDesc(node: ArasDocNode) {
   if (!node.children) return ''
-  const names = node.children.slice(0, 3).map(c => c.name).join('?')
-  return node.children.length > 3 ? `${names} ?` : names
+  const names = node.children.slice(0, 3).map(c => c.name).join('、')
+  return node.children.length > 3 ? `${names} 等` : names
 }
 function countDocs(node: ArasDocNode): number {
   let c = 0

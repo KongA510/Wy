@@ -1,9 +1,9 @@
-<template>
+﻿<template>
   <div class="pm-doc-view">
     <div class="breadcrumb">
-      <router-link to="/" class="bc-link">??</router-link>
+      <router-link to="/" class="bc-link">首页</router-link>
       <span class="bc-sep">/</span>
-      <router-link to="/pm" class="bc-link">????</router-link>
+      <router-link to="/pm" class="bc-link">项目管理</router-link>
       <template v-for="(crumb, i) in breadcrumbs" :key="i">
         <span class="bc-sep">/</span>
         <span v-if="i === breadcrumbs.length - 1" class="bc-current">{{ crumb.name }}</span>
@@ -14,20 +14,20 @@
     <component v-if="comp" :is="comp" />
 
     <div v-else class="not-found">
-      <div class="not-found-icon">??</div>
-      <h2>?????</h2>
-      <p>???????????? PmDocView ???????</p>
-      <router-link to="/pm" class="back-link">? ????????</router-link>
+      <div class="not-found-icon">🔍</div>
+      <h2>文档未找到</h2>
+      <p>该文档尚未创建，请在 PmDocView 中注册对应组件</p>
+      <router-link to="/pm" class="back-link">← 返回项目管理</router-link>
     </div>
 
     <nav v-if="comp" class="doc-nav">
       <router-link v-if="prevDoc" :to="prevDoc.path!" class="nav-link prev">
-        <span class="nav-dir">? ???</span>
+        <span class="nav-dir">← 上一篇</span>
         <span class="nav-title">{{ prevDoc.name }}</span>
       </router-link>
       <span v-else></span>
       <router-link v-if="nextDoc" :to="nextDoc.path!" class="nav-link next">
-        <span class="nav-dir">??? ?</span>
+        <span class="nav-dir">下一篇 →</span>
         <span class="nav-title">{{ nextDoc.name }}</span>
       </router-link>
     </nav>
@@ -43,12 +43,14 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/github-dark.css'
 import '../assets/styles/doc-content.css'
 import FullTreeView from './pm/FullTreeView.vue'
+import AddColumnView from './pm/AddColumnView.vue'
 
 const route = useRoute()
 
-// ????????docId -> ???????????
+// 文档组件映射表：docId → 对应的 Vue 组件
 const docComponents: Record<string, any> = {
-  'full-tree': FullTreeView
+  'full-tree': FullTreeView,
+  'add-column': AddColumnView
 }
 
 const comp = computed(() => docComponents[route.params.docId as string])
@@ -99,12 +101,12 @@ function highlightCode() {
     if (!pre.querySelector('.copy-btn')) {
       const btn = document.createElement('button')
       btn.className = 'copy-btn'
-      btn.textContent = '??'
+      btn.textContent = '复制'
       btn.onclick = () => {
         const code = pre.querySelector('code')?.textContent || pre.textContent || ''
         navigator.clipboard.writeText(code)
-        btn.textContent = '???!'
-        setTimeout(() => { btn.textContent = '??' }, 2000)
+        btn.textContent = '已复制!'
+        setTimeout(() => { btn.textContent = '复制' }, 2000)
       }
       pre.style.position = 'relative'
       pre.appendChild(btn)
