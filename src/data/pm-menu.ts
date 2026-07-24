@@ -1,4 +1,4 @@
-﻿import type { ArasDocNode } from './aras-menu'
+import type { ArasDocNode } from './aras-menu'
 
 /**
  * 项目管理菜单数据
@@ -21,6 +21,15 @@ export const pmMenu: ArasDocNode[] = [
     type: 'group',
     children: [
       { id: 'pm-add-column', name: '添加列', type: 'item', path: '/pm/add-column' }
+    ]
+  },
+  {
+    id: 'pm-hours',
+    name: '工时管理',
+    type: 'group',
+    children: [
+      { id: 'pm-hours-impl', name: '实现方式', type: 'item', path: '/pm/hours-impl' },
+      { id: 'pm-hours-guide', name: '功能说明', type: 'item', path: '/pm/hours-guide' }
     ]
   }
 ]

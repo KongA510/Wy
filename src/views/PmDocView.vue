@@ -1,41 +1,61 @@
-﻿<template>
+<template>
   <div class="pm-doc-view">
-    <div class="breadcrumb">
-      <router-link to="/" class="bc-link">首页</router-link>
-      <span class="bc-sep">/</span>
-      <router-link to="/pm" class="bc-link">项目管理</router-link>
-      <template v-for="(crumb, i) in breadcrumbs" :key="i">
-        <span class="bc-sep">/</span>
-        <span v-if="i === breadcrumbs.length - 1" class="bc-current">{{ crumb.name }}</span>
-        <router-link v-else :to="crumb.path" class="bc-link">{{ crumb.name }}</router-link>
-      </template>
+    <div class="pm-doc-body">
+      <div class="pm-doc-content">
+        <div class="breadcrumb">
+          <router-link to="/" class="bc-link">首页</router-link>
+          <span class="bc-sep">/</span>
+          <router-link to="/pm" class="bc-link">项目管理</router-link>
+          <template v-for="(crumb, i) in breadcrumbs" :key="i">
+            <span class="bc-sep">/</span>
+            <span v-if="i === breadcrumbs.length - 1" class="bc-current">{{ crumb.name }}</span>
+            <router-link v-else :to="crumb.path" class="bc-link">{{ crumb.name }}</router-link>
+          </template>
+        </div>
+
+        <component v-if="comp" :is="comp" />
+
+        <div v-else class="not-found">
+          <div class="not-found-icon">🔍</div>
+          <h2>文档未找到</h2>
+          <p>该文档尚未创建，请在 PmDocView 中注册对应组件</p>
+          <router-link to="/pm" class="back-link">← 返回项目管理</router-link>
+        </div>
+
+        <nav v-if="comp" class="doc-nav">
+          <router-link v-if="prevDoc" :to="prevDoc.path!" class="nav-link prev">
+            <span class="nav-dir">← 上一篇</span>
+            <span class="nav-title">{{ prevDoc.name }}</span>
+          </router-link>
+          <span v-else></span>
+          <router-link v-if="nextDoc" :to="nextDoc.path!" class="nav-link next">
+            <span class="nav-dir">下一篇 →</span>
+            <span class="nav-title">{{ nextDoc.name }}</span>
+          </router-link>
+        </nav>
+      </div>
     </div>
 
-    <component v-if="comp" :is="comp" />
-
-    <div v-else class="not-found">
-      <div class="not-found-icon">🔍</div>
-      <h2>文档未找到</h2>
-      <p>该文档尚未创建，请在 PmDocView 中注册对应组件</p>
-      <router-link to="/pm" class="back-link">← 返回项目管理</router-link>
-    </div>
-
-    <nav v-if="comp" class="doc-nav">
-      <router-link v-if="prevDoc" :to="prevDoc.path!" class="nav-link prev">
-        <span class="nav-dir">← 上一篇</span>
-        <span class="nav-title">{{ prevDoc.name }}</span>
-      </router-link>
-      <span v-else></span>
-      <router-link v-if="nextDoc" :to="nextDoc.path!" class="nav-link next">
-        <span class="nav-dir">下一篇 →</span>
-        <span class="nav-title">{{ nextDoc.name }}</span>
-      </router-link>
-    </nav>
+    <!-- 固定右侧目录导航，不随滚动 -->
+    <aside v-if="comp && tocItems.length" class="pm-doc-toc">
+      <div class="toc-title">本页目录</div>
+      <ul class="toc-list">
+        <li
+          v-for="item in tocItems"
+          :key="item.id"
+          :class="['toc-item', `toc-h${item.level}`, { 'toc-active': activeId === item.id }]"
+        >
+          <a :href="`#${item.id}`" class="toc-link" @click.prevent="scrollToHeading(item.id)">
+            {{ item.text }}
+          </a>
+        </li>
+      </ul>
+    </aside>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, watch, onMounted, nextTick } from 'vue'
+import { computed, watch, onMounted, onBeforeUnmount, nextTick, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { pmMenu } from '../data/pm-menu'
 import type { ArasDocNode } from '../data/aras-menu'
@@ -44,13 +64,16 @@ import 'highlight.js/styles/github-dark.css'
 import '../assets/styles/doc-content.css'
 import FullTreeView from './pm/FullTreeView.vue'
 import AddColumnView from './pm/AddColumnView.vue'
+import HoursImplView from './pm/HoursImplView.vue'
+import HoursGuideView from './pm/HoursGuideView.vue'
 
 const route = useRoute()
 
-// 文档组件映射表：docId → 对应的 Vue 组件
 const docComponents: Record<string, any> = {
   'full-tree': FullTreeView,
-  'add-column': AddColumnView
+  'add-column': AddColumnView,
+  'hours-impl': HoursImplView,
+  'hours-guide': HoursGuideView
 }
 
 const comp = computed(() => docComponents[route.params.docId as string])
@@ -66,14 +89,6 @@ const flatDocs = computed(() => {
   walk(pmMenu)
   return result
 })
-
-function findNode(nodes: ArasDocNode[], targetPath: string): ArasDocNode | null {
-  for (const n of nodes) {
-    if (n.path === targetPath) return n
-    if (n.children) { const f = findNode(n.children, targetPath); if (f) return f }
-  }
-  return null
-}
 
 const breadcrumbs = computed(() => {
   const crumbs: { name: string; path: string }[] = []
@@ -93,6 +108,62 @@ const currentIndex = computed(() => flatDocs.value.findIndex(d => d.path === rou
 const prevDoc = computed(() => currentIndex.value > 0 ? flatDocs.value[currentIndex.value - 1] : null)
 const nextDoc = computed(() => currentIndex.value < flatDocs.value.length - 1 ? flatDocs.value[currentIndex.value + 1] : null)
 
+// ── TOC 逻辑 ──
+interface TocItem { id: string; text: string; level: number }
+const tocItems = ref<TocItem[]>([])
+const activeId = ref('')
+let observer: IntersectionObserver | null = null
+
+function buildToc() {
+  const article = document.querySelector('.doc-content')
+  if (!article) { tocItems.value = []; return }
+  const headings = article.querySelectorAll('h2, h3, h4')
+  const items: TocItem[] = []
+  headings.forEach((el, i) => {
+    const id = `toc-${i}`
+    el.setAttribute('id', id)
+    const tag = el.tagName
+    const level = tag === 'H2' ? 2 : tag === 'H3' ? 3 : 4
+    items.push({
+      id,
+      text: el.textContent?.trim() || '',
+      level
+    })
+  })
+  tocItems.value = items
+  setupScrollSpy()
+}
+
+function setupScrollSpy() {
+  if (observer) observer.disconnect()
+  const article = document.querySelector('.doc-content')
+  if (!article) return
+  const headings = article.querySelectorAll('h2[id], h3[id], h4[id]')
+  if (!headings.length) return
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          activeId.value = entry.target.id
+          break
+        }
+      }
+    },
+    { rootMargin: '-80px 0px -70% 0px', threshold: 0 }
+  )
+  headings.forEach(h => observer!.observe(h))
+}
+
+function scrollToHeading(id: string) {
+  const el = document.getElementById(id)
+  if (!el) return
+  const top = el.getBoundingClientRect().top + window.scrollY - 80
+  window.scrollTo({ top, behavior: 'smooth' })
+  activeId.value = id
+}
+
+// ── 代码高亮 ──
 function highlightCode() {
   const container = document.querySelector('.doc-content')
   if (!container) return
@@ -114,12 +185,104 @@ function highlightCode() {
   })
 }
 
-watch(() => route.path, () => nextTick(highlightCode), { immediate: true })
-onMounted(() => nextTick(highlightCode))
+function onRouteChange() {
+  nextTick(() => {
+    highlightCode()
+    // 延迟一帧等 Vue 渲染完子组件 DOM
+    requestAnimationFrame(() => buildToc())
+  })
+}
+
+watch(() => route.path, onRouteChange, { immediate: true })
+onMounted(() => nextTick(onRouteChange))
+onBeforeUnmount(() => { if (observer) observer.disconnect() })
 </script>
 
 <style scoped>
-.pm-doc-view { max-width: 800px; }
+.pm-doc-view {
+  width: 100%;
+}
+
+.pm-doc-body {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.pm-doc-content {
+  flex: 1;
+  min-width: 0;
+  max-width: 800px;
+}
+
+/* ── 右侧固定 TOC ── */
+.pm-doc-toc {
+  position: fixed;
+  right: max(32px, calc((100vw - 1200px) / 2));
+  top: 140px;
+  width: 220px;
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+  padding: 0 12px 0 16px;
+  border-left: 2px solid #e5e7eb;
+  z-index: 40;
+}
+
+.pm-doc-toc::-webkit-scrollbar { width: 3px; }
+.pm-doc-toc::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+
+.toc-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc-item { margin: 0; }
+
+.toc-link {
+  display: block;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #6b7280;
+  text-decoration: none;
+  padding: 3px 0 3px 12px;
+  border-left: 2px solid transparent;
+  margin-left: -18px;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toc-link:hover { color: #4f46e5; }
+
+.toc-h3 .toc-link {
+  padding-left: 24px;
+  font-size: 12.5px;
+  color: #9ca3af;
+}
+
+.toc-h4 .toc-link {
+  padding-left: 36px;
+  font-size: 12px;
+  color: #b0b7c3;
+}
+
+.toc-active .toc-link {
+  color: #4f46e5;
+  font-weight: 600;
+  border-left-color: #6366f1;
+}
+
+/* ── 原有样式 ── */
 .breadcrumb { display: flex; align-items: center; gap: 6px; margin-bottom: 32px; font-size: 13px; flex-wrap: wrap; }
 .bc-link { color: #6b7280; text-decoration: none; transition: color 0.2s; }
 .bc-link:hover { color: #6366f1; }
@@ -136,4 +299,9 @@ onMounted(() => nextTick(highlightCode))
 .nav-link.next { text-align: right; margin-left: auto; }
 .nav-dir { font-size: 12px; color: #9ca3af; }
 .nav-title { font-size: 14px; color: #4f46e5; font-weight: 600; }
+
+/* ── 响应式：窄屏隐藏 TOC ── */
+@media (max-width: 1100px) {
+  .pm-doc-toc { display: none; }
+}
 </style>
