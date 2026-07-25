@@ -1,0 +1,120 @@
+/*
+Creator : Kong.A
+Created On : 
+*/
+ /* 
+  前端HTML程式式调用此方法，传入需要添加的数据 传入数据格式说明
+  1.item_type  新增的Item的类型
+  2.property_nameo_and_value 新增数据属性名称和相关键值对,例如：{ "item_number": "test123", "name": "测试数据" }
+  3. serverevents 新增时候是否触发相关服务器方法默认1触发 若不触发则传入0
+ */ 
+Aras.Server.Security.Identity plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");//设置权限（getbyname后面的括号填Identity的name）
+bool PermissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);//设置权限
+const string ERR_PREFIX = "Error[IC_allReviewPassOrReject]：";
+Innovator inn = this.getInnovator();
+try 
+{
+      var hoursReviews = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ICHoursReview>>(this.getProperty("HoursReviewList", "[]"));
+      var type = this.getProperty("methodtype", "pass");
+      foreach (var hoursReview in hoursReviews)
+      {
+          var promoteItem = inn.newItem("IC_Working_Hour", "get");
+          promoteItem.setProperty("id", hoursReview.id);
+          promoteItem.setAttribute("select", "state,id");
+          promoteItem = promoteItem.apply();
+          if (type == "pass")
+          {
+              pass(inn, promoteItem);
+          }
+          else
+          {
+              reject(inn, promoteItem);
+          }
+      }
+    return this;
+
+} 
+catch (Exception ex) 
+{
+   throw new Exception(ERR_PREFIX + ex.Message);
+}
+finally 
+{
+   if (PermissionWasSet) Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);//释放权限
+}}
+ /// <summary>
+ /// 通过
+ /// </summary>
+ public  void pass(Innovator inn,Item promoteItem)
+ {
+     if (promoteItem.getProperty("state", "pass") == "")
+     {
+         throw new Exception("当前状态为,已通过。无法二次通过请刷新数据");
+     }
+     if (promoteItem.getProperty("state", "") == "reject")
+     {
+         throw new Exception("当前状态为已驳回。无法通过请刷新数据");
+     }
+     var requst = promoteItem.promote("pass", "已通过");
+ }
+ public  void reject(Innovator inn, Item promoteItem)
+ {
+     if (promoteItem.getProperty("state", "") == "reject")
+     {
+         throw new Exception("当前状态为已驳回。无法通过请刷新数据");
+     }
+     var requst = promoteItem.promote("reject", "已驳回");
+ }
+ public class ICHoursReview
+{
+    /// <summary>
+    /// 记录Id
+    /// </summary>
+    public string? id { get; set; } = null;
+    /// <summary>
+    /// 项目编号
+    /// </summary>
+    public string? project_number { get; set; }
+    /// <summary>
+    /// 项目名称
+    /// </summary>
+    public string? project_name { get; set; } = null;
+    /// <summary>
+    /// 项目经理
+    /// </summary>
+    public string? created_by_id { get; set; } = null;
+    /// <summary>
+    /// 填报状态
+    /// </summary>
+    public string? state { get; set; } = null;
+    /// <summary>
+    /// 周一
+    /// </summary>
+    public string? monday { get; set; } = "0";
+    /// <summary>
+    /// 周二
+    /// </summary>
+    public string? tuesday { get; set; } = "0";
+    /// <summary>
+    /// 周三
+    /// </summary>
+    public string? wednesday { get; set; } = "0";
+    /// <summary>
+    /// 周四
+    /// </summary>
+    public string? thursday { get; set; } = "0";
+    /// <summary>
+    /// 周五
+    /// </summary>
+    public string? friday { get; set; } = "0";
+    /// <summary>
+    /// 周六
+    /// </summary>
+
+    public string? saturday { get; set; } = "0";
+    /// <summary>
+    /// 周日
+    /// </summary>
+    public string? sunday { get; set; } = "0";
+}
+public void end (){

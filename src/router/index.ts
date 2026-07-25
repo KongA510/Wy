@@ -14,6 +14,8 @@ const routes: RouteRecordRaw[] = [
   { path: '/notes/:articleId', name: 'NotesArticle', component: () => import('../views/ArticleView.vue'), meta: { title: '文章详情' } },
   { path: '/pm', name: 'PmIndex', component: () => import('../views/PmIndex.vue'), meta: { title: '项目管理' } },
   { path: '/pm/:docId', name: 'PmDoc', component: () => import('../views/PmDocView.vue'), meta: { title: '项目管理笔记' } },
+  { path: '/aras-dev', name: 'ArasDevIndex', component: () => import('../views/ArasDevIndex.vue'), meta: { title: 'Aras 开发手册' } },
+  { path: '/aras-dev/:docId', name: 'ArasDevDoc', component: () => import('../views/ArasDevDocView.vue'), meta: { title: 'Aras 开发手册' } },
 ]
 
 const router = createRouter({

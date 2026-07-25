@@ -53,6 +53,7 @@ import { Search, ArrowRight, ArrowLeft, HomeFilled, Monitor, ChromeFilled, Promo
 import { menuData } from '../../data/menu'
 import { arasDocMenu } from '../../data/aras-menu'
 import { pmMenu } from '../../data/pm-menu'
+import { arasDevMenu } from '../../data/aras-dev-menu'
 import SearchDialog from '../SearchDialog.vue'
 import TreeNode from '../TreeNode.vue'
 
@@ -66,9 +67,9 @@ const iconMap: Record<string, any> = {
   Coin, Share, Notebook, Calendar, Reading, ChatDotRound, UserFilled, DataLine
 }
 
-const treeMode = computed(() => route.path.startsWith('/aras-docs') ? 'aras' : route.path.startsWith('/pm') ? 'pm' : null)
-const treeMenu = computed(() => treeMode.value === 'pm' ? pmMenu : arasDocMenu)
-const treeTitle = computed(() => treeMode.value === 'pm' ? '项目管理' : 'Aras 文档')
+const treeMode = computed(() => route.path.startsWith('/aras-docs') ? 'aras' : route.path.startsWith('/pm') ? 'pm' : route.path.startsWith('/aras-dev') ? 'aras-dev' : null)
+const treeMenu = computed(() => treeMode.value === 'pm' ? pmMenu : treeMode.value === 'aras-dev' ? arasDevMenu : arasDocMenu)
+const treeTitle = computed(() => treeMode.value === 'pm' ? '项目管理' : treeMode.value === 'aras-dev' ? 'Aras 开发手册' : 'Aras 文档')
 
 function autoExpand() {
   const p = route.path
@@ -85,8 +86,9 @@ function toggleGroup(id: string) { expandedGroups.has(id) ? expandedGroups.delet
 function isActive(p?: string) { return p ? route.path === p : false }
 function navigate(p?: string) { if (p) router.push(p) }
 function backFromTree() {
-  const index = treeMode.value === 'pm' ? '/pm' : '/aras-docs'
-  if (route.path === index) router.push('/')
+  const indexMap: Record<string, string> = { pm: '/pm', aras: '/aras-docs', 'aras-dev': '/aras-dev' }
+  const index = treeMode.value ? indexMap[treeMode.value] : '/'
+  if (index && route.path === index) router.push('/')
   else router.push(index)
 }
 function openSearch() { searchVisible.value = true }

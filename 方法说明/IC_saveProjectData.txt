@@ -1,0 +1,123 @@
+/*
+Creator : Kong.A
+Created On : 
+ 组装工时报表当前周填写相关情况数据
+ */ 
+Aras.Server.Security.Identity plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");//设置权限（getbyname后面的括号填Identity的name）
+bool PermissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);//设置权限
+const string ERR_PREFIX = "Error[IC_saveProjectData]：";
+Innovator inn = this.getInnovator();
+try 
+{
+    var projectData= Newtonsoft.Json.JsonConvert.DeserializeObject<HoursProject>(this.getProperty("projectData", ""));
+        //提交前先查询当前提交的数据是否已经被修改过或者审核过 如果被修改过或者审核过则不允许修改
+    var weekRangeData = this.getProperty("weekrangetext", "1999-4-10");
+    var selectData = DateTime.Parse(weekRangeData);
+    var endData = DateTime.Parse(weekRangeData).AddDays(6);
+    var checkItem = inn.newItem("IC_Working_Hour", "get");
+    checkItem.setProperty("ic_project", projectData.project_id);
+    checkItem.setProperty("created_by_id", inn.getUserID());
+    checkItem.setProperty("ic_start", selectData.ToString("yyyy-MM-ddTHH:mm:ss"));
+    checkItem.setProperty("ic_end", endData.ToString("yyyy-MM-ddTHH:mm:ss"));
+    checkItem.setAttribute("select", "id");
+    checkItem = checkItem.apply();
+    if (checkItem.getItemCount() > 0)
+    {
+        throw new Exception(projectData.project_name + ":当前工时数据已存在，不允许重复提交");
+    }
+    var add=inn.newItem("IC_Working_Hour", "add"); 
+    add.setProperty("ic_project", projectData.project_id);
+    add.setProperty("ic_start", selectData.ToString("yyyy-MM-ddTHH:mm:ss"));
+    add.setProperty("ic_end", endData.ToString("yyyy-MM-ddTHH:mm:ss"));
+    add.setProperty("ic_monday", projectData.monday);
+    add.setProperty("ic_tuesday", projectData.tuesday);
+    add.setProperty("ic_wednesday", projectData.wednesday);
+    add.setProperty("ic_thursday", projectData.thursday);
+    add.setProperty("ic_friday", projectData.friday);
+    add.setProperty("ic_saturday", projectData.saturday);
+    add.setProperty("ic_sunday", projectData.sunday);
+    //页签数据组装 
+    var sort_order = 1;
+    var userId=inn.getUserID();
+    var propertyList = new List<string>() { projectData.monday, projectData.tuesday, projectData.wednesday, projectData.thursday, projectData.friday, projectData.saturday, projectData.sunday };
+      foreach(var property in propertyList){
+        var addHour_Details = inn.newItem("IC_Hour_Details", "add");
+        addHour_Details.setProperty("ic_hours",property);
+        addHour_Details.setProperty("ic_date", selectData.ToString("yyyy-MM-ddTHH:mm:ss"));
+        addHour_Details.setProperty("ic_user", userId);
+        addHour_Details.setProperty("sort_order", sort_order.ToString());
+        addHour_Details.setProperty("ic_project", projectData.project_id);
+        sort_order++;
+        add.addRelationship(addHour_Details);
+        selectData=selectData.AddDays(1);
+    }
+    add=add.apply();
+    return  add;
+
+} 
+catch (Exception ex) 
+{
+   throw new Exception(ERR_PREFIX + ex.Message);
+}
+finally 
+{
+   if (PermissionWasSet) Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);//释放权限
+}}
+public class HoursProject
+{
+    /// <summary>
+    /// 记录Id
+    /// </summary>
+    public string ? id { get; set; } = null;
+    /// <summary>
+    /// 项目编号
+    /// </summary>
+    public string ?project_number { get; set; }
+    /// <summary>
+    /// 项目名称
+    /// </summary>
+    public string ? project_name { get; set; } = null;
+    /// <summary>
+    /// 项目经理
+    /// </summary>
+    public string ? project_manager { get; set; } = null;
+    /// <summary>
+    /// 填报状态
+    /// </summary>
+    public string ? state { get; set; } = null;
+    /// <summary>
+    /// 项目ID
+    /// </summary>
+    public string ? project_id { get; set; } = null;
+    /// <summary>
+    /// 周一
+    /// </summary>
+    public string ? monday { get; set; } = "0";
+    /// <summary>
+    /// 周二
+    /// </summary>
+    public string? tuesday { get; set; } = "0";
+    /// <summary>
+    /// 周三
+    /// </summary>
+    public string? wednesday { get; set; } = "0";
+    /// <summary>
+    /// 周四
+    /// </summary>
+    public string? thursday { get; set; } = "0";
+    /// <summary>
+    /// 周五
+    /// </summary>
+    public string? friday { get; set; } = "0";
+    /// <summary>
+    /// 周六
+    /// </summary>
+
+    public string? saturday { get; set; } = "0";
+    /// <summary>
+    /// 周日
+    /// </summary>
+    public string? sunday { get; set; } = "0";
+
+}
+public void end (){

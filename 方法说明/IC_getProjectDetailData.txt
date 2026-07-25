@@ -1,0 +1,73 @@
+/*
+Creator : Kong.A
+Created On : 
+*/
+ /* 
+  前端HTML程式式调用此方法，传入需要添加的数据 传入数据格式说明
+  1.item_type  新增的Item的类型
+  2.property_nameo_and_value 新增数据属性名称和相关键值对,例如：{ "item_number": "test123", "name": "测试数据" }
+  3. serverevents 新增时候是否触发相关服务器方法默认1触发 若不触发则传入0
+ */ 
+Aras.Server.Security.Identity plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");//设置权限（getbyname后面的括号填Identity的name）
+bool PermissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);//设置权限
+const string ERR_PREFIX = "Error[IC_AddItem]：";
+Innovator inn = this.getInnovator();
+try 
+{
+    
+      var  res = new List<ProjectDetail>();
+      var projectId = this.getProperty("projectId", "");
+      var year = Convert.ToInt32(this.getProperty("year", "1999"));
+      var month = Convert.ToInt32(this.getProperty("month", "1"));
+      var startDate = new DateTime(year, month, 1).AddHours(-8).ToString("yyyy-MM-ddTHH:mm:ss");
+      var endDate = new DateTime(year, month, 1).AddMonths(1).AddDays(-1).AddHours(-8).ToString("yyyy-MM-ddTHH:mm:ss");
+      var selectSql = string.Format(
+          "select u.[KEYED_NAME] username,ihd.IC_DATE,ihd.IC_HOURS,iwh.[STATE] " +
+          "from innovator.IC_Hour_Details ihd  left join innovator.IC_Working_Hour iwh " +
+          "on ihd.SOURCE_ID=iwh.id left join innovator.PROJECT p " +
+          "on p.id=ihd.IC_PROJECT left join innovator.[USER] u " +
+          "on u.ID=ihd.IC_USER  " +
+          "where ihd.IC_PROJECT='{0}' and IC_DATE between '{1}' and '{2}'  order by ihd.IC_DATE", projectId, startDate, endDate);
+      var datas = inn.applySQL(selectSql);
+      for(var i=0; i < datas.getItemCount(); i++)
+      {
+          var data = datas.getItemByIndex(i);
+          res.Add(new ProjectDetail()
+          {
+              reporter = data.getProperty("username", ""),
+              report_date = data.getProperty("ic_date", ""),
+              work_hours = data.getProperty("ic_hours", ""),
+              state = data.getProperty("state", ""),
+          });
+      }
+      return inn.newResult(Newtonsoft.Json.JsonConvert.SerializeObject(res));
+
+} 
+catch (Exception ex) 
+{
+   throw new Exception(ERR_PREFIX + ex.Message);
+}
+finally 
+{
+   if (PermissionWasSet) Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);//释放权限
+}}
+ public class ProjectDetail
+ {
+     /// <summary>
+     /// 填报人员
+     /// </summary>
+     public string reporter { get; set; } = "";
+     /// <summary>
+     /// 填报时间
+     /// </summary>
+     public string report_date { get; set; } = "";
+     /// <summary>
+     /// 填报工时
+     /// </summary>
+     public string work_hours { get; set; } = "";
+     /// <summary>
+     /// 审核状态
+     /// </summary>
+     public string state { get; set; } = "";
+ }
+public void end (){

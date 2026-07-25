@@ -1,0 +1,82 @@
+/*
+Creator : Kong.A
+Created On : 
+*/
+ /* 
+  前端HTML程式式调用此方法，传入需要添加的数据 传入数据格式说明
+  1.item_type  新增的Item的类型
+  2.property_nameo_and_value 新增数据属性名称和相关键值对,例如：{ "item_number": "test123", "name": "测试数据" }
+  3. serverevents 新增时候是否触发相关服务器方法默认1触发 若不触发则传入0
+ */ 
+Aras.Server.Security.Identity plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");//设置权限（getbyname后面的括号填Identity的name）
+bool PermissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);//设置权限
+const string ERR_PREFIX = "Error[AddPartHasChildren]：";
+Innovator inn = this.getInnovator();
+try 
+{
+     //需要判别当传入对应项目时,查询方式以及传入具体时间的方式 通过传递的月份 1-12 自动计算出当月第一天与当月最后一天
+      var year=Convert.ToInt32( this.getProperty("year", "1999"));
+      var month = Convert.ToInt32( this.getProperty("month", "4"));
+      var project_id=this.getProperty("project_id", "");
+      //开始构造具体查询条件
+      //根据当前年月获取当月第一天与最后一天时间
+      var startData = new DateTime(year, month, 1);//.ToString("yyyy-MM-ddTHH:mm:ss");
+      var endData = startData.AddMonths(1).AddSeconds(-1);
+      //组装查询AML
+      var amlProject = "";
+      if (project_id != "")
+      {
+          amlProject = $"<ic_project>{project_id}</ic_project>";
+      }
+      var getAML = 
+                  $"<AML>" +
+                  $"              <Item type='IC_Hour_Details' action='get' select='id,ic_hours,ic_date,ic_user,ic_project(id,name,project_number,owned_by_id),ic_state' order_by='ic_date'>" +
+                  $"                   <ic_date condition=\"ge\">{startData.ToString("yyyy-MM-ddTHH:mm:ss")}</ic_date> " +
+                  $"                   <ic_date condition=\"le\">{endData.ToString("yyyy-MM-ddTHH:mm:ss")}</ic_date>" +
+                  $"                      {amlProject}" +
+                  $"              </Item>" +
+                  $"</AML>";
+      var hoursDatas = inn.applyAML(getAML);
+      var result = new List<Hours_Details>() { };
+      for(var i = 0; i < hoursDatas.getItemCount(); i++)
+      {
+          var hoursData=hoursDatas.getItemByIndex(i);
+          var project = hoursData.getPropertyItem("ic_project");
+          var add = new Hours_Details()
+          {
+              id=hoursData.getProperty("id",""),
+              ic_hours=hoursData.getProperty("ic_hours","0"),
+              ic_user=hoursData.getPropertyAttribute("ic_user","keyed_name",""),
+              project_id=hoursData.getProperty("ic_project",""),
+              project_name=project.getProperty("name",""),
+              project_number=project.getProperty("project_number",""),
+              state=hoursData.getProperty("ic_state",""),
+              date_created=DateTime.Parse(hoursData.getProperty("ic_date","")).ToString("yyyy/MM/dd")
+
+          };
+          result.Add(add);
+      }
+    return   inn.newResult(System.Text.Json.JsonSerializer.Serialize(result));
+    
+
+} 
+catch (Exception ex) 
+{
+   throw new Exception(ERR_PREFIX + ex.Message);
+}
+finally 
+{
+   if (PermissionWasSet) Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);//释放权限
+}}
+ public class Hours_Details
+ {
+     public string id{  get; set; }=string.Empty;//当前ID
+     public string ic_user { get; set; } = string.Empty;//填报人
+     public string project_name { get; set; } = string.Empty;//项目名称
+     public string project_number {  get; set; } = string.Empty;//项目编号
+     public string project_id {  get; set; } = string.Empty;//项目ID
+     public string date_created { get; set; } = string.Empty;//填写日期
+     public string state { get; set; } = string.Empty;//工时当前状态
+     public string ic_hours { get; set; } = string.Empty;//具体工时
+ }
+public void end (){

@@ -1,0 +1,173 @@
+/*
+Creator : Kong.A
+Created On : 
+ 组装工时报表当前周填写相关情况数据
+ */ 
+Aras.Server.Security.Identity plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");//设置权限（getbyname后面的括号填Identity的name）
+bool PermissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);//设置权限
+const string ERR_PREFIX = "Error[IC_getProjectList]：";
+Innovator inn = this.getInnovator();
+try 
+{
+         //查询周一是否在项目计划的时间范围
+         var weekRangeData = this.getProperty("weekrangetext", "1999-4-10");
+         var selectData = DateTime.Parse(weekRangeData);      
+         var endData=DateTime.Parse(weekRangeData).AddDays(6);
+         //Aras日期查询机制小于等于当天格式需要设置为下一天减去一秒
+         var date_start_sched = selectData.AddDays(1).AddSeconds(-1).ToString("yyyy-MM-ddTHH:mm:ss");
+         var date_due_sched = selectData.ToString("yyyy-MM-ddTHH:mm:ss");
+           //先用分组查询查询获取参与的相关任务
+        var created_by_id = inn.getUserID();
+        var user = inn.newItem("User", "get");
+        user.setAttribute("select", "id,owned_by_id");
+        user.setProperty("id", created_by_id);
+        user=user.apply();
+        var ident_id=user.getProperty("owned_by_id", "");
+        var getPropjectIds = inn.applySQL(string.Format("select p.id from innovator.PROJECT p join innovator.ACTIVITY2 act " +
+            "on p.PROJECT_NUMBER=act.PROJ_NUM  join innovator.PROJECT_TEAM ptm " +
+            "on ptm.SOURCE_ID=p.id  where act.OWNED_BY_ID='{0}' or ptm.RELATED_ID='{1}' " +
+            "group by p.id", ident_id, ident_id));
+        var projectIds = "";
+        if(getPropjectIds.getItemCount()<=0){
+            projectIds="''";
+        }
+        for(var i = 0; i < getPropjectIds.getItemCount(); i++)
+        {
+            var projectId = getPropjectIds.getItemByIndex(i).getProperty("id", "");
+            if (i == 0)
+            {
+                projectIds += string.Format("'{0}'", projectId);
+            }
+            else
+            {
+                projectIds += string.Format(",'{0}'", projectId);
+            }
+        }
+        //构建满足需求的Project相关数据 并且初始化返回的数据集合
+        var results = new List<HoursProject>() { };
+        var projects = inn.newItem("Project", "get");
+        projects.setProperty("date_start_sched", date_start_sched);
+        projects.setProperty("date_due_sched", date_due_sched);
+        projects.setPropertyCondition("date_start_sched ", "le");
+        projects.setPropertyCondition("date_due_sched", "ge");
+        projects.setAttribute("where", string.Format("project.id in ({0})", projectIds));
+        projects.setAttribute("select", "id,name,item_number,project_number,current_state,state,owned_by_id");
+        projects = projects.apply();
+         //组装前先设定好时间的相关数据集合 Aras的查询需要使用between比如
+         //<date_start_sched condition="between">2026-03-10T00:00:00 and 2026-03-10T23:59:59</date_start_sched>
+         //导致需要先组装相关查询语句 组装起始查询时间和结束查询时间
+         var ic_start = string.Format("{0} and {1}", date_due_sched, date_start_sched);
+         var ic_end = string.Format("{0} and {1}", endData.ToString("yyyy-MM-ddTHH:mm:ss"), endData.AddDays(1).AddSeconds(-1).ToString("yyyy-MM-ddTHH:mm:ss"));
+         for (var i=0;i<projects.getItemCount();i++)
+         {
+             var project = projects.getItemByIndex(i);
+             var project_id = project.getProperty("id","");
+             var project_name = project.getProperty("name");
+             var project_number = project.getProperty("project_number","");
+             var state = project.getProperty("state","");
+             var current_state = project.getProperty("current_state","");
+             var owned_by_id = project.getPropertyAttribute("owned_by_id", "keyed_name", "");
+             var addHours = new HoursProject()
+             {
+                 project_id = project_id,
+                 project_name = project_name,
+                 project_number = project_number,
+                 project_manager = owned_by_id
+             };
+             var getIC_Working_Hour=inn.newItem("IC_Working_Hour", "get");
+             getIC_Working_Hour.setProperty("ic_project", project_id);
+             getIC_Working_Hour.setProperty("ic_start", ic_start);
+             getIC_Working_Hour.setProperty("ic_end", ic_end);
+             getIC_Working_Hour.setProperty("created_by_id", created_by_id);
+             getIC_Working_Hour.setPropertyCondition("ic_start", "between");
+             getIC_Working_Hour.setPropertyCondition("ic_end", "between");
+             getIC_Working_Hour.setAttribute("select", "created_by_id,ic_end,ic_friday,ic_monday,ic_project,ic_saturday,ic_start," +
+                 "state,ic_sunday,ic_thursday,ic_tuesday,ic_wednesday");
+             getIC_Working_Hour = getIC_Working_Hour.apply();
+             //组装后查询是否存在工时填报记录表单 若存在则提取当前的相关数据集合
+             if (getIC_Working_Hour.getItemCount() == 1)// 存在且为唯一记录则复写相关数据
+             {
+                  addHours.state = getIC_Working_Hour.getProperty("state","");
+                  addHours.monday = getIC_Working_Hour.getProperty("ic_monday", "0");
+                  addHours.tuesday = getIC_Working_Hour.getProperty("ic_tuesday", "0");
+                  addHours.wednesday = getIC_Working_Hour.getProperty("ic_wednesday", "0");
+                  addHours.thursday = getIC_Working_Hour.getProperty("ic_thursday", "0");
+                  addHours.friday = getIC_Working_Hour.getProperty("ic_friday", "0");
+                  addHours.saturday = getIC_Working_Hour.getProperty("ic_saturday", "0");
+                  addHours.sunday = getIC_Working_Hour.getProperty("ic_sunday", "0");
+                  addHours.id=getIC_Working_Hour.getProperty("id", "0");
+             }
+             results.Add(
+                 addHours
+             );
+         }
+        
+     return    inn.newResult(Newtonsoft.Json.JsonConvert.SerializeObject(results));
+
+} 
+catch (Exception ex) 
+{
+   throw new Exception(ERR_PREFIX + ex.Message);
+}
+finally 
+{
+   if (PermissionWasSet) Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);//释放权限
+}}
+public class HoursProject
+{
+    /// <summary>
+    /// 记录Id
+    /// </summary>
+    public string ? id { get; set; } = null;
+    /// <summary>
+    /// 项目编号
+    /// </summary>
+    public string ?project_number { get; set; }
+    /// <summary>
+    /// 项目名称
+    /// </summary>
+    public string ? project_name { get; set; } = null;
+    /// <summary>
+    /// 项目经理
+    /// </summary>
+    public string ? project_manager { get; set; } = null;
+    /// <summary>
+    /// 填报状态
+    /// </summary>
+    public string ? state { get; set; } = null;
+    /// <summary>
+    /// 项目ID
+    /// </summary>
+    public string ? project_id { get; set; } = null;
+    /// <summary>
+    /// 周一
+    /// </summary>
+    public string ? monday { get; set; } = "0";
+    /// <summary>
+    /// 周二
+    /// </summary>
+    public string? tuesday { get; set; } = "0";
+    /// <summary>
+    /// 周三
+    /// </summary>
+    public string? wednesday { get; set; } = "0";
+    /// <summary>
+    /// 周四
+    /// </summary>
+    public string? thursday { get; set; } = "0";
+    /// <summary>
+    /// 周五
+    /// </summary>
+    public string? friday { get; set; } = "0";
+    /// <summary>
+    /// 周六
+    /// </summary>
+
+    public string? saturday { get; set; } = "0";
+    /// <summary>
+    /// 周日
+    /// </summary>
+    public string? sunday { get; set; } = "0";
+
+}
+public void end (){

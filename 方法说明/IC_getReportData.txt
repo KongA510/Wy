@@ -1,0 +1,192 @@
+/*
+Creator : Kong.A
+Created On : 
+ 组装工时报表当前周填写相关情况数据
+ */ 
+Aras.Server.Security.Identity plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");//设置权限（getbyname后面的括号填Identity的name）
+bool PermissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);//设置权限
+const string ERR_PREFIX = "Error[IC_getReportData]：";
+Innovator inn = this.getInnovator();
+try 
+{
+   
+    //查询当前用户的工时填报数据
+    //先用分组查询查询获取参与的相关任务
+    var created_by_id = inn.getUserID();
+    var user = inn.newItem("User", "get");
+    user.setAttribute("select", "id,owned_by_id");
+    user.setProperty("id", created_by_id);
+    user = user.apply();
+    var ident_id = user.getProperty("owned_by_id", "");
+    var getPropjectIds = inn.applySQL(string.Format("select p.id from innovator.PROJECT p join innovator.ACTIVITY2 act " +
+        "on p.PROJECT_NUMBER=act.PROJ_NUM  join innovator.PROJECT_TEAM ptm " +
+        "on ptm.SOURCE_ID=p.id  where act.OWNED_BY_ID='{0}' or ptm.RELATED_ID='{1}' " +
+        "group by p.id", ident_id, ident_id));
+    var projectIds = "";
+     if(getPropjectIds.getItemCount()<=0){
+            projectIds="''";
+        }
+    for (var i = 0; i < getPropjectIds.getItemCount(); i++)
+    {
+        var projectId = getPropjectIds.getItemByIndex(i).getProperty("id", "");
+        if (i == 0)
+        {
+            projectIds += string.Format("'{0}'", projectId);
+        }
+        else
+        {
+            projectIds += string.Format(",'{0}'", projectId);
+        }
+    }
+    //根据传入的年份获取当年第一天和当年最后一天
+    //获取传入的年份，生成当年第一天和当年最后一天用于从查询当年相关日期记录
+    //因为Aras 中日期格式为2024-01-01T00:00:00 所以生成的日期也要转换成这种格式
+    var year = Convert.ToInt32( this.getProperty("year", "2025"));
+    var yearStart = new DateTime(year, 1, 1).ToString("yyyy-MM-ddTHH:mm:ss");
+    var yearEnd = new DateTime(year, 12, 31).AddDays(1).AddSeconds(-1).ToString("yyyy-MM-ddTHH:mm:ss");
+    var project = inn.newItem("Project", "get");
+    project.setAttribute("select", "id,name");
+    project.setAttribute("where", string.Format("project.date_start_sched <= '{0}' and  project.date_due_sched >= '{1}'" +
+        " and project.id in ({2})",  yearEnd, yearStart, projectIds));
+    project=project.apply();
+    var result = new Annual_Working_Hours();
+    result.projectCount = project.getItemCount().ToString();
+    //获取当年1-12月工时数据 组装图数据获取
+    var monthHours = new List<double>() { };
+    for (var i = 1; i < 13; i++)
+    {
+        //获取当月第一天和当月最后一天
+        var monthStart = GetFirstDayOfMonth(year, i).ToString("yyyy-MM-ddTHH:mm:ss");
+        var monthEnd = GetLastDayOfMonth(year, i).AddDays(1).AddSeconds(-1).ToString("yyyy-MM-ddTHH:mm:ss");
+        //根据数据范围查询当月工时数据 查询后循环汇总若不存在数据则表示当月数据为0
+        var IC_Hour_Details = inn.newItem("IC_Hour_Details", "get");
+        IC_Hour_Details.setAttribute("select", "id,ic_user,ic_hours,ic_date");
+        IC_Hour_Details.setProperty("created_by_id", created_by_id);
+        IC_Hour_Details.setAttribute("where", string.Format("ic_date >= '{0}' and ic_date <= '{1}'", monthStart, monthEnd));
+        IC_Hour_Details = IC_Hour_Details.apply();
+        if (IC_Hour_Details.getItemCount() <= 0)
+        {
+            monthHours.Add(0);
+
+        }
+        else
+        {
+            var monthHour = 0.0;
+            for (var j = 0; j < IC_Hour_Details.getItemCount(); j++)
+            {
+                monthHour += Convert.ToDouble(IC_Hour_Details.getItemByIndex(j).getProperty("ic_hours", "0"));
+            }
+            monthHours.Add(monthHour);
+        }
+    }
+    result.monthlyData = monthHours;
+    //计算峰值月份 平均月份
+    //比较当前系统年份和传入的年份 如果当前系统年份大于传入的年份
+    //则峰值月份为当年12月 平均月份为当年1-12月总和除以12 否则峰值月份为当前系统月份
+    //平均月份为当年1-当前系统月份总和除以当前系统月份数
+
+    var currentYear = DateTime.Now.Year;
+    var currentMonth = DateTime.Now.Month;
+    if(currentYear> year)
+    {
+        result.peakMonth = monthHours.Max().ToString();
+        result.avgMonthlyHours = (monthHours.Sum() / 12).ToString("0.00");
+    }
+    else
+    {
+        result.peakMonth    = monthHours.Take(currentMonth).Max().ToString();
+        result.avgMonthlyHours = (monthHours.Take(currentMonth).Sum() / currentMonth).ToString("0.00");
+    }
+    //组装饼图数据 
+    var pieChartData = new List<initPieChart>() { };
+    for (var i = 0; i < project.getItemCount(); i++) 
+    {
+        var projectItem = project.getItemByIndex(i);
+        var projectId = projectItem.getProperty("id", "");
+        var projectName = projectItem.getProperty("name", "");
+        //根据今年时间+创建者+项目编号查询工时数据 获取当年每个项目的工时总和 组装饼图数据
+        var IC_Hour_Details=inn.newItem("IC_Hour_Details", "get");
+        IC_Hour_Details.setAttribute("select", "id,ic_user,ic_hours,ic_date");
+        IC_Hour_Details.setProperty("created_by_id", created_by_id);
+        IC_Hour_Details.setAttribute("where", string.Format("ic_date >= '{0}' and ic_date <= '{1}' and ic_project = '{2}'", yearStart, yearEnd, projectId));
+        IC_Hour_Details = IC_Hour_Details.apply();
+        var projectHours = 0.0;
+        for (var j = 0; j < IC_Hour_Details.getItemCount(); j++)
+        {
+            projectHours += Convert.ToDouble(IC_Hour_Details.getItemByIndex(j).getProperty("ic_hours", "0"));
+        }
+        pieChartData.Add(new initPieChart()
+        {
+            name = projectName,
+            value = projectHours.ToString()
+        });
+    }
+    result.projectData = pieChartData;
+    return inn.newResult(Newtonsoft.Json.JsonConvert.SerializeObject(result));
+      
+
+} 
+catch (Exception ex) 
+{
+   throw new Exception(ERR_PREFIX + ex.Message);
+}
+finally 
+{
+   if (PermissionWasSet) Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);//释放权限
+}}
+   /// <summary>
+   /// 获取指定年月的第一天
+   /// </summary>
+   public static DateTime GetFirstDayOfMonth(int year, int month)
+   {
+       return new DateTime(year, month, 1);
+   }
+
+   /// <summary>
+   /// 获取指定年月的最后一天
+   /// </summary>
+   public  DateTime GetLastDayOfMonth(int year, int month)
+   {
+       // 方法一：使用DaysInMonth（推荐，效率最高）
+       return new DateTime(year, month, DateTime.DaysInMonth(year, month));
+
+       // 方法二：通过下个月减一天（备用方案）
+       // return new DateTime(year, month, 1).AddMonths(1).AddDays(-1);
+   }
+        public class Annual_Working_Hours
+    {
+        /// <summary>
+        /// 年度总工时
+        /// </summary>
+        public string totalHours {  get; set; }= "0";
+        /// <summary>
+        /// 项目数量
+        /// </summary>
+        public string projectCount { get; set; }="0";
+        /// <summary>
+        /// 月均工时
+        /// </summary>
+        public string avgMonthlyHours { get; set; } = "0";
+        /// <summary>
+        /// 峰值月份
+        /// </summary>
+        public string peakMonth { get; set; }
+        /// <summary>
+        /// 饼图数据源
+        /// </summary>
+        public List<initPieChart> projectData { get; set; }= new List<initPieChart>();
+        /// <summary>
+        /// 柱状图数据
+        /// </summary>
+        public List<double> monthlyData { get; set; }= new List<double>();
+
+    }
+    /// <summary>
+    /// 饼图单个信息
+    /// </summary>
+    public class initPieChart()
+    {
+        public string name { get; set; } = null;
+        public string value { get; set; } = "0";
+    }  
+    public void end (){
