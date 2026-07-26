@@ -15,7 +15,7 @@ import AppHeader from './AppHeader.vue'
 import AppSidebar from './AppSidebar.vue'
 
 const route = useRoute()
-const isDocZone = computed(() => route.path.startsWith('/aras-docs') || route.path.startsWith('/aras-api') || route.path.startsWith('/pm'))
+const isDocZone = computed(() => route.path.startsWith('/aras-docs') || route.path.startsWith('/aras-api') || route.path.startsWith('/pm') || route.path.startsWith('/aras-dev') || route.path.startsWith('/server-api'))
 </script>
 
 <style scoped>

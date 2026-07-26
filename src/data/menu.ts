@@ -3,6 +3,7 @@ import { arasDocMenu } from './aras-menu'
 import type { ArasDocNode } from './aras-menu'
 import { pmMenu } from './pm-menu'
 import { arasDevMenu } from './aras-dev-menu'
+import { serverApiMenu } from './server-api-menu'
 
 export const menuData: MenuNode[] = [
   { id: 'home', label: '首页', icon: 'HomeFilled', path: '/', description: '博客首页，总览所有板块' },
@@ -22,10 +23,11 @@ export const menuData: MenuNode[] = [
       { id: 'be-dotnet', label: '.NET / C#', icon: 'Coin', path: '/backend/dotnet', description: '.NET 生态、C# 语言特性、ASP.NET' },
       { id: 'be-db', label: '数据库', icon: 'Coin', path: '/backend/database', description: 'SQL Server、EF Core、数据库设计' },
       { id: 'be-api', label: 'API 设计', icon: 'Share', path: '/backend/api-design', description: 'RESTful API 设计原则与实践' },
-      { id: 'be-pm', label: '项目管理', icon: 'DataLine', path: '/pm', description: 'Aras 项目基线、WBS 递归获取、CPM 排程实践' },
-      { id: 'be-aras-dev', label: 'Aras 开发手册', icon: 'Notebook', path: '/aras-dev', description: 'Aras Innovator 服务端开发 — IOM、Method、AML、权限' }
+      { id: 'be-pm', label: '项目管理', icon: 'DataLine', path: '/pm', description: 'Aras 项目基线、WBS 递归获取、CPM 排程实践' }
     ]
   },
+  { id: 'aras-dev', label: 'Aras 开发手册', icon: 'EditPen', path: '/aras-dev', description: 'Aras Innovator 服务端开发 — IOM、Method、AML、权限' },
+  { id: 'server-api', label: '服务器 API 参考', icon: 'Platform', path: '/server-api', description: 'Aras Innovator .NET API 参考，覆盖 IOM、OAuth、IOME、Aras.Net 命名空间' },
   {
     id: 'notes', label: '日常笔记', icon: 'Notebook', description: '日常学习、工作随笔',
     children: [
@@ -101,3 +103,14 @@ function buildArasDevSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
   }
 }
 buildArasDevSearchIndex(arasDevMenu)
+
+function buildServerApiSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
+  for (const node of nodes) {
+    const category = parentLabel ? `${parentLabel} > ${node.name}` : node.name
+    if (node.type === 'item' && node.path) {
+      searchableItems.push({ id: 'srvapi-' + node.id, title: node.name, category, path: node.path, description: `服务器 API 参考 - ${category}` })
+    }
+    if (node.children) buildServerApiSearchIndex(node.children, category)
+  }
+}
+buildServerApiSearchIndex(serverApiMenu)
