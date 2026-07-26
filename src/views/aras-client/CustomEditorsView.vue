@@ -33,8 +33,8 @@
 
 @section extra_header {
   <!-- 可选：额外的脚本和样式 -->
-  <link rel="stylesheet" href="../styles/custom-editor.css" />
-  <script src="../scripts/custom-editor.js"></script>
+  &lt;link rel="stylesheet" href="../styles/custom-editor.css" /&gt;
+  &lt;script src="../scripts/custom-editor.js"&gt;&lt;/script&gt;
 }</code></pre>
 
     <div class="tip-box">
