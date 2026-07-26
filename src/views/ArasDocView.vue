@@ -3,7 +3,7 @@
     <div class="breadcrumb">
       <router-link to="/" class="bc-link">首页</router-link>
       <span class="bc-sep">/</span>
-      <router-link to="/aras-docs" class="bc-link">Aras 文档</router-link>
+      <router-link to="/aras-docs" class="bc-link">系统操作手册</router-link>
       <template v-for="(crumb, i) in breadcrumbs" :key="i">
         <span class="bc-sep">/</span>
         <span v-if="i === breadcrumbs.length - 1" class="bc-current">{{ crumb.name }}</span>
@@ -22,7 +22,7 @@
       <div class="not-found-icon">📄</div>
       <h2>文档未找到</h2>
       <p>该文档内容尚未提取或路径不正确</p>
-      <router-link to="/aras-docs" class="back-link">← 返回 Aras 文档目录</router-link>
+      <router-link to="/aras-docs" class="back-link">← 返回系统操作手册</router-link>
     </div>
 
     <nav v-if="docContent" class="doc-nav">

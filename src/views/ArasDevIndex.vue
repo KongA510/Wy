@@ -1,7 +1,7 @@
 <template>
   <div class="pm-index">
     <div class="page-header">
-      <h1 class="page-title">Aras 开发手册</h1>
+      <h1 class="page-title">Aras 开发笔记</h1>
       <p class="page-desc">Aras Innovator 服务端开发知识库，涵盖 IOM 核心对象、服务端方法、AML 查询语言、安全权限与开发规范等 {{ totalDocs }} 篇</p>
     </div>
 

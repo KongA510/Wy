@@ -1,7 +1,7 @@
 <template>
   <div class="pm-index">
     <div class="page-header">
-      <h1 class="page-title">服务器 API 参考</h1>
+      <h1 class="page-title">Aras 开发目录</h1>
       <p class="page-desc">Aras Innovator .NET API Reference（15.0.1 / 2025R / R37+），涵盖 Aras.IOM、Aras.IOM.OAuth、Aras.IOME、Aras.Net 四个命名空间，共计 {{ totalDocs }} 篇</p>
     </div>
 

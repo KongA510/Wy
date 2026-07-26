@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 const mainCards = [
-  { icon: '📖', title: 'Aras 文档中心', description: '164 篇系统管理文档：核心概念、表单视图、工作流、权限等', path: '/aras-docs' },
+  { icon: '📖', title: '系统操作手册', description: '164 篇系统管理文档：核心概念、表单视图、工作流、权限等', path: '/aras-docs' },
   { icon: '💚', title: '前端技术', description: 'Vue 3、TypeScript、CSS 布局、工程化工具链', path: '/frontend' },
   { icon: '🟣', title: '后端技术', description: '.NET / C#、数据库设计、RESTful API 规范', path: '/backend' },
   { icon: '📝', title: '日常笔记', description: '工作日志、读书笔记、技术随想与个人感悟', path: '/notes' }
