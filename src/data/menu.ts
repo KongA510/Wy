@@ -4,11 +4,13 @@ import type { ArasDocNode } from './aras-menu'
 import { pmMenu } from './pm-menu'
 import { arasDevMenu } from './aras-dev-menu'
 import { serverApiMenu } from './server-api-menu'
+import { arasClientMenu } from './aras-client-menu'
 
 export const menuData: MenuNode[] = [
   { id: 'home', label: '首页', icon: 'HomeFilled', path: '/', description: '博客首页，总览所有板块' },
   { id: 'aras-docs', label: '系统操作手册', icon: 'Monitor', path: '/aras-docs', description: 'Aras Innovator 系统管理文档，164 篇' },
   { id: 'server-api', label: 'Aras 开发目录', icon: 'Platform', path: '/server-api', description: 'Aras Innovator .NET API 参考，覆盖 IOM、OAuth、IOME、Aras.Net 命名空间' },
+  { id: 'aras-client', label: 'Aras 客户端文档', icon: 'Monitor', path: '/aras-client', description: 'Aras Innovator 客户端 JavaScript API 参考，涵盖 CUI 引擎、Web Components、仪表板开发' },
   {
     id: 'aras-dev', label: 'Aras 开发笔记', icon: 'EditPen', description: 'Aras Innovator 服务端开发与项目管理笔记',
     children: [
@@ -117,3 +119,14 @@ function buildServerApiSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
   }
 }
 buildServerApiSearchIndex(serverApiMenu)
+
+function buildArasClientSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
+  for (const node of nodes) {
+    const category = parentLabel ? `${parentLabel} > ${node.name}` : node.name
+    if (node.type === 'item' && node.path) {
+      searchableItems.push({ id: 'arclient-' + node.id, title: node.name, category, path: node.path, description: `Aras 客户端文档 - ${category}` })
+    }
+    if (node.children) buildArasClientSearchIndex(node.children, category)
+  }
+}
+buildArasClientSearchIndex(arasClientMenu)

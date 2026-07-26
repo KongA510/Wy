@@ -55,6 +55,7 @@ import { arasDocMenu } from '../../data/aras-menu'
 import { pmMenu } from '../../data/pm-menu'
 import { arasDevMenu } from '../../data/aras-dev-menu'
 import { serverApiMenu } from '../../data/server-api-menu'
+import { arasClientMenu } from '../../data/aras-client-menu'
 import SearchDialog from '../SearchDialog.vue'
 import TreeNode from '../TreeNode.vue'
 
@@ -68,9 +69,9 @@ const iconMap: Record<string, any> = {
   Coin, Share, Notebook, Calendar, Reading, ChatDotRound, UserFilled, DataLine
 }
 
-const treeMode = computed(() => route.path.startsWith('/aras-docs') ? 'aras' : route.path.startsWith('/pm') ? 'pm' : route.path.startsWith('/aras-dev') ? 'aras-dev' : route.path.startsWith('/server-api') ? 'server-api' : null)
-const treeMenu = computed(() => treeMode.value === 'pm' ? pmMenu : treeMode.value === 'aras-dev' ? arasDevMenu : treeMode.value === 'server-api' ? serverApiMenu : arasDocMenu)
-const treeTitle = computed(() => treeMode.value === 'pm' ? '项目管理' : treeMode.value === 'aras-dev' ? 'Aras 开发笔记' : treeMode.value === 'server-api' ? 'Aras 开发目录' : '系统操作手册')
+const treeMode = computed(() => route.path.startsWith('/aras-docs') ? 'aras' : route.path.startsWith('/pm') ? 'pm' : route.path.startsWith('/aras-dev') ? 'aras-dev' : route.path.startsWith('/server-api') ? 'server-api' : route.path.startsWith('/aras-client') ? 'aras-client' : null)
+const treeMenu = computed(() => treeMode.value === 'pm' ? pmMenu : treeMode.value === 'aras-dev' ? arasDevMenu : treeMode.value === 'server-api' ? serverApiMenu : treeMode.value === 'aras-client' ? arasClientMenu : arasDocMenu)
+const treeTitle = computed(() => treeMode.value === 'pm' ? '项目管理' : treeMode.value === 'aras-dev' ? 'Aras 开发笔记' : treeMode.value === 'server-api' ? 'Aras 开发目录' : treeMode.value === 'aras-client' ? 'Aras 客户端文档' : '系统操作手册')
 
 function autoExpand() {
   const p = route.path
@@ -87,7 +88,7 @@ function toggleGroup(id: string) { expandedGroups.has(id) ? expandedGroups.delet
 function isActive(p?: string) { return p ? route.path === p : false }
 function navigate(p?: string) { if (p) router.push(p) }
 function backFromTree() {
-  const indexMap: Record<string, string> = { pm: '/pm', aras: '/aras-docs', 'aras-dev': '/aras-dev', 'server-api': '/server-api' }
+  const indexMap: Record<string, string> = { pm: '/pm', aras: '/aras-docs', 'aras-dev': '/aras-dev', 'server-api': '/server-api', 'aras-client': '/aras-client' }
   const index = treeMode.value ? indexMap[treeMode.value] : '/'
   if (index && route.path === index) router.push('/')
   else router.push(index)
