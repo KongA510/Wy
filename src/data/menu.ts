@@ -7,7 +7,15 @@ import { serverApiMenu } from './server-api-menu'
 
 export const menuData: MenuNode[] = [
   { id: 'home', label: '首页', icon: 'HomeFilled', path: '/', description: '博客首页，总览所有板块' },
-  { id: 'aras-docs', label: 'Aras 文档', icon: 'Monitor', path: '/aras-docs', description: 'Aras Innovator 系统管理文档，164 篇' },
+  { id: 'aras-docs', label: '系统操作手册', icon: 'Monitor', path: '/aras-docs', description: 'Aras Innovator 系统管理文档，164 篇' },
+  { id: 'server-api', label: 'Aras 开发目录', icon: 'Platform', path: '/server-api', description: 'Aras Innovator .NET API 参考，覆盖 IOM、OAuth、IOME、Aras.Net 命名空间' },
+  {
+    id: 'aras-dev', label: 'Aras 开发日志', icon: 'EditPen', description: 'Aras Innovator 服务端开发与项目管理笔记',
+    children: [
+      { id: 'ardev-pm', label: '项目管理', icon: 'DataLine', path: '/pm', description: 'Aras 项目基线、WBS 递归获取、CPM 排程实践' },
+      { id: 'ardev-notes', label: '开发笔记', icon: 'EditPen', path: '/aras-dev', description: 'IOM、Method、AML、权限等开发知识' }
+    ]
+  },
   {
     id: 'frontend', label: '前端技术', icon: 'ChromeFilled', description: '前端开发技术栈学习笔记',
     children: [
@@ -22,12 +30,9 @@ export const menuData: MenuNode[] = [
     children: [
       { id: 'be-dotnet', label: '.NET / C#', icon: 'Coin', path: '/backend/dotnet', description: '.NET 生态、C# 语言特性、ASP.NET' },
       { id: 'be-db', label: '数据库', icon: 'Coin', path: '/backend/database', description: 'SQL Server、EF Core、数据库设计' },
-      { id: 'be-api', label: 'API 设计', icon: 'Share', path: '/backend/api-design', description: 'RESTful API 设计原则与实践' },
-      { id: 'be-pm', label: '项目管理', icon: 'DataLine', path: '/pm', description: 'Aras 项目基线、WBS 递归获取、CPM 排程实践' }
+      { id: 'be-api', label: 'API 设计', icon: 'Share', path: '/backend/api-design', description: 'RESTful API 设计原则与实践' }
     ]
   },
-  { id: 'aras-dev', label: 'Aras 开发手册', icon: 'EditPen', path: '/aras-dev', description: 'Aras Innovator 服务端开发 — IOM、Method、AML、权限' },
-  { id: 'server-api', label: '服务器 API 参考', icon: 'Platform', path: '/server-api', description: 'Aras Innovator .NET API 参考，覆盖 IOM、OAuth、IOME、Aras.Net 命名空间' },
   {
     id: 'notes', label: '日常笔记', icon: 'Notebook', description: '日常学习、工作随笔',
     children: [
@@ -49,9 +54,7 @@ export const categoryCardsMap: Record<string, CategoryCard[]> = {
   backend: [
     { icon: '🟣', title: '.NET / C#', description: 'C# 新特性、LINQ、异步编程、依赖注入', path: '/backend/dotnet' },
     { icon: '🗄️', title: '数据库', description: 'SQL 优化、EF Core 映射、数据库设计规范', path: '/backend/database' },
-    { icon: '🌐', title: 'API 设计', description: 'RESTful 规范、接口版本管理、文档生成', path: '/backend/api-design' },
-    { icon: '📊', title: '项目管理', description: 'WBS 递归获取、基线快照、CPM 排程与基线比对', path: '/pm' },
-    { icon: '📘', title: 'Aras 开发手册', description: 'IOM 核心对象、Method 开发、AML 查询、权限安全', path: '/aras-dev' }
+    { icon: '🌐', title: 'API 设计', description: 'RESTful 规范、接口版本管理、文档生成', path: '/backend/api-design' }
   ],
   notes: [
     { icon: '📝', title: '工作日志', description: '每日工作记录、问题追踪、经验复盘', path: '/notes/daily' },
@@ -86,7 +89,7 @@ function buildPmSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
   for (const node of nodes) {
     const category = parentLabel ? `${parentLabel} > ${node.name}` : node.name
     if (node.type === 'item' && node.path) {
-      searchableItems.push({ id: 'pm-' + node.id, title: node.name, category, path: node.path, description: `项目管理 - ${category}` })
+      searchableItems.push({ id: 'pm-' + node.id, title: node.name, category, path: node.path, description: `Aras 开发日志 - ${category}` })
     }
     if (node.children) buildPmSearchIndex(node.children, category)
   }
@@ -97,7 +100,7 @@ function buildArasDevSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
   for (const node of nodes) {
     const category = parentLabel ? `${parentLabel} > ${node.name}` : node.name
     if (node.type === 'item' && node.path) {
-      searchableItems.push({ id: 'ardev-' + node.id, title: node.name, category, path: node.path, description: `Aras 开发手册 - ${category}` })
+      searchableItems.push({ id: 'ardev-' + node.id, title: node.name, category, path: node.path, description: `Aras 开发日志 - ${category}` })
     }
     if (node.children) buildArasDevSearchIndex(node.children, category)
   }
@@ -108,7 +111,7 @@ function buildServerApiSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
   for (const node of nodes) {
     const category = parentLabel ? `${parentLabel} > ${node.name}` : node.name
     if (node.type === 'item' && node.path) {
-      searchableItems.push({ id: 'srvapi-' + node.id, title: node.name, category, path: node.path, description: `服务器 API 参考 - ${category}` })
+      searchableItems.push({ id: 'srvapi-' + node.id, title: node.name, category, path: node.path, description: `Aras 开发目录 - ${category}` })
     }
     if (node.children) buildServerApiSearchIndex(node.children, category)
   }

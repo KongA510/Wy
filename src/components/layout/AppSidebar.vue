@@ -70,7 +70,7 @@ const iconMap: Record<string, any> = {
 
 const treeMode = computed(() => route.path.startsWith('/aras-docs') ? 'aras' : route.path.startsWith('/pm') ? 'pm' : route.path.startsWith('/aras-dev') ? 'aras-dev' : route.path.startsWith('/server-api') ? 'server-api' : null)
 const treeMenu = computed(() => treeMode.value === 'pm' ? pmMenu : treeMode.value === 'aras-dev' ? arasDevMenu : treeMode.value === 'server-api' ? serverApiMenu : arasDocMenu)
-const treeTitle = computed(() => treeMode.value === 'pm' ? '项目管理' : treeMode.value === 'aras-dev' ? 'Aras 开发手册' : treeMode.value === 'server-api' ? '服务器 API 参考' : 'Aras 文档')
+const treeTitle = computed(() => treeMode.value === 'pm' ? '项目管理' : treeMode.value === 'aras-dev' ? 'Aras 开发日志' : treeMode.value === 'server-api' ? 'Aras 开发目录' : '系统操作手册')
 
 function autoExpand() {
   const p = route.path
