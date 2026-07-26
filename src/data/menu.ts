@@ -10,7 +10,7 @@ export const menuData: MenuNode[] = [
   { id: 'aras-docs', label: '系统操作手册', icon: 'Monitor', path: '/aras-docs', description: 'Aras Innovator 系统管理文档，164 篇' },
   { id: 'server-api', label: 'Aras 开发目录', icon: 'Platform', path: '/server-api', description: 'Aras Innovator .NET API 参考，覆盖 IOM、OAuth、IOME、Aras.Net 命名空间' },
   {
-    id: 'aras-dev', label: 'Aras 开发日志', icon: 'EditPen', description: 'Aras Innovator 服务端开发与项目管理笔记',
+    id: 'aras-dev', label: 'Aras 开发笔记', icon: 'EditPen', description: 'Aras Innovator 服务端开发与项目管理笔记',
     children: [
       { id: 'ardev-pm', label: '项目管理', icon: 'DataLine', path: '/pm', description: 'Aras 项目基线、WBS 递归获取、CPM 排程实践' },
       { id: 'ardev-notes', label: '开发笔记', icon: 'EditPen', path: '/aras-dev', description: 'IOM、Method、AML、权限等开发知识' }
@@ -89,7 +89,7 @@ function buildPmSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
   for (const node of nodes) {
     const category = parentLabel ? `${parentLabel} > ${node.name}` : node.name
     if (node.type === 'item' && node.path) {
-      searchableItems.push({ id: 'pm-' + node.id, title: node.name, category, path: node.path, description: `Aras 开发日志 - ${category}` })
+      searchableItems.push({ id: 'pm-' + node.id, title: node.name, category, path: node.path, description: `Aras 开发笔记 - ${category}` })
     }
     if (node.children) buildPmSearchIndex(node.children, category)
   }
@@ -100,7 +100,7 @@ function buildArasDevSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
   for (const node of nodes) {
     const category = parentLabel ? `${parentLabel} > ${node.name}` : node.name
     if (node.type === 'item' && node.path) {
-      searchableItems.push({ id: 'ardev-' + node.id, title: node.name, category, path: node.path, description: `Aras 开发日志 - ${category}` })
+      searchableItems.push({ id: 'ardev-' + node.id, title: node.name, category, path: node.path, description: `Aras 开发笔记 - ${category}` })
     }
     if (node.children) buildArasDevSearchIndex(node.children, category)
   }
