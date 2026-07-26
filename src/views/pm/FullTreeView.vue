@@ -335,17 +335,6 @@ const buildAct = `private static TaskNode BuildActivityNode(
     };
 }`
 
-const outputJson = `snapshot.TaskTree = taskTree;
-
-// 输出 JSON 验证结构
-var jsonOptions = new System.Text.Json.JsonSerializerOptions
-{
-    WriteIndented = true,
-    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-};
-var jsonStr = System.Text.Json.JsonSerializer.Serialize(taskTree, jsonOptions);
-Console.WriteLine(jsonStr);`
-
 const taskNodeModel = `public enum TaskType { TASK = 0, MILESTONE = 1, SUMMARY = 2 }
 public enum DependencyType { FS = 0, SS = 1, FF = 2, SF = 3 }
 

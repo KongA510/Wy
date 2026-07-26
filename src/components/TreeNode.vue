@@ -45,7 +45,7 @@
 import { ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { ArrowRight } from '@element-plus/icons-vue'
-import type { ArasDocNode } from '../../data/aras-menu'
+import type { ArasDocNode } from '../data/aras-menu'
 
 const props = defineProps<{
   node: ArasDocNode
@@ -68,7 +68,7 @@ const itemCount = computed(() => {
 
 function isAncestor(node: ArasDocNode, p: string): boolean {
   if (node.path === p) return true
-  if (node.children) return node.children.some(c => isAncestor(c, p))
+  if (node.children) return node.children.some((c: ArasDocNode) => isAncestor(c, p))
   return false
 }
 
