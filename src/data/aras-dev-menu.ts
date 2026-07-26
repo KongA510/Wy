@@ -48,6 +48,14 @@ export const arasDevMenu: ArasDocNode[] = [
     ]
   },
   {
+    id: 'aras-dev-query',
+    name: '查询相关',
+    type: 'group',
+    children: [
+      { id: 'aras-dev-aml-pagination', name: 'AML 分页查询', type: 'item', path: '/aras-dev/aml-pagination' }
+    ]
+  },
+  {
     id: 'aras-dev-practice',
     name: '开发规范与最佳实践',
     type: 'group',

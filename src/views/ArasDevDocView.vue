@@ -78,6 +78,7 @@ import PermModelView from './aras-dev/PermModelView.vue'
 import PermCodeView from './aras-dev/PermCodeView.vue'
 import BestPracticeView from './aras-dev/BestPracticeView.vue'
 import DebugView from './aras-dev/DebugView.vue'
+import AmlPaginationView from './aras-dev/AmlPaginationView.vue'
 import ExamplesView from './aras-dev/ExamplesView.vue'
 
 const route = useRoute()
@@ -97,7 +98,8 @@ const docComponents: Record<string, any> = {
   'perm-code': PermCodeView,
   'best-practice': BestPracticeView,
   'debug': DebugView,
-  'examples': ExamplesView
+  'examples': ExamplesView,
+  'aml-pagination': AmlPaginationView
 }
 
 const comp = computed(() => docComponents[route.params.docId as string])
