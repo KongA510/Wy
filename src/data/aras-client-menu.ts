@@ -36,7 +36,8 @@ export const arasClientMenu: ArasDocNode[] = [
       { id: 'aras-client-cui-controls', name: 'CUI 控件体系', type: 'item', path: '/aras-client/cui-controls' },
       { id: 'aras-client-cui-toolbar', name: 'CUI 工具栏', type: 'item', path: '/aras-client/cui-toolbar' },
       { id: 'aras-client-cui-grid', name: 'CUI 网格与插件', type: 'item', path: '/aras-client/cui-grid' },
-      { id: 'aras-client-cui-contextmenu', name: 'CUI 右键菜单', type: 'item', path: '/aras-client/cui-contextmenu' }
+      { id: 'aras-client-cui-contextmenu', name: 'CUI 右键菜单', type: 'item', path: '/aras-client/cui-contextmenu' },
+      { id: 'aras-client-cui-toc', name: 'CUI 目录导航（TOC）', type: 'item', path: '/aras-client/cui-toc' }
     ]
   },
   {
@@ -57,6 +58,43 @@ export const arasClientMenu: ArasDocNode[] = [
       { id: 'aras-client-dashboards-overview', name: '仪表板概述', type: 'item', path: '/aras-client/dashboards-overview' },
       { id: 'aras-client-widgets', name: '仪表板 Widget 开发', type: 'item', path: '/aras-client/widgets' },
       { id: 'aras-client-context-sharing', name: '上下文共享机制', type: 'item', path: '/aras-client/context-sharing' }
+    ]
+  },
+  {
+    id: 'aras-client-deprecated',
+    name: '已弃用 API（Deprecated）',
+    type: 'group',
+    children: [
+      { id: 'aras-client-dep-namespaces', name: '命名空间总览', type: 'item', path: '/aras-client/deprecated-namespaces' },
+      {
+        id: 'aras-client-dep-controls',
+        name: 'Aras.Client.Controls.Public',
+        type: 'subgroup',
+        children: [
+          { id: 'aras-client-dep-cell', name: 'Cell（单元格）', type: 'item', path: '/aras-client/deprecated-cell' },
+          { id: 'aras-client-dep-gridcontainer', name: 'GridContainer（网格容器）', type: 'item', path: '/aras-client/deprecated-gridcontainer' },
+          { id: 'aras-client-dep-htmleditor', name: 'HtmlEditor（HTML 编辑器）', type: 'item', path: '/aras-client/deprecated-htmleditor' },
+          { id: 'aras-client-dep-treegridcontainer', name: 'TreeGridContainer（树形网格）', type: 'item', path: '/aras-client/deprecated-treegridcontainer' },
+          { id: 'aras-client-dep-toolbaritem', name: 'ToolbarItem（工具栏项）', type: 'item', path: '/aras-client/deprecated-toolbaritem' },
+          { id: 'aras-client-dep-toolbar', name: 'Toolbar（工具栏）', type: 'item', path: '/aras-client/deprecated-toolbar' },
+          { id: 'aras-client-dep-vault', name: 'Vault（文件保险库）', type: 'item', path: '/aras-client/deprecated-vault' },
+          { id: 'aras-client-dep-utils', name: 'Utils（工具类）', type: 'item', path: '/aras-client/deprecated-utils' }
+        ]
+      },
+      {
+        id: 'aras-client-dep-cmf',
+        name: 'Aras.Modules.CMF.Public',
+        type: 'subgroup',
+        children: [
+          { id: 'aras-client-dep-cmfstyle', name: 'CmfStyle（样式）', type: 'item', path: '/aras-client/deprecated-cmfstyle' },
+          { id: 'aras-client-dep-computeresult', name: 'ComputeMethodResultBuilder', type: 'item', path: '/aras-client/deprecated-computeresult' },
+          { id: 'aras-client-dep-element', name: 'Element（元素节点）', type: 'item', path: '/aras-client/deprecated-element' },
+          { id: 'aras-client-dep-factory', name: 'Factory（工厂类）', type: 'item', path: '/aras-client/deprecated-factory' },
+          { id: 'aras-client-dep-propertyitem', name: 'PropertyItem（属性单元格）', type: 'item', path: '/aras-client/deprecated-propertyitem' },
+          { id: 'aras-client-dep-tree', name: 'Tree（CMF 树搜索）', type: 'item', path: '/aras-client/deprecated-tree' },
+          { id: 'aras-client-dep-mappingmodel', name: 'MappingModel（映射模型）', type: 'item', path: '/aras-client/deprecated-mappingmodel' }
+        ]
+      }
     ]
   }
 ]

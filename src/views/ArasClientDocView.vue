@@ -75,12 +75,29 @@ import CuiControlsView from './aras-client/CuiControlsView.vue'
 import CuiToolbarView from './aras-client/CuiToolbarView.vue'
 import CuiGridView from './aras-client/CuiGridView.vue'
 import CuiContextMenuView from './aras-client/CuiContextMenuView.vue'
+import CuiTocView from './aras-client/CuiTocView.vue'
 import GridComponentView from './aras-client/GridComponentView.vue'
 import ToolbarComponentView from './aras-client/ToolbarComponentView.vue'
 import MenuComponentView from './aras-client/MenuComponentView.vue'
 import DashboardsOverviewView from './aras-client/DashboardsOverviewView.vue'
 import WidgetsView from './aras-client/WidgetsView.vue'
 import ContextSharingView from './aras-client/ContextSharingView.vue'
+import DeprecatedHtmlEditorView from './aras-client/DeprecatedHtmlEditorView.vue'
+import DeprecatedCellView from './aras-client/DeprecatedCellView.vue'
+import DeprecatedGridContainerView from './aras-client/DeprecatedGridContainerView.vue'
+import DeprecatedTreeGridContainerView from './aras-client/DeprecatedTreeGridContainerView.vue'
+import DeprecatedToolbarItemView from './aras-client/DeprecatedToolbarItemView.vue'
+import DeprecatedToolbarView from './aras-client/DeprecatedToolbarView.vue'
+import DeprecatedVaultView from './aras-client/DeprecatedVaultView.vue'
+import DeprecatedUtilsView from './aras-client/DeprecatedUtilsView.vue'
+import DeprecatedCmfStyleView from './aras-client/DeprecatedCmfStyleView.vue'
+import DeprecatedComputeMethodResultBuilderView from './aras-client/DeprecatedComputeMethodResultBuilderView.vue'
+import DeprecatedElementView from './aras-client/DeprecatedElementView.vue'
+import DeprecatedFactoryView from './aras-client/DeprecatedFactoryView.vue'
+import DeprecatedPropertyItemView from './aras-client/DeprecatedPropertyItemView.vue'
+import DeprecatedTreeView from './aras-client/DeprecatedTreeView.vue'
+import DeprecatedMappingModelView from './aras-client/DeprecatedMappingModelView.vue'
+import DeprecatedNamespacesView from './aras-client/DeprecatedNamespacesView.vue'
 
 const route = useRoute()
 
@@ -96,12 +113,29 @@ const docComponents: Record<string, any> = {
   'cui-toolbar': CuiToolbarView,
   'cui-grid': CuiGridView,
   'cui-contextmenu': CuiContextMenuView,
+  'cui-toc': CuiTocView,
   'grid-comp': GridComponentView,
   'toolbar-comp': ToolbarComponentView,
   'menu-comp': MenuComponentView,
   'dashboards-overview': DashboardsOverviewView,
   'widgets': WidgetsView,
-  'context-sharing': ContextSharingView
+  'context-sharing': ContextSharingView,
+  'deprecated-htmleditor': DeprecatedHtmlEditorView,
+  'deprecated-cell': DeprecatedCellView,
+  'deprecated-gridcontainer': DeprecatedGridContainerView,
+  'deprecated-treegridcontainer': DeprecatedTreeGridContainerView,
+  'deprecated-toolbaritem': DeprecatedToolbarItemView,
+  'deprecated-toolbar': DeprecatedToolbarView,
+  'deprecated-vault': DeprecatedVaultView,
+  'deprecated-utils': DeprecatedUtilsView,
+  'deprecated-cmfstyle': DeprecatedCmfStyleView,
+  'deprecated-computeresult': DeprecatedComputeMethodResultBuilderView,
+  'deprecated-element': DeprecatedElementView,
+  'deprecated-factory': DeprecatedFactoryView,
+  'deprecated-propertyitem': DeprecatedPropertyItemView,
+  'deprecated-tree': DeprecatedTreeView,
+  'deprecated-mappingmodel': DeprecatedMappingModelView,
+  'deprecated-namespaces': DeprecatedNamespacesView
 }
 
 const comp = computed(() => docComponents[route.params.docId as string])

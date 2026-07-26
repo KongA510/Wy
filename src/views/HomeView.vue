@@ -21,6 +21,18 @@
       </div>
     </section>
 
+    <section class="section">
+      <h2 class="section-title">🚀 Aras 开发体系</h2>
+      <div class="category-cards">
+        <div v-for="card in arasCards" :key="card.path" class="card" @click="$router.push(card.path)">
+          <div class="card-icon">{{ card.icon }}</div>
+          <h3 class="card-title">{{ card.title }}</h3>
+          <p class="card-desc">{{ card.description }}</p>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </section>
+
     <section class="footer-links">
       <router-link to="/about">关于</router-link>
       <span class="divider">|</span>
@@ -32,6 +44,13 @@
 <script setup lang="ts">
 const mainCards = [
   { icon: '📖', title: '系统操作手册', description: '164 篇系统管理文档：核心概念、表单视图、工作流、权限等', path: '/aras-docs' },
+  { icon: '⚙️', title: 'Aras 服务端文档', description: 'Aras Innovator .NET API 参考 — IOM、OAuth、IOME、Aras.Net 命名空间', path: '/server-api' },
+  { icon: '🖥️', title: 'Aras 客户端文档', description: '客户端 JavaScript API — CUI 引擎、Web Components、仪表板开发', path: '/aras-client' },
+  { icon: '📝', title: 'Aras 开发笔记', description: '服务端 Method、AML 查询、权限安全、分页等开发技法', path: '/aras-dev' },
+  { icon: '📊', title: '项目管理', description: 'Aras 项目基线、WBS 递归获取、CPM 排程实践', path: '/pm' }
+]
+
+const arasCards = [
   { icon: '💚', title: '前端技术', description: 'Vue 3、TypeScript、CSS 布局、工程化工具链', path: '/frontend' },
   { icon: '🟣', title: '后端技术', description: '.NET / C#、数据库设计、RESTful API 规范', path: '/backend' },
   { icon: '📝', title: '日常笔记', description: '工作日志、读书笔记、技术随想与个人感悟', path: '/notes' }

@@ -16,8 +16,8 @@ const routes: RouteRecordRaw[] = [
   { path: '/pm/:docId', name: 'PmDoc', component: () => import('../views/PmDocView.vue'), meta: { title: '项目管理笔记' } },
   { path: '/aras-dev', name: 'ArasDevIndex', component: () => import('../views/ArasDevIndex.vue'), meta: { title: 'Aras 开发笔记' } },
   { path: '/aras-dev/:docId', name: 'ArasDevDoc', component: () => import('../views/ArasDevDocView.vue'), meta: { title: 'Aras 开发笔记' } },
-  { path: '/server-api', name: 'ServerApiIndex', component: () => import('../views/ServerApiIndex.vue'), meta: { title: 'Aras 开发目录' } },
-  { path: '/server-api/:docId', name: 'ServerApiDoc', component: () => import('../views/ServerApiDocView.vue'), meta: { title: 'Aras 开发目录' } },
+  { path: '/server-api', name: 'ServerApiIndex', component: () => import('../views/ServerApiIndex.vue'), meta: { title: 'Aras 服务端文档' } },
+  { path: '/server-api/:docId', name: 'ServerApiDoc', component: () => import('../views/ServerApiDocView.vue'), meta: { title: 'Aras 服务端文档' } },
   { path: '/aras-client', name: 'ArasClientIndex', component: () => import('../views/ArasClientIndex.vue'), meta: { title: 'Aras 客户端文档' } },
   { path: '/aras-client/:docId', name: 'ArasClientDoc', component: () => import('../views/ArasClientDocView.vue'), meta: { title: 'Aras 客户端文档' } },
 ]
