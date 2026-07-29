@@ -20,6 +20,9 @@ const routes: RouteRecordRaw[] = [
   { path: '/server-api/:docId', name: 'ServerApiDoc', component: () => import('../views/ServerApiDocView.vue'), meta: { title: 'Aras 服务端文档' } },
   { path: '/aras-client', name: 'ArasClientIndex', component: () => import('../views/ArasClientIndex.vue'), meta: { title: 'Aras 客户端文档' } },
   { path: '/aras-client/:docId', name: 'ArasClientDoc', component: () => import('../views/ArasClientDocView.vue'), meta: { title: 'Aras 客户端文档' } },
+  { path: '/integration', name: 'IntegrationIndex', component: () => import('../views/IntegrationIndex.vue'), meta: { title: '客户集成' } },
+  { path: '/integration/customer/:customerId', name: 'IntegrationCustomer', component: () => import('../views/IntegrationCustomerView.vue'), meta: { title: '客户集成' } },
+  { path: '/integration/:docId', name: 'IntegrationDoc', component: () => import('../views/IntegrationDocView.vue'), meta: { title: '客户集成' } },
 ]
 
 const router = createRouter({

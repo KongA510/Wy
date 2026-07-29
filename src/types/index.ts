@@ -10,6 +10,8 @@ export interface MenuNode {
   description?: string
   /** 路由路径 */
   path?: string
+  /** 子路径前缀匹配（用于分组子项高亮，如某客户的全部接口页） */
+  match?: string
   /** 子节点 */
   children?: MenuNode[]
 }

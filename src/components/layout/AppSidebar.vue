@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <aside class="app-sidebar">
     <div class="search-box" @click="openSearch">
       <el-icon class="search-icon"><Search /></el-icon>
@@ -32,7 +32,7 @@
           </div>
           <transition name="slide">
             <div v-show="expandedGroups.has(node.id)" class="nav-children">
-              <div v-for="child in node.children" :key="child.id" class="nav-item child" :class="{ active: isActive(child.path) }" @click="navigate(child.path)">
+              <div v-for="child in node.children" :key="child.id" class="nav-item child" :class="{ active: isChildActive(child) }" @click="navigate(child.path)">
                 <span class="nav-dot"></span>
                 <span class="nav-label">{{ child.label }}</span>
               </div>
@@ -49,13 +49,14 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { Search, ArrowRight, ArrowLeft, HomeFilled, Monitor, ChromeFilled, Promotion, EditPen, Brush, SetUp, Platform, Coin, Share, Notebook, Calendar, Reading, ChatDotRound, UserFilled, DataLine } from '@element-plus/icons-vue'
+import { Search, ArrowRight, ArrowLeft, HomeFilled, Monitor, ChromeFilled, Promotion, EditPen, Brush, SetUp, Platform, Coin, Share, Notebook, Calendar, Reading, ChatDotRound, UserFilled, DataLine, Connection } from '@element-plus/icons-vue'
 import { menuData } from '../../data/menu'
 import { arasDocMenu } from '../../data/aras-menu'
 import { pmMenu } from '../../data/pm-menu'
 import { arasDevMenu } from '../../data/aras-dev-menu'
 import { serverApiMenu } from '../../data/server-api-menu'
 import { arasClientMenu } from '../../data/aras-client-menu'
+
 import SearchDialog from '../SearchDialog.vue'
 import TreeNode from '../TreeNode.vue'
 
@@ -66,7 +67,7 @@ const expandedGroups = reactive(new Set<string>())
 
 const iconMap: Record<string, any> = {
   HomeFilled, Monitor, ChromeFilled, Promotion, EditPen, Brush, SetUp, Platform,
-  Coin, Share, Notebook, Calendar, Reading, ChatDotRound, UserFilled, DataLine
+  Coin, Share, Notebook, Calendar, Reading, ChatDotRound, UserFilled, DataLine, Connection
 }
 
 const treeMode = computed(() => route.path.startsWith('/aras-docs') ? 'aras' : route.path.startsWith('/pm') ? 'pm' : route.path.startsWith('/aras-dev') ? 'aras-dev' : route.path.startsWith('/server-api') ? 'server-api' : route.path.startsWith('/aras-client') ? 'aras-client' : null)
@@ -86,6 +87,7 @@ autoExpand()
 
 function toggleGroup(id: string) { expandedGroups.has(id) ? expandedGroups.delete(id) : expandedGroups.add(id) }
 function isActive(p?: string) { return p ? route.path === p : false }
+function isChildActive(child: { path?: string; match?: string }) { return route.path === child.path || (!!child.match && route.path.startsWith(child.match)) }
 function navigate(p?: string) { if (p) router.push(p) }
 function backFromTree() {
   const indexMap: Record<string, string> = { pm: '/pm', aras: '/aras-docs', 'aras-dev': '/aras-dev', 'server-api': '/server-api', 'aras-client': '/aras-client' }

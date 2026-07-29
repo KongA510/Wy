@@ -1,0 +1,208 @@
+/*
+Creator : Kong.A
+Created On : 
+*/
+
+Aras.Server.Security.Identity plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");//设置权限（getbyname后面的括号填Identity的name）
+bool PermissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);//设置权限
+const string ERR_PREFIX = "Error[IC_AutoAddItem]：";
+Innovator inn = this.getInnovator();
+var responseBody = "";//响应体日志
+try 
+{
+
+        var itemType = inn.newItem("ItemType", "get");
+        itemType.setProperty("name", "Part");
+        itemType.setAttribute("select", "class_structure");
+        itemType = itemType.apply();
+        if (itemType.getItemCount() != 1)
+        {
+            var badResult = ApiResult<ClassStructureData>.ServerError("数据查询失败");
+            responseBody = System.Text.Json.JsonSerializer.Serialize(badResult);
+            WriteInterfaceLog(inn, "XJ_GetClassStructure", "XJ_GetClassStructure()", responseBody, "1");
+          return  inn.newResult(responseBody); 
+        }
+            
+        var classStructureXml = itemType.getProperty("class_structure", "");
+          // ========== 数据校验 ==========
+          if (string.IsNullOrEmpty(classStructureXml))
+          {
+              var badResult = ApiResult<ClassStructureData>.ServerError("class_structure数据为空");
+              responseBody = System.Text.Json.JsonSerializer.Serialize(badResult);
+              WriteInterfaceLog(inn, "XJ_GetClassStructure", "XJ_GetClassStructure()", responseBody, "1");
+           return   inn.newResult(responseBody); 
+          }
+        
+          // ========== 解析XML为分类树 ==========
+          var doc = new XmlDocument();
+          doc.LoadXml(classStructureXml);
+          var root = doc.DocumentElement;
+                    // 校验XML根节点是否有效
+          if (root == null)
+          {
+              var badResult = ApiResult<ClassStructureData>.BadRequest("class_structure XML格式无效");
+              responseBody = System.Text.Json.JsonSerializer.Serialize(badResult);
+              WriteInterfaceLog(inn, "XJ_GetClassStructure", "XJ_GetClassStructure()", responseBody, "1");
+             return inn.newResult(responseBody); 
+          }
+        
+          // 遍历根节点的子节点（即顶级分类），递归构建分类树
+          var categories = new List<CategoryNode>();
+          foreach (XmlNode child in root.ChildNodes)
+          {
+              if (child.NodeType == XmlNodeType.Element && child.Name == "class")
+              {
+                  categories.Add(ParseClassNode(child));
+              }
+          }
+        
+          // ========== 构建成功响应并记录日志 ==========
+          var successResult = ApiResult<ClassStructureData>.Success(new ClassStructureData { categories = categories });
+          responseBody = System.Text.Json.JsonSerializer.Serialize(successResult);
+          WriteInterfaceLog(inn, "XJ_GetClassStructure", "XJ_GetClassStructure()", responseBody, "0");
+         return inn.newResult(responseBody); 
+
+
+} 
+ catch (XmlException ex)
+ {
+          // XML格式错误属于客户端数据问题，返回400
+      var errorResult = ApiResult<ClassStructureData>.BadRequest($"class_structure XML解析失败: {ex.Message}");
+      responseBody = System.Text.Json.JsonSerializer.Serialize(errorResult);
+      WriteInterfaceLog(inn, "XJ_GetClassStructure", "XJ_GetClassStructure()", responseBody, "1");
+      return inn.newResult(responseBody); 
+ }
+catch (Exception ex) 
+{
+      // 其他未预期异常返回500
+    var errorResult = ApiResult<ClassStructureData>.ServerError(ex.Message);
+    responseBody = System.Text.Json.JsonSerializer.Serialize(errorResult);
+    WriteInterfaceLog(inn, "XJ_GetClassStructure", "XJ_GetClassStructure()", responseBody, "1");
+    return inn.newResult(responseBody); 
+}
+finally 
+{
+   if (PermissionWasSet) Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);//释放权限
+}}
+
+/// <summary>
+/// 统一接口返回格式
+/// status: 200-成功 / 400-请求错误 / 500-服务器内部错误
+/// error:  错误描述信息，成功时为空字符串
+/// data:   返回的业务数据，失败时为null
+/// </summary>
+/// <typeparam name="T">返回数据的类型</typeparam>
+public class ApiResult<T>
+{
+  /// <summary>状态码：200成功 / 400请求错误 / 500服务器错误</summary>
+  public int status { get; set; }
+
+  /// <summary>错误信息，成功时为空字符串</summary>
+  public string error { get; set; } = string.Empty;
+
+  /// <summary>返回的业务数据</summary>
+  public T? data { get; set; }
+
+  /// <summary>构建成功响应（200）</summary>
+  public static ApiResult<T> Success(T data)
+  {
+      return new ApiResult<T> { status = 200, error = "", data = data };
+  }
+
+  /// <summary>构建请求错误响应（400），用于参数校验失败、数据为空等客户端错误</summary>
+  public static ApiResult<T> BadRequest(string error)
+  {
+      return new ApiResult<T> { status = 400, error = error, data = default };
+  }
+
+  /// <summary>构建服务器错误响应（500），用于未预期的异常</summary>
+  public static ApiResult<T> ServerError(string error)
+  {
+      return new ApiResult<T> { status = 500, error = error, data = default };
+  }
+}
+
+ /// <summary>
+ /// 分类树节点（递归结构，支持任意层级深度）
+ /// 对应Aras ItemType中class_structure的XML节点
+ /// </summary>
+ public class CategoryNode
+ {
+     /// <summary>分类ID（对应XML中class节点的id属性）</summary>
+     public string id { get; set; } = string.Empty;
+
+     /// <summary>分类名称（对应XML中class节点的name属性）</summary>
+     public string name { get; set; } = string.Empty;
+
+     /// <summary>子分类列表，叶子节点时为null（序列化时自动忽略）</summary>
+     [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+     public List<CategoryNode>? subcategories { get; set; }
+ }
+
+ /// <summary>
+ /// 物料分类接口返回数据包装类
+ /// </summary>
+ public class ClassStructureData
+ {
+     /// <summary>顶级分类列表</summary>
+     public List<CategoryNode> categories { get; set; } = new List<CategoryNode>();
+ }
+         /// <summary>
+ /// 写入接口调用日志到 XJ_Interface_Log ItemType
+ /// 每次接口调用（无论成功或失败）都会记录一条日志
+ /// 日志写入失败时静默处理，不影响主业务流程
+ /// </summary>
+ /// <param name="inn">Innovator实例，用于执行AML操作</param>
+ /// <param name="interfaceName">接口/方法名称，如 "XJ_GetClassStructure"</param>
+ /// <param name="interfaceParameters">请求参数描述，无参数时记录方法签名</param>
+ /// <param name="interfaceResponseBody">完整的JSON响应体</param>
+ /// <param name="isError">是否报错："0"-正常 / "1"-报错</param>
+ public  void WriteInterfaceLog(Innovator inn, string interfaceName, string interfaceParameters, string interfaceResponseBody, string isError)
+ {
+     try
+     {
+         // 创建日志Item并写入各字段
+         var logItem = inn.newItem("XJ_Interface_Log", "add");
+         logItem.setProperty("interface_direction", "1");           // 接口方向：1-入站请求
+         logItem.setProperty("interface_name", interfaceName);      // 方法名称
+         logItem.setProperty("interface_parameters", interfaceParameters);       // 请求参数
+         logItem.setProperty("interface_response_body", interfaceResponseBody);  // 响应数据体
+         logItem.setProperty("is_error", isError);                  // 错误标记：0正常/1报错
+         logItem.apply();
+     }
+     catch (Exception)
+     {
+         // 日志写入失败不影响主流程，静默处理
+     }
+ }
+  /// <summary>
+ /// 递归解析XML中的class节点，构建分类树
+ /// 支持任意层级深度（不限于两级分类）
+ /// 每个class节点包含id和name两个属性，子节点嵌套在父节点内部
+ /// </summary>
+ /// <param name="node">当前要解析的XML class节点</param>
+ /// <returns>解析后的分类节点对象，包含子分类列表</returns>
+ public static CategoryNode ParseClassNode(XmlNode node)
+ {
+     // 读取当前节点的id和name属性
+     var category = new CategoryNode
+     {
+         id = node.Attributes?["id"]?.Value ?? "",
+         name = node.Attributes?["name"]?.Value ?? ""
+     };
+
+     // 递归处理子节点
+     var children = new List<CategoryNode>();
+     foreach (XmlNode child in node.ChildNodes)
+     {
+         if (child.NodeType == XmlNodeType.Element && child.Name == "class")
+         {
+             children.Add(ParseClassNode(child));
+         }
+     }
+
+     // 有子节点时赋值，无子节点时保持null（序列化时忽略该字段）
+     category.subcategories = children.Count > 0 ? children : null;
+     return category;
+ }
+public void end (){

@@ -1,0 +1,108 @@
+/*
+Creator : Kong.A
+Created On : 
+*/
+
+Aras.Server.Security.Identity plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");//设置权限（getbyname后面的括号填Identity的name）
+bool PermissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);//设置权限
+const string ERR_PREFIX = "Error[IC_AutoAddItem]：";
+Innovator inn = this.getInnovator();
+var thisXml = this.node.OuterXml;
+var responseBody = "";//响应体日志
+try 
+{
+
+       var requst=this.apply("XJ_BOMInterfaceServer");
+       if(requst.isError()){
+           var errorResult = ApiResult<object>.ServerError(requst.getErrorString());
+            responseBody = System.Text.Json.JsonSerializer.Serialize(errorResult);
+            WriteInterfaceLog(inn, "XJ_BOMInterface",thisXml, responseBody, "1");
+            return inn.newResult(responseBody);
+       }else{
+            return inn.newResult(requst.getResult());
+       }
+        
+
+
+} 
+
+catch (Exception ex) 
+{
+     var errorResult = ApiResult<object>.ServerError(ex.Message);
+            responseBody = System.Text.Json.JsonSerializer.Serialize(errorResult);
+            WriteInterfaceLog(inn, "XJ_BOMInterface",thisXml, responseBody, "1");
+      // 其他未预期异常返回500
+   return inn.newResult(responseBody);;
+}
+finally 
+{
+   if (PermissionWasSet) Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);//释放权限
+}}
+
+/// <summary>
+/// 统一接口返回格式
+/// status: 200-成功 / 400-请求错误 / 500-服务器内部错误
+/// error:  错误描述信息，成功时为空字符串
+/// data:   返回的业务数据，失败时为null
+/// </summary>
+/// <typeparam name="T">返回数据的类型</typeparam>
+public class ApiResult<T>
+{
+  /// <summary>状态码：200成功 / 400请求错误 / 500服务器错误</summary>
+  public int status { get; set; }
+
+  /// <summary>错误信息，成功时为空字符串</summary>
+  public string error { get; set; } = string.Empty;
+
+  /// <summary>返回的业务数据</summary>
+  public T? data { get; set; }
+
+  /// <summary>构建成功响应（200）</summary>
+  public static ApiResult<T> Success(T data)
+  {
+      return new ApiResult<T> { status = 200, error = "", data = data };
+  }
+
+  /// <summary>构建请求错误响应（400），用于参数校验失败、数据为空等客户端错误</summary>
+  public static ApiResult<T> BadRequest(string error)
+  {
+      return new ApiResult<T> { status = 400, error = error, data = default };
+  }
+
+  /// <summary>构建服务器错误响应（500），用于未预期的异常</summary>
+  public static ApiResult<T> ServerError(string error)
+  {
+      return new ApiResult<T> { status = 500, error = error, data = default };
+  }
+}
+
+         /// <summary>
+ /// 写入接口调用日志到 XJ_Interface_Log ItemType
+ /// 每次接口调用（无论成功或失败）都会记录一条日志
+ /// 日志写入失败时静默处理，不影响主业务流程
+ /// </summary>
+ /// <param name="inn">Innovator实例，用于执行AML操作</param>
+ /// <param name="interfaceName">接口/方法名称，如 "XJ_GetClassStructure"</param>
+ /// <param name="interfaceParameters">请求参数描述，无参数时记录方法签名</param>
+ /// <param name="interfaceResponseBody">完整的JSON响应体</param>
+ /// <param name="isError">是否报错："0"-正常 / "1"-报错</param>
+ public  void WriteInterfaceLog(Innovator inn, string interfaceName, string interfaceParameters, string interfaceResponseBody, string isError)
+ {
+     try
+     {
+         // 创建日志Item并写入各字段
+         var logItem = inn.newItem("XJ_Interface_Log", "add");
+         logItem.setProperty("interface_direction", "1");           // 接口方向：1-入站请求
+         logItem.setProperty("interface_name", interfaceName);      // 方法名称
+         logItem.setProperty("interface_parameters", interfaceParameters);       // 请求参数
+         logItem.setProperty("interface_response_body", interfaceResponseBody);  // 响应数据体
+         logItem.setProperty("is_error", isError);                  // 错误标记：0正常/1报错
+         logItem.apply();
+     }
+     catch (Exception)
+     {
+         // 日志写入失败不影响主流程，静默处理
+     }
+ }
+ 
+public void end (){

@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="home-view">
     <section class="hero">
       <div class="hero-badge">👋 Welcome</div>
@@ -47,7 +47,8 @@ const mainCards = [
   { icon: '⚙️', title: 'Aras 服务端文档', description: 'Aras Innovator .NET API 参考 — IOM、OAuth、IOME、Aras.Net 命名空间', path: '/server-api' },
   { icon: '🖥️', title: 'Aras 客户端文档', description: '客户端 JavaScript API — CUI 引擎、Web Components、仪表板开发', path: '/aras-client' },
   { icon: '📝', title: 'Aras 开发笔记', description: '服务端 Method、AML 查询、权限安全、分页等开发技法', path: '/aras-dev' },
-  { icon: '📊', title: '项目管理', description: 'Aras 项目基线、WBS 递归获取、CPM 排程实践', path: '/pm' }
+  { icon: '📊', title: '项目管理', description: 'Aras 项目基线、WBS 递归获取、CPM 排程实践', path: '/pm' },
+  { icon: '🔌', title: '客户集成', description: '客户系统集成接口：祥记 PLM（物料分类 / 部位编码 / BOM 抛转）', path: '/integration' }
 ]
 
 const arasCards = [

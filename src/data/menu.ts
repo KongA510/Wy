@@ -5,6 +5,7 @@ import { pmMenu } from './pm-menu'
 import { arasDevMenu } from './aras-dev-menu'
 import { serverApiMenu } from './server-api-menu'
 import { arasClientMenu } from './aras-client-menu'
+import { integrationMenu, customerMeta } from './integration-menu'
 
 export const menuData: MenuNode[] = [
   { id: 'home', label: '首页', icon: 'HomeFilled', path: '/', description: '博客首页，总览所有板块' },
@@ -17,6 +18,20 @@ export const menuData: MenuNode[] = [
       { id: 'ardev-pm', label: '项目管理', icon: 'DataLine', path: '/pm', description: 'Aras 项目基线、WBS 递归获取、CPM 排程实践' },
       { id: 'ardev-notes', label: '开发笔记', icon: 'EditPen', path: '/aras-dev', description: 'IOM、Method、AML、权限等开发知识' }
     ]
+  },
+  {
+    id: 'integration', label: '客户集成', icon: 'Connection',
+    description: '客户系统集成接口文档，按客户分组（点击展开客户列表，进入客户详情查看接口），后续持续新增',
+    children: integrationMenu.map((g) => {
+      const m = customerMeta[g.id]
+      return {
+        id: g.id,
+        label: g.name,
+        path: g.path,
+        description: m ? m.description : '',
+        match: m ? `/integration/${m.slug}-` : undefined
+      }
+    })
   },
   {
     id: 'frontend', label: '前端技术', icon: 'ChromeFilled', description: '前端开发技术栈学习笔记',
@@ -130,3 +145,14 @@ function buildArasClientSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
   }
 }
 buildArasClientSearchIndex(arasClientMenu)
+
+function buildIntegrationSearchIndex(nodes: ArasDocNode[], parentLabel = '') {
+  for (const node of nodes) {
+    const category = parentLabel ? `${parentLabel} > ${node.name}` : node.name
+    if (node.type === 'item' && node.path) {
+      searchableItems.push({ id: 'integ-' + node.id, title: node.name, category, path: node.path, description: `客户集成 - ${category}` })
+    }
+    if (node.children) buildIntegrationSearchIndex(node.children, category)
+  }
+}
+buildIntegrationSearchIndex(integrationMenu)

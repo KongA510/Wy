@@ -1,0 +1,427 @@
+/*
+Creator : Kong.A
+Created On : 
+*/
+
+/// <summary>
+/// BOM核心接口：支持XJ_Valuation_Part和XJ_Valuation_Part_List的新增、修改、删除
+/// 参数通过this.node.OuterXml获取XML结构解析
+/// action add-批量新增  edit-逐条修改  delete-删除
+/// type_name 逗号分隔，有效值为XJ_Valuation_Part,XJ_Valuation_Part_List
+/// </summary>
+
+Aras.Server.Security.Identity plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");//设置权限（getbyname后面的括号填Identity的name）
+bool PermissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);//设置权限
+const string ERR_PREFIX = "Error[XJ_BOMInterface]：";
+Innovator inn = this.getInnovator();
+var responseBody = "";//响应体日志
+var thisXml = this.node.OuterXml;
+try 
+{
+    var doc = new XmlDocument();
+    doc.LoadXml(thisXml);
+    var root = doc.DocumentElement;
+    // ========== 提取基础参数 ==========
+    var action = root.SelectSingleNode("action").InnerText.Trim();
+    var sourceId = root.SelectSingleNode("source_id").InnerText.Trim();
+    var typeName = root.SelectSingleNode("type_name").InnerText.Trim();
+    var editPartProperty = root.SelectSingleNode("edit_XJ_Valuation_Part_Property").InnerText.Trim();
+    var editPartListProperty = root.SelectSingleNode("edit_XJ_Valuation_Part_List_Property").InnerText.Trim();
+    string[] validTypes = { "XJ_Valuation_Part", "XJ_Valuation_Part_List" };
+    var typeNames = typeName.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                               .Select(t => t.Trim())
+                               .Where(t => t != "")
+                               .ToArray();
+    if (typeNames.Length == 0)
+    {
+        var badResult = ApiResult<object>.BadRequest("type_name参数不能为空");
+        responseBody = System.Text.Json.JsonSerializer.Serialize(badResult);
+        WriteInterfaceLog(inn, "XJ_BOMInterface", thisXml, responseBody, "1");
+        return inn.newResult(responseBody);
+    }
+    foreach (var tn in typeNames)
+    {
+        if (!validTypes.Contains(tn))
+        {
+            var badResult = ApiResult<object>.BadRequest($"type_name包含无效值 {tn}，有效值为 XJ_Valuation_Part,XJ_Valuation_Part_List");
+            responseBody = System.Text.Json.JsonSerializer.Serialize(badResult);
+            WriteInterfaceLog(inn, "XJ_BOMInterface", thisXml, responseBody, "1");
+            return inn.newResult(responseBody);
+        }
+    }
+    // ========== 根据action分发处理 ==========
+    switch (action.ToLower())
+    {
+        case "add":
+            responseBody = HandleBomAdd(inn, root, sourceId, typeNames);
+            break;
+        case "edit":
+            responseBody = HandleBomEdit(inn, root, typeNames, editPartProperty, editPartListProperty);
+            break;
+        case "delete":
+            responseBody = HandleBomDelete(inn, root, typeNames);
+            break;
+        default:
+            var badResult = ApiResult<object>.BadRequest($"无效的action {action}，有效值为 add, edit, delete");
+            responseBody = System.Text.Json.JsonSerializer.Serialize(badResult);
+            WriteInterfaceLog(inn, "XJ_BOMInterface", thisXml, responseBody, "1");
+            break;
+    }
+    return inn.newResult(responseBody);
+} 
+catch (Exception ex) 
+{
+    var errorResult = ApiResult<object>.ServerError(ex.Message);
+    responseBody = System.Text.Json.JsonSerializer.Serialize(errorResult);
+    WriteInterfaceLog(inn, "XJ_BOMInterface", thisXml, responseBody, "1");
+    return inn.newError(responseBody);
+}
+finally 
+{
+    if (PermissionWasSet) Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);//释放权限
+}
+
+/// <summary>
+/// 统一接口返回格式
+/// status: 200-成功 / 400-请求错误 / 500-服务器内部错误
+/// error:  错误描述信息，成功时为空字符串
+/// data:   返回的业务数据，失败时为null
+/// </summary>
+/// <typeparam name="T">返回数据的类型</typeparam>
+public class ApiResult<T>
+{
+    /// <summary>状态码：200成功 / 400请求错误 / 500服务器错误</summary>
+    public int status { get; set; }
+
+    /// <summary>错误信息，成功时为空字符串</summary>
+    public string error { get; set; } = string.Empty;
+
+    /// <summary>返回的业务数据</summary>
+    public T? data { get; set; }
+
+    /// <summary>构建成功响应（200）</summary>
+    public static ApiResult<T> Success(T data)
+    {
+        return new ApiResult<T> { status = 200, error = "", data = data };
+    }
+
+    /// <summary>构建请求错误响应（400），用于参数校验失败、数据为空等客户端错误</summary>
+    public static ApiResult<T> BadRequest(string error)
+    {
+        return new ApiResult<T> { status = 400, error = error, data = default };
+    }
+
+    /// <summary>构建服务器错误响应（500），用于未预期的异常</summary>
+    public static ApiResult<T> ServerError(string error)
+    {
+        return new ApiResult<T> { status = 500, error = error, data = default };
+    }
+}
+
+/// <summary>
+/// 写入接口调用日志到 XJ_Interface_Log ItemType
+/// 每次接口调用（无论成功或失败）都会记录一条日志
+/// 日志写入失败时静默处理，不影响主业务流程
+/// </summary>
+public void WriteInterfaceLog(Innovator inn, string interfaceName, string interfaceParameters, string interfaceResponseBody, string isError)
+{
+    try
+    {
+        var logItem = inn.newItem("XJ_Interface_Log", "add");
+        logItem.setProperty("interface_direction", "1");           // 接口方向：1-入站请求
+        logItem.setProperty("interface_name", interfaceName);      // 方法名称
+        logItem.setProperty("interface_parameters", interfaceParameters);       // 请求参数
+        logItem.setProperty("interface_response_body", interfaceResponseBody);  // 响应数据体
+        logItem.setProperty("is_error", isError);                  // 错误标记：0正常/1报错
+        logItem.apply();
+    }
+    catch (Exception)
+    {
+        // 日志写入失败不影响主流程，静默处理
+    }
+}
+
+/// <summary>
+/// 处理BOM新增：将所有Item合并为一个AML批量执行，任一失败则整体失败
+/// xj_paper_grid_image为文件栏位，需先上传文件获取File ID
+/// </summary>
+public string HandleBomAdd(Innovator inn, XmlElement root, string sourceId, string[] typeNames)
+{
+    try
+    {
+        // 校验source_id
+        if (string.IsNullOrEmpty(sourceId))
+        {
+            var badResult = ApiResult<object>.BadRequest("action为add时source_id不能为空");
+            return System.Text.Json.JsonSerializer.Serialize(badResult);
+        }
+
+        // XJ_Valuation_Part允许的字段
+        string[] partFields = { "source_id", "xj_cad", "xj_knife_usage", "xj_part" };
+        // XJ_Valuation_Part_List允许的字段
+        string[] partListFields = { "source_id", "xj_cad", "xj_customer", "xj_knife_usage",
+            "xj_number_of_cuts", "xj_occupation_width", "xj_occupied_length",
+            "xj_paper_grid_image", "xj_part", "xj_part_name", "xj_quantity",
+            "xj_price", "xj_remark", "xj_secondary_vendor", "xj_shipment", "xj_width" };
+
+        var amlBuilder = new System.Text.StringBuilder();
+        amlBuilder.Append("<AML>");
+
+        // ========== 处理XJ_Valuation_Part节点 ==========
+        if (typeNames.Contains("XJ_Valuation_Part"))
+        {
+            var partNodes = root.SelectNodes("XJ_Valuation_Part");
+            if (partNodes != null && partNodes.Count > 0)
+            {
+                foreach (XmlNode node in partNodes)
+                {
+                    amlBuilder.Append($"<Item type='XJ_Valuation_Part' action='add'>");
+                    amlBuilder.Append($"<source_id>{sourceId}</source_id>");
+                    foreach (string field in partFields)
+                    {
+                        string val = node.SelectSingleNode(field).InnerText.Trim();
+                        if (!string.IsNullOrEmpty(val))
+                        {
+                            amlBuilder.Append($"<{field}>{System.Security.SecurityElement.Escape(val)}</{field}>");
+                        }
+                    }
+                    amlBuilder.Append("</Item>");
+                }
+            }
+        }
+
+        // ========== 处理XJ_Valuation_Part_List节点 ==========
+        if (typeNames.Contains("XJ_Valuation_Part_List"))
+        {
+            var listNodes = root.SelectNodes("XJ_Valuation_Part_List");
+            if (listNodes != null && listNodes.Count > 0)
+            {
+                foreach (XmlNode node in listNodes)
+                {
+                    amlBuilder.Append($"<Item type='XJ_Valuation_Part_List' action='add'>");
+                    amlBuilder.Append($"<source_id>{sourceId}</source_id>");
+                    foreach (string field in partListFields)
+                    {
+                        string val = node.SelectSingleNode(field).InnerText.Trim();
+                        if (string.IsNullOrEmpty(val)) continue;
+
+                        // xj_paper_grid_image为文件栏位，需先上传文件
+                        if (field == "xj_paper_grid_image")
+                        {
+                            string fileId = UploadFileToAras(inn, val);
+                            if (string.IsNullOrEmpty(fileId))
+                            {
+                                var badResult = ApiResult<object>.BadRequest($"文件上传失败 {val}");
+                                return System.Text.Json.JsonSerializer.Serialize(badResult);
+                            }
+                            amlBuilder.Append($"<xj_paper_grid_image>{fileId}</xj_paper_grid_image>");
+                        }
+                        else
+                        {
+                            amlBuilder.Append($"<{field}>{System.Security.SecurityElement.Escape(val)}</{field}>");
+                        }
+                    }
+                    amlBuilder.Append("</Item>");
+                }
+            }
+        }
+
+        amlBuilder.Append("</AML>");
+
+        // ========== 执行批量AML ==========
+        string aml = amlBuilder.ToString();
+        var result = inn.applyAML(aml);
+
+        if (result.isError())
+        {
+            var errorResult = ApiResult<object>.BadRequest($"批量新增失败 {result.getErrorString()}");
+            string resp = System.Text.Json.JsonSerializer.Serialize(errorResult);
+            WriteInterfaceLog(inn, "XJ_BOMInterface", $"action=add, source_id={sourceId}", resp, "1");
+            return resp;
+        }
+
+        var successResult = ApiResult<object>.Success(new { message = "新增成功", resultdata = result.ToString() });
+        string successResp = System.Text.Json.JsonSerializer.Serialize(successResult);
+        WriteInterfaceLog(inn, "XJ_BOMInterface", $"action=add, source_id={sourceId}", successResp, "0");
+        return successResp;
+    }
+    catch (Exception ex)
+    {
+        throw new Exception(ex.Message);
+    }
+}
+
+/// <summary>
+/// 处理BOM修改：根据edit_property逐条修改，每个Item必须包含id
+/// </summary>
+public string HandleBomEdit(Innovator inn, XmlElement root, string[] typeNames, string editPartProperty, string editPartListProperty)
+{
+    if (string.IsNullOrEmpty(editPartProperty) && string.IsNullOrEmpty(editPartListProperty))
+    {
+        var badResult = ApiResult<object>.BadRequest("action为edit时edit_XJ_Valuation_Part_Property或edit_XJ_Valuation_Part_List_Property不能同时为空");
+        return System.Text.Json.JsonSerializer.Serialize(badResult);
+    }
+
+    var partEditFields = (editPartProperty ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries)
+                           .Select(f => f.Trim()).Where(f => f != "").ToArray();
+    var partListEditFields = (editPartListProperty ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries)
+                               .Select(f => f.Trim()).Where(f => f != "").ToArray();
+
+    var amlBuilder = new System.Text.StringBuilder();
+    amlBuilder.Append("<AML>");
+
+    foreach (var typeName in typeNames)
+    {
+        string[] editFields;
+        if (typeName == "XJ_Valuation_Part")
+        {
+            editFields = partEditFields;
+        }
+        else if (typeName == "XJ_Valuation_Part_List")
+        {
+            editFields = partListEditFields;
+        }
+        else
+        {
+            continue;
+        }
+
+        if (editFields.Length == 0) continue;
+
+        var nodes = root.SelectNodes(typeName);
+        if (nodes == null || nodes.Count == 0) continue;
+
+        foreach (XmlNode node in nodes)
+        {
+            string itemId = node.SelectSingleNode("id").InnerText.Trim();
+            if (string.IsNullOrEmpty(itemId))
+            {
+                var badResult = ApiResult<object>.BadRequest($"{typeName}缺少id参数，无法执行edit");
+                return System.Text.Json.JsonSerializer.Serialize(badResult);
+            }
+
+            amlBuilder.Append($"<Item type='{typeName}' action='edit' where=\"{typeName}.id='{itemId}'\">");
+
+            foreach (string field in editFields)
+            {
+                string val = node.SelectSingleNode(field).InnerText.Trim();
+                if (!string.IsNullOrEmpty(val))
+                {
+                    if (field == "xj_paper_grid_image")
+                    {
+                        string fileId = UploadFileToAras(inn, val);
+                        if (string.IsNullOrEmpty(fileId))
+                        {
+                            var badResult = ApiResult<object>.BadRequest($"文件上传失败 {val}");
+                            return System.Text.Json.JsonSerializer.Serialize(badResult);
+                        }
+                        amlBuilder.Append($"<xj_paper_grid_image>{fileId}</xj_paper_grid_image>");
+                    }
+                    else
+                    {
+                        amlBuilder.Append($"<{field}>{System.Security.SecurityElement.Escape(val)}</{field}>");
+                    }
+                }
+            }
+            amlBuilder.Append("</Item>");
+        }
+    }
+
+    amlBuilder.Append("</AML>");
+
+    string aml = amlBuilder.ToString();
+    var result = inn.applyAML(aml);
+
+    if (result.isError())
+    {
+        var errorResult = ApiResult<object>.BadRequest($"批量修改失败 {result.getErrorString()}");
+        string resp = System.Text.Json.JsonSerializer.Serialize(errorResult);
+        WriteInterfaceLog(inn, "XJ_BOMInterface", "action=edit", resp, "1");
+        return resp;
+    }
+
+    var successResult = ApiResult<object>.Success(new { message = "修改成功", count = result.getItemCount() });
+    string successResp = System.Text.Json.JsonSerializer.Serialize(successResult);
+    WriteInterfaceLog(inn, "XJ_BOMInterface", "action=edit", successResp, "0");
+    return successResp;
+}
+
+/// <summary>
+/// 处理BOM删除：根据type_name和id执行删除AML
+/// </summary>
+public string HandleBomDelete(Innovator inn, XmlElement root, string[] typeNames)
+{
+    var amlBuilder = new System.Text.StringBuilder();
+    amlBuilder.Append("<AML>");
+
+    foreach (var typeName in typeNames)
+    {
+        var nodes = root.SelectNodes(typeName);
+        if (nodes == null || nodes.Count == 0) continue;
+
+        foreach (XmlNode node in nodes)
+        {
+            string itemId = node.SelectSingleNode("id").InnerText.Trim();
+            if (string.IsNullOrEmpty(itemId))
+            {
+                var badResult = ApiResult<object>.BadRequest($"{typeName}缺少id参数，无法执行delete");
+                return System.Text.Json.JsonSerializer.Serialize(badResult);
+            }
+
+            amlBuilder.Append($"<Item type='{typeName}' action='delete' where=\"{typeName}.id='{itemId}'\"></Item>");
+        }
+    }
+
+    amlBuilder.Append("</AML>");
+
+    string aml = amlBuilder.ToString();
+    var result = inn.applyAML(aml);
+
+    if (result.isError())
+    {
+        var errorResult = ApiResult<object>.BadRequest($"批量删除失败 {result.getErrorString()}");
+        string resp = System.Text.Json.JsonSerializer.Serialize(errorResult);
+        WriteInterfaceLog(inn, "XJ_BOMInterface", "action=delete", resp, "1");
+        return resp;
+    }
+
+    var successResult = ApiResult<object>.Success(new { message = "删除成功", count = result.getItemCount() });
+    string successResp = System.Text.Json.JsonSerializer.Serialize(successResult);
+    WriteInterfaceLog(inn, "XJ_BOMInterface", "action=delete", successResp, "0");
+    return successResp;
+}
+
+/// <summary>
+/// 上传文件到Aras系统，返回File Item的ID
+/// 通过Aras标准File ItemType的attachPhysicalFile方法上传
+/// </summary>
+/// <param name="inn">Innovator实例</param>
+/// <param name="filePath">文件完整路径</param>
+/// <returns>上传成功返回File ID，失败返回空字符串</returns>
+public string UploadFileToAras(Innovator inn, string filePath)
+{
+    try
+    {
+        if (!System.IO.File.Exists(filePath))
+        {
+            return "";
+        }
+
+        string fileName = System.IO.Path.GetFileName(filePath);
+        var fileItem = inn.newItem("File", "add");
+        fileItem.setProperty("filename", fileName);
+        fileItem.attachPhysicalFile(filePath);
+        fileItem = fileItem.apply();
+
+        if (fileItem.isError())
+        {
+            return "";
+        }
+
+        return "vaultfileId=" + fileItem.getID();
+    }
+    catch
+    {
+        return "";
+    }
+}
