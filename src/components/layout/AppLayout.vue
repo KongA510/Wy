@@ -1,5 +1,8 @@
-﻿<template>
-  <div class="app-layout">
+<template>
+  <div v-if="isLogin" class="login-layout">
+    <router-view />
+  </div>
+  <div v-else class="app-layout">
     <AppHeader />
     <AppSidebar />
     <main class="app-main" :class="{ 'wide-main': isDocZone }">
@@ -15,6 +18,7 @@ import AppHeader from './AppHeader.vue'
 import AppSidebar from './AppSidebar.vue'
 
 const route = useRoute()
+const isLogin = computed(() => route.path === '/login')
 const isDocZone = computed(() => route.path.startsWith('/aras-docs') || route.path.startsWith('/aras-api') || route.path.startsWith('/pm') || route.path.startsWith('/aras-dev') || route.path.startsWith('/server-api'))
 </script>
 
@@ -23,7 +27,9 @@ const isDocZone = computed(() => route.path.startsWith('/aras-docs') || route.pa
   min-height: 100vh;
   background: #fff;
 }
-
+.login-layout {
+  min-height: 100vh;
+}
 .app-main {
   margin-left: 280px;
   margin-top: 60px;
@@ -31,9 +37,7 @@ const isDocZone = computed(() => route.path.startsWith('/aras-docs') || route.pa
   padding: 40px 48px;
   max-width: 1100px;
 }
-
 .wide-main {
   max-width: 900px;
 }
 </style>
-

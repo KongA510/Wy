@@ -1,9 +1,12 @@
-﻿import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
+import { getCurrentUser } from '../utils/auth'
 
 const routes: RouteRecordRaw[] = [
+  { path: '/login', name: 'Login', component: () => import('../views/LoginView.vue'), meta: { title: '登录', public: true } },
   { path: '/', name: 'Home', component: () => import('../views/HomeView.vue'), meta: { title: '首页' } },
   { path: '/about', name: 'About', component: () => import('../views/AboutView.vue'), meta: { title: '关于站长' } },
+  { path: '/user-manage', name: 'UserManage', component: () => import('../views/UserManageView.vue'), meta: { title: '用户管理', admin: true } },
   { path: '/aras-docs', name: 'ArasDocsIndex', component: () => import('../views/ArasDocsIndex.vue'), meta: { title: '系统操作手册' } },
   { path: '/aras-docs/:pathMatch(.*)*', name: 'ArasDoc', component: () => import('../views/ArasDocView.vue'), meta: { title: '系统操作手册' } },
   { path: '/frontend', name: 'FrontendCategory', component: () => import('../views/CategoryView.vue'), meta: { title: '前端技术', categoryId: 'frontend' } },
@@ -33,7 +36,24 @@ const router = createRouter({
 
 router.beforeEach((to, _from, next) => {
   const title = to.meta.title as string
-  document.title = title ? `${title} - Kong.A Blog` : 'Kong.A Blog'
+  document.title = title ? title + ' - Kong.A Blog' : 'Kong.A Blog'
+
+  if (to.meta.public) {
+    next()
+    return
+  }
+
+  const user = getCurrentUser()
+  if (!user) {
+    next({ path: '/login', query: { redirect: to.fullPath } })
+    return
+  }
+
+  if (to.meta.admin && user.role !== 'admin') {
+    next('/')
+    return
+  }
+
   next()
 })
 

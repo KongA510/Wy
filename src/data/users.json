@@ -1,0 +1,58 @@
+[
+  {
+    "username": "kong.A",
+    "password": "XwXy51020",
+    "displayName": "空",
+    "role": "admin",
+    "enabled": true
+  },
+  {
+    "username": "xy",
+    "password": "wy123",
+    "displayName": "滟",
+    "role": "user",
+    "enabled": true
+  },
+  {
+    "username": "cc",
+    "password": "cc123",
+    "displayName": "程",
+    "role": "user",
+    "enabled": true
+  },
+  {
+    "username": "lh",
+    "password": "lh123",
+    "displayName": "行",
+    "role": "user",
+    "enabled": true
+  },
+  {
+    "username": "hf",
+    "password": "hf123",
+    "displayName": "飞",
+    "role": "user",
+    "enabled": true
+  },
+  {
+    "username": "wj",
+    "password": "wj123",
+    "displayName": "军",
+    "role": "user",
+    "enabled": true
+  },
+  {
+    "username": "hxc",
+    "password": "hxc123",
+    "displayName": "川",
+    "role": "user",
+    "enabled": true
+  },
+  {
+    "username": "lzl",
+    "password": "lzl123",
+    "displayName": "隆",
+    "role": "user",
+    "enabled": true
+  }
+]
