@@ -1,4 +1,4 @@
-﻿import type { MenuNode, CategoryCard, SearchResult } from '../types'
+import type { MenuNode, CategoryCard, SearchResult } from '../types'
 import { arasDocMenu } from './aras-menu'
 import type { ArasDocNode } from './aras-menu'
 import { pmMenu } from './pm-menu'
@@ -20,7 +20,7 @@ export const menuData: MenuNode[] = [
     ]
   },
   {
-    id: 'integration', label: '客户集成', icon: 'Connection',
+    id: 'integration', label: '客户集成', icon: 'Connection', path: '/integration',
     description: '客户系统集成接口文档，按客户分组（点击展开客户列表，进入客户详情查看接口），后续持续新增',
     children: integrationMenu.map((g) => {
       const m = customerMeta[g.id]

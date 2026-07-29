@@ -25,7 +25,7 @@
           <span class="nav-label">{{ node.label }}</span>
         </div>
         <div v-else class="nav-group">
-          <div class="nav-group-title" @click="toggleGroup(node.id)">
+          <div class="nav-group-title" @click="node.path ? navigate(node.path) : toggleGroup(node.id)">
             <el-icon v-if="node.icon" class="nav-icon"><component :is="iconMap[node.icon]" /></el-icon>
             <span class="nav-label">{{ node.label }}</span>
             <el-icon class="nav-arrow" :class="{ expanded: expandedGroups.has(node.id) }"><ArrowRight /></el-icon>
@@ -56,6 +56,7 @@ import { pmMenu } from '../../data/pm-menu'
 import { arasDevMenu } from '../../data/aras-dev-menu'
 import { serverApiMenu } from '../../data/server-api-menu'
 import { arasClientMenu } from '../../data/aras-client-menu'
+import { integrationMenu } from '../../data/integration-menu'
 
 import SearchDialog from '../SearchDialog.vue'
 import TreeNode from '../TreeNode.vue'
@@ -70,9 +71,9 @@ const iconMap: Record<string, any> = {
   Coin, Share, Notebook, Calendar, Reading, ChatDotRound, UserFilled, DataLine, Connection
 }
 
-const treeMode = computed(() => route.path.startsWith('/aras-docs') ? 'aras' : route.path.startsWith('/pm') ? 'pm' : route.path.startsWith('/aras-dev') ? 'aras-dev' : route.path.startsWith('/server-api') ? 'server-api' : route.path.startsWith('/aras-client') ? 'aras-client' : null)
-const treeMenu = computed(() => treeMode.value === 'pm' ? pmMenu : treeMode.value === 'aras-dev' ? arasDevMenu : treeMode.value === 'server-api' ? serverApiMenu : treeMode.value === 'aras-client' ? arasClientMenu : arasDocMenu)
-const treeTitle = computed(() => treeMode.value === 'pm' ? '项目管理' : treeMode.value === 'aras-dev' ? 'Aras 开发笔记' : treeMode.value === 'server-api' ? 'Aras 服务端文档' : treeMode.value === 'aras-client' ? 'Aras 客户端文档' : '系统操作手册')
+const treeMode = computed(() => route.path.startsWith('/aras-docs') ? 'aras' : route.path.startsWith('/pm') ? 'pm' : route.path.startsWith('/aras-dev') ? 'aras-dev' : route.path.startsWith('/server-api') ? 'server-api' : route.path.startsWith('/aras-client') ? 'aras-client' : route.path.startsWith('/integration') ? 'integration' : null)
+const treeMenu = computed(() => treeMode.value === 'pm' ? pmMenu : treeMode.value === 'aras-dev' ? arasDevMenu : treeMode.value === 'server-api' ? serverApiMenu : treeMode.value === 'aras-client' ? arasClientMenu : treeMode.value === 'integration' ? integrationMenu : arasDocMenu)
+const treeTitle = computed(() => treeMode.value === 'pm' ? '项目管理' : treeMode.value === 'aras-dev' ? 'Aras 开发笔记' : treeMode.value === 'server-api' ? 'Aras 服务端文档' : treeMode.value === 'aras-client' ? 'Aras 客户端文档' : treeMode.value === 'integration' ? '客户集成' : '系统操作手册')
 
 function autoExpand() {
   const p = route.path
@@ -90,7 +91,7 @@ function isActive(p?: string) { return p ? route.path === p : false }
 function isChildActive(child: { path?: string; match?: string }) { return route.path === child.path || (!!child.match && route.path.startsWith(child.match)) }
 function navigate(p?: string) { if (p) router.push(p) }
 function backFromTree() {
-  const indexMap: Record<string, string> = { pm: '/pm', aras: '/aras-docs', 'aras-dev': '/aras-dev', 'server-api': '/server-api', 'aras-client': '/aras-client' }
+  const indexMap: Record<string, string> = { pm: '/pm', aras: '/aras-docs', 'aras-dev': '/aras-dev', 'server-api': '/server-api', 'aras-client': '/aras-client', integration: '/integration' }
   const index = treeMode.value ? indexMap[treeMode.value] : '/'
   if (index && route.path === index) router.push('/')
   else router.push(index)
