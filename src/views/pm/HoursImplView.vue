@@ -11,6 +11,10 @@
       <p><strong>核心架构</strong>：Mock/Real 双模调度 + XML Body 构造器 + Wire↔View 双向映射 + 6 策略安全解析器，
       将 Aras IOM 通信细节完全封装在 API 层，视图层仅面向 TypeScript 类型编程。</p>
     </blockquote>
+    <h2>仓库链接</h2>
+    <p>本项目源码托管于 GitHub，可通过以下命令克隆到本地：</p>
+    <pre><code class="language-bash">git clone https://github.com/KongA510/Kong_A_Hours.git</code></pre>
+    <p>仓库主页：<a href="https://github.com/KongA510/Kong_A_Hours" target="_blank" rel="noopener">KongA510/Kong_A_Hours</a></p>
     <h2>一、项目结构</h2>
     <pre><code class="language-text">{{ projectTree }}</code></pre>
     <h2>二、架构设计</h2>
