@@ -69,3 +69,8 @@ dist.rar
 _legacy_src/
 .vp_out.log
 .vp_err.log
+
+# ===== Codex 临时验证产物 (仅根目录, 不影响 .vitepress 等) =====
+/.*.py
+/.*.cjs
+/.vp_*.png
