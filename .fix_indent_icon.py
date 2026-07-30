@@ -1,4 +1,12 @@
-import { defineConfig } from 'vitepress'
+﻿import os, sys
+sys.stdout.reconfigure(encoding='utf-8')
+BASE = r"D:\博威\项目\ICS\个人知识库"
+
+BOOK=chr(0x1F4D6); WRENCH=chr(0x1F527); SCREEN=chr(0x1F5A5); MEMO=chr(0x1F4DD)
+PLUG=chr(0x1F50C); BULB=chr(0x1F4A1); DEV=chr(0x1F9E0); PM=chr(0x1F4CA)
+FE=chr(0x1F3A8); BE=chr(0x1F5C4); DAILY=chr(0x1F4D4)
+
+config = r"""import { defineConfig } from 'vitepress'
 import { arasDocMenu } from './data/aras-menu'
 import type { ArasDocNode } from './data/aras-menu'
 import { arasDevMenu } from './data/aras-dev-menu'
@@ -33,9 +41,14 @@ function buildIntegrationItems(): any[] {
 }
 
 function buildIntegrationSidebar(): any[] {
-  // 文档页侧边栏: 客户 group 直接平铺为顶层(level-0), 不再套「客户集成」壳
-  // 进入某客户接口页时, 左侧只见该客户(及并列客户)的接口目录
-  return buildIntegrationItems()
+  return [
+    {
+      text: '__PLUG__ 客户集成',
+      link: '/integration/index',
+      collapsed: false,
+      items: buildIntegrationItems()
+    }
+  ]
 }
 
 /** 首页分类树：客户集成只展示到客户(二级叶子, 带图标), 不展开接口三级 */
@@ -49,30 +62,30 @@ function buildCustomerLeaves(): any[] {
 }
 
 const categoryTree: any[] = [
-  { text: '📖 系统操作手册', link: '/aras-docs/index' },
-  { text: '🔧 服务端文档', link: '/server-api/index' },
-  { text: '🖥 客户端文档', link: '/aras-client/index' },
+  { text: '__BOOK__ 系统操作手册', link: '/aras-docs/index' },
+  { text: '__WRENCH__ 服务端文档', link: '/server-api/index' },
+  { text: '__SCREEN__ 客户端文档', link: '/aras-client/index' },
   {
-    text: '📝 Aras 开发笔记',
+    text: '__MEMO__ Aras 开发笔记',
     collapsed: false,
     items: [
-      { text: '🧠 开发笔记', link: '/aras-dev/index' },
-      { text: '📊 项目管理', link: '/pm/index' }
+      { text: '__DEV__ 开发笔记', link: '/aras-dev/index' },
+      { text: '__PM__ 项目管理', link: '/pm/index' }
     ]
   },
   {
-    text: '🔌 客户集成',
+    text: '__PLUG__ 客户集成',
     link: '/integration/index',
     collapsed: false,
     items: buildCustomerLeaves()
   },
   {
-    text: '💡 技术笔记',
+    text: '__BULB__ 技术笔记',
     collapsed: true,
     items: [
-      { text: '🎨 前端技术', link: '/frontend/index' },
-      { text: '🗄 后端技术', link: '/backend/index' },
-      { text: '📔 日常笔记', link: '/notes/index' }
+      { text: '__FE__ 前端技术', link: '/frontend/index' },
+      { text: '__BE__ 后端技术', link: '/backend/index' },
+      { text: '__DAILY__ 日常笔记', link: '/notes/index' }
     ]
   }
 ]
@@ -142,3 +155,33 @@ export default defineConfig({
     }
   }
 })
+"""
+
+m = {'__BOOK__':BOOK,'__WRENCH__':WRENCH,'__SCREEN__':SCREEN,'__MEMO__':MEMO,
+     '__PLUG__':PLUG,'__BULB__':BULB,'__DEV__':DEV,'__PM__':PM,
+     '__FE__':FE,'__BE__':BE,'__DAILY__':DAILY}
+for k,v in m.items():
+    config = config.replace(k, v)
+assert '__' not in config, "leftover placeholder"
+
+with open(os.path.join(BASE,'.vitepress','config.ts'),'w',encoding='utf-8') as f:
+    f.write(config)
+print("[OK] config.ts rewritten (icons + no 3rd level in home tree)")
+
+# ---- style.css: add level-0 .items indent (the missing rule) ----
+sty = os.path.join(BASE,'.vitepress','theme','style.css')
+with open(sty,'r',encoding='utf-8') as f: s = f.read()
+marker = "level-0 > .items"
+if marker not in s:
+    s += """
+/* ===== 二级缩进: VitePress 默认仅 level-1+ 的 .items 缩进, 补 level-0 group 子项 ===== */
+.VPSidebarItem.level-0 > .items {
+  border-left: 1px solid var(--vp-c-divider);
+  padding-left: 16px;
+  margin-top: 4px;
+}
+"""
+    with open(sty,'w',encoding='utf-8') as f: f.write(s)
+    print("[OK] style.css: level-0 .items indent added")
+else:
+    print("[SKIP] style.css already has level-0 indent")

@@ -61,3 +61,10 @@
   :root { --vp-sidebar-width: 360px; }
   .VPSidebar { font-size: 15px; }
 }
+
+/* ===== 二级缩进: VitePress 默认仅 level-1+ 的 .items 缩进, 补 level-0 group 子项 ===== */
+.VPSidebarItem.level-0 > .items {
+  border-left: 1px solid var(--vp-c-divider);
+  padding-left: 16px;
+  margin-top: 4px;
+}
