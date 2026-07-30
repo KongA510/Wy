@@ -33,10 +33,34 @@ function buildIntegrationSidebar(): any[] {
   })
 }
 
+const categoryTree: any[] = [
+  { text: '📖 系统操作手册', link: '/aras-docs/index' },
+  { text: '🔧 服务端文档', link: '/server-api/index' },
+  { text: '🔧 客户端文档', link: '/aras-client/index' },
+  {
+    text: '📝 Aras 开发笔记',
+    collapsed: false,
+    items: [
+      { text: '开发笔记', link: '/aras-dev/index' },
+      { text: '项目管理', link: '/pm/index' }
+    ]
+  },
+  { text: '🔌 客户集成', link: '/integration/index' },
+  {
+    text: '💡 技术笔记',
+    collapsed: true,
+    items: [
+      { text: '前端技术', link: '/frontend/index' },
+      { text: '后端技术', link: '/backend/index' },
+      { text: '日常笔记', link: '/notes/index' }
+    ]
+  }
+]
+
 export default defineConfig({
   srcDir: 'docs',
   title: 'Kong.A 知识库',
-  description: 'Kong.A 个人技术知识库 — Aras PLM / .NET / 前端 / 客户集成',
+  description: 'Kong.A 个人技术知识库',
   lang: 'zh-CN',
   lastUpdated: true,
   cleanUrls: true,
@@ -47,26 +71,6 @@ export default defineConfig({
     logo: undefined,
     siteTitle: 'Kong.A 知识库',
     nav: [
-      { text: '首页', link: '/' },
-      { text: '系统操作手册', link: '/aras-docs/index' },
-      { text: '服务端文档', link: '/server-api/index' },
-      { text: '客户端文档', link: '/aras-client/index' },
-      {
-        text: 'Aras 开发笔记',
-        items: [
-          { text: '项目管理', link: '/pm/index' },
-          { text: '开发笔记', link: '/aras-dev/index' }
-        ]
-      },
-      { text: '客户集成', link: '/integration/index' },
-      {
-        text: '技术笔记',
-        items: [
-          { text: '前端技术', link: '/frontend/index' },
-          { text: '后端技术', link: '/backend/index' },
-          { text: '日常笔记', link: '/notes/index' }
-        ]
-      },
       { text: '关于', link: '/about' }
     ],
     sidebar: {
@@ -75,7 +79,8 @@ export default defineConfig({
       '/aras-client/': buildSidebar(arasClientMenu),
       '/aras-dev/': buildSidebar(arasDevMenu),
       '/pm/': buildSidebar(pmMenu),
-      '/integration/': buildIntegrationSidebar()
+      '/integration/': buildIntegrationSidebar(),
+      '/': categoryTree
     },
     search: {
       provider: 'local',
