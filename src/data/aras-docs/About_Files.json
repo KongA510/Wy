@@ -1,5 +1,0 @@
-{
-  "title": "关于文件",
-  "html": "<html><head></head><body><div>\n  <h1>关于文件</h1>\n  <p class=\"Content_body\"><span style=\"font-weight: bold;\">文件</span>ItemType（物料类型）是一种核心 ItemType，用于管理 Innovator 保险库中文件的存储。它记录了每个已存储文件的名称、所在保险库、文件类型以及签出该文件的用户。</p>\n  <!--?rh-list_start level=\"1\" an=\"1\" class=\"rl-p-Note\" style=\"list-style: rh-list;\n                                 list-style: rh-list;\" ?-->\n    <p class=\"Note\">请注意，不应直接通过文件 ItemType 来将文件存入保险库。要将条目存入保险库，用户应为目标 ItemType 添加一个数据类型为\"Item\"、数据源为\"文件\"的属性，以便关联文件。</p>\n    <!--?rh-list_end ?-->\n\n</div></body></html>",
-  "sourceFile": "About_Files.htm"
-}

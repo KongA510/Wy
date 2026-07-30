@@ -62,3 +62,10 @@ temp_aras_index.html
 temp_extracted.json
 temp_aras_pages/
 dist.rar
+
+# ===== VitePress =====
+.vitepress/cache/
+.vitepress/dist/
+_legacy_src/
+.vp_out.log
+.vp_err.log

@@ -1,5 +1,0 @@
-{
-  "title": "关于动作",
-  "html": "<html><head></head><body><div>\n  <h1>关于动作</h1>\n  <p class=\"Content_body\"><span style=\"font-weight: bold;\">动作（Action）</span>代表一个可自定义的菜单，选中时会调用一个方法。<span style=\"font-weight: bold;\">动作</span>的名称就是菜单上的标签。每个<span style=\"font-weight: bold;\">动作</span>都链接到一个方法，当用户选择该<span style=\"font-weight: bold;\">动作</span>时，该方法将被执行。</p>\n  <p class=\"Content_body\"><span style=\"font-weight: bold;\">动作</span>可以定义为通用类型，也可以绑定到特定的 ItemType（物料类型）或条目。</p>\n  <!--?rh-list_start class=\"Bullet_list\" level=\"1\" style=\"list-style: rh-list;\n                                 list-style: rh-list;\" ?-->\n    <p class=\"Bulleted_list\">通用<span style=\"font-weight: bold;\">动作</span>始终在菜单中可见。</p>\n    <!--?rh-list_end ?-->\n      <!--?rh-list_start class=\"Bullet_list\" level=\"1\" style=\"list-style: rh-list;\n                                 list-style: rh-list;\" ?-->\n        <p class=\"Bulleted_list\">类型为\"ItemType\"和\"Item\"的<span style=\"font-weight: bold;\">动作</span>必须在<span style=\"font-weight: bold;\">动作</span>选项卡上作为关系链接到 ItemType。</p>\n        <!--?rh-list_end ?-->\n\n</div></body></html>",
-  "sourceFile": "About_Actions.htm"
-}

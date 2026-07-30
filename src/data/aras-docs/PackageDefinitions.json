@@ -1,5 +1,0 @@
-{
-  "title": "包定义",
-  "html": "<html><head></head><body><div>\n  <h1>包定义</h1>\n  <p class=\"Content_body\">包定义由管理员和开发人员使用，用于将 ItemType（物料类型）定义从一个 Aras Innovator 数据库复制或转移到另一个数据库，以及将数据库升级到更高的版本号。</p>\n  <p class=\"Content_body\">在导航窗格中，点击 管理&gt;配置&gt;包定义。将出现以下菜单：</p>\n  <p class=\"Content_body\"><img src=\"/aras-images/packmen.jpg\" style=\"cursor: nwse-resize;\"></p>\n  <p class=\"Content_body\">包定义由导出和导入工具使用。包定义及这些工具的使用方法记录在 Aras Innovator 12.0 - Package Import Export Utilities.pdf 中，该文档可在发布光盘上获取。</p>\n\n</div></body></html>",
-  "sourceFile": "PackageDefinitions.htm"
-}

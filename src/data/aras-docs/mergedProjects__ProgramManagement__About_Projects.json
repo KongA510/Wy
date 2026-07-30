@@ -1,5 +1,0 @@
-{
-  "title": "关于项目",
-  "html": "<html><head></head><body><div>\n  <h1>关于项目</h1>\n  <p>Aras Innovator 的项目是一个允许项目经理控制项目范围和时间的工具，它使用特定结构的其他条目，如 WBS、活动和交付物。项目经理创建并组织该结构，然后将项目中特定活动的责任分配给各分配人。当分配人完成这些活动时，他们会更新自己的工作表，这些更新会反映到项目中，从而使项目经理能够跟踪项目的进度。让我们分别更详细地了解每个条目，然后看看它们如何组合成一个完整的结构。</p>\n  <ul class=\"Disc\">\n    <li><a href=\"#\" class=\"internal-doc-link\">WBS</a></li>\n    <li><a href=\"#\" class=\"internal-doc-link\">Activity2</a></li>\n    <li><a href=\"#\" class=\"internal-doc-link\">交付物</a></li>\n    <li><a href=\"#\" class=\"internal-doc-link\">项目</a></li>\n    <li><a href=\"#\" class=\"internal-doc-link\">活动完成工作表</a></li>\n  </ul>\n  <p>项目还关联了一个生命周期，如下所示：</p>\n  <p class=\"Content_body_indented\"><img src=\"/aras-images/pending.jpg\"></p>\n  \n  <p>项目有几种状态：待定、活动、已取消或已关闭。只有项目的所有者或项目经理才有权限将项目从一个状态推进到另一个状态。一旦项目处于已关闭状态，就无法再被认领或编辑。</p>\n\n</div></body></html>",
-  "sourceFile": "mergedProjects/ProgramManagement/About_Projects.htm"
-}

@@ -1,5 +1,0 @@
-{
-  "title": "Vault Storage Locations",
-  "html": "<html><head></head><body><div>\n<h1>保险库存储位置</h1>\n<p class=\"Content_body\">存储文件的保险库位置由用户设置决定，每个用户可以独立配置。无论文件的先前版本存储在何处，都会使用该用户的存储位置。例如，如果一个设置为将文件存储在保险库 B 的用户从保险库 A 签出一个文件，当该文件被签回时，它将被存储到保险库 B。这意味着，如果启用了版本控制，同一文件的不同版本可能最终存储在不同的保险库中。</p>\n\n\n</div></body></html>",
-  "sourceFile": "Vault_Storage_Locations.htm"
-}

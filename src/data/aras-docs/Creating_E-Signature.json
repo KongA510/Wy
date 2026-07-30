@@ -1,5 +1,0 @@
-{
-  "title": "创建电子签名",
-  "html": "<html><head></head><body><div>\n  <h1>创建电子签名</h1>\n  <p class=\"Content_body\">电子签名与密码是分开的。电子签名是由用户自行维护的用户控制密码，而不是 Innovator 管理员或 IT 密码。这使得每个用户可以完全控制自己的电子签名。</p>\n  <p class=\"Content_body\">1. 登录 Aras Innovator。</p>\n  <p class=\"Content_Body\">2. 导航到 <b>工具 --&gt; 首选项 --&gt; 更改电子签名</b>。将出现<b>更改电子签名</b>对话框。</p>\n  <p class=\"Figure_indented\"><br>\n    <img src=\"/aras-images/changepass.jpg\"></p>\n  <p class=\"Content_Body\">3. 在<b>旧密码</b>字段中输入您当前的电子签名。</p>\n  <p class=\"Content_Body\">4. 在<strong>新密码</strong>和<strong>确认新密码</strong>字段中输入您的新密码。</p>\n  <p class=\"Content_Body\"><br> 5. 点击<strong>确定</strong>。</p>\n  \n  <p class=\"Note_indented\">如果您是首次设置电子签名，请将<span class=\"Bold\">旧签名</span>字段留空。</p>\n  \n  <!--?rh-list_end ?-->\n\n</div></body></html>",
-  "sourceFile": "Creating_E-Signature.htm"
-}

@@ -1,5 +1,0 @@
-{
-  "title": "关于 View With",
-  "html": "<html><head></head><body><div>\n  <h1>关于 View With</h1>\n  <p class=\"Content_body\"><span style=\"font-weight: bold;\">View With</span> 是一种核心 RelationshipType（关系类型），用于将文件类型关联到所调用的查看器。当指定了 <span style=\"font-weight: bold;\">View With</span> 关系时，将使用所指定的应用程序，而非 <span style=\"font-weight: bold;\">FileTypes</span> 物料类型中指定的 MIME 类型。如果未指定 <span style=\"font-weight: bold;\">View With</span> 关系，则使用关联的 MIME 类型。</p>\n\n</div></body></html>",
-  "sourceFile": "About_View_With.htm"
-}

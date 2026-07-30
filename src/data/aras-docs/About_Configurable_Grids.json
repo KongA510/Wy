@@ -1,5 +1,0 @@
-{
-  "title": "关于可配置网格",
-  "html": "<html><head></head><body><div>\n  <h1>关于可配置网格</h1>\n  <p class=\"Content_body\">可配置网格是 Innovator 框架的一部分，用于质量管理计划和项目管理解决方案，也可用于自定义应用程序。它们在目录访问的管理类别中以\"网格\"的名称显示。</p>\n  <p class=\"Content_body\">可配置网格本质上是一个客户端控件，它使用 AML 查询从 Innovator 数据库中检索数据并填充网格。网格定义包含用于获取数据的 AML 查询和 XPath 表达式、网格加载时运行的方法（Method）、列的规格说明以及网格使用时需要执行的事件。</p>\n  <p class=\"Content_body\">实现可配置网格是一项高级开发功能。</p>\n\n</div></body></html>",
-  "sourceFile": "About_Configurable_Grids.htm"
-}

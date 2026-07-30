@@ -1,5 +1,0 @@
-{
-  "title": "变更管理",
-  "html": "<html><head></head><body><div>\n  <h1>变更管理</h1>\n  <p>变更管理是对零件或文档的任何所需变更进行发起、设计、评审和实施的过程。受管理的变更使公司能够改进其产品并取得更大的成功。Aras Innovator 是一个优秀的工具，能使变更过程更加顺畅和便捷，同时帮助公司识别其变更管理流程中的瓶颈，从而进一步提升性能。</p>\n  <p>配置管理组由几个关键身份组组成，包括变更专家 I、II 和 III，他们负责协调和推动变更过程。虽然问题或变更请求可以由其他人提出，但变更专家负责做出决定，将这些变更从一个状态推进到下一个状态。</p>\n  <p>变更管理中有三个基本条目：</p>\n  <ul class=\"Disc\">\n    <li><span class=\"MenuChoice\">PR</span> - 问题报告 - 用于报告零件或文档的任何问题；可由公司员工或客户发起</li>\n    <br>\n    <li><span class=\"MenuChoice\">ECR</span> - ECR（工程变更请求）- 用于请求对零件或文档进行变更</li>\n    <br>\n    <li><span class=\"MenuChoice\">ECN</span> - ECN（工程变更通知）- 用作实际变更零件和文档的授权，同时也是条目已变更的通知。</li>\n  </ul>\n  <p>让我们详细了解每个条目：</p>\n  <ul class=\"Disc\">\n    <li style=\"counter-set: item1 3;\"><a href=\"#\" class=\"internal-doc-link\">PR</a></li>\n    <li><a href=\"#\" class=\"internal-doc-link\">ECR</a></li>\n    <li><a href=\"#\" class=\"internal-doc-link\">ECN</a></li>\n  </ul>\n\n</div></body></html>",
-  "sourceFile": "mergedProjects/ProductEngineering/Change_Management.htm"
-}
