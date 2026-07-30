@@ -2,12 +2,12 @@
 title: Toolbar 组件
 ---
 
-<h1>Toolbar 工具栏组件</h1>
+# Toolbar 工具栏组件
 <blockquote>
 <p><strong>aras-toolbar</strong> 是一个通用的 Web Component，用于渲染工具栏和类工具栏组件。如果默认功能不够，可以基于 Toolbar 类创建自定义子类。</p>
 </blockquote>
 
-<h2>一、文件结构</h2>
+## 一、文件结构
 <p>源码位于 <code>Innovator/Client/Modules/components/</code>：</p>
 <table>
 <thead><tr><th>文件</th><th>说明</th></tr></thead>
@@ -18,7 +18,7 @@ title: Toolbar 组件
 </tbody>
 </table>
 
-<h2>二、使用场景</h2>
+## 二、使用场景
 <table>
 <thead><tr><th>位置</th><th>用途</th></tr></thead>
 <tbody>
@@ -29,9 +29,9 @@ title: Toolbar 组件
 </tbody>
 </table>
 
-<h2>三、公共 API</h2>
+## 三、公共 API
 
-<h3>3.1 构造函数</h3>
+### 3.1 构造函数
 
 ```javascript
 // 创建 Toolbar
@@ -44,7 +44,7 @@ document.getElementById('toolbar-area').appendChild(toolbar);
 ```
 
 
-<h3>3.2 自定义属性</h3>
+### 3.2 自定义属性
 <table>
 <thead><tr><th>属性</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -54,7 +54,7 @@ document.getElementById('toolbar-area').appendChild(toolbar);
 </tbody>
 </table>
 
-<h3>3.3 数据管理</h3>
+### 3.3 数据管理
 
 ```javascript
 // data — Map 对象，key 为元素标识符，value 为元素描述对象
@@ -96,7 +96,7 @@ console.log(btnSave.enabled);  // false
 ```
 
 
-<h3>3.4 容器布局</h3>
+### 3.4 容器布局
 
 ```javascript
 // container — 左侧容器（左对齐）
@@ -110,7 +110,7 @@ toolbar.rightContainer = ['btn_refresh'];
 ```
 
 
-<h3>3.5 事件订阅</h3>
+### 3.5 事件订阅
 
 ```javascript
 // 订阅工具栏事件
@@ -126,7 +126,7 @@ unsubscribe();
 ```
 
 
-<h2>四、格式化器（Formatters）</h2>
+## 四、格式化器（Formatters）
 <p>Toolbar 的公共方法，用于渲染不同类型的子元素：</p>
 <table>
 <thead><tr><th>格式化器</th><th>渲染效果</th><th>示例元素</th></tr></thead>
@@ -138,7 +138,7 @@ unsubscribe();
 </tbody>
 </table>
 
-<h3>自定义格式化器</h3>
+### 自定义格式化器
 
 ```javascript
 // 注册自定义格式化器 — 搜索输入框
@@ -173,7 +173,7 @@ toolbar.data = new Map([
 ```
 
 
-<h2>五、实际应用示例</h2>
+## 五、实际应用示例
 
 ```javascript
 // 完整的 ItemView 工具栏

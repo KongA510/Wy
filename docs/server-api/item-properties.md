@@ -2,12 +2,12 @@
 title: 属性操作 (get/set/removeProperty)
 ---
 
-<h1>属性操作</h1>
+# 属性操作
 <blockquote>
 <p><strong>Item 的属性操作方法是 AML 数据操作的核心。</strong>包括 getProperty（3 个重载）、setProperty（2 个重载）、removeProperty（2 个重载），支持多语言属性。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、getProperty — 读取属性值</h2>
+## 一、getProperty — 读取属性值
 
 ```csharp
 // 重载 1：按名称获取
@@ -26,7 +26,7 @@ string nameFr = item.getProperty("name", "", "fr");   // 法语版本
 ```
 
 
-<h2>二、setProperty — 设置属性值</h2>
+## 二、setProperty — 设置属性值
 
 ```csharp
 // 重载 1：按名称设值
@@ -42,7 +42,7 @@ item.setProperty("cost", "123.45");
 ```
 
 
-<h2>三、removeProperty — 删除属性</h2>
+## 三、removeProperty — 删除属性
 
 ```csharp
 // 重载 1：删除指定名称属性
@@ -56,7 +56,7 @@ item.removeProperty("name", "fr");  // 仅删除法语版本
 ```
 
 
-<h2>四、多语言属性处理</h2>
+## 四、多语言属性处理
 
 ```csharp
 // 多语言属性在 AML 中表现为同一属性名 + 不同 xml:lang 属性
@@ -76,7 +76,7 @@ string descFr = item.getProperty("description", "", "fr"); // 法文
 ```
 
 
-<h2>五、getPropertyCondition / setPropertyCondition</h2>
+## 五、getPropertyCondition / setPropertyCondition
 
 ```csharp
 // 获取属性的 'condition' 属性（用于 get 操作的查询条件）
@@ -97,7 +97,7 @@ var result = query.apply();
 ```
 
 
-<h2>六、完整示例：CRUD 操作中的属性操作</h2>
+## 六、完整示例：CRUD 操作中的属性操作
 
 ```csharp
 var inn = this.newInnovator();
@@ -133,7 +133,7 @@ del.apply();
 ```
 
 
-<h2>七、实践笔记</h2>
+## 七、实践笔记
 <ul>
 <li><strong>默认值很重要：</strong>始终为 getProperty 提供第二个参数作为默认值，避免 null 检查</li>
 <li><strong>AML 中的 locale 敏感类型：</strong>日期和浮点数在 AML 中必须以 neutral 格式表示（如日期用"yyyy-MM-ddTHH:mm:ss"）</li>

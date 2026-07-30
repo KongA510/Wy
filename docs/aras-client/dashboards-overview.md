@@ -2,12 +2,12 @@
 title: 仪表板概述
 ---
 
-<h1>仪表板概述</h1>
+# 仪表板概述
 <blockquote>
 <p>Aras 仪表板（Dashboards）是一种<strong>特殊的 CUI Layout</strong>，基于 <code>cui_Dashboard</code> ItemType 渲染多个 <strong>Widget</strong>。每个 Widget 是自定义的 CUI Layout，通过 Dashboard Widget 关系确定类型和动态属性。</p>
 </blockquote>
 
-<h2>一、仪表板架构</h2>
+## 一、仪表板架构
 
 ```text
 仪表板 (Dashboard)
@@ -26,7 +26,7 @@ title: 仪表板概述
 ```
 
 
-<h2>二、核心 ItemType</h2>
+## 二、核心 ItemType
 <table>
 <thead><tr><th>ItemType</th><th>说明</th></tr></thead>
 <tbody>
@@ -37,7 +37,7 @@ title: 仪表板概述
 </tbody>
 </table>
 
-<h2>三、widget_data 属性</h2>
+## 三、widget_data 属性
 <p>每个 Widget 的核心数据，作为 CUI Layout 的 state：</p>
 
 ```javascript
@@ -58,7 +58,7 @@ title: 仪表板概述
 <li>但如果 <code>item_type_id</code> 或 <code>item_id</code> 改变，Widget 会被<strong>销毁并重建</strong></li>
 </ul>
 
-<h2>四、Widget 生命周期</h2>
+## 四、Widget 生命周期
 
 ```text
 Widget 初始化（第一次）
@@ -77,7 +77,7 @@ Widget 更新（widget_data 属性变化）
 ```
 
 
-<h2>五、代码位置</h2>
+## 五、代码位置
 <table>
 <thead><tr><th>文件/目录</th><th>说明</th></tr></thead>
 <tbody>

@@ -2,10 +2,10 @@
 title: 事件委托一览
 ---
 
-<h1>IOME 事件委托一览</h1>
+# IOME 事件委托一览
 <blockquote><p><strong>Aras.IOME 命名空间中所有事件委托的完整列表。</strong>包含签入、签出（下载）、上传相关的进度和完成委托共 8 个。命名空间：Aras.IOME，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、委托总表</h2>
+## 一、委托总表
 <table><thead><tr><th>委托名称</th><th>关联事件</th><th>所属类</th></tr></thead><tbody>
 <tr><td><code>CheckinProgressChangedEventHandler</code></td><td>CheckinProgressChanged</td><td>CheckinManager</td></tr>
 <tr><td><code>CheckinCompletedEventHandler</code></td><td>CheckinCompleted</td><td>CheckinManager</td></tr>
@@ -17,7 +17,7 @@ title: 事件委托一览
 <tr><td><code>DownloadFilesProgressChangedEventHandler</code></td><td>DownloadFilesProgressChanged</td><td>CheckoutManager</td></tr>
 </tbody></table>
 
-<h2>二、委托签名</h2>
+## 二、委托签名
 
 ```csharp
 // ─── CheckinManager 委托 ───
@@ -58,7 +58,7 @@ public delegate void DownloadFilesProgressChangedEventHandler(
 ```
 
 
-<h2>三、事件与委托映射（CheckinManager）</h2>
+## 三、事件与委托映射（CheckinManager）
 
 ```csharp
 public class CheckinManager
@@ -77,7 +77,7 @@ public class CheckinManager
 ```
 
 
-<h2>四、事件与委托映射（CheckoutManager）</h2>
+## 四、事件与委托映射（CheckoutManager）
 
 ```csharp
 public class CheckoutManager
@@ -92,7 +92,7 @@ public class CheckoutManager
 ```
 
 
-<h2>五、完整注册示例</h2>
+## 五、完整注册示例
 
 ```csharp
 using Aras.IOM;
@@ -145,7 +145,7 @@ void OnDownloadFilesProgressChanged(object sender, DownloadFilesProgressChangedE
 ```
 
 
-<h2>六、实践笔记</h2>
+## 六、实践笔记
 <ul>
 <li><strong>事件命名规律：</strong>CheckinManager 负责签入→上传事件，CheckoutManager 负责签出→下载事件</li>
 <li><strong>Progress 事件触发频率：</strong>进度事件可能高频触发（每秒多次），避免在处理方法中做耗时操作</li>

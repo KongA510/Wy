@@ -2,10 +2,10 @@
 title: RefreshTokenProvider
 ---
 
-<h1>RefreshTokenProvider</h1>
+# RefreshTokenProvider
 <blockquote><p><strong>使用 Refresh Token 续期 Access Token 的认证提供者。</strong>当 Access Token 过期后，可使用此前获取的 Refresh Token 来获取新的 Access Token，无需用户重新登录。命名空间：Aras.IOM.OAuth，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、类定义</h2>
+## 一、类定义
 
 ```csharp
 // RefreshTokenProvider — 令牌刷新提供者
@@ -29,7 +29,7 @@ public class RefreshTokenProvider : ITokenProvider, ITokenProviderSession
 ```
 
 
-<h2>二、RefreshTokenProviderOptions</h2>
+## 二、RefreshTokenProviderOptions
 
 ```csharp
 public class RefreshTokenProviderOptions : TokenProviderOptions
@@ -40,7 +40,7 @@ public class RefreshTokenProviderOptions : TokenProviderOptions
 ```
 
 
-<h2>三、完整生命周期示例</h2>
+## 三、完整生命周期示例
 
 ```csharp
 using Aras.IOM;
@@ -133,7 +133,7 @@ string LoadRefreshToken()
 ```
 
 
-<h2>四、实践笔记</h2>
+## 四、实践笔记
 <ul>
 <li><strong>令牌轮换：</strong>使用 Refresh Token 登录后，服务器通常返回新的 Refresh Token，旧的作废（安全性）</li>
 <li><strong>持久化存储：</strong>Refresh Token 应使用 DPAPI、加密文件或凭据管理器安全存放</li>

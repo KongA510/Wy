@@ -20,17 +20,23 @@ function buildSidebar(nodes: ArasDocNode[]): any[] {
 }
 
 function buildIntegrationSidebar(): any[] {
-  return integrationMenu.map(group => {
-    const meta = customerMeta[group.id]
-    return {
-      text: group.name,
-      collapsed: false,
-      items: [
-        ...(meta ? [{ text: `${group.name} 概览`, link: group.path }] : []),
-        ...buildSidebar(group.children || [])
-      ]
+  return [
+    {
+      text: '🔌 客户集成',
+      link: '/integration/index',
+      items: integrationMenu.map(group => {
+        const meta = customerMeta[group.id]
+        return {
+          text: group.name,
+          collapsed: false,
+          items: [
+            ...(meta ? [{ text: `${group.name} 概览`, link: group.path }] : []),
+            ...buildSidebar(group.children || [])
+          ]
+        }
+      })
     }
-  })
+  ]
 }
 
 const categoryTree: any[] = [

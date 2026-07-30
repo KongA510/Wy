@@ -2,12 +2,12 @@
 title: 常用代码片段
 ---
 
-<h1>常用代码片段</h1>
+# 常用代码片段
 <blockquote>
 <p>汇总 Aras 服务端开发中最常用的代码片段，覆盖查询、新增、修改、权限、SQL、JSON 等场景。可直接复制到 Method 中调整使用。</p>
 </blockquote>
 
-<h2>一、基础查询</h2>
+## 一、基础查询
 
 ```csharp
 // 1. 按属性查询
@@ -31,7 +31,7 @@ item.setProperty("id", "A1B2C3D4E5F6...");
 ```
 
 
-<h2>二、遍历结果集</h2>
+## 二、遍历结果集
 
 ```csharp
 var result = item.apply();
@@ -48,7 +48,7 @@ for (int i = 0; i < result.getItemCount(); i++)
 ```
 
 
-<h2>三、新增 + 添加关系</h2>
+## 三、新增 + 添加关系
 
 ```csharp
 var main = inn.newItem("IC_Working_Hour", "add");
@@ -69,7 +69,7 @@ if (main.isError())
 ```
 
 
-<h2>四、修改 + 删除后重建关系</h2>
+## 四、修改 + 删除后重建关系
 
 ```csharp
 // 修改主记录
@@ -94,7 +94,7 @@ edit = edit.apply("edit");
 ```
 
 
-<h2>五、SQL 查询</h2>
+## 五、SQL 查询
 
 ```csharp
 Aras.Server.Security.Identity plmIdentity =
@@ -121,7 +121,7 @@ try {
 ```
 
 
-<h2>六、JSON 序列化/反序列化</h2>
+## 六、JSON 序列化/反序列化
 
 ```csharp
 // 反序列化：前端传入的 JSON
@@ -139,7 +139,7 @@ return inn.newResult(Newtonsoft.Json.JsonConvert
 ```
 
 
-<h2>七、生命周期推进</h2>
+## 七、生命周期推进
 
 ```csharp
 var item = inn.newItem("Part", "get");
@@ -154,7 +154,7 @@ string state = item.getProperty("state", "");
 ```
 
 
-<h2>八、查重</h2>
+## 八、查重
 
 ```csharp
 var check = inn.newItem("IC_Working_Hour", "get");
@@ -167,7 +167,7 @@ if (check.getItemCount() > 0)
 ```
 
 
-<h2>九、生成新 ID</h2>
+## 九、生成新 ID
 
 ```csharp
 string newId = inn.getNewID();  // 生成 GUID
@@ -177,7 +177,7 @@ item.setProperty("id", newId);
 ```
 
 
-<h2>十、获取当前用户信息</h2>
+## 十、获取当前用户信息
 
 ```csharp
 var userId = inn.getUserID();
@@ -192,7 +192,7 @@ string identityId = user.getProperty("owned_by_id", "");
 ```
 
 
-<h2>十一、批量审核</h2>
+## 十一、批量审核
 
 ```csharp
 var reviewsJson = this.getProperty("HoursReviewList", "[]");
@@ -217,7 +217,7 @@ foreach (var review in reviews) {
 ```
 
 
-<h2>十二、C# 注意事项</h2>
+## 十二、C# 注意事项
 <table>
 <thead><tr><th>注意点</th><th>说明</th></tr></thead>
 <tbody>

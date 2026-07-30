@@ -2,10 +2,10 @@
 title: 属性条件 (get/setPropertyCondition)
 ---
 
-<h1>getPropertyCondition / setPropertyCondition</h1>
+# getPropertyCondition / setPropertyCondition
 <blockquote><p><strong>用于设置和读取 Item 属性上的 AML 条件过滤。</strong>在查询时为属性添加过滤条件。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、方法签名</h2>
+## 一、方法签名
 
 ```csharp
 // getPropertyCondition - 获取属性上的条件值
@@ -21,14 +21,14 @@ public void setPropertyCondition(string propertyName, string condition, string l
 ```
 
 
-<h2>二、参数说明</h2>
+## 二、参数说明
 <table><thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead><tbody>
 <tr><td><code>propertyName</code></td><td>String</td><td>属性名称</td></tr>
 <tr><td><code>condition</code></td><td>String</td><td>AML 条件操作符（eq/gt/lt/like 等）</td></tr>
 <tr><td><code>lang</code></td><td>String</td><td>可选，多语言标识</td></tr>
 </tbody></table>
 
-<h2>三、支持的条件操作符</h2>
+## 三、支持的条件操作符
 <table><thead><tr><th>条件</th><th>SQL 等价</th><th>说明</th></tr></thead><tbody>
 <tr><td><code>eq</code></td><td>=</td><td>等于</td></tr>
 <tr><td><code>ne</code></td><td>&lt;&gt;</td><td>不等于</td></tr>
@@ -43,7 +43,7 @@ public void setPropertyCondition(string propertyName, string condition, string l
 <tr><td><code>is not null</code></td><td>IS NOT NULL</td><td>不为空</td></tr>
 </tbody></table>
 
-<h2>四、代码示例</h2>
+## 四、代码示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -73,7 +73,7 @@ string cond = item.getPropertyCondition("item_number");
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>between 语法：</strong>值格式为 <code>"lower❲upper"</code>（用 ❲ 字符分隔，U+2772）</li>
 <li><strong>is null 不需要值：</strong>调用 <code>setPropertyCondition("field","is null")</code> 后不需要 <code>setProperty</code></li>

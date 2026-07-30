@@ -2,12 +2,12 @@
 title: AML/XML 操作
 ---
 
-<h1>AML/XML 操作</h1>
+# AML/XML 操作
 <blockquote>
 <p><strong>Item 提供丰富的 AML/XML 操作方法，用于加载 AML 字符串、转换为字符串、判断集合状态、检查根/新状态、克隆等。</strong>命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、loadAML(String) — 加载 AML</h2>
+## 一、loadAML(String) — 加载 AML
 
 ```csharp
 // 签名
@@ -25,7 +25,7 @@ item.loadAML(response);
 
 <p>loadAML 会自动根据 AML 内容设置 node/nodeList，以及正确识别 Error/Result/Logical 形式。</p>
 
-<h2>二、ToString() — 输出 AML</h2>
+## 二、ToString() — 输出 AML
 
 ```csharp
 // 签名（override）
@@ -37,7 +37,7 @@ Console.WriteLine(aml);
 ```
 
 
-<h2>三、isCollection / isEmpty / isRoot / isNew</h2>
+## 三、isCollection / isEmpty / isRoot / isNew
 
 ```csharp
 // isCollection — 是否代表多个 Item（nodeList != null）
@@ -58,7 +58,7 @@ public bool isNew()
 ```
 
 
-<h2>四、clone() — 克隆 Item</h2>
+## 四、clone() — 克隆 Item
 
 ```csharp
 // 签名
@@ -72,7 +72,7 @@ copy.setProperty("item_number", "P-002"); // 不影响 original
 ```
 
 
-<h2>五、getInnovator / getParentItem</h2>
+## 五、getInnovator / getParentItem
 
 ```csharp
 // getInnovator — 获取此 Item 所属的 Innovator 实例
@@ -85,7 +85,7 @@ var parent = childItem.getParentItem();
 ```
 
 
-<h2>六、newXMLDocument / appendItem / removeItem</h2>
+## 六、newXMLDocument / appendItem / removeItem
 
 ```csharp
 // newXMLDocument — 创建新 ArasXmlDocument
@@ -105,7 +105,7 @@ public int getItemCount()
 ```
 
 
-<h2>七、getItemsByXPath(String) — XPath 查询</h2>
+## 七、getItemsByXPath(String) — XPath 查询
 
 ```csharp
 // 签名
@@ -116,7 +116,7 @@ var nodes = result.getItemsByXPath("//Item[@type='Part']");
 ```
 
 
-<h2>八、完整示例</h2>
+## 八、完整示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -152,7 +152,7 @@ editCopy.apply();
 ```
 
 
-<h2>九、实践笔记</h2>
+## 九、实践笔记
 <ul>
 <li><strong>loadAML 自动解析：</strong>加载后 node/nodeList 会自动设置，不需要手动判断</li>
 <li><strong>clone 是深拷贝：</strong>修改 clone 不影响原 Item</li>

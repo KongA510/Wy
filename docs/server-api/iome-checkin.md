@@ -2,12 +2,12 @@
 title: CheckinManager
 ---
 
-<h1>CheckinManager</h1>
+# CheckinManager
 <blockquote>
 <p><strong>CheckinManager 用于管理文件的签入（Check-in）操作。</strong>将本地文件上传到 Aras Vault 服务器，并关联到指定的 Item。命名空间：Aras.IOME，程序集：IOME.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、类定义</h2>
+## 一、类定义
 
 ```csharp
 // CheckinManager — 文件签入管理器
@@ -43,7 +43,7 @@ public enum CheckinManagerFlags
 ```
 
 
-<h2>二、签入流程</h2>
+## 二、签入流程
 
 ```text
 1. 获取要签入的 File Item（必须是已签出状态）
@@ -55,7 +55,7 @@ public enum CheckinManagerFlags
 ```
 
 
-<h2>三、C# 代码示例</h2>
+## 三、C# 代码示例
 
 ```csharp
 using Aras.IOM;
@@ -123,7 +123,7 @@ foreach (var filePath in filesToCheckin)
 ```
 
 
-<h2>四、完整示例：编辑-签出-签入工作流</h2>
+## 四、完整示例：编辑-签出-签入工作流
 
 ```csharp
 var inn = this.newInnovator();
@@ -159,7 +159,7 @@ Console.WriteLine("签入完成，版本已更新");
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>签入签出必须成对：</strong>文件必须先通过 CheckoutManager 签出，编辑后才能通过 CheckinManager 签入</li>
 <li><strong>本地路径注意：</strong>在服务端 Method 中，文件路径必须是服务器上的路径（而非客户端路径）</li>

@@ -2,12 +2,12 @@
 title: WindowsAuthHelperComConnector
 ---
 
-<h1>WindowsAuthHelperComConnector</h1>
+# WindowsAuthHelperComConnector
 <blockquote>
 <p><strong>WindowsAuthHelperComConnector 在启用 Windows 身份验证时用于 COM 与 .NET 之间的互操作连接。</strong>解决 COM 客户端在 Windows 认证环境下的连接问题。命名空间：Aras.Net，程序集：Aras.Net.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、类定义</h2>
+## 一、类定义
 
 ```csharp
 // WindowsAuthHelperComConnector — Windows 认证 COM 连接器
@@ -27,7 +27,7 @@ public class WindowsAuthHelperComConnector
 ```
 
 
-<h2>二、使用场景</h2>
+## 二、使用场景
 <p>WindowsAuthHelperComConnector 主要用于以下场景：</p>
 <ul>
 <li><strong>COM 客户端（如 VB6、VBA、VBScript）：</strong>需要调用 Aras API 但又无法直接使用 .NET 连接类</li>
@@ -36,7 +36,7 @@ public class WindowsAuthHelperComConnector
 <li><strong>Windows 认证环境：</strong>企业内网使用 Kerberos/NTLM 统一认证</li>
 </ul>
 
-<h2>三、C# 代码示例</h2>
+## 三、C# 代码示例
 
 ```csharp
 using Aras.IOM;
@@ -93,7 +93,7 @@ class Program
 ```
 
 
-<h2>四、VBA 宏示例（Excel）</h2>
+## 四、VBA 宏示例（Excel）
 
 ```vb
 ' VBA 宏 — 从 Excel 连接 Aras 并读取数据
@@ -157,7 +157,7 @@ End Sub
 ```
 
 
-<h2>五、COM 注册</h2>
+## 五、COM 注册
 
 ```batch
 :: 使用 RegAsm 注册 .NET 程序集为 COM 组件
@@ -175,7 +175,7 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe ^
 ```
 
 
-<h2>六、实践笔记</h2>
+## 六、实践笔记
 <ul>
 <li><strong>COM 互操作版本：</strong>确保 Aras.Net.dll 和 IOM.dll 的版本与服务器版本匹配</li>
 <li><strong>管理员权限：</strong>COM 注册需要管理员权限运行 RegAsm</li>

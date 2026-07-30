@@ -2,12 +2,12 @@
 title: 逻辑条件
 ---
 
-<h1>逻辑条件</h1>
+# 逻辑条件
 <blockquote>
 <p><strong>Item 提供逻辑条件操作，用于构造复杂的 AML 查询条件。</strong>包括 newAND、newOR、newNOT 三种逻辑节点，以及对逻辑节点的增删查操作。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、逻辑节点概述</h2>
+## 一、逻辑节点概述
 <p>Aras AML 支持三种逻辑组合标签：</p>
 <ul>
 <li><code>&lt;and&gt;</code> — 所有子条件必须同时满足（逻辑与）</li>
@@ -16,7 +16,7 @@ title: 逻辑条件
 </ul>
 <p>这些逻辑节点用于构造查询条件（action="get"），通常放在 &lt;Item&gt; 节点内部。</p>
 
-<h2>二、newAND() — 创建 AND 节点</h2>
+## 二、newAND() — 创建 AND 节点
 
 ```csharp
 // 签名
@@ -36,7 +36,7 @@ andNode.setPropertyCondition("cost", "gt");
 ```
 
 
-<h2>三、newOR() — 创建 OR 节点</h2>
+## 三、newOR() — 创建 OR 节点
 
 ```csharp
 // 签名
@@ -51,7 +51,7 @@ orNode.setProperty("state", "In Review");
 ```
 
 
-<h2>四、newNOT() — 创建 NOT 节点</h2>
+## 四、newNOT() — 创建 NOT 节点
 
 ```csharp
 // 签名
@@ -66,7 +66,7 @@ notNode.setProperty("state", "Obsolete");
 ```
 
 
-<h2>五、其他逻辑方法</h2>
+## 五、其他逻辑方法
 
 ```csharp
 // isLogical() — 判断 Item.node 是否为逻辑节点
@@ -81,7 +81,7 @@ public void removeLogical(Item logicalItem)
 ```
 
 
-<h2>六、嵌套逻辑示例</h2>
+## 六、嵌套逻辑示例
 
 ```csharp
 // 查询条件：(state="Released" AND cost>100) OR (state="In Review")
@@ -113,7 +113,7 @@ var result = query.apply();
 ```
 
 
-<h2>七、实践笔记</h2>
+## 七、实践笔记
 <ul>
 <li><strong>逻辑节点不含 attributes：</strong>与 &lt;Item&gt; 不同，逻辑节点只包含属性子元素，没有 type/action 等属性</li>
 <li><strong>嵌套不受限制：</strong>可无限嵌套 and/or/not，但过深嵌套可能影响性能</li>

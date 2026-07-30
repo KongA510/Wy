@@ -2,19 +2,19 @@
 title: Vault（文件保险库）
 ---
 
-<h1>Vault（已弃用）</h1>
+# Vault（已弃用）
 <blockquote>
 <p><strong>命名空间：</strong><code>Aras.Client.Controls.Public</code></p>
 <p><code>aras.vault</code> 类实例可用于自定义 JavaScript 代码中。Vault 提供批量文件上传/下载功能以及相关的文件操作例程。</p>
 </blockquote>
 
-<h2>说明</h2>
+## 说明
 <p>Vault 提供用户友好的界面，在耗时的上传/下载过程中显示进度条，并具备警告/错误消息系统以通知用户任何冲突。用户可以添加/删除批处理列表中的文件、重命名文件和文件夹、取消当前任务。</p>
 <p>用户可以从本地和网络映射文件夹中选择文件，可选择包含所有子文件夹。此外，还可以输入任何有效的网络路径并在文件选择对话框中浏览该路径。</p>
 <p>文件传输支持 HTTP、SSL (HTTPS)，可以使用或不使用代理。这是通过使用浏览器的原生连接类实现的。最吸引人的特性是能够上传超大文件（无文件大小限制），无超时或内存泄漏问题。传输将使用所有可用的网络带宽，速度与您的局域网/广域网环境匹配。</p>
 <p>您可以随文件一起提交表单数据，通常用于将状态信息发送回服务器。您可以基于应用程序逻辑控制、过滤和预处理用户选择的文件列表，启用或禁用特定文件类型的传输，并收集与这些文件相关的附加信息。无需重新加载页面即可传输文件。使用标准的 "multipart/form-data" 内容编码，因此该组件与任何服务器端上传组件兼容。</p>
 
-<h2>API 成员概览</h2>
+## API 成员概览
 <table>
 <thead>
 <tr>
@@ -97,23 +97,23 @@ title: Vault（文件保险库）
 </tbody>
 </table>
 
-<h2>API 详情</h2>
+## API 详情
 
 <!-- ===== 构造函数 ===== -->
-<h3>constructor()</h3>
+### constructor()
 <p>Vault 类的构造函数。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 Aras.Client.Controls.Public.Vault = function();
 ```
 
-    <h4>参数</h4>
-    <p><em>无</em></p>
-    <h4>返回值</h4>
-    <p><em>无</em></p>
-    <h4>示例</h4>
-    
+#### 参数
+<p><em>无</em></p>
+#### 返回值
+<p><em>无</em></p>
+#### 示例
+
 ```javascript
 // 通过 aras 全局对象获取 vault 实例
 var vault = aras.vault;
@@ -127,15 +127,15 @@ var vault = aras.vault;
 <hr />
 
 <!-- ===== 文件选择与列表管理 ===== -->
-<h3>文件选择与列表管理</h3>
+### 文件选择与列表管理
 
-<h3>selectFile()</h3>
+### selectFile()
 <p>显示文件选择对话框，允许用户浏览本地文件系统并选择文件。如果用户浏览到某个目录，该目录也会被设置为 Vault 的工作目录。对话框的初始工作目录为 Vault 的当前工作目录。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>Promise&lt;Object&gt;</strong> — 返回一个 Promise 对象，如果用户选择了文件，该 Promise 将被 resolve 为选中的文件对象。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 弹出文件选择对话框，等待用户选择文件
@@ -149,9 +149,9 @@ aras.vault.selectFile().then(function(selectedFile) {
 ```
 
 
-<h3>addFileToList()</h3>
+### addFileToList()
 <p>将指定的文件 URL 添加到文件列表中。在上传之前，需要先将文件添加到列表。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -173,9 +173,9 @@ aras.vault.selectFile().then(function(selectedFile) {
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong> — 添加成功返回 <code>true</code>，否则返回 <code>false</code>。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 将文件添加到上传列表
@@ -188,13 +188,13 @@ if (added) {
 ```
 
 
-<h3>clearFileList()</h3>
+### clearFileList()
 <p>清空当前的文件列表。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 清空文件列表，取消所有待上传文件
@@ -202,9 +202,9 @@ aras.vault.clearFileList();
 ```
 
 
-<h3>setLocalFileName()</h3>
+### setLocalFileName()
 <p>设置本地文件名。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -221,9 +221,9 @@ aras.vault.clearFileList();
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 设置下载时的本地文件名
@@ -234,11 +234,11 @@ aras.vault.setLocalFileName('downloaded_report.pdf');
 <hr />
 
 <!-- ===== 客户端数据管理 ===== -->
-<h3>客户端数据管理</h3>
+### 客户端数据管理
 
-<h3>setClientData()</h3>
+### setClientData()
 <p>设置上传用的用户数据（表单字段），用于上传模式下随文件一起发送额外的表单参数。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -260,9 +260,9 @@ aras.vault.setLocalFileName('downloaded_report.pdf');
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 设置随文件一起发送的表单数据
@@ -273,9 +273,9 @@ aras.vault.setClientData('action', 'upload');
 ```
 
 
-<h3>getClientData()</h3>
+### getClientData()
 <p>获取上传用的用户数据（表单字段）的值。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -292,9 +292,9 @@ aras.vault.setClientData('action', 'upload');
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 对应字段名称的值。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 获取之前设置的客户端数据
@@ -303,13 +303,13 @@ console.log(itemType); // 'Document'
 ```
 
 
-<h3>clearClientData()</h3>
+### clearClientData()
 <p>清除所有已设置的用户数据值。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 清除所有客户端数据
@@ -320,11 +320,11 @@ aras.vault.clearClientData();
 <hr />
 
 <!-- ===== 文件传输 ===== -->
-<h3>文件传输</h3>
+### 文件传输
 
-<h3>sendFilesAsync()</h3>
+### sendFilesAsync()
 <p>以异步模式将文件从客户端数据（包括文件列表和表单字段）发送到指定的服务器 URL。传输过程会显示进度条，用户可随时取消。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -341,9 +341,9 @@ aras.vault.clearClientData();
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>Promise&lt;Object&gt;</strong> — 返回一个 Promise 对象，用于处理上传完成或失败的回调。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 完整的上传流程示例
@@ -381,9 +381,9 @@ uploadFiles();
 ```
 
 
-<h3>downloadFile()</h3>
+### downloadFile()
 <p>从指定的文件 URL 下载文件到 Vault 的工作目录。支持带凭据和 POST 数据的下载。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -400,9 +400,9 @@ uploadFiles();
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong> — 下载成功返回 <code>true</code>，否则返回 <code>false</code>。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 下载文件示例
@@ -420,11 +420,11 @@ if (success) {
 <hr />
 
 <!-- ===== 文件读取 ===== -->
-<h3>文件读取</h3>
+### 文件读取
 
-<h3>readText()</h3>
+### readText()
 <p>从当前流位置读取到流的末尾，并以字符串形式返回。如果当前流位置已在末尾，则返回空字符串。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -446,9 +446,9 @@ if (success) {
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 从当前流位置到末尾的字符串。如果当前流位置已在末尾，则返回空字符串 <code>""</code>。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 以 UTF-8 编码读取文件文本内容
@@ -457,9 +457,9 @@ console.log('文件内容:', content);
 ```
 
 
-<h3>readBase64()</h3>
+### readBase64()
 <p>从流中指定偏移量位置读取指定数量的 Base64 编码字节。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -486,9 +486,9 @@ console.log('文件内容:', content);
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 从指定偏移量开始的、指定数量的 Base64 编码字节字符串。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 读取文件的前 1024 个字节的 Base64 编码
@@ -502,15 +502,15 @@ console.log('Base64 数据:', base64Data);
 <hr />
 
 <!-- ===== 状态与响应 ===== -->
-<h3>状态与错误处理</h3>
+### 状态与错误处理
 
-<h3>getResponse()</h3>
+### getResponse()
 <p>返回上次上传操作后服务器设置的响应数据。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 服务器响应数据字符串。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 上传完成后获取服务器响应
@@ -522,13 +522,13 @@ aras.vault.sendFilesAsync('/server/upload.aspx').then(function() {
 ```
 
 
-<h3>getLastError()</h3>
+### getLastError()
 <p>获取最后一次操作的错误消息。当上传、下载或其他操作失败时，通过此方法获取详细的错误信息。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 最后一次操作的错误消息字符串。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 操作失败时获取错误信息
@@ -546,7 +546,7 @@ try {
 <hr />
 
 <!-- ===== 完整集成示例 ===== -->
-<h3>完整集成示例</h3>
+### 完整集成示例
 <p>以下是一个将 Vault 的常用功能组合在一起的完整示例，展示了文件选择、上传和错误处理的典型流程：</p>
 
 ```javascript

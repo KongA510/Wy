@@ -2,10 +2,10 @@
 title: OAuth 接口体系
 ---
 
-<h1>OAuth 接口体系</h1>
+# OAuth 接口体系
 <blockquote><p><strong>Aras.IOM.OAuth 中的核心接口定义。</strong>定义了 TokenProvider、Navigator、ClientAssertionProvider 等关键接口。命名空间：Aras.IOM.OAuth，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、接口一览</h2>
+## 一、接口一览
 
 ```csharp
 // ITokenProvider — 令牌提供者核心接口
@@ -57,7 +57,7 @@ public interface IDiscoveryDocumentProvider
 ```
 
 
-<h2>二、接口实现关系</h2>
+## 二、接口实现关系
 <table><thead><tr><th>接口</th><th>实现类</th><th>说明</th></tr></thead><tbody>
 <tr><td><code>ITokenProvider</code></td><td>PasswordTokenProvider, AuthorizationFlowTokenProvider, CertificateTokenProvider, WindowsTokenProvider, ImpersonateTokenProvider, RefreshTokenProvider</td><td>所有 TokenProvider 都实现了 ITokenProvider</td></tr>
 <tr><td><code>ITokenProviderSession</code></td><td>PasswordTokenProvider 等</td><td>提供会话管理能力</td></tr>
@@ -66,7 +66,7 @@ public interface IDiscoveryDocumentProvider
 <tr><td><code>IDiscoveryDocumentProvider</code></td><td>DiscoveryDocumentProvider</td><td>获取 OIDC 发现文档</td></tr>
 </tbody></table>
 
-<h2>三、代码示例</h2>
+## 三、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -121,7 +121,7 @@ Console.WriteLine($"Authorize Endpoint: {discovery.AuthorizeEndpoint}");
 ```
 
 
-<h2>四、实践笔记</h2>
+## 四、实践笔记
 <ul>
 <li><strong>面向接口编程：</strong>使用 <code>ITokenProvider</code> 接口而非具体实现类，便于切换认证方式</li>
 <li><strong>INavigator 可定制：</strong>在桌面应用中可以自定义 INavigator 实现来控制浏览器行为</li>

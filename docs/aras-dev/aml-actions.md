@@ -2,12 +2,12 @@
 title: AML 操作 (CRUD)
 ---
 
-<h1>AML 操作 (CRUD)</h1>
+# AML 操作 (CRUD)
 <blockquote>
 <p>AML 支持完整的 CRUD 操作：<strong>get（查询）、add（新增）、edit（修改）、delete（删除）</strong>。每个 action 对应不同的 AML 结构和行为。</p>
 </blockquote>
 
-<h2>一、get — 查询数据</h2>
+## 一、get — 查询数据
 
 ```xml
 <AML>
@@ -39,7 +39,7 @@ for (int i = 0; i < part.getItemCount(); i++) {
 ```
 
 
-<h2>二、add — 新增数据</h2>
+## 二、add — 新增数据
 
 ```xml
 <AML>
@@ -82,7 +82,7 @@ part = part.apply();
 ```
 
 
-<h2>三、edit — 修改数据</h2>
+## 三、edit — 修改数据
 
 ```xml
 <AML>
@@ -124,7 +124,7 @@ editPart = editPart.apply();
 ```
 
 
-<h2>四、delete — 删除数据</h2>
+## 四、delete — 删除数据
 
 ```xml
 <AML>
@@ -143,7 +143,7 @@ editPart = editPart.apply();
 
 <p><strong>⚠️ 注意：</strong>条件删除非常危险，务必先在测试环境验证条件是否正确。</p>
 
-<h2>五、promote — 生命周期推进</h2>
+## 五、promote — 生命周期推进
 
 ```xml
 <AML>
@@ -165,7 +165,7 @@ part = part.promote("Released", "设计评审通过");
 ```
 
 
-<h2>六、错误处理</h2>
+## 六、错误处理
 
 ```csharp
 var result = inn.applyAML(amlString);

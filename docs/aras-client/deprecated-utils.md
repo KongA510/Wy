@@ -2,13 +2,13 @@
 title: Utils（工具类）
 ---
 
-<h1>Utils（已弃用）</h1>
+# Utils（已弃用）
 <blockquote>
 <p><strong>命名空间：</strong><code>Aras.Client.Controls.Public</code></p>
 <p><code>aras.utils</code> 实例可在自定义 JavaScript 代码中使用，提供一组实用的工具方法。</p>
 </blockquote>
 
-<h2>API 成员概览</h2>
+## API 成员概览
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -19,9 +19,9 @@ title: Utils（工具类）
 </tbody>
 </table>
 
-<h2>API 详情</h2>
+## API 详情
 
-<h3>constructor()</h3>
+### constructor()
 <p>构造函数。通常不需要直接调用，Aras 框架会自动创建 <code>aras.utils</code> 实例。</p>
 
 ```javascript
@@ -29,16 +29,16 @@ Aras.Client.Controls.Public.Utils = function();
 ```
 
 
-    <h2>剪贴板相关方法</h2>
+## 剪贴板相关方法
 
-    <h3>setClipboardData()</h3>
-    <p>将指定内容写入系统剪贴板。在 Aras 客户端中，常用于将查询结果、项目编号等数据快速复制到剪贴板，方便用户在外部粘贴使用。</p>
-    <h4>参数</h4>
-    <p><em>文档未提供参数信息。根据实际使用推断，该方法接受一个字符串参数表示要写入剪贴板的内容。</em></p>
-    <h4>返回值</h4>
-    <p><em>文档未提供返回值信息。</em></p>
-    <h4>示例</h4>
-    
+### setClipboardData()
+<p>将指定内容写入系统剪贴板。在 Aras 客户端中，常用于将查询结果、项目编号等数据快速复制到剪贴板，方便用户在外部粘贴使用。</p>
+#### 参数
+<p><em>文档未提供参数信息。根据实际使用推断，该方法接受一个字符串参数表示要写入剪贴板的内容。</em></p>
+#### 返回值
+<p><em>文档未提供返回值信息。</em></p>
+#### 示例
+
 ```javascript
 // 将当前选中项的 ID 复制到剪贴板
 var selectedId = document.thisItem.getProperty("id");
@@ -50,13 +50,13 @@ aras.utils.setClipboardData(text);
 ```
 
 
-<h3>isClipboardSupported()</h3>
+### isClipboardSupported()
 <p>检测当前浏览器环境是否支持剪贴板相关的 API 操作。在调用 <code>setClipboardData()</code> 之前，建议先用此方法判断可用性，避免在不支持的环境下抛出异常。</p>
-<h4>参数</h4>
+#### 参数
 <p>无参数。</p>
-<h4>返回值</h4>
+#### 返回值
 <p><em>文档未提供返回值信息，但推断返回 <code>boolean</code> 类型，表示剪贴板是否可用。</em></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 安全地复制内容到剪贴板
@@ -74,11 +74,11 @@ safeCopyToClipboard("P-000123");
 ```
 
 
-<h2>窗口方法</h2>
+## 窗口方法
 
-<h3>openIEWindowInNewProcess()</h3>
+### openIEWindowInNewProcess()
 <p>在新进程中打开 IE 窗口，功能类似于 <code>window.open()</code>。在 Aras Innovator 早期版本中（特别是基于 IE 浏览器时），此方法用于创建独立的浏览器窗口，确保新窗口拥有独立进程不会被主窗口阻塞。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -88,9 +88,9 @@ safeCopyToClipboard("P-000123");
 <tr><td><code>bReplace</code></td><td>string</td><td>是否替换当前历史记录条目</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>window</strong> — 返回新打开的窗口对象引用。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 在新 IE 窗口中打开一个 URL

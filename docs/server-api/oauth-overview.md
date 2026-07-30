@@ -2,12 +2,12 @@
 title: OAuth 命名空间概述
 ---
 
-<h1>Aras.IOM.OAuth 命名空间概述</h1>
+# Aras.IOM.OAuth 命名空间概述
 <blockquote>
 <p><strong>Aras.IOM.OAuth 命名空间提供了基于 OAuth 2.0 和 OpenID Connect 的认证实现。</strong>支持密码模式、授权码模式、证书认证、Windows 集成认证、模拟认证等多种授权方式。命名空间：Aras.IOM.OAuth，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、命名空间架构</h2>
+## 一、命名空间架构
 <table>
 <thead><tr><th>类型</th><th>名称</th><th>说明</th></tr></thead>
 <tbody>
@@ -24,7 +24,7 @@ title: OAuth 命名空间概述
 </tbody>
 </table>
 
-<h2>二、GrantType 枚举</h2>
+## 二、GrantType 枚举
 
 ```csharp
 public enum GrantType
@@ -40,7 +40,7 @@ public enum GrantType
 ```
 
 
-<h2>三、ITokenProvider 接口</h2>
+## 三、ITokenProvider 接口
 
 ```csharp
 // 所有 Token Provider 实现的统一接口
@@ -58,7 +58,7 @@ public interface ITokenProvider
 ```
 
 
-<h2>四、选择授权方式</h2>
+## 四、选择授权方式
 <table>
 <thead><tr><th>场景</th><th>推荐 GrantType</th><th>Provider 类</th></tr></thead>
 <tbody>
@@ -72,7 +72,7 @@ public interface ITokenProvider
 </tbody>
 </table>
 
-<h2>五、完整示例：OAuth 认证客户端</h2>
+## 五、完整示例：OAuth 认证客户端
 
 ```csharp
 using Aras.IOM;
@@ -123,7 +123,7 @@ async Task<Innovator> LoginWithAuthCode(string authCode)
 ```
 
 
-<h2>六、实践笔记</h2>
+## 六、实践笔记
 <ul>
 <li><strong>OAuth 2.0 是推荐方式：</strong>新项目优先使用 OAuth 2.0 认证，替代传统的数据库用户名/密码</li>
 <li><strong>Token 生命周期管理：</strong>Access Token 有过期时间，需通过 RefreshTokenProvider 自动续期</li>

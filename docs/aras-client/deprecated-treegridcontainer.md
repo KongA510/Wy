@@ -2,15 +2,15 @@
 title: TreeGridContainer（树形网格）
 ---
 
-<h1>TreeGridContainer（已弃用）</h1>
+# TreeGridContainer（已弃用）
 <blockquote>
 <p><strong>命名空间：</strong><code>Aras.Client.Controls.Public</code></p>
 <p>树形网格容器组件。用于显示和操作树状结构的表格数据，支持行展开/折叠、单元格编辑、多选、排序、右键菜单等功能。此控件已被新的 CUI Grid 组件替代，不再推荐使用。</p>
 </blockquote>
 
-<h2>API 成员概览</h2>
+## API 成员概览
 
-<h3>构造函数</h3>
+### 构造函数
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -18,7 +18,7 @@ title: TreeGridContainer（树形网格）
 </tbody>
 </table>
 
-<h3>属性</h3>
+### 属性
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -31,7 +31,7 @@ title: TreeGridContainer（树形网格）
 </tbody>
 </table>
 
-<h3>事件</h3>
+### 事件
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -48,7 +48,7 @@ title: TreeGridContainer（树形网格）
 </tbody>
 </table>
 
-<h3>数据加载方法</h3>
+### 数据加载方法
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -59,7 +59,7 @@ title: TreeGridContainer（树形网格）
 </tbody>
 </table>
 
-<h3>行操作方法</h3>
+### 行操作方法
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -72,7 +72,7 @@ title: TreeGridContainer（树形网格）
 </tbody>
 </table>
 
-<h3>行查询方法</h3>
+### 行查询方法
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -89,7 +89,7 @@ title: TreeGridContainer（树形网格）
 </tbody>
 </table>
 
-<h3>选择与选中方法</h3>
+### 选择与选中方法
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -104,7 +104,7 @@ title: TreeGridContainer（树形网格）
 </tbody>
 </table>
 
-<h3>树操作方法</h3>
+### 树操作方法
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -115,7 +115,7 @@ title: TreeGridContainer（树形网格）
 </tbody>
 </table>
 
-<h3>单元格操作方法</h3>
+### 单元格操作方法
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -129,7 +129,7 @@ title: TreeGridContainer（树形网格）
 </tbody>
 </table>
 
-<h3>列操作方法</h3>
+### 列操作方法
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -151,7 +151,7 @@ title: TreeGridContainer（树形网格）
 </tbody>
 </table>
 
-<h3>菜单方法</h3>
+### 菜单方法
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -164,7 +164,7 @@ title: TreeGridContainer（树形网格）
 </tbody>
 </table>
 
-<h3>其他方法</h3>
+### 其他方法
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -191,21 +191,21 @@ title: TreeGridContainer（树形网格）
 
 <hr />
 
-<h2>API 详情</h2>
+## API 详情
 
 <!-- ==================== Constructor ==================== -->
-<h3>constructor()</h3>
+### constructor()
 <p>创建 TreeGridContainer 实例。通常通过 <code>clientControlsFactory.createControl("TreeGridContainer")</code> 方式创建，而非直接 new。</p>
-<h4>语法</h4>
+#### 语法
 
 ```javascript
 Aras.Client.Controls.Public.TreeGridContainer = function();
 ```
 
-    <h4>返回值</h4>
-    <p><strong>TreeGridContainer</strong> — 新创建的 TreeGridContainer 实例。</p>
-    <h4>示例</h4>
-    
+#### 返回值
+<p><strong>TreeGridContainer</strong> — 新创建的 TreeGridContainer 实例。</p>
+#### 示例
+
 ```javascript
 // 通过工厂方法创建控件
 var treeGridContainer = clientControlsFactory.createControl("TreeGridContainer");
@@ -215,43 +215,43 @@ var treeGridContainer = clientControlsFactory.createControl("TreeGridContainer")
 <hr />
 
 <!-- ==================== Properties ==================== -->
-<h3>属性详解</h3>
+### 属性详解
 
-<h4>.bgColor</h4>
+#### .bgColor
 <p>默认单元格背景色。</p>
-<h5>语法</h5>
+##### 语法
 
 ```javascript
 function get_bgColor();
 function set_bgColor(value);
 ```
 
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>value</td><td>string</td><td>背景颜色值</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong> — 颜色字符串。</p>
 
-<h4>.bgInvert</h4>
+#### .bgInvert
 <p>选中时是否反转行背景色。默认为 <code>true</code>。</p>
-<h5>语法</h5>
+##### 语法
 
 ```javascript
 function get_bgInvert();
 function set_bgInvert(value);
 ```
 
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>value</td><td>bool</td><td>是否启用反转</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>bool</strong> — 是否启用背景反转。</p>
 
-<h4>.borderGColor</h4>
+#### .borderGColor
 <p>单元格边框颜色。</p>
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
@@ -259,18 +259,18 @@ function set_bgInvert(value);
 </table>
 <p>返回值: <strong>bool</strong></p>
 
-<h4>.delimeter</h4>
+#### .delimeter
 <p>分隔符字符。用于分隔 ID 列表等场景。</p>
 <p>返回值: <strong>string</strong></p>
 
-<h4>.font</h4>
+#### .font
 <p>默认文本字体。</p>
 <p>返回值: <strong>string</strong></p>
 
-<h4>.rowHeight</h4>
+#### .rowHeight
 <p>默认行高（单位：像素）。默认值为 26。</p>
 <p>返回值: <strong>string</strong></p>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 // 获取默认行高
@@ -284,16 +284,16 @@ treeGridContainer.rowHeight = "32";
 <hr />
 
 <!-- ==================== Events ==================== -->
-<h3>事件详解</h3>
+### 事件详解
 
-<h4>.Event:gridLinkClick(link)</h4>
+#### .Event:gridLinkClick(link)
 <p>当网格中的超链接被单击时触发。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>link</td><td>string</td><td>被点击的链接 URL</td></tr></tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 function gridLinkClick(link) {
@@ -303,9 +303,9 @@ clientControlsFactory.on(control, "gridLinkClick", gridLinkClick);
 ```
 
 
-<h4>.Event:gridMenuClick(menuItem, rowId, columnIndex)</h4>
+#### .Event:gridMenuClick(menuItem, rowId, columnIndex)
 <p>当菜单项被单击时触发。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -314,7 +314,7 @@ clientControlsFactory.on(control, "gridLinkClick", gridLinkClick);
 <tr><td>columnIndex</td><td>int</td><td>右键菜单所在列的索引</td></tr>
 </tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 function gridMenuClick(menuItem, rowId, columnIndex) {
@@ -326,9 +326,9 @@ clientControlsFactory.on(control, "gridMenuClick", gridMenuClick);
 ```
 
 
-<h4>.Event:gridMenuInit(rowId, columnIndex)</h4>
+#### .Event:gridMenuInit(rowId, columnIndex)
 <p>在右键菜单显示之前触发。返回 <code>false</code> 可以阻止菜单显示。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -336,9 +336,9 @@ clientControlsFactory.on(control, "gridMenuClick", gridMenuClick);
 <tr><td>columnIndex</td><td>int</td><td>右键菜单所在列的索引</td></tr>
 </tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>bool</strong> — 返回 <code>true</code> 允许显示菜单，<code>false</code> 阻止显示。</p>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 function gridMenuInit(rowId, columnIndex) {
@@ -352,9 +352,9 @@ clientControlsFactory.on(control, "gridMenuInit", gridMenuInit);
 ```
 
 
-<h4>.Event:gridClick(rowId, columnIndex)</h4>
+#### .Event:gridClick(rowId, columnIndex)
 <p>当鼠标指针在网格单元格上按下鼠标按钮时触发。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -362,7 +362,7 @@ clientControlsFactory.on(control, "gridMenuInit", gridMenuInit);
 <tr><td>columnIndex</td><td>int</td><td>被点击的列索引</td></tr>
 </tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 function gridClick(rowId, columnIndex) {
@@ -372,9 +372,9 @@ clientControlsFactory.on(control, "gridClick", gridClick);
 ```
 
 
-<h4>.Event:gridDoubleClick(rowId, columnIndex)</h4>
+#### .Event:gridDoubleClick(rowId, columnIndex)
 <p>当网格中的任意项被双击时触发。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -382,7 +382,7 @@ clientControlsFactory.on(control, "gridClick", gridClick);
 <tr><td>columnIndex</td><td>int</td><td>被双击的列索引</td></tr>
 </tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 function gridDoubleClick(rowId, columnIndex) {
@@ -396,19 +396,19 @@ clientControlsFactory.on(control, "gridDoubleClick", gridDoubleClick);
 ```
 
 
-<h4>.Event:gridKeyPress(key)</h4>
+#### .Event:gridKeyPress(key)
 <p>当按键被按下时触发。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>key</td><td>Object / KeyboardEvent</td><td>键盘事件对象</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>object</strong></p>
 
-<h4>.Event:gridRowSelect(rowId, multi)</h4>
+#### .Event:gridRowSelect(rowId, multi)
 <p>在任何行变为选中状态之前触发。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -416,7 +416,7 @@ clientControlsFactory.on(control, "gridDoubleClick", gridDoubleClick);
 <tr><td>multi</td><td>bool</td><td>是否为多选模式</td></tr>
 </tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 function gridRowSelect(rowId, multi) {
@@ -428,9 +428,9 @@ clientControlsFactory.on(control, "gridRowSelect", gridRowSelect);
 ```
 
 
-<h4>.Event:gridSort(columnIndex, asc)</h4>
+#### .Event:gridSort(columnIndex, asc)
 <p>当列被排序时触发。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -439,9 +439,9 @@ clientControlsFactory.on(control, "gridRowSelect", gridRowSelect);
 </tbody>
 </table>
 
-<h4>.Event:gridXmlLoaded()</h4>
+#### .Event:gridXmlLoaded()
 <p>当 XML 内容被加载并解析完成时触发。</p>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 function gridXmlLoaded() {
@@ -452,9 +452,9 @@ clientControlsFactory.on(control, "gridXmlLoaded", gridXmlLoaded);
 ```
 
 
-<h4>.Event:gridSelectCell(cell)</h4>
+#### .Event:gridSelectCell(cell)
 <p>当 UI 中的单元格被选中时触发。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>cell</td><td>Aras.Client.Controls.Public.Cell</td><td>被选中的单元格对象</td></tr></tbody>
@@ -463,16 +463,16 @@ clientControlsFactory.on(control, "gridXmlLoaded", gridXmlLoaded);
 <hr />
 
 <!-- ==================== Data Methods ==================== -->
-<h3>数据加载方法详解</h3>
+### 数据加载方法详解
 
-<h4>.initXML(gridXml)</h4>
+#### .initXML(gridXml)
 <p>将 XML 字符串或 URL 加载到网格中。这是初始化网格数据最常用的方法。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>gridXml</td><td>string</td><td>XML 字符串或 XML 文件的 URL</td></tr></tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 // 从 XML 字符串初始化网格
@@ -489,25 +489,25 @@ treeGridContainer.initXML(bodyXml);
 ```
 
 
-<h4>.addXMLRows(xmlStringOrDoc)</h4>
+#### .addXMLRows(xmlStringOrDoc)
 <p>从 XML 文档添加新行到现有网格中（不替换现有数据）。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>xmlStringOrDoc</td><td>string</td><td>包含行数据的 XML 字符串或文档</td></tr></tbody>
 </table>
 
-<h4>.initXMLRows(doc)</h4>
+#### .initXMLRows(doc)
 <p>从 XML 文档初始化行。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>doc</td><td>string</td><td>XML 文档字符串</td></tr></tbody>
 </table>
 
-<h4>.getXml(useValues, withSubRows)</h4>
+#### .getXml(useValues, withSubRows)
 <p>获取网格当前数据的 XML 字符串表示。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -515,17 +515,17 @@ treeGridContainer.initXML(bodyXml);
 <tr><td>withSubRows</td><td>bool</td><td>是否包含子行</td></tr>
 </tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong> — 网格数据的 XML 字符串。</p>
 
 <hr />
 
 <!-- ==================== Row Methods ==================== -->
-<h3>行操作方法详解</h3>
+### 行操作方法详解
 
-<h4>.insertRoot(newId, text, cellsValues, collapsedIcon, expandedIcon)</h4>
+#### .insertRoot(newId, text, cellsValues, collapsedIcon, expandedIcon)
 <p>在根级别插入一个新行。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -536,7 +536,7 @@ treeGridContainer.initXML(bodyXml);
 <tr><td>expandedIcon</td><td>string</td><td>展开状态图标路径</td></tr>
 </tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 // 在根级添加一个新节点
@@ -550,9 +550,9 @@ treeGridContainer.insertRoot(
 ```
 
 
-<h4>.insertNewChild(parentId, newItemId, cellsValues, action, collapsedIcon, expandedIcon)</h4>
+#### .insertNewChild(parentId, newItemId, cellsValues, action, collapsedIcon, expandedIcon)
 <p>为指定父行插入一个新的子行。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -564,7 +564,7 @@ treeGridContainer.insertRoot(
 <tr><td>expandedIcon</td><td>string</td><td>展开状态图标路径</td></tr>
 </tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 // 为选中行添加子节点
@@ -583,101 +583,101 @@ if (selectedId) {
 ```
 
 
-<h4>.deleteRow(rowId)</h4>
+#### .deleteRow(rowId)
 <p>删除指定 ID 的行。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>rowId</td><td>Any</td><td>要删除的行 ID</td></tr></tbody>
 </table>
 
-<h4>.deleteSelectedItem()</h4>
+#### .deleteSelectedItem()
 <p>删除当前选中的行。</p>
 
-<h4>.removeAllRows()</h4>
+#### .removeAllRows()
 <p>移除网格中的所有行（清空网格）。</p>
 
 <hr />
 
 <!-- ==================== Row Query Methods ==================== -->
-<h3>行查询方法详解</h3>
+### 行查询方法详解
 
-<h4>.getRowCount()</h4>
+#### .getRowCount()
 <p>获取表格中实际包含的行数。</p>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>int</strong> — 行数。</p>
 
-<h4>.getRowsNum()</h4>
+#### .getRowsNum()
 <p>返回表格中的总行数。</p>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>int</strong> — 总行数。</p>
 
-<h4>.getRowId(rowIndex)</h4>
+#### .getRowId(rowIndex)
 <p>通过行索引（从零开始，从上到下）获取行 ID。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>rowIndex</td><td>int</td><td>行索引，从 0 开始</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong> — 行 ID。</p>
 
-<h4>.getRowIndex(rowId)</h4>
+#### .getRowIndex(rowId)
 <p>返回指定行 ID 的顺序索引。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>rowId</td><td>string</td><td>行 ID</td></tr></tbody>
 </table>
 
-<h4>.getCurRow()</h4>
+#### .getCurRow()
 <p>获取当前选中行的行号。</p>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>int</strong></p>
 
-<h4>.getParentId(rowId)</h4>
+#### .getParentId(rowId)
 <p>获取指定行的父行 ID。如果没有父行则返回 <code>null</code>。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>rowId</td><td>string</td><td>行 ID</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong> — 父行 ID，无父行则为 null。</p>
 
-<h4>.getAllItemIds(separator)</h4>
+#### .getAllItemIds(separator)
 <p>返回所有行的 ID 列表，以指定分隔符分隔。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>separator</td><td>string</td><td>分隔符</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong></p>
 
-<h4>.getVisibleItemIDs(separator)</h4>
+#### .getVisibleItemIDs(separator)
 <p>返回所有当前可见行的 ID 列表（折叠的行不会包含在内）。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>separator</td><td>string</td><td>分隔符</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong></p>
 
-<h4>.getOpenedItems(separator)</h4>
+#### .getOpenedItems(separator)
 <p>返回当前已展开项的 ID 列表。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>separator</td><td>string</td><td>分隔符</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong></p>
 
-<h4>.getChildItemsId(rowId, all, separator)</h4>
+#### .getChildItemsId(rowId, all, separator)
 <p>获取指定行的子行 ID 列表，以分隔符分隔。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -690,31 +690,31 @@ if (selectedId) {
 <hr />
 
 <!-- ==================== Selection Methods ==================== -->
-<h3>选择与选中方法详解</h3>
+### 选择与选中方法详解
 
-<h4>.getSelectedID()</h4>
+#### .getSelectedID()
 <p>返回当前选中行的 ID。</p>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong> — 选中行 ID。</p>
 
-<h4>.getSelectedItemIDs(separator)</h4>
+#### .getSelectedItemIDs(separator)
 <p>返回所有选中行的 ID 列表，以指定分隔符分隔（多选时使用）。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>separator</td><td>string</td><td>分隔符</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong> — 以分隔符连接的 ID 字符串。</p>
 
-<h4>.getSelectedCell()</h4>
+#### .getSelectedCell()
 <p>返回当前选中的单元格对象。</p>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>Aras.Client.Controls.Public.Cell</strong> — 选中的单元格对象。</p>
 
-<h4>.setSelectedRow(rowId, multi, show)</h4>
+#### .setSelectedRow(rowId, multi, show)
 <p>在运行时设置选中行。如果 <code>multi</code> 为 <code>false</code>，新行将成为唯一选中行；如果 <code>multi</code> 为 <code>true</code>，新行会添加到当前选中集合中。要取消所有选中，可以使用特殊技巧。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -723,7 +723,7 @@ if (selectedId) {
 <tr><td>show</td><td>bool</td><td>是否滚动到该行使其可见</td></tr>
 </tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 // 单选模式选中一行
@@ -737,38 +737,38 @@ treeGridContainer.setSelectedRow("", false, false);
 ```
 
 
-<h4>.selectAll()</h4>
+#### .selectAll()
 <p>全选网格中的所有行。</p>
 
-<h4>.deselect()</h4>
+#### .deselect()
 <p>取消所有已选中行。</p>
 
-<h4>.setMultiselect(value)</h4>
+#### .setMultiselect(value)
 <p>运行时启用或禁用多选功能。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>value</td><td>string</td><td>设为 <code>"true"</code> 启用多选，<code>"false"</code> 禁用</td></tr></tbody>
 </table>
 
-<h4>.isMultiselect()</h4>
+#### .isMultiselect()
 <p>判断多选是否已启用。</p>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>bool</strong> — 多选启用返回 true。</p>
 
 <hr />
 
 <!-- ==================== Tree Methods ==================== -->
-<h3>树操作方法详解</h3>
+### 树操作方法详解
 
-<h4>.openItem(rowId)</h4>
+#### .openItem(rowId)
 <p>以编程方式展开指定项的子节点（效果等同于用户双击该项）。如果该项已经展开，则不做任何操作。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>rowId</td><td>string</td><td>要展开的行 ID</td></tr></tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 // 展开指定节点
@@ -782,23 +782,23 @@ function addChildAndExpand(parentId, childId, cellsValues) {
 ```
 
 
-<h4>.expandAll()</h4>
+#### .expandAll()
 <p>展开所有树节点。</p>
 
-<h4>.collapseAll()</h4>
+#### .collapseAll()
 <p>折叠所有树节点。</p>
 
-<h4>.closeItem()</h4>
+#### .closeItem()
 <p>关闭（折叠）指定项。</p>
 
 <hr />
 
 <!-- ==================== Cell Methods ==================== -->
-<h3>单元格操作方法详解</h3>
+### 单元格操作方法详解
 
-<h4>.getCellValue(rowId, columnIndex)</h4>
+#### .getCellValue(rowId, columnIndex)
 <p>获取指定单元格的值。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -806,7 +806,7 @@ function addChildAndExpand(parentId, childId, cellsValues) {
 <tr><td>columnIndex</td><td>int</td><td>列索引</td></tr>
 </tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 // 读取单元格值
@@ -814,9 +814,9 @@ var value = treeGridContainer.getCellValue("item_001", 2);
 ```
 
 
-<h4>.setCellValue(rowId, columnIndex, value)</h4>
+#### .setCellValue(rowId, columnIndex, value)
 <p>设置指定单元格的值。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -825,7 +825,7 @@ var value = treeGridContainer.getCellValue("item_001", 2);
 <tr><td>value</td><td>string</td><td>要设置的值</td></tr>
 </tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 // 批量更新选中行的单元格
@@ -837,9 +837,9 @@ for (var i = 0; i < ids.length; i++) {
 ```
 
 
-<h4>.cells2(rowIdInt, columnIndex)</h4>
+#### .cells2(rowIdInt, columnIndex)
 <p>获取单元格对象，以便直接操作其属性。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -847,12 +847,12 @@ for (var i = 0; i < ids.length; i++) {
 <tr><td>columnIndex</td><td>int</td><td>列索引</td></tr>
 </tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>Aras.Client.Controls.Public.Cell</strong> — 单元格对象。</p>
 
-<h4>.editCell(rowId, columnIndex)</h4>
+#### .editCell(rowId, columnIndex)
 <p>将焦点移到指定单元格并切换到可编辑模式。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -861,9 +861,9 @@ for (var i = 0; i < ids.length; i++) {
 </tbody>
 </table>
 
-<h4>.cellIsCheckbox(rowId, columnIndex)</h4>
+#### .cellIsCheckbox(rowId, columnIndex)
 <p>判断指定单元格是否包含复选框。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -871,12 +871,12 @@ for (var i = 0; i < ids.length; i++) {
 <tr><td>columnIndex</td><td>int</td><td>列索引</td></tr>
 </tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>bool</strong></p>
 
-<h4>.cellWasChanged(rowId, columnIndex)</h4>
+#### .cellWasChanged(rowId, columnIndex)
 <p>判断指定单元格的值是否在最近一次编辑中被用户修改过。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -884,58 +884,58 @@ for (var i = 0; i < ids.length; i++) {
 <tr><td>columnIndex</td><td>int</td><td>列索引</td></tr>
 </tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>bool</strong></p>
 
-<h4>.turnEditOff()</h4>
+#### .turnEditOff()
 <p>使当前编辑单元格失去焦点，退出编辑模式。用于提交单元格编辑内容。</p>
 
 <hr />
 
 <!-- ==================== Column Methods ==================== -->
-<h3>列操作方法详解</h3>
+### 列操作方法详解
 
-<h4>.getColumnCount()</h4>
+#### .getColumnCount()
 <p>获取列数。</p>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>int</strong> — 列数量。</p>
 
-<h4>.getColumnIndex(columnName)</h4>
+#### .getColumnIndex(columnName)
 <p>通过列名获取列索引。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>columnName</td><td>string</td><td>列名</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>int</strong> — 列在网格中的位置，未找到则返回 -1。</p>
 
-<h4>.getColumnName(columnIndex)</h4>
+#### .getColumnName(columnIndex)
 <p>通过列索引获取列名。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>columnIndex</td><td>int</td><td>列索引</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong> — 列名。</p>
 
-<h4>.getColumnOrder(columnIndex)</h4>
+#### .getColumnOrder(columnIndex)
 <p>获取指定列的顺序位置。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>columnIndex</td><td>int</td><td>列索引</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>int</strong></p>
 
-<h4>.getLogicalColumnOrder()</h4>
+#### .getLogicalColumnOrder()
 <p>获取所有列名，以 <code>;</code> 分号分隔，按在网格中显示的顺序排列。</p>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong> — 分号分隔的列名列表。</p>
 
-<h4>.setColumnProperties(s, columnIndex)</h4>
+#### .setColumnProperties(s, columnIndex)
 <p>以逗号分隔的键值对配置列的类型和其他属性。这是配置列行为最重要的方法。</p>
 <p>支持的属性：<br/>
 <code>type={FIELD|COMBO|NOEDIT}</code> — 单元格编辑类型<br/>
@@ -949,7 +949,7 @@ NOEDIT 表示该列单元格不可编辑。<br/>
 FIELD 表示使用输入框作为编辑控件。<br/>
 COMBO 表示使用下拉框作为编辑控件（需同时指定 LISTn 属性）。<br/>
 也可在 ONEDITCELL 事件处理中运行时初始化下拉框。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -957,7 +957,7 @@ COMBO 表示使用下拉框作为编辑控件（需同时指定 LISTn 属性）�
 <tr><td>columnIndex</td><td>int</td><td>列索引</td></tr>
 </tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 // 设置列为不可编辑
@@ -974,9 +974,9 @@ treeGridContainer.setColumnProperties(
 ```
 
 
-<h4>.setColumnVisible(columnIndex, visible, columnWidth)</h4>
+#### .setColumnVisible(columnIndex, visible, columnWidth)
 <p>设置列的可见性。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -986,47 +986,47 @@ treeGridContainer.setColumnProperties(
 </tbody>
 </table>
 
-<h4>.isColumnVisible(columnIndex)</h4>
+#### .isColumnVisible(columnIndex)
 <p>获取指示列是否可见的值。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>columnIndex</td><td>int</td><td>列索引</td></tr></tbody>
 </table>
 
-<h4>.getHeaderCol(i)</h4>
+#### .getHeaderCol(i)
 <p>返回列标题文本。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>i</td><td>int</td><td>列索引</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong></p>
 
-<h4>.getHeaderIndex(label)</h4>
+#### .getHeaderIndex(label)
 <p>获取标题索引。用于自动化场景。如果找不到对应标题则返回 -1。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>label</td><td>string</td><td>列标题文本</td></tr></tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>int</strong></p>
 
-<h4>.getColWidths()</h4>
+#### .getColWidths()
 <p>获取所有列的宽度，以 <code>;</code> 分号分隔。</p>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong></p>
 
 <hr />
 
 <!-- ==================== Menu Methods ==================== -->
-<h3>菜单方法详解</h3>
+### 菜单方法详解
 
-<h4>.menuAdd(text, image)</h4>
+#### .menuAdd(text, image)
 <p>向菜单集合中添加一个显示指定图像和文本的 ToolStripItem。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1034,7 +1034,7 @@ treeGridContainer.setColumnProperties(
 <tr><td>image</td><td>string</td><td>图标路径</td></tr>
 </tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 function gridMenuInit(rowId, columnIndex) {
@@ -1053,15 +1053,15 @@ function gridMenuInit(rowId, columnIndex) {
 ```
 
 
-<h4>.menuAddSeparator()</h4>
+#### .menuAddSeparator()
 <p>添加菜单分隔符。插入一个 <code>"-"</code> 作为分隔项。</p>
 
-<h4>.menuRemoveAll()</h4>
+#### .menuRemoveAll()
 <p>从菜单项集合中移除所有 MenuItem 对象。</p>
 
-<h4>.menuSetEnabled(text, flag)</h4>
+#### .menuSetEnabled(text, flag)
 <p>设置指定菜单项的启用或禁用状态。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1073,27 +1073,27 @@ function gridMenuInit(rowId, columnIndex) {
 <hr />
 
 <!-- ==================== Miscellaneous Methods ==================== -->
-<h3>其他重要方法详解</h3>
+### 其他重要方法详解
 
-<h4>.enable() / .disable()</h4>
+#### .enable() / .disable()
 <p>启用 / 禁用整个网格控件。</p>
 
-<h4>.setEditable(bool)</h4>
+#### .setEditable(bool)
 <p>运行时启用或禁用单元格编辑功能。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>bool</td><td>bool</td><td>是否启用编辑</td></tr></tbody>
 </table>
 
-<h4>.isEditable()</h4>
+#### .isEditable()
 <p>判断单元格编辑是否已启用。</p>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>bool</strong></p>
 
-<h4>.sort(columnIndex, asc)</h4>
+#### .sort(columnIndex, asc)
 <p>按指定列升序或降序排序表格。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1102,9 +1102,9 @@ function gridMenuInit(rowId, columnIndex) {
 </tbody>
 </table>
 
-<h4>.setUserData(rowId, keyOrValue, value)</h4>
+#### .setUserData(rowId, keyOrValue, value)
 <p>设置行级别的自定义数据。可用于存储额外的数据或标记。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1114,9 +1114,9 @@ function gridMenuInit(rowId, columnIndex) {
 </tbody>
 </table>
 
-<h4>.getUserData(rowId, keyOptional)</h4>
+#### .getUserData(rowId, keyOptional)
 <p>获取通过 USERDATAn 参数或 SetUserData 方法存储的额外行数据。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1124,9 +1124,9 @@ function gridMenuInit(rowId, columnIndex) {
 <tr><td>keyOptional</td><td>object</td><td>可选键名</td></tr>
 </tbody>
 </table>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>string</strong></p>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 // 存储行级自定义数据
@@ -1137,14 +1137,14 @@ var itemType = treeGridContainer.getUserData("item_001", "itemTypeName");
 ```
 
 
-<h4>.setPaintEnabled(b)</h4>
+#### .setPaintEnabled(b)
 <p>运行时启用或禁用网格重绘。在批量操作前禁用重绘可以提升性能，操作完成后再启用。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>b</td><td>bool</td><td>是否启用重绘</td></tr></tbody>
 </table>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 // 批量操作时禁用重绘以提升性能
@@ -1160,25 +1160,25 @@ treeGridContainer.setPaintEnabled(true);
 ```
 
 
-<h4>.showInputRow(bool)</h4>
+#### .showInputRow(bool)
 <p>控制输入行的显示。设为 <code>true</code> 显示输入行，<code>false</code> 隐藏。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody><tr><td>bool</td><td>bool</td><td>是否显示输入行</td></tr></tbody>
 </table>
 
-<h4>.isInputRowVisible()</h4>
+#### .isInputRowVisible()
 <p>判断输入行是否可见。</p>
-<h5>返回值</h5>
+##### 返回值
 <p><strong>bool</strong> — 可见返回 true。</p>
 
-<h4>.requestFocus()</h4>
+#### .requestFocus()
 <p>将输入焦点设置到该控件上。</p>
 
-<h4>.setCellCombo(rowId, columnIndex, labels, values)</h4>
+#### .setCellCombo(rowId, columnIndex, labels, values)
 <p>为指定单元格设置下拉框选项。</p>
-<h5>参数</h5>
+##### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1189,37 +1189,37 @@ treeGridContainer.setPaintEnabled(true);
 </tbody>
 </table>
 
-<h4>.setCellFont(rowId, columnIndex, value)</h4>
+#### .setCellFont(rowId, columnIndex, value)
 <p>设置指定单元格的字体。格式为：<code>名称-样式-大小</code>。样式可选：<code>bold</code>、<code>italic</code>、<code>bolditalic</code>。</p>
-<h5>示例</h5>
+##### 示例
 
 ```javascript
 treeGridContainer.setCellFont("item_001", 0, "Courier-bold-12");
 ```
 
 
-    <h4>.setCellLink(rowId, columnIndex, value)</h4>
-    <p>为指定单元格设置超链接。点击链接时会触发 <code>gridLinkClick</code> 事件。</p>
+#### .setCellLink(rowId, columnIndex, value)
+<p>为指定单元格设置超链接。点击链接时会触发 <code>gridLinkClick</code> 事件。</p>
 
-    <h4>.setCellTextColor(rowId, columnIndex, value)</h4>
-    <p>设置指定单元格的文字颜色。</p>
+#### .setCellTextColor(rowId, columnIndex, value)
+<p>设置指定单元格的文字颜色。</p>
 
-    <h4>.setRowBgColor(rowId, bgColors)</h4>
-    <p>设置行背景颜色。</p>
+#### .setRowBgColor(rowId, bgColors)
+<p>设置行背景颜色。</p>
 
-    <h4>.setRowIcons(rowId, collapsedIcon, expandedIcon)</h4>
-    <p>为指定行设置折叠和展开状态的图标。如果未指定 expandedIcon，将使用 collapsedIcon 作为展开图标。</p>
-    <h5>参数</h5>
-    <table>
-      <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>rowId</td><td>string</td><td>行 ID</td></tr>
-        <tr><td>collapsedIcon</td><td>string</td><td>折叠状态图标路径</td></tr>
-        <tr><td>expandedIcon</td><td>string</td><td>展开状态图标路径</td></tr>
-      </tbody>
-    </table>
-    <h5>示例</h5>
-    
+#### .setRowIcons(rowId, collapsedIcon, expandedIcon)
+<p>为指定行设置折叠和展开状态的图标。如果未指定 expandedIcon，将使用 collapsedIcon 作为展开图标。</p>
+##### 参数
+<table>
+<thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>rowId</td><td>string</td><td>行 ID</td></tr>
+<tr><td>collapsedIcon</td><td>string</td><td>折叠状态图标路径</td></tr>
+<tr><td>expandedIcon</td><td>string</td><td>展开状态图标路径</td></tr>
+</tbody>
+</table>
+##### 示例
+
 ```javascript
 // 为节点设置自定义图标
 treeGridContainer.setRowIcons(
@@ -1233,7 +1233,7 @@ treeGridContainer.setRowIcons(
 <hr />
 
 <!-- ==================== 完整使用示例 ==================== -->
-<h3>完整使用示例</h3>
+### 完整使用示例
 <p>以下示例展示了在实际 Aras 客户端表单/方法中 TreeGridContainer 的典型用法：</p>
 
 ```javascript

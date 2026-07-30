@@ -2,12 +2,12 @@
 title: Method 类型与代码模板
 ---
 
-<h1>Method 类型与代码模板</h1>
+# Method 类型与代码模板
 <blockquote>
 <p><strong>Method</strong> 是 Aras Innovator 中存储和执行<strong>业务逻辑</strong>的核心机制。每个 Method 有名称、代码（脚本）和类型（语言/运行环境），可以通过 Action、Server Event、工具栏按钮等多种方式触发。</p>
 </blockquote>
 
-<h2>一、Method 类型分类</h2>
+## 一、Method 类型分类
 <table>
 <thead><tr><th>类型</th><th>运行环境</th><th>语言</th><th>典型场景</th></tr></thead>
 <tbody>
@@ -18,8 +18,8 @@ title: Method 类型与代码模板
 </tbody>
 </table>
 
-<h2>二、服务端 Method 代码模板</h2>
-<h3>2.1 基础模板</h3>
+## 二、服务端 Method 代码模板
+### 2.1 基础模板
 
 ```csharp
 // Method: IC_GetPartInfo
@@ -58,7 +58,7 @@ return inn.newResult(json);
 ```
 
 
-<h3>2.2 带权限提升的模板（推荐）</h3>
+### 2.2 带权限提升的模板（推荐）
 
 ```csharp
 // 所有涉及 applySQL 或跨 Identity 操作的 Method 使用此模板
@@ -93,7 +93,7 @@ finally
 ```
 
 
-<h3>2.3 JSON 反序列化 + AML 批量操作模板</h3>
+### 2.3 JSON 反序列化 + AML 批量操作模板
 
 ```csharp
 // 前端传入 JSON，后端反序列化后批量操作
@@ -126,7 +126,7 @@ return inn.newResult(JsonConvert.SerializeObject(new {
 ```
 
 
-<h2>三、Method 配置属性</h2>
+## 三、Method 配置属性
 <table>
 <thead><tr><th>属性</th><th>说明</th></tr></thead>
 <tbody>
@@ -139,7 +139,7 @@ return inn.newResult(JsonConvert.SerializeObject(new {
 </tbody>
 </table>
 
-<h2>四、Method 模板（Template）</h2>
+## 四、Method 模板（Template）
 <p>Aras 支持代码模板功能：将公用的代码模板定义为独立的 Method，然后在其他 Method 中通过 <code>template</code> 属性引用，Aras 引擎会自动把模板代码注入到目标 Method 中。这样可以实现：</p>
 <ul>
 <li>权限提升代码复用（所有 Method 共用同一段 PLM Identity 代码）</li>

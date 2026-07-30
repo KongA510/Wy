@@ -2,13 +2,13 @@
 title: Deprecated ComputeMethodResultBuilder
 ---
 
-<h1>ComputeMethodResultBuilder（已弃用）</h1>
+# ComputeMethodResultBuilder（已弃用）
 <blockquote>
 <p><strong>命名空间：</strong><code>Aras.Modules.CMF.Public</code></p>
 <p>ComputeMethodResultBuilder 类的实例（作为参数传入）用于构建 CMF 计算结果。通过调用 <code>markToUpdate</code> 系列方法标记要更新的属性项，然后传入新的值。同一属性可以在同一方法中被多次标记更新，系统会使用最后一次设置的值，且不会影响性能（因为属性实际上只会被更新一次）。此 API 在 CMF 计算方法中被使用，允许动态修改属性项的显示样式和值。</p>
 </blockquote>
 
-<h2>API 成员概览</h2>
+## API 成员概览
 <table>
 <thead>
 <tr>
@@ -36,24 +36,24 @@ title: Deprecated ComputeMethodResultBuilder
 </tbody>
 </table>
 
-<h2>API 详情</h2>
+## API 详情
 
-<h3>constructor()</h3>
+### constructor()
 <p>创建一个新的 ComputeMethodResultBuilder 实例。通常不需要直接调用构造函数，该实例由 CMF 框架在计算方法执行时自动创建并通过 <code>inArgs.resultBuilder</code> 传入。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 Aras.Modules.CMF.Public.ComputeMethodResultBuilder = function();
 ```
 
-    <h4>参数</h4>
-    <p><em>无参数信息</em></p>
-    <h4>返回值</h4>
-    <p><em>新创建的 ComputeMethodResultBuilder 实例</em></p>
+#### 参数
+<p><em>无参数信息</em></p>
+#### 返回值
+<p><em>新创建的 ComputeMethodResultBuilder 实例</em></p>
 
-    <h4>使用场景</h4>
-    <p>在 CMF 计算方法中，<code>inArgs</code> 参数对象包含一个 <code>resultBuilder</code> 属性，该属性即为框架已创建好的 ComputeMethodResultBuilder 实例。无需手动实例化，直接使用即可：</p>
-    
+#### 使用场景
+<p>在 CMF 计算方法中，<code>inArgs</code> 参数对象包含一个 <code>resultBuilder</code> 属性，该属性即为框架已创建好的 ComputeMethodResultBuilder 实例。无需手动实例化，直接使用即可：</p>
+
 ```javascript
 // CMF 计算方法签名
 function computeMethod(inArgs) {
@@ -65,41 +65,41 @@ function computeMethod(inArgs) {
 
 <hr />
 
-<h3>markToUpdateStyle()</h3>
+### markToUpdateStyle()
 <p>标记要更新的属性项，并传入一个新的 <code>CmfStyle</code> 样式对象。调用此方法后，CMF 框架会在计算结果渲染时使用新样式来显示该属性。如果多次对同一属性调用此方法，最后一次设置将生效。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 markToUpdateStyle(propertyItemId: string, newStyle: Aras.Modules.CMF.Public.CmfStyle): void;
 ```
 
-    <h4>参数</h4>
-    <table>
-      <thead>
-        <tr>
-          <th>参数</th>
-          <th>类型</th>
-          <th>说明</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>propertyItemId</code></td>
-          <td><code>string</code></td>
-          <td>要更新样式的属性项 ID，通过 <code>Element.getPropertyItem()</code> 获取</td>
-        </tr>
-        <tr>
-          <td><code>newStyle</code></td>
-          <td><code>Aras.Modules.CMF.Public.CmfStyle</code></td>
-          <td>新的样式对象，通过 <code>Factory.createCmfStyle()</code> 创建</td>
-        </tr>
-      </tbody>
-    </table>
-    <h4>返回值</h4>
-    <p><em>无</em></p>
+#### 参数
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>propertyItemId</code></td>
+<td><code>string</code></td>
+<td>要更新样式的属性项 ID，通过 <code>Element.getPropertyItem()</code> 获取</td>
+</tr>
+<tr>
+<td><code>newStyle</code></td>
+<td><code>Aras.Modules.CMF.Public.CmfStyle</code></td>
+<td>新的样式对象，通过 <code>Factory.createCmfStyle()</code> 创建</td>
+</tr>
+</tbody>
+</table>
+#### 返回值
+<p><em>无</em></p>
 
-    <h4>示例（来自官方文档）</h4>
-    
+#### 示例（来自官方文档）
+
 ```javascript
 var cmfElements = inArgs.factory.findDescendantElements(
     'CMF Element Type Name'
@@ -113,7 +113,7 @@ if (cmfElements.length > 0) {
 ```
 
 
-<h4>补充示例：条件样式更新</h4>
+#### 补充示例：条件样式更新
 
 ```javascript
 // 根据属性值动态设置样式
@@ -145,7 +145,7 @@ function computeMethod(inArgs) {
 ```
 
 
-<h4>补充示例：批量更新多个属性项的样式</h4>
+#### 补充示例：批量更新多个属性项的样式
 
 ```javascript
 // 对多个属性项统一应用样式
@@ -177,41 +177,41 @@ function computeMethod(inArgs) {
 
 <hr />
 
-<h3>markToUpdateValue()</h3>
+### markToUpdateValue()
 <p>标记要更新的属性项，并传入一个新的值。调用此方法后，CMF 框架会在计算结果渲染时使用新值替代该属性的原始值。如果多次对同一属性调用此方法，最后一次设置将生效，且不会产生额外的性能开销。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 markToUpdateValue(propertyItemId: string, newValue: string): void;
 ```
 
-    <h4>参数</h4>
-    <table>
-      <thead>
-        <tr>
-          <th>参数</th>
-          <th>类型</th>
-          <th>说明</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>propertyItemId</code></td>
-          <td><code>string</code></td>
-          <td>要更新值的属性项 ID，通过 <code>Element.getPropertyItem()</code> 获取</td>
-        </tr>
-        <tr>
-          <td><code>newValue</code></td>
-          <td><code>string</code></td>
-          <td>新的属性值</td>
-        </tr>
-      </tbody>
-    </table>
-    <h4>返回值</h4>
-    <p><em>无</em></p>
+#### 参数
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>propertyItemId</code></td>
+<td><code>string</code></td>
+<td>要更新值的属性项 ID，通过 <code>Element.getPropertyItem()</code> 获取</td>
+</tr>
+<tr>
+<td><code>newValue</code></td>
+<td><code>string</code></td>
+<td>新的属性值</td>
+</tr>
+</tbody>
+</table>
+#### 返回值
+<p><em>无</em></p>
 
-    <h4>示例（来自官方文档）</h4>
-    
+#### 示例（来自官方文档）
+
 ```javascript
 var cmfElements = inArgs.factory.findDescendantElements(
     'CMF Element Type Name'
@@ -225,7 +225,7 @@ if (cmfElements.length > 0) {
 ```
 
 
-<h4>补充示例：根据计算逻辑更新属性值</h4>
+#### 补充示例：根据计算逻辑更新属性值
 
 ```javascript
 // 在计算方法中根据属性A计算属性B的值
@@ -265,7 +265,7 @@ function computeMethod(inArgs) {
 ```
 
 
-<h4>补充示例：同时更新值和样式</h4>
+#### 补充示例：同时更新值和样式
 
 ```javascript
 // 同时更新属性的值和显示样式
@@ -312,7 +312,7 @@ function computeMethod(inArgs) {
 ```
 
 
-<h4>补充示例：markToUpdate 的去重特性演示</h4>
+#### 补充示例：markToUpdate 的去重特性演示
 
 ```javascript
 // 展示多次标记同一属性时最后一次生效的特性
@@ -349,7 +349,7 @@ function computeMethod(inArgs) {
 ```
 
 
-<h4>补充示例：完整的 CMF 计算方法模板</h4>
+#### 补充示例：完整的 CMF 计算方法模板
 
 ```javascript
 // 完整的 CMF 计算方法示例模板

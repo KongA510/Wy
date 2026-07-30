@@ -2,14 +2,14 @@
 title: Toolbar（工具栏）
 ---
 
-<h1>Toolbar（已弃用）</h1>
+# Toolbar（已弃用）
 <blockquote>
 <p><strong>命名空间：</strong><code>Aras.Client.Controls.Public</code></p>
 <p>工具栏容器控件。用于加载 XML 定义的工具栏配置，管理工具栏按钮的显示、隐藏、启用、禁用等状态，并提供按钮查找和定位功能。</p>
 <p><strong>替代方案：</strong>新项目中应使用 <code>&lt;aras-toolbar&gt;</code> Web Component（参见 [Toolbar 工具栏组件](/aras-client/toolbar-component)）。</p>
 </blockquote>
 
-<h2>API 成员概览</h2>
+## API 成员概览
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -43,38 +43,38 @@ title: Toolbar（工具栏）
 </tbody>
 </table>
 
-<h2>API 详情</h2>
+## API 详情
 
 <!-- ==================== 构造函数 ==================== -->
-<h3>constructor()</h3>
+### constructor()
 <p>创建 Toolbar 实例。</p>
-<h4>语法</h4>
+#### 语法
 
 ```javascript
 var toolbar = new Aras.Client.Controls.Public.Toolbar();
 ```
 
-    <h4>参数</h4>
-    <p>无。</p>
-    <h4>返回值</h4>
-    <p>无（构造函数）。</p>
+#### 参数
+<p>无。</p>
+#### 返回值
+<p>无（构造函数）。</p>
 
-    <hr />
+<hr />
 
-    <!-- ==================== 事件 ==================== -->
-    <h2>工具栏事件</h2>
+<!-- ==================== 事件 ==================== -->
+## 工具栏事件
 
-    <h3>Event:onClick()</h3>
-    <p>当工具栏控件被点击时触发。回调函数接收被点击的 <code>ToolbarItem</code> 作为参数。</p>
-    <h4>参数</h4>
-    <table>
-      <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td><code>el</code></td><td><code>Aras.Client.Controls.Public.ToolbarItem</code></td><td>被点击的工具栏项</td></tr>
-      </tbody>
-    </table>
-    <h4>示例</h4>
-    
+### Event:onClick()
+<p>当工具栏控件被点击时触发。回调函数接收被点击的 <code>ToolbarItem</code> 作为参数。</p>
+#### 参数
+<table>
+<thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td><code>el</code></td><td><code>Aras.Client.Controls.Public.ToolbarItem</code></td><td>被点击的工具栏项</td></tr>
+</tbody>
+</table>
+#### 示例
+
 ```javascript
 // 通过 clientControlsFactory 订阅点击事件
 clientControlsFactory.on(toolbar, "onClick", function (toolbarItem) {
@@ -92,16 +92,16 @@ clientControlsFactory.on(toolbar, "onClick", function (toolbarItem) {
 
 <hr />
 
-<h3>Event:onChange()</h3>
+### Event:onChange()
 <p>当下拉框（ComboBox）的选中项发生变更时触发。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>el</code></td><td><code>Aras.Client.Controls.Public.ToolbarItem</code></td><td>发生变更的下拉框工具栏项</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(toolbar, "onChange", function (toolbarItem) {
@@ -113,16 +113,16 @@ clientControlsFactory.on(toolbar, "onChange", function (toolbarItem) {
 
 <hr />
 
-<h3>Event:onKeyDown()</h3>
+### Event:onKeyDown()
 <p>当在文本框（TextBoxEdit）中按下键盘按键时触发。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>el</code></td><td><code>Aras.Client.Controls.Public.ToolbarItem</code></td><td>触发按键事件的文本框工具栏项</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(toolbar, "onKeyDown", function (toolbarItem) {
@@ -134,16 +134,16 @@ clientControlsFactory.on(toolbar, "onKeyDown", function (toolbarItem) {
 
 <hr />
 
-<h3>Event:onDropDownItemClick()</h3>
+### Event:onDropDownItemClick()
 <p>当下拉框的选中项或文本框的文本值发生变更时触发。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>text</code></td><td><code>string</code></td><td>变更后的文本值</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(toolbar, "onDropDownItemClick", function (text) {
@@ -157,20 +157,20 @@ clientControlsFactory.on(toolbar, "onDropDownItemClick", function (text) {
 <hr />
 
 <!-- ==================== 加载方法 ==================== -->
-<h2>工具栏配置加载</h2>
+## 工具栏配置加载
 
-<h3>loadXml()</h3>
+### loadXml()
 <p>从文件路径加载 XML 格式的工具栏配置。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>filePath</code></td><td><code>string</code></td><td>XML 配置文件的路径</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p>无。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var toolbar = new Aras.Client.Controls.Public.Toolbar();
@@ -181,18 +181,18 @@ toolbar.loadXml("../ClientSolutions/Toolbars/MyToolbar.xml");
 
 <hr />
 
-<h3>loadToolbarFromStr()</h3>
+### loadToolbarFromStr()
 <p>从字符串加载 XML 格式的工具栏配置。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>string</code></td><td><code>string</code></td><td>包含 XML 配置的字符串</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p>无。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var xmlStr = '<toolbar>' +
@@ -206,25 +206,25 @@ toolbar.loadToolbarFromStr(xmlStr);
 
 <hr />
 
-<h3>setExtraProps()</h3>
+### setExtraProps()
 <p>设置工具栏的额外属性（方法存在但未在官方文档中详细说明）。</p>
-<h4>参数</h4>
+#### 参数
 <p>未文档化。</p>
-<h4>返回值</h4>
+#### 返回值
 <p>无。</p>
 
 <hr />
 
 <!-- ==================== 工具栏显示/隐藏 ==================== -->
-<h2>工具栏显示与控制</h2>
+## 工具栏显示与控制
 
-<h3>show()</h3>
+### show()
 <p>显示工具栏集合中的第一个工具栏实例。一般在 <code>loadXml</code> 或 <code>loadToolbarFromStr</code> 之后调用。</p>
-<h4>参数</h4>
+#### 参数
 <p>无。</p>
-<h4>返回值</h4>
+#### 返回值
 <p>无。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 toolbar.loadXml("../ClientSolutions/Toolbars/MyToolbar.xml");
@@ -234,18 +234,18 @@ toolbar.show();  // 加载后显示
 
 <hr />
 
-<h3>showToolbar()</h3>
+### showToolbar()
 <p>显示指定 ID 的工具栏。当一个页面中加载了多个工具栏配置时，用此方法切换显示。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>id</code></td><td><code>string</code></td><td>要显示的工具栏的唯一标识</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p>无。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 加载多个工具栏配置后，按需切换
@@ -256,27 +256,27 @@ toolbar.showToolbar("context_toolbar");    // 切换为上下文工具栏
 
 <hr />
 
-<h3>isToolbarExist()</h3>
+### isToolbarExist()
 <p>检查工具栏是否已被加载和初始化（方法存在但未在官方文档中详细说明参数和返回值）。</p>
-<h4>参数</h4>
+#### 参数
 <p>未文档化。</p>
-<h4>返回值</h4>
+#### 返回值
 <p>未文档化（推测返回 <code>boolean</code>）。</p>
 
 <hr />
 
-<h3>getActiveToolbar()</h3>
+### getActiveToolbar()
 <p>获取当前正在显示的工具栏实例。</p>
-<h4>参数</h4>
+#### 参数
 <p>无。</p>
-<h4>返回值</h4>
+#### 返回值
 <table>
 <thead><tr><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>Aras.Client.Controls.Public.Toolbar</code></td><td>当前显示的工具栏实例（<code>this</code>）</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var activeBar = toolbar.getActiveToolbar();
@@ -287,15 +287,15 @@ console.log("当前工具栏ID:", activeBar.getId());
 <hr />
 
 <!-- ==================== 工具栏状态 ==================== -->
-<h2>工具栏状态控制</h2>
+## 工具栏状态控制
 
-<h3>disable()</h3>
+### disable()
 <p>禁用当前工具栏，所有控件变为不可交互状态。</p>
-<h4>参数</h4>
+#### 参数
 <p>无。</p>
-<h4>返回值</h4>
+#### 返回值
 <p>无。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 在数据加载期间禁用工具栏，防止用户误操作
@@ -308,27 +308,27 @@ fetchDataFromServer().then(function () {
 
 <hr />
 
-<h3>enable()</h3>
+### enable()
 <p>启用工具栏，使所有控件恢复可交互状态。</p>
-<h4>参数</h4>
+#### 参数
 <p>无。</p>
-<h4>返回值</h4>
+#### 返回值
 <p>无。</p>
 
 <hr />
 
-<h3>showLabels()</h3>
+### showLabels()
 <p>显示或隐藏工具栏按钮上的文本标签。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>isShow</code></td><td><code>boolean</code></td><td><code>true</code> 显示标签，<code>false</code> 隐藏标签</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p>无。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 紧凑模式：隐藏按钮标签只显示图标
@@ -342,20 +342,20 @@ toolbar.showLabels(true);
 <hr />
 
 <!-- ==================== 信息获取 ==================== -->
-<h2>工具栏信息获取</h2>
+## 工具栏信息获取
 
-<h3>getId()</h3>
+### getId()
 <p>获取当前工具栏对象的唯一标识符。</p>
-<h4>参数</h4>
+#### 参数
 <p>无。</p>
-<h4>返回值</h4>
+#### 返回值
 <table>
 <thead><tr><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>string</code></td><td>工具栏的唯一标识符</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var toolbarId = toolbar.getId();
@@ -366,25 +366,25 @@ console.log("当前工具栏 ID:", toolbarId);
 <hr />
 
 <!-- ==================== 按钮/项目操作 ==================== -->
-<h2>工具栏项与按钮操作</h2>
+## 工具栏项与按钮操作
 
-<h3>getItem()</h3>
+### getItem()
 <p>根据 ID 获取工具栏项对象（<code>ToolbarItem</code>），可用于进一步操作该项的属性。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>itemId</code></td><td><code>string</code></td><td>工具栏项的唯一标识</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <table>
 <thead><tr><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>Aras.Client.Controls.Public.ToolbarItem</code></td><td>指定 ID 的工具栏项对象</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var saveBtn = toolbar.getItem("btn_save");
@@ -398,18 +398,18 @@ if (saveBtn) {
 
 <hr />
 
-<h3>showItem()</h3>
+### showItem()
 <p>显示指定 ID 的工具栏项（如果它处于隐藏状态）。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>itemId</code></td><td><code>string</code></td><td>要显示的工具栏项 ID</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p>无。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 根据权限显示不同按钮
@@ -423,37 +423,37 @@ if (currentUser.canDelete) {
 
 <hr />
 
-<h3>hideItem()</h3>
+### hideItem()
 <p>隐藏指定 ID 的工具栏项，使其不可见。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>itemId</code></td><td><code>string</code></td><td>要隐藏的工具栏项 ID</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p>无。</p>
 
 <hr />
 
-<h3>getButtonXY()</h3>
+### getButtonXY()
 <p>获取指定按钮中心点相对于页面/容器的坐标。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>itemId</code></td><td><code>string</code></td><td>按钮的工具栏项 ID</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <table>
 <thead><tr><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>string</code></td><td>按钮中心点坐标字符串</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 在按钮旁弹出菜单时使用
@@ -466,23 +466,23 @@ showPopupAt(btnPos);
 
 <hr />
 
-<h3>getButtonId()</h3>
+### getButtonId()
 <p>根据按钮的显示标签文本查找其 ID。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>label</code></td><td><code>string</code></td><td>按钮的显示标签文本</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <table>
 <thead><tr><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>string</code></td><td>对应按钮的 ID</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var btnId = toolbar.getButtonId("保存");
@@ -492,23 +492,23 @@ console.log("'保存' 按钮的 ID:", btnId);  // 输出类似 "btn_save"
 
 <hr />
 
-<h3>isButtonEnabled()</h3>
+### isButtonEnabled()
 <p>检查指定按钮是否处于可交互状态。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>itemId</code></td><td><code>string</code></td><td>按钮的工具栏项 ID</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <table>
 <thead><tr><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>boolean</code></td><td><code>true</code> 表示按钮可交互，<code>false</code> 表示已禁用</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 if (toolbar.isButtonEnabled("btn_save")) {
@@ -520,23 +520,23 @@ if (toolbar.isButtonEnabled("btn_save")) {
 
 <hr />
 
-<h3>getButtonLabelById()</h3>
+### getButtonLabelById()
 <p>根据按钮 ID 获取其显示标签文本。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>itemId</code></td><td><code>string</code></td><td>按钮的工具栏项 ID</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <table>
 <thead><tr><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>string</code></td><td>按钮的显示标签文本</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var label = toolbar.getButtonLabelById("btn_save");
@@ -546,23 +546,23 @@ console.log("btn_save 的标签:", label);  // 输出 "保存"
 
 <hr />
 
-<h3>isButtonVisible()</h3>
+### isButtonVisible()
 <p>检查指定按钮是否在用户视野中可见。当工具栏宽度超出页面宽度时，部分按钮会被滚动按钮遮挡——此方法返回 <code>true</code> 表示按钮对用户可见，<code>false</code> 表示被隐藏。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>itemId</code></td><td><code>string</code></td><td>按钮的工具栏项 ID</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <table>
 <thead><tr><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>boolean</code></td><td><code>true</code> 可见，<code>false</code> 被溢出隐藏</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 if (!toolbar.isButtonVisible("btn_advanced")) {
@@ -573,23 +573,23 @@ if (!toolbar.isButtonVisible("btn_advanced")) {
 
 <hr />
 
-<h3>getButtons()</h3>
+### getButtons()
 <p>返回工具栏上所有控件的名称，以指定分隔符连接。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>separator</code></td><td><code>string</code></td><td>用于连接各控件名称的分隔符</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <table>
 <thead><tr><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>string</code></td><td>以分隔符连接的所有控件名称</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var btns = toolbar.getButtons(", ");
@@ -600,23 +600,23 @@ console.log("工具栏包含:", btns);
 
 <hr />
 
-<h3>getItemSize()</h3>
+### getItemSize()
 <p>获取指定工具栏项的宽度和高度。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>itemId</code></td><td><code>string</code></td><td>工具栏项 ID</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <table>
 <thead><tr><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>string</code></td><td>以逗号分隔的宽度和高度，如 <code>"32,32"</code></td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var size = toolbar.getItemSize("btn_save");
@@ -631,19 +631,19 @@ console.log("按钮尺寸:", width + "x" + height);
 <hr />
 
 <!-- ==================== 内部方法 ==================== -->
-<h2>内部方法</h2>
+## 内部方法
 
-<h3>buttonClick()</h3>
+### buttonClick()
 <p>内部按钮点击处理方法（方法存在但未在官方文档中详细说明参数和返回值，通常不直接从外部调用）。</p>
-<h4>参数</h4>
+#### 参数
 <p>未文档化。</p>
-<h4>返回值</h4>
+#### 返回值
 <p>无。</p>
 
 <hr />
 
 <!-- ==================== 综合示例 ==================== -->
-<h2>综合使用示例</h2>
+## 综合使用示例
 
 ```javascript
 // 完整的工具栏初始化和事件绑定示例

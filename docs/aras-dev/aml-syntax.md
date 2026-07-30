@@ -2,12 +2,12 @@
 title: AML 语法与结构
 ---
 
-<h1>AML 语法与结构</h1>
+# AML 语法与结构
 <blockquote>
 <p><strong>AML (Aras Markup Language)</strong> 是 Aras Innovator 的<strong>数据查询与操作语言</strong>，基于 XML 格式。所有通过 IOM API 的操作最终都会被转换为 AML 发送到服务器执行。</p>
 </blockquote>
 
-<h2>一、AML 基本结构</h2>
+## 一、AML 基本结构
 
 ```xml
 <AML>
@@ -19,7 +19,7 @@ title: AML 语法与结构
 ```
 
 
-<h2>二、AML 元素层级</h2>
+## 二、AML 元素层级
 <table>
 <thead><tr><th>层级</th><th>元素</th><th>说明</th></tr></thead>
 <tbody>
@@ -30,7 +30,7 @@ title: AML 语法与结构
 </tbody>
 </table>
 
-<h2>三、Item 元素属性</h2>
+## 三、Item 元素属性
 <table>
 <thead><tr><th>属性</th><th>必需</th><th>说明</th></tr></thead>
 <tbody>
@@ -47,7 +47,7 @@ title: AML 语法与结构
 </tbody>
 </table>
 
-<h2>四、条件运算符（condition）</h2>
+## 四、条件运算符（condition）
 <table>
 <thead><tr><th>运算符</th><th>SQL 等效</th><th>示例</th></tr></thead>
 <tbody>
@@ -65,7 +65,7 @@ title: AML 语法与结构
 </tbody>
 </table>
 
-<h2>五、通过 IOM 生成 AML</h2>
+## 五、通过 IOM 生成 AML
 <p>不写 AML 字符串，而是通过 IOM API 构建同样效果：</p>
 
 ```csharp

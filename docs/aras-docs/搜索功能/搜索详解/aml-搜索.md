@@ -4,7 +4,7 @@ title: AML搜索
 
 <div data-condition="Others:NewFor91">
 <div class="Section1">
-<h1>AML搜索</h1>
+# AML搜索
 <p class="Content_body">这是一种原始搜索模式，它使用Aras标记语言（AML）。具有AML知识的用户可以使用此搜索模式。它允许所有用户进行复杂搜索，也可以使用其他高级用户、管理员或开发人员准备的搜索，并以已保存搜索的形式共享。</p>
 <p class="Content_body">AML搜索可以执行其他搜索模式无法完成的搜索，包括对以下内容的搜索：</p>
 <!--?rh-list_start class="Bullet_list" style="list-style: rh-list; list-style: rh-list;" ?-->

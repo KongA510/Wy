@@ -2,10 +2,10 @@
 title: CertificateTokenProvider
 ---
 
-<h1>CertificateTokenProvider</h1>
+# CertificateTokenProvider
 <blockquote><p><strong>基于客户端 X.509 证书的 OAuth 认证提供者。</strong>使用客户端证书进行身份验证，无需密码，适用于高安全环境的自动化服务。命名空间：Aras.IOM.OAuth，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、类定义</h2>
+## 一、类定义
 
 ```csharp
 // CertificateTokenProvider — 证书认证令牌提供者
@@ -29,7 +29,7 @@ public class CertificateTokenProvider : ITokenProvider, ITokenProviderSession
 ```
 
 
-<h2>二、CertificateTokenProviderOptions</h2>
+## 二、CertificateTokenProviderOptions
 
 ```csharp
 public class CertificateTokenProviderOptions : TokenProviderOptions
@@ -44,7 +44,7 @@ public class CertificateTokenProviderOptions : TokenProviderOptions
 ```
 
 
-<h2>三、代码示例</h2>
+## 三、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -119,7 +119,7 @@ async Task<string> EnsureValidToken(CertificateTokenProvider provider)
 ```
 
 
-<h2>四、实践笔记</h2>
+## 四、实践笔记
 <ul>
 <li><strong>证书要求：</strong>证书必须在服务器端注册为受信任的客户端证书</li>
 <li><strong>私钥访问：</strong>应用程序池或服务账户需要对证书私钥有读取权限</li>

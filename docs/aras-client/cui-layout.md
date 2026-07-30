@@ -2,12 +2,12 @@
 title: CUI 布局引擎
 ---
 
-<h1>CUI 布局引擎</h1>
+# CUI 布局引擎
 <blockquote>
 <p>CUI Layout 是整个 CUI 架构的<strong>核心引擎</strong>。它接收控件的结构化数据，将每个数据定义与对应的客户端实现关联，并渲染出完整的 UI。</p>
 </blockquote>
 
-<h2>一、核心职责</h2>
+## 一、核心职责
 <table>
 <thead><tr><th>职责</th><th>说明</th></tr></thead>
 <tbody>
@@ -19,10 +19,10 @@ title: CUI 布局引擎
 </tbody>
 </table>
 
-<h2>二、类位置</h2>
+## 二、类位置
 <p><code>Innovator/Client/cui/layouts/CuiLayout.js</code> — 可直接使用，也可作为子类的基类。</p>
 
-<h2>三、生命周期</h2>
+## 三、生命周期
 
 ```text
 CUI Layout 初始化流程：
@@ -39,9 +39,9 @@ Step #N  .destroy() — 释放资源，销毁布局
 ```
 
 
-<h2>四、公共 API</h2>
+## 四、公共 API
 
-<h3>4.1 new CuiLayout(dom, location, options)</h3>
+### 4.1 new CuiLayout(dom, location, options)
 
 ```javascript
 // 构造参数
@@ -57,7 +57,7 @@ const layout = new CuiLayout(
 ```
 
 
-<h3>4.2 .init()</h3>
+### 4.2 .init()
 
 ```javascript
 // 默认逻辑包含：
@@ -81,7 +81,7 @@ class MyCustomLayout extends CuiLayout {
 ```
 
 
-<h3>4.3 .initialState（状态定义）</h3>
+### 4.3 .initialState（状态定义）
 
 ```javascript
 class SearchViewLayout extends CuiLayout {
@@ -96,7 +96,7 @@ class SearchViewLayout extends CuiLayout {
 ```
 
 
-<h3>4.4 .state（运行时状态 — 只读）</h3>
+### 4.4 .state（运行时状态 — 只读）
 
 ```javascript
 // state 类似 React 组件的 state
@@ -109,7 +109,7 @@ console.log(layout.state.searchResults.length);
 ```
 
 
-<h3>4.5 .setState(partialState)</h3>
+### 4.5 .setState(partialState)
 
 ```javascript
 // 更新部分状态，触发相关控件重新渲染
@@ -127,7 +127,7 @@ layout.on('state:changed', (newState, oldState) => {
 ```
 
 
-<h3>4.6 .updateLayout()</h3>
+### 4.6 .updateLayout()
 
 ```javascript
 // 手动触发布局重新渲染
@@ -141,7 +141,7 @@ innefect.onItemChanged((item) => {
 ```
 
 
-<h2>五、完整示例：搜索视图布局</h2>
+## 五、完整示例：搜索视图布局
 
 ```javascript
 // SearchViewCuiLayout.js
@@ -194,7 +194,7 @@ class SearchViewCuiLayout extends CuiLayout {
 ```
 
 
-<h2>六、关键概念总结</h2>
+## 六、关键概念总结
 <table>
 <thead><tr><th>概念</th><th>类比</th><th>说明</th></tr></thead>
 <tbody>

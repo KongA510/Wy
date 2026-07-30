@@ -2,12 +2,12 @@
 title: PasswordTokenProvider
 ---
 
-<h1>PasswordTokenProvider</h1>
+# PasswordTokenProvider
 <blockquote>
 <p><strong>PasswordTokenProvider 使用 OAuth 2.0 资源所有者密码凭证（ROPC）授权流程获取 Access Token。</strong>这是最简单的 OAuth 2.0 授权方式，适用于受信任的内部应用程序。命名空间：Aras.IOM.OAuth，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、类定义</h2>
+## 一、类定义
 
 ```csharp
 // PasswordTokenProvider — OAuth 2.0 密码模式 Token 提供者
@@ -24,7 +24,7 @@ public class PasswordTokenProvider : ITokenProvider
 ```
 
 
-<h2>二、密码模式流程</h2>
+## 二、密码模式流程
 
 ```text
 客户端                            认证服务器
@@ -42,7 +42,7 @@ public class PasswordTokenProvider : ITokenProvider
 ```
 
 
-<h2>三、C# 代码示例</h2>
+## 三、C# 代码示例
 
 ```csharp
 using Aras.IOM;
@@ -103,7 +103,7 @@ class Program
 ```
 
 
-<h2>四、Token 生命周期管理</h2>
+## 四、Token 生命周期管理
 
 ```csharp
 // 检查 Token 是否过期
@@ -127,7 +127,7 @@ using (var client = new HttpClient())
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>仅用于受信任的客户端：</strong>密码模式不适用于公开客户端（如 SPA），仅用于内部工具和服务</li>
 <li><strong>密码安全：</strong>永远不要将密码硬编码在代码中，应使用配置文件或环境变量</li>

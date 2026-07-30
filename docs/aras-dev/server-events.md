@@ -2,12 +2,12 @@
 title: Server Event 事件体系
 ---
 
-<h1>Server Event 事件体系</h1>
+# Server Event 事件体系
 <blockquote>
 <p>Aras Innovator 的服务端事件（Server Events）允许开发者在数据操作的<strong>前后</strong>插入自定义逻辑。事件绑定在 ItemType 上，当特定操作发生时自动触发相应的 Method。</p>
 </blockquote>
 
-<h2>一、完整事件列表</h2>
+## 一、完整事件列表
 <table>
 <thead><tr><th>事件名称</th><th>触发时机</th><th>典型用途</th></tr></thead>
 <tbody>
@@ -32,7 +32,7 @@ title: Server Event 事件体系
 </tbody>
 </table>
 
-<h2>二、事件执行流程</h2>
+## 二、事件执行流程
 
 ```text
 客户端发起 add 操作
@@ -57,7 +57,7 @@ title: Server Event 事件体系
 ```
 
 
-<h2>三、this 在事件 Method 中的含义</h2>
+## 三、this 在事件 Method 中的含义
 <p>在 Server Event 的 Method 中，<code>this</code> 代表<strong>正在被操作的 Item</strong>（不是 Method ItemType 自身）：</p>
 
 ```csharp
@@ -83,7 +83,7 @@ return this;
 ```
 
 
-<h2>四、阻止操作的方法</h2>
+## 四、阻止操作的方法
 
 ```csharp
 // onBeforeDelete — 阻止删除已被引用的零件
@@ -107,7 +107,7 @@ return this;
 ```
 
 
-<h2>五、事件注册方式</h2>
+## 五、事件注册方式
 <p>在 ItemType 的配置界面中绑定 Server Event：</p>
 <ol>
 <li>打开目标 ItemType（如 Part）</li>

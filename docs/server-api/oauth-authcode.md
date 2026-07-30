@@ -2,12 +2,12 @@
 title: AuthorizationFlowTokenProvider
 ---
 
-<h1>AuthorizationFlowTokenProvider</h1>
+# AuthorizationFlowTokenProvider
 <blockquote>
 <p><strong>AuthorizationFlowTokenProvider 使用 OAuth 2.0 授权码授予流程获取 Access Token。</strong>适用于 Web 应用程序，用户通过浏览器交互完成授权，安全性高于密码模式。命名空间：Aras.IOM.OAuth，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、类定义</h2>
+## 一、类定义
 
 ```csharp
 // AuthorizationFlowTokenProvider — OAuth 2.0 授权码模式 Token 提供者
@@ -26,7 +26,7 @@ public class AuthorizationFlowTokenProvider : ITokenProvider
 ```
 
 
-<h2>二、授权码模式完整流程</h2>
+## 二、授权码模式完整流程
 
 ```text
 用户浏览器                    Web 应用                  认证服务器
@@ -63,7 +63,7 @@ public class AuthorizationFlowTokenProvider : ITokenProvider
 ```
 
 
-<h2>三、C# 代码示例</h2>
+## 三、C# 代码示例
 
 ```csharp
 using Aras.IOM;
@@ -124,7 +124,7 @@ if (tokenProvider.IsExpired)
 ```
 
 
-<h2>四、实践笔记</h2>
+## 四、实践笔记
 <ul>
 <li><strong>redirect_uri 必须精确匹配：</strong>在 Aras 客户端注册表中配置的 redirect_uri 必须与请求中完全一致</li>
 <li><strong>一次性使用：</strong>授权码只能使用一次，换取 Token 后即失效</li>

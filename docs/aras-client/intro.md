@@ -2,12 +2,12 @@
 title: 快速入门
 ---
 
-<h1>快速入门</h1>
+# 快速入门
 <blockquote>
 <p>本文档面向 <strong>Aras Innovator 客户端开发人员</strong>以及希望按照业务需求定制 Innovator 用户界面的开发者。涵盖客户端代码结构、公共 API、设计理念以及推荐实践。</p>
 </blockquote>
 
-<h2>一、文档目的</h2>
+## 一、文档目的
 <p>Aras Innovator 客户端文档旨在帮助开发者：</p>
 <ul>
 <li>理解客户端代码的<strong>组织结构</strong>与模块划分</li>
@@ -16,7 +16,7 @@ title: 快速入门
 <li>开发和扩展<strong>自定义编辑器</strong>与<strong>仪表板 Widget</strong></li>
 </ul>
 
-<h2>二、文档结构</h2>
+## 二、文档结构
 <table>
 <thead><tr><th>章节</th><th>内容</th><th>适合人群</th></tr></thead>
 <tbody>
@@ -28,7 +28,7 @@ title: 快速入门
 </tbody>
 </table>
 
-<h2>三、技术栈</h2>
+## 三、技术栈
 <table>
 <thead><tr><th>技术</th><th>说明</th></tr></thead>
 <tbody>
@@ -40,7 +40,7 @@ title: 快速入门
 </tbody>
 </table>
 
-<h2>四、CUI 核心理念</h2>
+## 四、CUI 核心理念
 <p><strong>CUI（Configurable User Interface，可配置用户界面）</strong>是 Aras 客户端的核心架构概念：</p>
 <ul>
 <li>界面由<strong>数据模型</strong>定义（存储在数据库中），而非硬编码布局</li>
@@ -58,8 +58,8 @@ CUI 架构三大组件：
 ```
 
 
-<h2>五、快速上手</h2>
-<h3>5.1 Hello World — 在 Form 中加载自定义工具栏</h3>
+## 五、快速上手
+### 5.1 Hello World — 在 Form 中加载自定义工具栏
 
 ```javascript
 // 1. 获取 Aras 对象
@@ -86,7 +86,7 @@ window.ModulesManager
 ```
 
 
-<h3>5.2 创建 Grid 组件</h3>
+### 5.2 创建 Grid 组件
 
 ```javascript
 // 使用原生 aras-grid Web Component

@@ -2,18 +2,18 @@
 title: 上下文共享机制
 ---
 
-<h1>上下文共享机制</h1>
+# 上下文共享机制
 <blockquote>
 <p>同一仪表板中的 Widget 可以<strong>相互共享数据</strong>。每个 Widget Type 能够共享一个属性列表，通过 <strong>Widget Template Shared Props</strong> 关系定义。</p>
 </blockquote>
 
-<h2>一、核心概念</h2>
+## 一、核心概念
 <p>上下文共享允许一个 Widget（数据源）的属性值自动流向另一个 Widget（订阅者）。从 Widget 实现的角度看，Widget 不直接与其他 Widget 交互，也"不知道"属性的来源——它只是接收到一个被动态替换过的属性值。</p>
 
-<h2>二、启用上下文共享</h2>
+## 二、启用上下文共享
 <p>需要在 Dashboard Widget 中指定<strong>可使用的共享属性</strong>。这些信息存储在 <code>shared_data</code> 属性中。</p>
 
-<h3>shared_data 格式</h3>
+### shared_data 格式
 
 ```json
 {
@@ -38,7 +38,7 @@ title: 上下文共享机制
 </tbody>
 </table>
 
-<h2>三、工作原理</h2>
+## 三、工作原理
 
 ```text
 仪表板初始化时的上下文共享流程：
@@ -60,9 +60,9 @@ title: 上下文共享机制
 ```
 
 
-<h2>四、具体示例</h2>
+## 四、具体示例
 
-<h3>场景：Grid Widget → Report Widget 联动</h3>
+### 场景：Grid Widget → Report Widget 联动
 
 
 ```text
@@ -78,7 +78,7 @@ Widget B (Report Widget)
 ```
 
 
-<h3>AML 配置示例</h3>
+### AML 配置示例
 
 ```xml
 <AML>
@@ -100,7 +100,7 @@ Widget B (Report Widget)
 ```
 
 
-<h2>五、预定义的共享值</h2>
+## 五、预定义的共享值
 <p>TreeGrid 和 Report Widget 自带如下的默认 <code>shared_data</code>：</p>
 
 ```javascript
@@ -114,7 +114,7 @@ Widget B (Report Widget)
 
 <p>使用 <code>"from": "*"</code> 意味着 Widget 接受仪表板范围内<strong>任意 Widget</strong>共享的 <code>selected_row_id</code> 属性值。</p>
 
-<h2>六、代码实现提示</h2>
+## 六、代码实现提示
 
 ```typescript
 // 仪表板初始化时处理共享数据
@@ -154,7 +154,7 @@ class Dashboard {
 ```
 
 
-<h2>七、关键限制</h2>
+## 七、关键限制
 <ul>
 <li>Widget <strong>只能共享其 WidgetLayout state 中的属性</strong></li>
 <li>要添加新的可共享属性，需要<strong>修改 Widget 的实现代码</strong>（在 WidgetLayout 子类中添加对应的 state 字段）</li>

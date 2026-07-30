@@ -2,17 +2,17 @@
 title: 项目结构
 ---
 
-<h1>项目结构</h1>
+# 项目结构
 <blockquote>
 <p>全面了解 Aras Innovator 客户端代码的目录组织结构、模块划分与文件说明。源仓库路径：<code>Innovator.git</code>。</p>
 </blockquote>
 
-<h2>一、核心目录：Innovator.git</h2>
+## 一、核心目录：Innovator.git
 
-<h3>1.1 AML-packages/</h3>
+### 1.1 AML-packages/
 <p>存放以 <code>.xml</code> 文件形式存储在数据库中的<strong>数据结构和业务逻辑（Method）</strong>。</p>
 
-<h3>1.2 Innovator/Client/</h3>
+### 1.2 Innovator/Client/
 <p>客户端代码的核心目录，结构如下：</p>
 
 <table>
@@ -26,7 +26,7 @@ title: 项目结构
 </tbody>
 </table>
 
-<h3>1.3 Innovator/Client/Modules/（领域驱动组织）</h3>
+### 1.3 Innovator/Client/Modules/（领域驱动组织）
 <table>
 <thead><tr><th>模块</th><th>说明</th></tr></thead>
 <tbody>
@@ -41,7 +41,7 @@ title: 项目结构
 </tbody>
 </table>
 
-<h3>1.4 其他重要目录</h3>
+### 1.4 其他重要目录
 <table>
 <thead><tr><th>目录</th><th>说明</th></tr></thead>
 <tbody>
@@ -53,7 +53,7 @@ title: 项目结构
 </tbody>
 </table>
 
-<h2>二、测试目录：Innovator/Client/tests/</h2>
+## 二、测试目录：Innovator/Client/tests/
 <table>
 <thead><tr><th>目录/文件</th><th>说明</th></tr></thead>
 <tbody>
@@ -67,7 +67,7 @@ title: 项目结构
 </tbody>
 </table>
 
-<h3>测试文件命名规范</h3>
+### 测试文件命名规范
 <table>
 <thead><tr><th>命名格式</th><th>说明</th></tr></thead>
 <tbody>
@@ -78,7 +78,7 @@ title: 项目结构
 </tbody>
 </table>
 
-<h2>三、组件测试框架：Tests/ComponentTests/</h2>
+## 三、组件测试框架：Tests/ComponentTests/
 <table>
 <thead><tr><th>目录</th><th>说明</th></tr></thead>
 <tbody>
@@ -91,7 +91,7 @@ title: 项目结构
 </tbody>
 </table>
 
-<h2>四、模块加载机制</h2>
+## 四、模块加载机制
 
 ```javascript
 // ModulesManager — Aras 客户端模块加载器

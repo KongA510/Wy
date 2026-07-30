@@ -2,10 +2,10 @@
 title: 下载事件体系
 ---
 
-<h1>下载事件体系</h1>
+# 下载事件体系
 <blockquote><p><strong>文件下载相关的事件参数与处理。</strong>包含单文件下载完成、多文件下载进度和完成事件，用于 CheckoutManager 的文件签出下载流程。命名空间：Aras.IOME，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、事件参数类</h2>
+## 一、事件参数类
 
 ```csharp
 // DownloadFileCompletedEventArgs — 单文件下载完成
@@ -42,7 +42,7 @@ public class DownloadFilesProgressChangedEventArgs : EventArgs
 ```
 
 
-<h2>二、DownloadResult</h2>
+## 二、DownloadResult
 
 ```csharp
 // DownloadResult — 单个文件下载结果
@@ -58,7 +58,7 @@ public class DownloadResult
 ```
 
 
-<h2>三、事件委托</h2>
+## 三、事件委托
 
 ```csharp
 public delegate void DownloadFileCompletedEventHandler(
@@ -75,7 +75,7 @@ public delegate void DownloadFilesProgressChangedEventHandler(
 ```
 
 
-<h2>四、CheckoutManager 事件</h2>
+## 四、CheckoutManager 事件
 
 ```csharp
 public class CheckoutManager
@@ -93,7 +93,7 @@ public class CheckoutManager
 ```
 
 
-<h2>五、代码示例</h2>
+## 五、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -190,7 +190,7 @@ string FormatSize(long bytes)
 ```
 
 
-<h2>六、实践笔记</h2>
+## 六、实践笔记
 <ul>
 <li><strong>targetDirectory：</strong>签出时可指定目标目录，文件将下载到该目录</li>
 <li><strong>大文件处理：</strong>BytesDownloaded/TotalBytes 提供字节级进度，适合几百 MB 的 CAD 文件</li>

@@ -2,10 +2,10 @@
 title: 集合与遍历
 ---
 
-<h1>Item 集合与遍历</h1>
+# Item 集合与遍历
 <blockquote><p><strong>管理 Item 集合的方法——添加、移除、遍历子节点。</strong>Item 可以包含多个子 Item（如查询结果），这些方法用于操作内部的 Item 集合。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、方法签名</h2>
+## 一、方法签名
 
 ```csharp
 // 获取集合中的 Item
@@ -27,7 +27,7 @@ public Item getPropertyItem(string propertyName)       // 获取 property 子节
 ```
 
 
-<h2>二、参数说明</h2>
+## 二、参数说明
 <table><thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead><tbody>
 <tr><td><code>index</code></td><td>int</td><td>0-based 索引位置</td></tr>
 <tr><td><code>childItem</code></td><td>Item</td><td>要追加或移除的子 Item 对象</td></tr>
@@ -35,7 +35,7 @@ public Item getPropertyItem(string propertyName)       // 获取 property 子节
 <tr><td><code>propItem</code></td><td>Item</td><td>要设置的 property Item 节点</td></tr>
 </tbody></table>
 
-<h2>三、代码示例</h2>
+## 三、代码示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -88,7 +88,7 @@ if (!relResult.isError())
 ```
 
 
-<h2>四、实践笔记</h2>
+## 四、实践笔记
 <ul>
 <li><strong>getItemByIndex 边界：</strong>索引必须在 <code>0</code> 到 <code>getItemCount()-1</code> 范围内，超出会抛出异常</li>
 <li><strong>appendItem vs addRelationship：</strong>appendItem 向 Item 集合添加任意 Item，addRelationship 专门添加关系 Item 并维护关系结构</li>

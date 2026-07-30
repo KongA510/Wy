@@ -49,3 +49,15 @@
   color: var(--vp-c-text-2);
   line-height: 1.6;
 }
+
+/* ===== Responsive sidebar width (wider on large screens) ===== */
+@media (min-width: 1440px) {
+  :root { --vp-sidebar-width: 300px; }
+}
+@media (min-width: 1700px) {
+  :root { --vp-sidebar-width: 330px; }
+}
+@media (min-width: 1920px) {
+  :root { --vp-sidebar-width: 360px; }
+  .VPSidebar { font-size: 15px; }
+}

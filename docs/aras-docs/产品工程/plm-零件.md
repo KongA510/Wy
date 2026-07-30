@@ -3,7 +3,7 @@ title: 零件
 ---
 
 <div>
-<h1>零件</h1>
+# 零件
 <p class="Content_body">零件是任何 BOM（物料清单）管理应用的基本条目，可以是以下分类类型之一：组件、总成、材料或软件。Aras Innovator 系统管理员可根据需要扩展分类。零件可以是外购件或自制件。零件可以有替代件和替换件。零件可以关联物料清单（<a class="glossterm" data-rhwidget="ExpandSpot" data-target="glossary">BOM</a><span class="expanding-content" data-targetname="glossary"> </span>）、已批准的制造商清单（<a class="glossterm" data-rhwidget="ExpandSpot" data-target="glossary1">AML</a><span class="expanding-content" data-targetname="glossary1"> </span>）、已批准的供应商清单（<a class="glossterm" data-rhwidget="ExpandSpot" data-target="glossary2">AVL</a><span class="expanding-content" data-targetname="glossary2"> </span>）、关联文档列表（如图纸或规格书）以及其他许多选项。</p>
 <p class="Content_body">以下是零件的基础数据模型。图中显示的每种关系将在其他主题中详细描述。</p>
 <p class="Content_body_indented"><img alt="" class="Image" :src="'/aras-images/images/PartDataModel.jpg'"></p>

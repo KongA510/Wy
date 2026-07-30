@@ -3,7 +3,7 @@ title: BOM（物料清单）关系
 ---
 
 <div>
-<h1>BOM（物料清单）关系</h1>
+# BOM（物料清单）关系
 <p><a class="glossterm" data-rhwidget="ExpandSpot" data-target="glossary">BOM</a><span class="expanding-content" data-targetname="glossary"> </span>关系是父零件与其各子零件之间的关系，定义在父零件的 BOM 表中。例如，假设我们有一个父零件 F41 涡轮，其 BOM 表中指定了以下零件：11Casing；1smBlade；2smBlade；以及 12Casing Assembly。</p>
 <p>要查看每个子零件的 BOM 关系：</p>
 <ol class="Decimal">

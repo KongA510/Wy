@@ -2,10 +2,10 @@
 title: 属性特性 (PropertyAttribute)
 ---
 
-<h1>getPropertyAttribute / setPropertyAttribute / removePropertyAttribute</h1>
+# getPropertyAttribute / setPropertyAttribute / removePropertyAttribute
 <blockquote><p><strong>管理 Item 属性节点上的 XML 属性（Property Attributes）。</strong>用于读写 AML 中 property 标签上的附加属性（如 select、condition、maxRecords 等）。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、方法签名</h2>
+## 一、方法签名
 
 ```csharp
 // getPropertyAttribute — 获取属性上的 XML attribute
@@ -22,7 +22,7 @@ public void removePropertyAttribute(string propertyName, string attributeName, s
 ```
 
 
-<h2>二、参数说明</h2>
+## 二、参数说明
 <table><thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead><tbody>
 <tr><td><code>propertyName</code></td><td>String</td><td>属性名称（如 "item_number", "name"）</td></tr>
 <tr><td><code>attributeName</code></td><td>String</td><td>XML Attribute 名称（如 "select", "condition", "maxRecords"）</td></tr>
@@ -30,14 +30,14 @@ public void removePropertyAttribute(string propertyName, string attributeName, s
 <tr><td><code>lang</code></td><td>String</td><td>可选，多语言标识（如 "fr", "zh"）</td></tr>
 </tbody></table>
 
-<h2>三、典型 Property Attributes</h2>
+## 三、典型 Property Attributes
 <table><thead><tr><th>Attribute</th><th>用途</th><th>示例值</th></tr></thead><tbody>
 <tr><td><code>condition</code></td><td>AML 查询条件</td><td>eq, gt, lt, like, between</td></tr>
 <tr><td><code>keyed_name</code></td><td>关联的 keyed_name</td><td>用于设置关联 Item 的显示名</td></tr>
 <tr><td><code>xml:lang</code></td><td>多语言标识</td><td>fr, zh, ja, de</td></tr>
 </tbody></table>
 
-<h2>四、代码示例</h2>
+## 四、代码示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -62,7 +62,7 @@ string frenchAttr = item.getPropertyAttribute("description", "condition", "fr");
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>keyed_name 是常用 attribute：</strong>在设置关联 Item 时，除了设置 ID，通常还需要设置 keyed_name attribute</li>
 <li><strong>多语言注意：</strong>带 lang 参数的重载用于读写多语言属性的 attribute</li>

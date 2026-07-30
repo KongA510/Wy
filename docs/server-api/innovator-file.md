@@ -2,12 +2,12 @@
 title: getFileUrl / getFileUrls / getChecksum
 ---
 
-<h1>getFileUrl / getChecksum</h1>
+# getFileUrl / getChecksum
 <blockquote>
 <p><strong>Innovator 提供文件 URL 获取和文件校验功能。</strong>支持单个和批量获取文件 URL，支持不同的 URL 类型和 Vault 类型。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、getFileUrl — 单文件 URL</h2>
+## 一、getFileUrl — 单文件 URL
 
 ```csharp
 // 重载 1：指定 ID 和 UrlType
@@ -23,7 +23,7 @@ string thumbnailUrl = inn.getFileUrl(fileId, UrlType.Thumbnail);
 ```
 
 
-<h2>二、getFileUrls — 批量文件 URL</h2>
+## 二、getFileUrls — 批量文件 URL
 
 ```csharp
 // 重载 1：ArrayList + UrlType
@@ -44,7 +44,7 @@ foreach (string url in urls) {
 ```
 
 
-<h2>三、getChecksum(String)</h2>
+## 三、getChecksum(String)
 
 ```csharp
 // 签名
@@ -62,7 +62,7 @@ string hash = inn.getChecksum(@"C:\temp\document.pdf");
 </table>
 <p><strong>返回值：</strong><code>string</code> — 文件的 128 位哈希值的十六进制表示</p>
 
-<h2>四、UrlType 枚举</h2>
+## 四、UrlType 枚举
 <table>
 <thead><tr><th>值</th><th>说明</th></tr></thead>
 <tbody>
@@ -71,7 +71,7 @@ string hash = inn.getChecksum(@"C:\temp\document.pdf");
 </tbody>
 </table>
 
-<h2>五、VaultUrlType 枚举</h2>
+## 五、VaultUrlType 枚举
 <table>
 <thead><tr><th>值</th><th>说明</th></tr></thead>
 <tbody>
@@ -80,7 +80,7 @@ string hash = inn.getChecksum(@"C:\temp\document.pdf");
 </tbody>
 </table>
 
-<h2>六、完整示例：批量下载附件</h2>
+## 六、完整示例：批量下载附件
 
 ```csharp
 var inn = this.newInnovator();
@@ -116,7 +116,7 @@ if (fileIds.Count > 0) {
 ```
 
 
-<h2>七、实践笔记</h2>
+## 七、实践笔记
 <ul>
 <li><strong>URL 有效期：</strong>返回的 URL 可能包含时间敏感的 token，不应长期缓存</li>
 <li><strong>批量优于逐个：</strong>getFileUrls 一次请求获取多个 URL，减少 HTTP 往返</li>

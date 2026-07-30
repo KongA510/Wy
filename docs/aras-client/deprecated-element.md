@@ -2,13 +2,13 @@
 title: Element（元素节点）
 ---
 
-<h1>Element（已弃用）</h1>
+# Element（已弃用）
 <blockquote>
 <p><strong>命名空间：</strong><code>Aras.Modules.CMF.Public</code></p>
 <p>Element 对象类似于树中的一个节点，是 CMF（Configurable Molding Framework）中表示 UI 元素层级结构的核心对象。它提供了获取标识信息、遍历树结构（查找祖先和后代）、以及访问关联属性项（PropertyItem）的方法。此 API 已被弃用，建议使用新的 CUI 框架替代。</p>
 </blockquote>
 
-<h2>API 成员概览</h2>
+## API 成员概览
 <table>
 <thead>
 <tr>
@@ -71,157 +71,157 @@ title: Element（元素节点）
 </tbody>
 </table>
 
-<h2>API 详情</h2>
+## API 详情
 
-<h3>构造函数</h3>
+### 构造函数
 
-<h4>constructor()</h4>
+#### constructor()
 <p>构造函数，创建 Element 实例。通常不需要直接调用，Element 对象由 <code>Factory</code> 相关方法或 CMF 框架内部创建和返回。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 Aras.Modules.CMF.Public.Element = function();
 ```
 
-    <h4>参数</h4>
-    <p><em>无参数信息</em></p>
-    <h4>返回值</h4>
-    <p><em>新创建的 Element 实例</em></p>
-    <hr />
+#### 参数
+<p><em>无参数信息</em></p>
+#### 返回值
+<p><em>新创建的 Element 实例</em></p>
+<hr />
 
-    <h3>标识属性</h3>
+### 标识属性
 
-    <h4>.id</h4>
-    <p>获取当前 Element 的唯一标识 ID。每个 Element 在 CMF 树结构中都有唯一 ID。</p>
-    <h4>语法</h4>
-    
+#### .id
+<p>获取当前 Element 的唯一标识 ID。每个 Element 在 CMF 树结构中都有唯一 ID。</p>
+#### 语法
+
 ```javascript
 function get_id();
 ```
 
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — Element 的唯一标识 ID</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var elementId = element.id;
 ```
 
-    <hr />
+<hr />
 
-    <h4>.parentId</h4>
-    <p>获取当前 Element 的父级 Element ID。如果当前 Element 是树的根节点，则返回值可能为空。</p>
-    <h4>语法</h4>
-    
+#### .parentId
+<p>获取当前 Element 的父级 Element ID。如果当前 Element 是树的根节点，则返回值可能为空。</p>
+#### 语法
+
 ```javascript
 function get_parentId();
 ```
 
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 父级 Element 的 ID</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var parentId = element.parentId;
 ```
 
-    <hr />
+<hr />
 
-    <h4>.boundItemId</h4>
-    <p>获取当前 Element 绑定的 Aras Item（数据项）的 ID。Element 可以关联到一个具体的 Aras 数据项（如 Part、Document 等），通过此属性可以获取该关联项的 ID。</p>
-    <h4>语法</h4>
-    
+#### .boundItemId
+<p>获取当前 Element 绑定的 Aras Item（数据项）的 ID。Element 可以关联到一个具体的 Aras 数据项（如 Part、Document 等），通过此属性可以获取该关联项的 ID。</p>
+#### 语法
+
 ```javascript
 function get_boundItemId();
 ```
 
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 绑定的 Item 的 ID</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var boundItemId = element.boundItemId;
 ```
 
-    <hr />
+<hr />
 
-    <h4>.type</h4>
-    <p>获取当前 Element 对应的 cmf_ElementType Item 的名称。ElementType 定义了该 Element 在 CMF 框架中的行为类型。</p>
-    <h4>语法</h4>
-    
+#### .type
+<p>获取当前 Element 对应的 cmf_ElementType Item 的名称。ElementType 定义了该 Element 在 CMF 框架中的行为类型。</p>
+#### 语法
+
 ```javascript
 function get_type();
 ```
 
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — cmf_ElementType 的名称</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var elementType = element.type;
 ```
 
-    <hr />
+<hr />
 
-    <h4>.sortOrder</h4>
-    <p>获取当前 Element 的排序顺序值。用于在同一层级的多个 Element 中确定排列顺序。</p>
-    <h4>语法</h4>
-    
+#### .sortOrder
+<p>获取当前 Element 的排序顺序值。用于在同一层级的多个 Element 中确定排列顺序。</p>
+#### 语法
+
 ```javascript
 function get_sortOrder();
 ```
 
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 排序顺序</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var sortOrderOfElement = element.sortOrder;
 ```
 
-    <hr />
+<hr />
 
-    <h3>树结构遍历方法</h3>
+### 树结构遍历方法
 
-    <h4>.findAncestorElement(elementType)</h4>
-    <p>在任意层级中查找满足指定 ElementType 名称的祖先 Element。与直接访问 <code>.parentId</code> 不同，此方法会沿父链向上遍历，直到找到匹配的元素。这在嵌套结构较深时非常有用，例如需要找到外层容器类型的 Element。</p>
-    <h4>参数</h4>
-    <table>
-      <thead>
-        <tr>
-          <th>参数</th>
-          <th>类型</th>
-          <th>说明</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>elementType</code></td>
-          <td><code>string</code></td>
-          <td>要查找的 cmf_ElementType 名称</td>
-        </tr>
-      </tbody>
-    </table>
-    <h4>返回值</h4>
-    <p><strong>Aras.Modules.CMF.Public.Element</strong> — 找到的祖先 Element，若未找到则返回 <code>null</code></p>
-    <h4>示例</h4>
-    
+#### .findAncestorElement(elementType)
+<p>在任意层级中查找满足指定 ElementType 名称的祖先 Element。与直接访问 <code>.parentId</code> 不同，此方法会沿父链向上遍历，直到找到匹配的元素。这在嵌套结构较深时非常有用，例如需要找到外层容器类型的 Element。</p>
+#### 参数
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>elementType</code></td>
+<td><code>string</code></td>
+<td>要查找的 cmf_ElementType 名称</td>
+</tr>
+</tbody>
+</table>
+#### 返回值
+<p><strong>Aras.Modules.CMF.Public.Element</strong> — 找到的祖先 Element，若未找到则返回 <code>null</code></p>
+#### 示例
+
 ```javascript
 // 官网示例：根据 ElementType 名称查找祖先元素
 var foundElement = element.findAncestorElement('CMF Element Type Name');
 ```
 
-<h4>实用示例：在事件回调中查找祖先 Element</h4>
+#### 实用示例：在事件回调中查找祖先 Element
 
 ```javascript
 // 在 CMF 事件处理中，从当前元素向上查找特定类型的祖先
@@ -248,9 +248,9 @@ function onElementClick(contextElement) {
 
 <hr />
 
-<h4>.findDescendantElements(elementType, showCandidate)</h4>
+#### .findDescendantElements(elementType, showCandidate)
 <p>在任意层级中查找所有满足指定 ElementType 名称的后代 Element。与只获取直接子级不同，此方法会递归遍历整个子树，返回所有匹配的元素数组。常用于批量获取某类型的子元素（如获取表单中所有输入框）。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -272,16 +272,16 @@ function onElementClick(contextElement) {
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>array of Aras.Modules.CMF.Public.Element</strong> — 匹配的后代 Element 数组</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 官网示例：根据 ElementType 名称查找所有后代元素
 var foundElements = element.findDescendantElements('CMF Element Type Name');
 ```
 
-<h4>实用示例：收集表单中的所有字段</h4>
+#### 实用示例：收集表单中的所有字段
 
 ```javascript
 // 在 CMF 树中递归查找所有输入框类型的后代 Element
@@ -321,11 +321,11 @@ var allFields = collectAllFields(rootElement);
 
 <hr />
 
-<h3>属性项访问方法</h3>
+### 属性项访问方法
 
-<h4>.getPropertyItem(propertyItemType)</h4>
+#### .getPropertyItem(propertyItemType)
 <p>获取当前 Element 中指定类型的单个 PropertyItem。PropertyItem 代表树节点中的一个"网格单元格"——即 Element 的某个属性值。此方法可以获取 Grid 中可见和不可见的属性项。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -342,16 +342,16 @@ var allFields = collectAllFields(rootElement);
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>Aras.Modules.CMF.Public.PropertyItem</strong> — 匹配的 PropertyItem 对象，若未找到则返回 <code>null</code></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 官网示例：根据属性类型名称获取属性项
 var property = element.getPropertyItem('CMF Property Type Name');
 ```
 
-<h4>实用示例：读取和设置 Element 属性值</h4>
+#### 实用示例：读取和设置 Element 属性值
 
 ```javascript
 // 获取并修改 Element 的属性值
@@ -383,20 +383,20 @@ function getElementLabel(element) {
 
 <hr />
 
-<h4>.getPropertyItems()</h4>
+#### .getPropertyItems()
 <p>获取当前 Element 的所有 PropertyItem。PropertyItem 代表树节点的"网格单元格"——包含 Element 在 Grid 中可见和不可见的所有属性。返回的数组包含该 Element 的所有属性项，可用于遍历、读取或修改。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>array of Aras.Modules.CMF.Public.PropertyItem</strong> — 该 Element 的所有 PropertyItem 数组</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 官网示例：获取 Element 的所有属性项
 var elementProperties = element.getPropertyItems();
 ```
 
-<h4>实用示例：遍历并输出 Element 的所有属性</h4>
+#### 实用示例：遍历并输出 Element 的所有属性
 
 ```javascript
 // 遍历输出 Element 的所有属性信息
@@ -431,7 +431,7 @@ function copyProperties(sourceElement, targetElement) {
 
 <hr />
 
-<h3>综合示例：在 CMF 树中操作 Element</h3>
+### 综合示例：在 CMF 树中操作 Element
 
 ```javascript
 // 综合使用 Element API 进行树结构操作
@@ -486,7 +486,7 @@ function processCMFTree(rootElement) {
 
 <hr />
 
-<h3>关系图</h3>
+### 关系图
 
 ```text
 Tree（树）

@@ -2,12 +2,12 @@
 title: 标识与类型
 ---
 
-<h1>标识与类型</h1>
+# 标识与类型
 <blockquote>
 <p><strong>Item 的标识和类型操作方法处理 Item ID 的获取和设置。</strong>包括 getID、setID、setNewID、getNewID、getAction、setAction、getType、setType。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、getID() — 获取 Item ID</h2>
+## 一、getID() — 获取 Item ID
 
 ```csharp
 // 签名
@@ -19,7 +19,7 @@ string partId = item.getID();
 
 <p>根据 AML 标准，ID 可以设置在 <code>&lt;Item&gt;</code> 的 <code>id</code> 属性中，或作为子标签 <code>&lt;id&gt;</code>，或两者都有。getID() 优先取属性中的 id。</p>
 
-<h2>二、setID(String) — 设置 Item ID</h2>
+## 二、setID(String) — 设置 Item ID
 
 ```csharp
 // 签名
@@ -34,7 +34,7 @@ newPart.setID(inn.getNewID());
 ```
 
 
-<h2>三、setNewID() — 自动设置新 ID</h2>
+## 三、setNewID() — 自动设置新 ID
 
 ```csharp
 // 签名
@@ -47,7 +47,7 @@ newDoc.setNewID();  // 自动分配新 ID
 ```
 
 
-<h2>四、getNewID() — 生成新 ID</h2>
+## 四、getNewID() — 生成新 ID
 
 ```csharp
 // 签名
@@ -59,7 +59,7 @@ string newId = item.getNewID();
 ```
 
 
-<h2>五、Action 和 Type 操作</h2>
+## 五、Action 和 Type 操作
 
 ```csharp
 // getAction / setAction
@@ -78,7 +78,7 @@ string action = item.getAction();
 ```
 
 
-<h2>六、完整示例</h2>
+## 六、完整示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -108,7 +108,7 @@ for (int i = 0; i < results.getItemCount(); i++) {
 ```
 
 
-<h2>七、实践笔记</h2>
+## 七、实践笔记
 <ul>
 <li><strong>ID 唯一性：</strong>getNewID() 基于 GUID，冲突概率极低，可安全用于客户端预分配</li>
 <li><strong>id 属性 vs id 子标签：</strong>setID 同时设置两者，确保兼容性</li>

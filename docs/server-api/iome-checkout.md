@@ -2,12 +2,12 @@
 title: CheckoutManager
 ---
 
-<h1>CheckoutManager</h1>
+# CheckoutManager
 <blockquote>
 <p><strong>CheckoutManager 用于管理文件的签出（Check-out）操作。</strong>从 Aras Vault 服务器下载文件到本地工作目录，并将 File Item 标记为签出状态，防止并发编辑冲突。命名空间：Aras.IOME，程序集：IOME.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、类定义</h2>
+## 一、类定义
 
 ```csharp
 // CheckoutManager — 文件签出管理器
@@ -43,7 +43,7 @@ public enum CheckoutManagerFlags
 ```
 
 
-<h2>二、签出流程</h2>
+## 二、签出流程
 
 ```text
 1. 查询 File Item（获取文件元数据）
@@ -56,7 +56,7 @@ public enum CheckoutManagerFlags
 ```
 
 
-<h2>三、C# 代码示例</h2>
+## 三、C# 代码示例
 
 ```csharp
 using Aras.IOM;
@@ -111,7 +111,7 @@ var result2 = checkoutMgr.Checkout(
 ```
 
 
-<h2>四、完整示例：批量签出</h2>
+## 四、完整示例：批量签出
 
 ```csharp
 var inn = this.newInnovator();
@@ -163,7 +163,7 @@ if (results.getItemCount() > 0)
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>并发控制：</strong>CheckoutManager 确保同一文件不会被多个用户同时签出编辑</li>
 <li><strong>本地路径必须是服务器路径：</strong>在服务端 Method 中运行 IOME 操作时，文件路径指向服务器文件系统</li>

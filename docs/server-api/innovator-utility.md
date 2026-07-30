@@ -2,12 +2,12 @@
 title: 工具方法与杂项
 ---
 
-<h1>工具方法</h1>
+# 工具方法
 <blockquote>
 <p><strong>Innovator 类的便捷工具方法集合：getNewID、getNextSequence、getUserID、ConsumeLicense、getI18NSessionContext、getConnection、ScalcMD5 等。</strong>命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、getNewID() — 生成全局唯一 ID</h2>
+## 一、getNewID() — 生成全局唯一 ID
 
 ```csharp
 // 签名
@@ -25,7 +25,7 @@ var result = newPart.apply();
 
 <p><strong>返回值：</strong><code>string</code> — 32 字符十六进制字符串</p>
 
-<h2>二、getNextSequence(String) — 获取序列号</h2>
+## 二、getNextSequence(String) — 获取序列号
 
 ```csharp
 // 签名
@@ -46,7 +46,7 @@ part.setProperty("item_number", $"P-{seq:D6}");
 <tbody><tr><td><code>sequenceName</code></td><td><code>string</code></td><td>在 Aras Sequence ItemType 中定义的序列名称</td></tr></tbody>
 </table>
 
-<h2>三、getUserID() — 获取当前用户 ID</h2>
+## 三、getUserID() — 获取当前用户 ID
 
 ```csharp
 // 签名
@@ -62,7 +62,7 @@ item.setProperty("owned_by_id", inn.getUserID());
 ```
 
 
-<h2>四、ConsumeLicense(String) — 消费许可</h2>
+## 四、ConsumeLicense(String) — 消费许可
 
 ```csharp
 // 签名
@@ -77,7 +77,7 @@ if (licenseResult.isError()) {
 ```
 
 
-<h2>五、getI18NSessionContext() — 国际化上下文</h2>
+## 五、getI18NSessionContext() — 国际化上下文
 
 ```csharp
 // 签名
@@ -91,7 +91,7 @@ string localeFloat = ctx.ConvertFromNeutral("1234.56", "float");
 ```
 
 
-<h2>六、getConnection() — 获取服务器连接</h2>
+## 六、getConnection() — 获取服务器连接
 
 ```csharp
 // 签名
@@ -103,7 +103,7 @@ var conn = inn.getConnection();
 ```
 
 
-<h2>七、ScalcMD5(String) — 静态 MD5 计算</h2>
+## 七、ScalcMD5(String) — 静态 MD5 计算
 
 ```csharp
 // 签名（静态方法）
@@ -115,7 +115,7 @@ string hash = Innovator.ScalcMD5("hello world");
 ```
 
 
-<h2>八、完整示例：创建新 Item 的完整流程</h2>
+## 八、完整示例：创建新 Item 的完整流程
 
 ```csharp
 var inn = this.newInnovator();
@@ -146,7 +146,7 @@ return result;
 ```
 
 
-<h2>九、实践笔记</h2>
+## 九、实践笔记
 <ul>
 <li><strong>getNewID() 是纯客户端操作：</strong>不需要服务器请求，直接在本地生成 GUID</li>
 <li><strong>getNextSequence() 是服务器操作：</strong>每次调用都会访问数据库并递增计数器，注意并发场景</li>

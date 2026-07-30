@@ -2,12 +2,12 @@
 title: applyMethod 详解
 ---
 
-<h1>applyMethod 详解</h1>
+# applyMethod 详解
 <blockquote>
 <p><strong>applyMethod 是 Innovator 类中用于调用服务端 Method 的接口。</strong>它是客户端与服务端 Method 通信的核心桥梁。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、方法签名</h2>
+## 一、方法签名
 
 ```csharp
 // 签名
@@ -19,7 +19,7 @@ public Item applyMethod(string methodName, string body)
 
 <p><strong>返回值：</strong><code>Item</code> — 服务器响应。如果 Method 返回了 <code>inn.newResult(text)</code>，通过 <code>result.getResult()</code> 获取文本内容。</p>
 
-<h2>二、调用流程</h2>
+## 二、调用流程
 
 ```text
 客户端 (Browser/JS)
@@ -38,7 +38,7 @@ public Item applyMethod(string methodName, string body)
 ```
 
 
-<h2>三、Body 参数构造</h2>
+## 三、Body 参数构造
 
 ```csharp
 // 服务端读取
@@ -56,7 +56,7 @@ string data = this.getProperty("data", "");
 <li><strong>JSON 参数 → 不转义！</strong>后端使用 Newtonsoft.Json 直接从标签文本反序列化</li>
 </ul>
 
-<h2>四、.NET 客户端调用示例</h2>
+## 四、.NET 客户端调用示例
 
 ```csharp
 // 独立 .NET 客户端调用
@@ -79,7 +79,7 @@ if (result.isError()) {
 ```
 
 
-<h2>五、服务端 Method 返回方式</h2>
+## 五、服务端 Method 返回方式
 <table>
 <thead><tr><th>返回方式</th><th>前端获取</th><th>适用场景</th></tr></thead>
 <tbody>
@@ -89,7 +89,7 @@ if (result.isError()) {
 </tbody>
 </table>
 
-<h2>六、方法查找机制</h2>
+## 六、方法查找机制
 <p>Aras 服务器按以下顺序查找 Method：</p>
 <ol>
 <li>在当前 ItemType 的 Method（如 Part 上的 Method）</li>
@@ -98,7 +98,7 @@ if (result.isError()) {
 </ol>
 <p>全局 Method 的命名约定通常以 <code>IC_</code>、<code>PE_</code>、<code>Labs_</code> 等前缀开头。</p>
 
-<h2>七、实践笔记</h2>
+## 七、实践笔记
 <ul>
 <li><strong>Method 名称区分大小写：</strong>确保大小写与 Aras 中注册的完全一致</li>
 <li><strong>超大 Body：</strong>如果 XML Body 很大，考虑用 JSON 格式的单个参数代替多个 XML 子元素</li>

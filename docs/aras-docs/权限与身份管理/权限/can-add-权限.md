@@ -3,7 +3,7 @@ title: 可添加权限
 ---
 
 <div>
-<h1>可添加权限</h1>
+# 可添加权限
 <p class="Content_body">可添加权限允许指定的身份组创建或添加 ItemType（物料类型）的实例。与目录访问权限一样，此权限直接添加到 ItemType 上。如果没有此权限，任何人都无法创建或添加实例。</p>
 <p class="Procedure_Title">设置可添加权限</p>
 

@@ -2,15 +2,15 @@
 title: CUI 网格与插件
 ---
 
-<h1>CUI 网格与插件</h1>
+# CUI 网格与插件
 <blockquote>
 <p>CUI Grid 将标准 Grid 组件注入业务逻辑。通过<strong>插件（Plugin）机制</strong>实现功能扩展，插件基于 CUI Location 或 ItemType 动态应用到 Grid 上。</p>
 </blockquote>
 
-<h2>一、位置</h2>
+## 一、位置
 <p><code>Innovator/Client/Modules/cui/cuiGridControl.ts</code></p>
 
-<h2>二、公共 API</h2>
+## 二、公共 API
 
 ```typescript
 // cuiGridControl — CUI 网格入口
@@ -28,7 +28,7 @@ function cuiGrid(
 ```
 
 
-<h3>componentData 参数</h3>
+### componentData 参数
 <table>
 <thead><tr><th>字段</th><th>说明</th></tr></thead>
 <tbody>
@@ -38,7 +38,7 @@ function cuiGrid(
 </tbody>
 </table>
 
-<h3>options 参数</h3>
+### options 参数
 <table>
 <thead><tr><th>字段</th><th>说明</th></tr></thead>
 <tbody>
@@ -48,12 +48,12 @@ function cuiGrid(
 </tbody>
 </table>
 
-<h2>三、插件机制（Plugin System）</h2>
+## 三、插件机制（Plugin System）
 
-<h3>3.1 设计模式</h3>
+### 3.1 设计模式
 <p>插件基于<strong>责任链模式（Chain of Responsibility）</strong>——每个插件是一个 JS 对象，可以访问 Grid 实例和选项，通过装饰器模式扩展 Grid 的行为。</p>
 
-<h3>3.2 插件结构</h3>
+### 3.2 插件结构
 
 ```javascript
 // 网格插件标准结构
@@ -84,7 +84,7 @@ const myPlugin = {
 ```
 
 
-<h3>3.3 完整插件示例</h3>
+### 3.3 完整插件示例
 
 ```javascript
 // 右键菜单插件
@@ -150,7 +150,7 @@ const rowHighlightPlugin = {
 ```
 
 
-<h2>四、在 CUI 中注册 Grid 插件</h2>
+## 四、在 CUI 中注册 Grid 插件
 
 ```javascript
 // 方式1：通过 cuiGridControl 传入插件
@@ -173,7 +173,7 @@ cuiGridControl(gridComponent, componentData, {
 <strong>⚠️ 限制</strong>：插件无法在 Grid 运行时动态添加。必须在调用 <code>cuiGrid</code> 或 <code>cuiGridControl</code> 时一次性提供所有插件。
 </div>
 
-<h2>五、插件应用顺序</h2>
+## 五、插件应用顺序
 
 ```text
 cuiGrid 初始化流程：

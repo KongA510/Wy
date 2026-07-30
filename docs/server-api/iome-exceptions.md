@@ -2,10 +2,10 @@
 title: 异常类型
 ---
 
-<h1>IOME 异常类型</h1>
+# IOME 异常类型
 <blockquote><p><strong>IOME 文件管理操作中的异常类型。</strong>包含冲突检测结果无效异常和 Item 级别错误异常。命名空间：Aras.IOME，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、异常类定义</h2>
+## 一、异常类定义
 
 ```csharp
 // InvalidConflictDetectionResult — 冲突检测结果无效异常
@@ -33,7 +33,7 @@ public class ItemErrorException : Exception
 ```
 
 
-<h2>二、代码示例</h2>
+## 二、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -136,7 +136,7 @@ void LogIomeError(string operation, Exception ex)
 ```
 
 
-<h2>三、异常捕获顺序</h2>
+## 三、异常捕获顺序
 
 ```csharp
 // 推荐捕获顺序（从具体到泛化）
@@ -163,7 +163,7 @@ catch (Exception ex)                       // 4. 通用兜底
 ```
 
 
-<h2>四、实践笔记</h2>
+## 四、实践笔记
 <ul>
 <li><strong>冲突检测：</strong>InvalidConflictDetectionResult 表明签入的版本与服务器不一致，通常是因为其他用户已签入更新版本</li>
 <li><strong>ItemErrorException 不等于 Item.isError：</strong>前者是 .NET 异常，后者是 AML 操作返回的错误 Item</li>

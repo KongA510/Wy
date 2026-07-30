@@ -3,7 +3,7 @@ title: WBS
 ---
 
 <div>
-<h1>工作分解结构（WBS）</h1>
+# 工作分解结构（WBS）
 <p class="Content_body">WBS 定义为工作分解结构（Work Breakdown Structure）。WBS 是项目树中根节点直接下的元素，它包含其他元素，如活动、里程碑，甚至嵌套的 WBS。WBS 的目的是允许用户将项目分解为可管理的部分或阶段，由 WBS 表示，每个 WBS 有一个独特的可交付成果。在里程碑计划中，每个 WBS 应被分配一个阶段，并且其中至少包含一个里程碑。WBS 还可以嵌套。以下是项目结构的一个示例：</p>
 <p class="Content_body_indented"><img :src="'/aras-images/WBS.jpg'" alt="" class="Image"></p>
 

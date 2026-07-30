@@ -2,15 +2,15 @@
 title: CUI 工具栏
 ---
 
-<h1>CUI 工具栏</h1>
+# CUI 工具栏
 <blockquote>
 <p>CUI Toolbar 将<strong>工具栏组件</strong>与<strong>CUI 数据</strong>绑定，根据当前 Location 请求对应的 CommandBarSection 数据，为每种 CommandBarItem 类型提供对应的渲染和事件处理。</p>
 </blockquote>
 
-<h2>一、位置</h2>
+## 一、位置
 <p><code>Innovator/Client/Modules/cui/cuiToolbar.js</code></p>
 
-<h2>二、公共 API</h2>
+## 二、公共 API
 
 ```javascript
 // 模块导出单一函数
@@ -22,7 +22,7 @@ function cuiToolbar(
 ```
 
 
-<h3>返回值</h3>
+### 返回值
 <table>
 <thead><tr><th>方法</th><th>说明</th></tr></thead>
 <tbody>
@@ -31,7 +31,7 @@ function cuiToolbar(
 </tbody>
 </table>
 
-<h2>三、支持的控件类型</h2>
+## 三、支持的控件类型
 <p>CommandBarItems 可以渲染为多种类型的控件，不仅仅是按钮：</p>
 <table>
 <thead><tr><th>Item 类型</th><th>渲染为</th><th>说明</th></tr></thead>
@@ -46,7 +46,7 @@ function cuiToolbar(
 </tbody>
 </table>
 
-<h2>四、数据定义</h2>
+## 四、数据定义
 <p>以 Search Command Bar 为例：</p>
 
 ```text
@@ -70,9 +70,9 @@ SearchViewLayout (CUI Layout)
 ```
 
 
-<h2>五、完整使用示例</h2>
+## 五、完整使用示例
 
-<h3>5.1 在 CUI Layout 中注册工具栏</h3>
+### 5.1 在 CUI Layout 中注册工具栏
 
 ```javascript
 // CUI 数据定义（服务端返回）
@@ -95,7 +95,7 @@ const initToolbarControl = (
 ```
 
 
-<h3>5.2 直接使用 cuiToolbar</h3>
+### 5.2 直接使用 cuiToolbar
 
 ```javascript
 import { cuiToolbar } from './cui/cuiToolbar';
@@ -121,7 +121,7 @@ cuiToolbar(toolbarEl, 'Item_View_Commands', {
 ```
 
 
-<h3>5.3 工具栏按钮事件定义</h3>
+### 5.3 工具栏按钮事件定义
 
 ```javascript
 // CommandBarItem 的事件处理
@@ -141,7 +141,7 @@ const commandBarItem = {
 ```
 
 
-<h2>六、CUI Toolbar 与纯 Toolbar 组件的区别</h2>
+## 六、CUI Toolbar 与纯 Toolbar 组件的区别
 <table>
 <thead><tr><th>方面</th><th>CUI Toolbar</th><th>纯 Toolbar 组件</th></tr></thead>
 <tbody>

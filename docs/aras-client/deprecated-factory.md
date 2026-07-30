@@ -2,13 +2,13 @@
 title: Factory（工厂类）
 ---
 
-<h1>Factory（已弃用）</h1>
+# Factory（已弃用）
 <blockquote>
 <p><strong>命名空间：</strong><code>Aras.Modules.CMF.Public</code></p>
 <p>Factory 采用"工厂方法"设计模式，用于创建 CMF 框架中的各种类实例，如 MappingModel、CmfStyle 等，同时也提供了在 CMF 元素树中查找子孙元素的能力。</p>
 </blockquote>
 
-<h2>API 成员概览</h2>
+## API 成员概览
 <table>
 <thead>
 <tr>
@@ -41,43 +41,43 @@ title: Factory（工厂类）
 </tbody>
 </table>
 
-<h2>API 详情</h2>
+## API 详情
 
-<h3>constructor()</h3>
+### constructor()
 <p>构造函数，创建 Factory 实例。通常由 CMF 框架内部调用，通过 <code>inArgs.factory</code> 获取实例。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 Aras.Modules.CMF.Public.Factory = function();
 ```
 
-    <h4>参数</h4>
-    <p><em>无参数信息</em></p>
-    <h4>返回值</h4>
-    <p><em>无信息提供</em></p>
-    <hr />
+#### 参数
+<p><em>无参数信息</em></p>
+#### 返回值
+<p><em>无信息提供</em></p>
+<hr />
 
-    <h3>createMappingModel()</h3>
-    <p>创建一个新的 <code>Aras.Modules.CMF.Public.MappingModel</code> 实例。MappingModel 用于建立 CMF 元素属性与数据源之间的映射关系。</p>
-    <h4>签名</h4>
-    
+### createMappingModel()
+<p>创建一个新的 <code>Aras.Modules.CMF.Public.MappingModel</code> 实例。MappingModel 用于建立 CMF 元素属性与数据源之间的映射关系。</p>
+#### 签名
+
 ```javascript
 Factory.prototype.createMappingModel = function();
 ```
 
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>Aras.Modules.CMF.Public.MappingModel</strong> — 新创建的 MappingModel 实例</p>
-<h4>示例</h4>
-<h5>原始示例</h5>
+#### 示例
+##### 原始示例
 
 ```javascript
 var mappingModel = inArgs.factory.createMappingModel();
 ```
 
-    <h5>创建并配置 MappingModel 进行数据绑定</h5>
-    
+##### 创建并配置 MappingModel 进行数据绑定
+
 ```javascript
 // 在 CMF 方法（如 Compute Method）中，通过 inArgs.factory 获取 Factory 实例
 // 创建 MappingModel 用于建立元素属性与数据源的映射
@@ -92,7 +92,7 @@ mappingModel.setTargetProperty("my_PartNumber");
 ```
 
 
-<h5>在配置元素中批量创建 MappingModel</h5>
+##### 在配置元素中批量创建 MappingModel
 
 ```javascript
 // CMF 元素的事件处理方法中可获取 factory 实例
@@ -116,41 +116,41 @@ function setupElementMappings(contextElement) {
 
 <hr />
 
-<h3>findDescendantElements()</h3>
+### findDescendantElements()
 <p>从根节点（root Node）中查找指定元素类型名称的子孙元素。可以控制是否仅返回候选（candidate）元素。此方法在 CMF 树结构中递归搜索，返回匹配的 Element 数组。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 Factory.prototype.findDescendantElements = function(elementType, showCandidate);
 ```
 
-    <h4>参数</h4>
-    <table>
-      <thead>
-        <tr>
-          <th>参数</th>
-          <th>类型</th>
-          <th>说明</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>elementType</code></td>
-          <td><code>string</code></td>
-          <td>要查找的元素类型名称（如 <code>"Field"</code>、<code>"Group"</code>、<code>"Tab"</code> 等）</td>
-        </tr>
-        <tr>
-          <td><code>showCandidate</code></td>
-          <td><code>boolean</code></td>
-          <td>是否包含候选元素（<code>true</code> 表示包含，<code>false</code> 表示仅返回非候选元素）</td>
-        </tr>
-      </tbody>
-    </table>
-    <h4>返回值</h4>
-    <p><strong>array of Aras.Modules.CMF.Public.Element</strong> — 匹配的 Element 对象数组</p>
-    <h4>示例</h4>
-    <h5>原始示例</h5>
-    
+#### 参数
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>elementType</code></td>
+<td><code>string</code></td>
+<td>要查找的元素类型名称（如 <code>"Field"</code>、<code>"Group"</code>、<code>"Tab"</code> 等）</td>
+</tr>
+<tr>
+<td><code>showCandidate</code></td>
+<td><code>boolean</code></td>
+<td>是否包含候选元素（<code>true</code> 表示包含，<code>false</code> 表示仅返回非候选元素）</td>
+</tr>
+</tbody>
+</table>
+#### 返回值
+<p><strong>array of Aras.Modules.CMF.Public.Element</strong> — 匹配的 Element 对象数组</p>
+#### 示例
+##### 原始示例
+
 ```javascript
 var cmfElements = inArgs.factory.findDescendantElements(
     'CMF Element Type Name'
@@ -158,7 +158,7 @@ var cmfElements = inArgs.factory.findDescendantElements(
 ```
 
 
-<h5>查找所有 Field 类型元素并读取属性</h5>
+##### 查找所有 Field 类型元素并读取属性
 
 ```javascript
 // 在 CMF 表单上下文中查找所有 Field 类型的子孙元素
@@ -176,7 +176,7 @@ for (var i = 0; i < fieldElements.length; i++) {
 ```
 
 
-<h5>包含候选元素 — 查找所有 Group 并统计子元素</h5>
+##### 包含候选元素 — 查找所有 Group 并统计子元素
 
 ```javascript
 // 包含候选元素（showCandidate = true），获取完整列表
@@ -193,27 +193,27 @@ for (var i = 0; i < allGroups.length; i++) {
 
 <hr />
 
-<h3>createCmfStyle()</h3>
+### createCmfStyle()
 <p>创建一个新的 <code>Aras.Modules.CMF.Public.CmfStyle</code> 实例。CmfStyle 用于定义 CMF 元素的样式，如字体、颜色、边距等外观属性。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 Factory.prototype.createCmfStyle = function();
 ```
 
-    <h4>参数</h4>
-    <p><em>无参数</em></p>
-    <h4>返回值</h4>
-    <p><strong>Aras.Modules.CMF.Public.CmfStyle</strong> — 新创建的 CmfStyle 实例</p>
-    <h4>示例</h4>
-    <h5>原始示例</h5>
-    
+#### 参数
+<p><em>无参数</em></p>
+#### 返回值
+<p><strong>Aras.Modules.CMF.Public.CmfStyle</strong> — 新创建的 CmfStyle 实例</p>
+#### 示例
+##### 原始示例
+
 ```javascript
 var cmfStyle = inArgs.factory.createCmfStyle();
 ```
 
 
-<h5>创建并配置 CmfStyle 应用于元素</h5>
+##### 创建并配置 CmfStyle 应用于元素
 
 ```javascript
 // 创建 CmfStyle 实例并设置样式属性
@@ -238,7 +238,7 @@ myElement.setCmfStyle(cmfStyle);
 ```
 
 
-<h5>为不同类型元素批量创建统一样式</h5>
+##### 为不同类型元素批量创建统一样式
 
 ```javascript
 // 为表单中的标签元素统一设置样式
@@ -266,7 +266,7 @@ function applyLabelStyle(contextElement) {
 
 <hr />
 
-<h3>综合示例：在 CMF Compute Method 中使用 Factory</h3>
+### 综合示例：在 CMF Compute Method 中使用 Factory
 
 ```javascript
 // CMF Compute Method 是 Factory 最常用的上下文

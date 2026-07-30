@@ -2,12 +2,12 @@
 title: AML 分页查询
 ---
 
-<h1>AML 分页查询</h1>
+# AML 分页查询
 <blockquote>
 <p>在 Aras Innovator 中使用 AML 的 <code>page</code> / <code>pagesize</code> 属性实现分页查询，并通过独立计数查询或 <code>fetch</code> 标签获取总数据量与总页数。适用于前端 Grid 分页、报表分批加载、API 分页接口等场景。</p>
 </blockquote>
 
-<h2>一、AML 分页属性</h2>
+## 一、AML 分页属性
 <p>Aras AML 的 <code>&lt;Item&gt;</code> 标签原生支持两个分页属性：</p>
 
 <table>
@@ -24,7 +24,7 @@ title: AML 分页查询
 <strong>💡 重要提示</strong>：AML 的 <code>&lt;Item&gt;</code> 查询结果<strong>不会自动返回总记录数</strong>。<code>getItemCount()</code> 返回的只是<strong>当前结果集</strong>中的 Item 数量（即当前页的条数），而非符合条件的总记录数。
 </div>
 
-<h2>二、基础分页 AML</h2>
+## 二、基础分页 AML
 <p>最基础的分页查询 — 通过 <code>page</code> 和 <code>pagesize</code> 控制返回范围：</p>
 
 
@@ -59,9 +59,9 @@ for (int i = 0; i < currentPageCount; i++) {
 ```
 
 
-<h2>三、获取总数据量 — 三套方案</h2>
+## 三、获取总数据量 — 三套方案
 
-<h3>方案一：独立计数查询（推荐，最可靠）</h3>
+### 方案一：独立计数查询（推荐，最可靠）
 <p>核心思路：<strong>相同的筛选条件 + 最小 select + 不分页</strong>，对返回结果调用 <code>getItemCount()</code> 即为总条数。</p>
 
 
@@ -126,7 +126,7 @@ return this.getInnovator().newResult(
 <strong>⚠️ 注意</strong>：两次查询之间数据可能发生变化（并发增删），对一致性要求极高的场景需加事务保护。
 </div>
 
-<h3>方案二：合并 AML 一次请求（减网络往返）</h3>
+### 方案二：合并 AML 一次请求（减网络往返）
 <p>通过一条 AML 同时完成计数+分页，利用 <code>getItemByIndex()</code> 分别获取两个结果集：</p>
 
 
@@ -155,7 +155,7 @@ int pageItemCount = pageResult.getItemCount();
 ```
 
 
-<h3>方案三：服务端方法封装（带完整分页信息返回）</h3>
+### 方案三：服务端方法封装（带完整分页信息返回）
 <p>将分页逻辑封装为一个可复用的服务端 Method，返回结构化结果：</p>
 
 
@@ -213,9 +213,9 @@ return response;
 ```
 
 
-<h2>四、前端调用示例</h2>
+## 四、前端调用示例
 
-<h3>Aras Grid Toolbar 按钮调用</h3>
+### Aras Grid Toolbar 按钮调用
 
 ```javascript
 // 客户端 JS — 调用服务端分页方法
@@ -242,7 +242,7 @@ function onPaginateClick(page, pageSize) {
 ```
 
 
-<h3>REST API 分页调用</h3>
+### REST API 分页调用
 
 ```json
 POST /InnovatorServer/Server/InnovatorServer.aspx
@@ -258,7 +258,7 @@ Content-Type: text/xml
 ```
 
 
-<h2>五、完整封装示例 — 通用分页 Method</h2>
+## 五、完整封装示例 — 通用分页 Method
 <p>以下是生产级封装，支持动态 ItemType、自定义 where、order_by、分页：</p>
 
 
@@ -344,12 +344,12 @@ return response;
 ```
 
 
-<h2>六、注意事项与最佳实践</h2>
+## 六、注意事项与最佳实践
 
-<h3>1. pagesize 上限</h3>
+### 1. pagesize 上限
 <p>Aras 服务端有默认的 <code>max_records</code> 限制（通常为 1000），即使不指定 <code>page</code>/<code>pagesize</code>，单次查询也不会返回超过此上限的数据。分页时建议 <strong>pageSize ≤ 200</strong>。</p>
 
-<h3>2. 计数查询性能</h3>
+### 2. 计数查询性能
 <p>计数查询务必使用最小 <code>select="id"</code>，避免不必要的字段查询和关系展开。对于百万级数据，可考虑：</p>
 <ul>
 <li>使用 <code>where</code> 属性直接写 SQL 而非 AML 条件元素</li>
@@ -357,7 +357,7 @@ return response;
 <li>避免在计数查询中使用 <code>&lt;Relationships&gt;</code> 展开</li>
 </ul>
 
-<h3>3. 并发一致性</h3>
+### 3. 并发一致性
 <p>计数查询与分页查询不是原子操作。在高并发场景下，两次查询之间数据可能增删，导致：</p>
 <ul>
 <li>最后一页数据量少于 pageSize（可接受）</li>
@@ -365,7 +365,7 @@ return response;
 </ul>
 <p>如需严格一致性，在数据库层面使用快照隔离。</p>
 
-<h3>4. 排序稳定性</h3>
+### 4. 排序稳定性
 <p>始终使用 <code>order_by</code> 指定排序，确保跨页结果一致。推荐按 <code>id</code> 或 <code>created_on</code> 排序作为稳定排序键：</p>
 
 ```xml
@@ -377,7 +377,7 @@ return response;
 ```
 
 
-<h3>5. select 字段选择</h3>
+### 5. select 字段选择
 <table>
 <thead>
 <tr><th>查询用途</th><th>推荐 select</th><th>原因</th></tr>
@@ -389,7 +389,7 @@ return response;
 </tbody>
 </table>
 
-<h2>七、总结</h2>
+## 七、总结
 <table>
 <thead>
 <tr><th>场景</th><th>推荐方案</th></tr>

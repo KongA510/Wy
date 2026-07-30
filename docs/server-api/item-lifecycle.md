@@ -2,12 +2,12 @@
 title: 生命周期与工作流
 ---
 
-<h1>生命周期与工作流</h1>
+# 生命周期与工作流
 <blockquote>
 <p><strong>Item 提供生命周期推进、工作流实例化和锁定/解锁操作。</strong>这些方法均为服务器通信方法。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、promote(String) — 生命周期推进</h2>
+## 一、promote(String) — 生命周期推进
 
 ```csharp
 // 签名
@@ -26,7 +26,7 @@ if (result.isError()) {
 ```
 
 
-<h2>二、instantiateWorkflow(String) — 实例化工作流</h2>
+## 二、instantiateWorkflow(String) — 实例化工作流
 
 ```csharp
 // 签名
@@ -42,7 +42,7 @@ var result = item.instantiateWorkflow(workflowMapId);
 ```
 
 
-<h2>三、lockItem / unlockItem — 锁定/解锁</h2>
+## 三、lockItem / unlockItem — 锁定/解锁
 
 ```csharp
 // lockItem() — 锁定 Item
@@ -58,7 +58,7 @@ var unlockResult = item.unlockItem();
 ```
 
 
-<h2>四、fetchLockStatus / getLockStatus</h2>
+## 四、fetchLockStatus / getLockStatus
 
 ```csharp
 // fetchLockStatus() — 从服务器获取锁定状态
@@ -73,7 +73,7 @@ string lockStatus = item.getLockStatus();
 ```
 
 
-<h2>五、已废弃的工作流方法</h2>
+## 五、已废弃的工作流方法
 
 ```csharp
 // 以下方法均已废弃
@@ -84,7 +84,7 @@ string lockStatus = item.getLockStatus();
 ```
 
 
-<h2>六、完整示例：推进审批流</h2>
+## 六、完整示例：推进审批流
 
 ```csharp
 var inn = this.newInnovator();
@@ -125,7 +125,7 @@ unlock.unlockItem();
 ```
 
 
-<h2>七、实践笔记</h2>
+## 七、实践笔记
 <ul>
 <li><strong>promote 触发事件：</strong>每次 promote 都会执行 onBeforePromote 和 onAfterPromote 事件方法</li>
 <li><strong>promote 的权限：</strong>需要目标状态的 Promote 权限，由 Identity 和 Permission 控制</li>

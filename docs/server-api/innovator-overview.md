@@ -2,12 +2,12 @@
 title: Innovator 类概述
 ---
 
-<h1>Innovator 类概述</h1>
+# Innovator 类概述
 <blockquote>
 <p><strong>Innovator 类是 Aras IOM 的核心入口点。</strong>一个 Innovator 实例可被视为与 Innovator 服务器的连接通道，包含登录/登出、创建 Item 实例、发送原始 AML 到服务器以及若干便捷方法。</p>
 </blockquote>
 
-<h2>一、基本信息</h2>
+## 一、基本信息
 <table>
 <thead><tr><th>属性</th><th>值</th></tr></thead>
 <tbody>
@@ -19,7 +19,7 @@ title: Innovator 类概述
 </tbody>
 </table>
 
-<h2>二、核心职责</h2>
+## 二、核心职责
 <ul>
 <li><strong>连接管理：</strong>与 Innovative 服务器的登录/登出</li>
 <li><strong>Item 工厂：</strong>创建 Item 实例的多种重载方法</li>
@@ -31,7 +31,7 @@ title: Innovator 类概述
 <li><strong>工具方法：</strong>获取新 ID、获取下一序列号、获取用户信息等</li>
 </ul>
 
-<h2>三、完整方法列表（27 个）</h2>
+## 三、完整方法列表（27 个）
 <table>
 <thead><tr><th>分类</th><th>方法</th><th>说明</th></tr></thead>
 <tbody>
@@ -66,7 +66,7 @@ title: Innovator 类概述
 </tbody>
 </table>
 
-<h2>四、典型使用模式</h2>
+## 四、典型使用模式
 
 ```csharp
 // 在服务端 Method 中获取 Innovator 实例
@@ -87,7 +87,7 @@ return result;
 ```
 
 
-<h2>五、两种版本的区别</h2>
+## 五、两种版本的区别
 <table>
 <thead><tr><th>特性</th><th>.NET 版本</th><th>COM 版本</th></tr></thead>
 <tbody>

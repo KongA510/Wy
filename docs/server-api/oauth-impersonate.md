@@ -2,10 +2,10 @@
 title: ImpersonateTokenProvider
 ---
 
-<h1>ImpersonateTokenProvider</h1>
+# ImpersonateTokenProvider
 <blockquote><p><strong>用户模拟认证提供者。</strong>允许一个已认证的服务账户以另一个用户身份执行操作，常用于需要代理用户执行任务的后台服务。命名空间：Aras.IOM.OAuth，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、类定义</h2>
+## 一、类定义
 
 ```csharp
 // ImpersonateTokenProvider — 用户模拟令牌提供者
@@ -29,7 +29,7 @@ public class ImpersonateTokenProvider : ITokenProvider, ITokenProviderSession
 ```
 
 
-<h2>二、ImpersonateTokenProviderOptions</h2>
+## 二、ImpersonateTokenProviderOptions
 
 ```csharp
 public class ImpersonateTokenProviderOptions : TokenProviderOptions
@@ -46,7 +46,7 @@ public class ImpersonateTokenProviderOptions : TokenProviderOptions
 ```
 
 
-<h2>三、代码示例</h2>
+## 三、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -135,7 +135,7 @@ bool CanImpersonate(string serviceUserId, string targetUserId)
 ```
 
 
-<h2>四、实践笔记</h2>
+## 四、实践笔记
 <ul>
 <li><strong>权限要求：</strong>服务账户必须在 Aras 中被授予模拟其他用户的权限（通常通过 Identity 权限配置）</li>
 <li><strong>审计追踪：</strong>模拟操作会在服务器审计日志中记录实际执行者（被模拟的用户身份）</li>

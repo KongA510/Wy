@@ -2,12 +2,12 @@
 title: Item 对象 API
 ---
 
-<h1>Item 对象 API</h1>
+# Item 对象 API
 <blockquote>
 <p><strong>Item</strong> 是 IOM 的<strong>数据载体</strong>，对应数据库中一个 ItemType 实例。Item 对象同时承载属性数据、属性条件、关系子项和 XML 元数据，是 Aras 开发中使用最频繁的对象。</p>
 </blockquote>
 
-<h2>一、属性操作（Property）</h2>
+## 一、属性操作（Property）
 <table>
 <thead><tr><th>方法</th><th>说明</th></tr></thead>
 <tbody>
@@ -36,7 +36,7 @@ editPart.setAttribute("where", "Part.id='xxx'");
 ```
 
 
-<h2>二、属性操作（Attribute）</h2>
+## 二、属性操作（Attribute）
 <p><strong>属性（Attribute）</strong> 不是 ItemType 的数据字段，而是 AML/XML 元素本身的元属性。最常见的 Attribute 包括：</p>
 <table>
 <thead><tr><th>方法</th><th>说明</th></tr></thead>
@@ -60,7 +60,7 @@ editPart.setAttribute("where", "Part.id='xxx'");
 </tbody>
 </table>
 
-<h2>三、结果集操作</h2>
+## 三、结果集操作
 <table>
 <thead><tr><th>方法</th><th>返回类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -74,7 +74,7 @@ editPart.setAttribute("where", "Part.id='xxx'");
 </tbody>
 </table>
 
-<h2>四、关系操作</h2>
+## 四、关系操作
 
 ```csharp
 // 添加关系子项
@@ -111,7 +111,7 @@ for (var i = 0; i < rels.getItemCount(); i++) {
 </tbody>
 </table>
 
-<h2>五、生命周期操作</h2>
+## 五、生命周期操作
 
 ```csharp
 // 推进生命周期状态
@@ -127,7 +127,7 @@ var currentState = part.getProperty("state", "");
 ```
 
 
-<h2>六、Server-Side Method 中的 this 引用</h2>
+## 六、Server-Side Method 中的 this 引用
 <p>在服务端 Method 上下文中，<code>this</code> 是一个特殊的 Item 对象，代表<strong>触发该方法的 Method ItemType 实例</strong>。通过 <code>this.getProperty()</code> 获取调用方传入的参数：</p>
 
 ```csharp

@@ -2,12 +2,12 @@
 title: 权限模型与 Identity
 ---
 
-<h1>权限模型与 Identity</h1>
+# 权限模型与 Identity
 <blockquote>
 <p>Aras Innovator 的权限体系基于 <strong>Identity → Permission → ItemType</strong> 三层模型。Identity 代表用户身份，Permission 定义访问规则，ItemType 上的权限配置决定谁能做什么。</p>
 </blockquote>
 
-<h2>一、权限模型概览</h2>
+## 一、权限模型概览
 
 ```text
 ┌──────────────┐
@@ -31,7 +31,7 @@ title: 权限模型与 Identity
 ```
 
 
-<h2>二、Identity 类型</h2>
+## 二、Identity 类型
 <table>
 <thead><tr><th>Identity</th><th>说明</th><th>典型用途</th></tr></thead>
 <tbody>
@@ -45,7 +45,7 @@ title: 权限模型与 Identity
 </tbody>
 </table>
 
-<h2>三、Permission 类型</h2>
+## 三、Permission 类型
 <table>
 <thead><tr><th>Permission</th><th>说明</th></tr></thead>
 <tbody>
@@ -60,7 +60,7 @@ title: 权限模型与 Identity
 </tbody>
 </table>
 
-<h2>四、生命周期状态权限</h2>
+## 四、生命周期状态权限
 <p>每个生命周期状态可以有不同的权限规则。例如：</p>
 <ul>
 <li><strong>Preliminary</strong>（初步）：Owner 可编辑、删除</li>
@@ -68,14 +68,14 @@ title: 权限模型与 Identity
 <li><strong>Released</strong>（已发布）：所有人只读，仅管理员可修改</li>
 </ul>
 
-<h2>五、特殊 Identity</h2>
-<h3>5.1 Super User</h3>
+## 五、特殊 Identity
+### 5.1 Super User
 <p><code>root</code> 用户拥有系统最高权限，用于系统初始化和维护。不应用于日常 Method 开发。</p>
 
-<h3>5.2 Aras PLM Identity</h3>
+### 5.2 Aras PLM Identity
 <p>这是一个<strong>服务端专用的超级身份</strong>，代码通过 <code>Permissions.GrantIdentity()</code> 临时获取。使用方法见"权限提升代码模板"。</p>
 
-<h2>六、权限检查逻辑</h2>
+## 六、权限检查逻辑
 <p>当用户执行操作时，Aras 引擎按以下顺序检查：</p>
 <ol>
 <li>用户是否属于 Super User？→ 允许所有操作</li>

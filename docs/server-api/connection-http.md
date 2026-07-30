@@ -2,12 +2,12 @@
 title: HTTP 连接实现
 ---
 
-<h1>HTTP 连接实现</h1>
+# HTTP 连接实现
 <blockquote>
 <p><strong>Aras.IOM 提供了多种服务器连接实现方式。</strong>包括标准 HTTP 连接 (HttpServerConnection)、Windows 认证连接 (WinAuthHttpServerConnection)、连接基类 (ServerConnectionBase) 以及连接参数结构体 (HttpConnectionParameters)。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、HttpServerConnection — 标准 HTTP 连接</h2>
+## 一、HttpServerConnection — 标准 HTTP 连接
 
 ```csharp
 // 实现 IServerConnection 接口，基于 HTTP 通信
@@ -26,7 +26,7 @@ var loginResult = inn.Login();
 ```
 
 
-<h2>二、WinAuthHttpServerConnection — Windows 认证连接</h2>
+## 二、WinAuthHttpServerConnection — Windows 认证连接
 
 ```csharp
 // 扩展 HttpServerConnection，使用 Windows 身份验证
@@ -40,7 +40,7 @@ var conn = IomFactory.CreateWinAuthHttpServerConnection(
 ```
 
 
-<h2>三、IServerConnection 接口</h2>
+## 三、IServerConnection 接口
 
 ```csharp
 // 连接接口，AML 生成器（Item 和 Innovator）通过此接口连接到服务器
@@ -54,7 +54,7 @@ public class ServerConnectionBase : IServerConnection
 ```
 
 
-<h2>四、HttpConnectionParameters 结构体</h2>
+## 四、HttpConnectionParameters 结构体
 
 ```csharp
 // 连接参数结构体
@@ -66,7 +66,7 @@ public struct HttpConnectionParameters
 ```
 
 
-<h2>五、完整示例：独立 .NET 客户端连接</h2>
+## 五、完整示例：独立 .NET 客户端连接
 
 ```csharp
 using Aras.IOM;
@@ -93,7 +93,7 @@ var winConn = IomFactory.CreateWinAuthHttpServerConnection(
 ```
 
 
-<h2>六、实践笔记</h2>
+## 六、实践笔记
 <ul>
 <li><strong>不要手动实例化连接：</strong>使用 IomFactory 创建连接和 Innovator 实例</li>
 <li><strong>Windows 认证需要域环境：</strong>WinAuthHttpServerConnection 要求客户端和服务器在同一域或信任域中</li>

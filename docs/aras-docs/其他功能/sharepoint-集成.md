@@ -4,12 +4,12 @@ title: SharePoint（协同平台）集成
 
 <div data-condition="Others:NewFor91">
 <div class="Section1">
-<h1>Innovator 与 SharePoint（协同平台）集成</h1>
+# Innovator 与 SharePoint（协同平台）集成
 <p class="Content_body_indented"><img :src="'/aras-images/SharePoint/SharePointIntegration/sharepoint_image001.jpg'" alt="" class="Image"></p>
 
 
 
-<h2>简介</h2>
+## 简介
 <p class="Content_body">Innovator 提供了使用标准可配置方式直接访问 MS SharePoint 文档的能力。Innovator 管理员配置到 SharePoint 文档库的连接。一旦建立此连接，Innovator 会自动生成对该文档库中 SharePoint 文档的引用，使 Innovator 用户能够直接在 Innovator 内搜索、下载和上传 SharePoint 文档。</p>
 <p class="Content_body">Innovator 遵循 SharePoint"文档库"的概念。SharePoint 文档库是逐个链接的，因此允许不同的 Innovator 组和用户对不同的文档库拥有不同的权限。例如，您可以设置多个 SharePoint 文件夹，并为不同的 Innovator 身份组/用户授予不同的访问权限。</p>
 <p class="Content_body">在本帮助文件中，我们将讨论：</p>
@@ -19,14 +19,14 @@ title: SharePoint（协同平台）集成
 
 
 
-<h2>创建 SharePoint 文档库连接</h2>
+## 创建 SharePoint 文档库连接
 <p class="Content_body_indented"><img :src="'/aras-images/SharePoint/SharePointIntegration/sharepoint_image002.png'" alt="" class="Image"></p>
 
 
 
 <p class="Content_body_indented">第一步是将 SharePoint 文档库链接到 Innovator。每个 Innovator/SharePoint 连接使用一个特殊的 Innovator 条目进行配置，该条目位于管理目录（Administration TOC）文件夹下的"SharePoint Libraries"（SharePoint 文档库）中。如上所述，SharePoint 将其文档组织为文档库。Innovator 也使用相同的层级来建立连接。</p>
 <p class="Content_body_indented">从菜单中选择"New SharePoint Library Definition"（新建 SharePoint 文档库定义）。下面将讨论各个字段。</p>
-<h2>SharePoint 信息和凭据</h2>
+## SharePoint 信息和凭据
 <p class="Content_body_indented"><img :src="'/aras-images/SharePoint/SharePointIntegration/sharepoint_image003.png'" alt="" class="Image"></p>
 
 
@@ -39,7 +39,7 @@ title: SharePoint（协同平台）集成
 
 
 
-<h2>文档库选择</h2>
+## 文档库选择
 <p class="Content_body_indented"><img :src="'/aras-images/SharePoint/SharePointIntegration/sharepoint_image004.png'" alt="" class="Image"></p>
 
 
@@ -50,14 +50,14 @@ title: SharePoint（协同平台）集成
 
 
 <p class="Content_body">如果指定的 SharePoint 用户（上述）仅拥有 Engineering 和 Manufacturing 文档库的权限，则在此配置的下拉菜单中只会显示这两个文档库。这完全取决于您的 SharePoint 实现，Innovator 将相应地建议连接。</p>
-<h2>自动生成"文档引用"ItemType（物料类型）</h2>
+## 自动生成"文档引用"ItemType（物料类型）
 <p class="Content_body">一旦您添加了 SharePoint 文档库连接，Innovator 将创建一个"文档引用"ItemType（物料类型）来表示该文档库中的文档。此 ItemType 作为 SharePoint 中实际文档的引用，以便 Innovator 中的"下载"、"上传"和基本搜索网格功能可用。</p>
 <p class="Content_body_indented"><img :src="'/aras-images/SharePoint/SharePointIntegration/sharepoint_image005.png'" alt="" class="Image"></p>
 
 
 
 <p class="Content_body">此 ItemType 的名称和标签信息在 <b>SharePoint Library Definition</b>（SharePoint 文档库定义）表单的接下来三个字段中输入。</p>
-<h2>生成的文档类型信息</h2>
+## 生成的文档类型信息
 <p class="Content_body_indented"><img :src="'/aras-images/SharePoint/SharePointIntegration/sharepoint_image006.png'" alt="" class="Image"></p>
 
 

@@ -2,15 +2,15 @@
 title: Menu 组件
 ---
 
-<h1>Menu 菜单组件</h1>
+# Menu 菜单组件
 <blockquote>
 <p><strong>aras-menu</strong> 是一个通用的菜单 Web Component，用于渲染菜单并作为其他组件（右键菜单、下拉菜单）的基础。</p>
 </blockquote>
 
-<h2>一、位置</h2>
+## 一、位置
 <p><code>Innovator/Client/Modules/components/menu.js</code></p>
 
-<h2>二、使用场景</h2>
+## 二、使用场景
 <ul>
 <li><strong>用户菜单</strong>（User Menu）</li>
 <li><strong>Grid 右键菜单</strong>（Context Menu）</li>
@@ -18,9 +18,9 @@ title: Menu 组件
 <li><strong>面包屑菜单</strong></li>
 </ul>
 
-<h2>三、公共 API</h2>
+## 三、公共 API
 
-<h3>3.1 创建菜单</h3>
+### 3.1 创建菜单
 
 ```javascript
 // 创建菜单
@@ -29,7 +29,7 @@ document.body.appendChild(menu);
 ```
 
 
-<h3>3.2 状态（state）</h3>
+### 3.2 状态（state）
 
 ```javascript
 // state — 描述菜单当前状态的对象，不要直接操作，使用 setState 或 applyData
@@ -42,7 +42,7 @@ menu.state = {
 ```
 
 
-<h3>3.3 setState(nextState)</h3>
+### 3.3 setState(nextState)
 
 ```javascript
 // 更新状态并触发重新渲染
@@ -53,7 +53,7 @@ menu.setState({
 ```
 
 
-<h3>3.4 applyData(data, roots)</h3>
+### 3.4 applyData(data, roots)
 
 ```javascript
 // 设置菜单数据并自动渲染
@@ -61,7 +61,7 @@ menu.applyData(menuData, ['new', 'open', 'save', 'sep_1', 'settings']);
 ```
 
 
-<h3>3.5 resetList()</h3>
+### 3.5 resetList()
 
 ```javascript
 // 清除展开和焦点状态
@@ -69,7 +69,7 @@ menu.resetList();
 ```
 
 
-<h3>3.6 calcSubmenuPosition(parentMenuItem, options)</h3>
+### 3.6 calcSubmenuPosition(parentMenuItem, options)
 
 ```javascript
 // 计算子菜单的显示位置（避免溢出屏幕）
@@ -79,7 +79,7 @@ menu.calcSubmenuPosition(parentElement, {
 ```
 
 
-<h2>四、菜单项数据结构</h2>
+## 四、菜单项数据结构
 
 ```javascript
 const menuData = new Map([
@@ -128,7 +128,7 @@ menu.applyData(menuData, roots);
 ```
 
 
-<h3>菜单项属性完整列表</h3>
+### 菜单项属性完整列表
 <table>
 <thead><tr><th>属性</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -145,7 +145,7 @@ menu.applyData(menuData, roots);
 </tbody>
 </table>
 
-<h2>五、Dropdown 菜单完整示例</h2>
+## 五、Dropdown 菜单完整示例
 
 ```javascript
 // Dropdown 按钮 + 菜单实现

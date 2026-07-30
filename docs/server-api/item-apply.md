@@ -2,12 +2,12 @@
 title: apply 与服务器通信
 ---
 
-<h1>apply 与服务器通信</h1>
+# apply 与服务器通信
 <blockquote>
 <p><strong>apply 方法是 Item 与 Innovator 服务器通信的核心接口。</strong>共有 5 个重载（1 个已废弃），用于发送 AML 请求并接收服务器响应。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、apply() — 无参数</h2>
+## 一、apply() — 无参数
 
 ```csharp
 // 签名
@@ -21,7 +21,7 @@ var result = item.apply();
 
 <p>前提是 Item 上已设置了 action（通过 newItem 或 setAction），否则服务器无法确定操作类型。</p>
 
-<h2>二、apply(Hashtable) — 带属性设置</h2>
+## 二、apply(Hashtable) — 带属性设置
 
 ```csharp
 // 签名
@@ -35,7 +35,7 @@ var result = item.apply(ht); // 等价于 setProperty 两次 + apply()
 ```
 
 
-<h2>三、apply(String) — 设置 action 后调用</h2>
+## 三、apply(String) — 设置 action 后调用
 
 ```csharp
 // 签名
@@ -48,7 +48,7 @@ var result = item.apply("get");  // 设置 action = "get" 并发送
 ```
 
 
-<h2>四、apply(String, Hashtable) — 设置 action + 属性后调用</h2>
+## 四、apply(String, Hashtable) — 设置 action + 属性后调用
 
 ```csharp
 // 签名
@@ -61,7 +61,7 @@ var result = item.apply("get", ht);
 ```
 
 
-<h2>五、已废弃：apply(String, Hashtable, String)</h2>
+## 五、已废弃：apply(String, Hashtable, String)
 
 ```csharp
 // [Obsolete]
@@ -71,7 +71,7 @@ var result = item.apply("get", ht);
 ```
 
 
-<h2>六、apply 操作对应的 AML action</h2>
+## 六、apply 操作对应的 AML action
 <table>
 <thead><tr><th>AML Action</th><th>数据库操作</th><th>触发 Server Events</th></tr></thead>
 <tbody>
@@ -87,7 +87,7 @@ var result = item.apply("get", ht);
 </tbody>
 </table>
 
-<h2>七、完整示例</h2>
+## 七、完整示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -129,7 +129,7 @@ var updateResult = updateItem.apply("edit", props);
 ```
 
 
-<h2>八、实践笔记</h2>
+## 八、实践笔记
 <ul>
 <li><strong>始终检查 isError()：</strong>每次 apply 后必须检查返回结果是否为 error</li>
 <li><strong>action 必须设置：</strong>如果 newItem 时没指定 action，apply 前必须通过 setAction 或 use apply(String) 重载设置</li>

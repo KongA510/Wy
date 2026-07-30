@@ -2,12 +2,12 @@
 title: 开发原则
 ---
 
-<h1>开发原则</h1>
+# 开发原则
 <blockquote>
 <p>Aras Innovator 客户端开发的核心原则：<strong>兼容性</strong>、<strong>可支持性</strong>和<strong>可复用性</strong>。这些原则指导着客户端代码库的每一个决策。</p>
 </blockquote>
 
-<h2>一、兼容性（Compatibility）</h2>
+## 一、兼容性（Compatibility）
 <p>作为长期演进的产品，对<strong>已有功能的零破坏容忍度</strong>：</p>
 <ul>
 <li><strong>绝不修改公共 API</strong>：在主要更新（Service Pack）中，公有 API 保持稳定不变</li>
@@ -19,7 +19,7 @@ title: 开发原则
 <strong>⚠️ 重要</strong>：公共 API 是合约，一旦发布就必须向后兼容。新增功能通过扩展而非修改实现。
 </div>
 
-<h2>二、可支持性（Supportability）</h2>
+## 二、可支持性（Supportability）
 <p>代码是写给人看的，是给后来者维护的：</p>
 <ul>
 <li><strong>优先选择清晰易懂的方案</strong>，而非精巧但晦涩的抽象</li>
@@ -28,10 +28,10 @@ title: 开发原则
 <li><strong>复杂逻辑加注释</strong>：若某段代码存在"陷阱"或特殊原因，在 commit 信息或代码注释中说明</li>
 </ul>
 
-<h2>三、可复用性（Reusability）</h2>
+## 三、可复用性（Reusability）
 <p>核心技巧在于<strong>通用逻辑</strong>与<strong>业务逻辑</strong>的分离：</p>
 
-<h3>3.1 通用逻辑（General Logic）</h3>
+### 3.1 通用逻辑（General Logic）
 <p>可以在不同上下文中以完全相同或可定制的方式使用的逻辑：</p>
 <table>
 <thead><tr><th>原则</th><th>说明</th></tr></thead>
@@ -43,7 +43,7 @@ title: 开发原则
 </tbody>
 </table>
 
-<h3>3.2 业务逻辑（Business Logic）</h3>
+### 3.2 业务逻辑（Business Logic）
 <p>特定位置的特定逻辑，了解其所处环境并与周边组件通信：</p>
 <ul>
 <li>点击某处执行某操作、按键触发的行为</li>
@@ -51,9 +51,9 @@ title: 开发原则
 <li>脱离原始上下文后无意义的逻辑</li>
 </ul>
 
-<h2>四、通用 UI 组件示例</h2>
+## 四、通用 UI 组件示例
 
-<h3>工具栏组件 — 纯通用组件的最佳范例</h3>
+### 工具栏组件 — 纯通用组件的最佳范例
 
 ```javascript
 // Toolbar 组件本身不包含任何业务逻辑
@@ -89,7 +89,7 @@ toolbar.rightContainer = ['btn_refresh'];
 ```
 
 
-<h2>五、实践清单</h2>
+## 五、实践清单
 <table>
 <thead><tr><th>检查项</th><th>标准</th></tr></thead>
 <tbody>

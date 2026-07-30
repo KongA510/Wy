@@ -2,12 +2,12 @@
 title: HttpConnectionParameters
 ---
 
-<h1>HttpConnectionParameters</h1>
+# HttpConnectionParameters
 <blockquote>
 <p><strong>HttpConnectionParameters 结构体用于配置 HttpServerConnection 的执行行为。</strong>包含超时、请求头等参数设置。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、结构体定义</h2>
+## 一、结构体定义
 
 ```csharp
 // 签名
@@ -28,7 +28,7 @@ public struct HttpConnectionParameters
 ```
 
 
-<h2>二、配置连接参数</h2>
+## 二、配置连接参数
 
 ```csharp
 // 创建连接时配置参数
@@ -43,7 +43,7 @@ var conn = IomFactory.CreateHttpServerConnection(
 ```
 
 
-<h2>三、完整示例</h2>
+## 三、完整示例
 
 ```csharp
 using Aras.IOM;
@@ -86,7 +86,7 @@ catch (Exception ex)
 ```
 
 
-<h2>四、实践笔记</h2>
+## 四、实践笔记
 <ul>
 <li><strong>Timeout 设置：</strong>对于大查询或批量操作，建议设置较长的超时时间（如 120000ms）</li>
 <li><strong>UseDefaultCredentials：</strong>配合 Windows 认证时启用，避免每次手动传递凭据</li>

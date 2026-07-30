@@ -2,12 +2,12 @@
 title: 权限提升代码模板
 ---
 
-<h1>权限提升代码模板</h1>
+# 权限提升代码模板
 <blockquote>
 <p>在服务端 Method 中执行 <code>applySQL</code>、跨用户数据操作或需要绕过普通权限检查时，必须使用 <strong>Aras PLM Identity</strong> 进行权限提升。这是 Aras 服务端开发的<strong>最核心安全模式</strong>。</p>
 </blockquote>
 
-<h2>一、标准模板</h2>
+## 一、标准模板
 
 ```csharp
 // ===== 权限提升标准模板 =====
@@ -45,7 +45,7 @@ finally
 ```
 
 
-<h2>二、命名空间引用</h2>
+## 二、命名空间引用
 
 ```csharp
 // 服务端 Method 中以下命名空间已自动引用：
@@ -59,7 +59,7 @@ using Aras.Server.Security;
 ```
 
 
-<h2>三、为什么需要权限提升？</h2>
+## 三、为什么需要权限提升？
 <table>
 <thead><tr><th>操作</th><th>是否需要权限提升</th><th>原因</th></tr></thead>
 <tbody>
@@ -71,7 +71,7 @@ using Aras.Server.Security;
 </tbody>
 </table>
 
-<h2>四、模板方法抽取（DRY）</h2>
+## 四、模板方法抽取（DRY）
 <p>将权限提升模板抽取为一个独立的 Method（如 <code>IC_PLMIdentityTemplate</code>），然后为各 Method 设置 <code>template</code> 属性引用它（如果可以复用 template 机制），或者包装为辅助类：</p>
 
 ```csharp
@@ -104,7 +104,7 @@ using (new PlmIdentityScope())
 ```
 
 
-<h2>五、常见错误</h2>
+## 五、常见错误
 <table>
 <thead><tr><th>错误</th><th>后果</th><th>修复</th></tr></thead>
 <tbody>
@@ -115,7 +115,7 @@ using (new PlmIdentityScope())
 </tbody>
 </table>
 
-<h2>六、安全最佳实践</h2>
+## 六、安全最佳实践
 <ol>
 <li><strong>最小权限原则</strong>：仅在必须的代码块内提升权限，不要在 Method 开头就提升</li>
 <li><strong>输入验证</strong>：在权限提升前验证用户输入，防止 SQL 注入 / AML 注入</li>

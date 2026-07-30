@@ -2,12 +2,12 @@
 title: Item 类概述与内部结构
 ---
 
-<h1>Item 类概述与内部结构</h1>
+# Item 类概述与内部结构
 <blockquote>
 <p><strong>Item 类是 Aras IOM 中最重要的类，代表了 AML 结构的内存表示以及与 Innovator 服务器通信的手段。</strong>命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、Item 的 5 种表现形式</h2>
+## 一、Item 的 5 种表现形式
 <p>根据 <code>dom</code> 内部结构和 <code>node</code>/<code>nodeList</code> 的值，Item 实例可以代表以下五种形式之一：</p>
 
 <table>
@@ -21,7 +21,7 @@ title: Item 类概述与内部结构
 </tbody>
 </table>
 
-<h2>二、核心属性（3 个）</h2>
+## 二、核心属性（3 个）
 <table>
 <thead><tr><th>属性</th><th>.NET 类型</th><th>COM 类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -31,7 +31,7 @@ title: Item 类概述与内部结构
 </tbody>
 </table>
 
-<h2>三、静态字段（3 个 XPath 常量）</h2>
+## 三、静态字段（3 个 XPath 常量）
 
 ```csharp
 // XPath 到 SOAP Fault 根节点（错误 Item 时）
@@ -45,7 +45,7 @@ public static string XPathResultItem
 ```
 
 
-<h2>四、方法分类总览（90+ 个方法）</h2>
+## 四、方法分类总览（90+ 个方法）
 <ul>
 <li><strong>属性操作（15 个）：</strong>getProperty ×3, setProperty ×2, removeProperty ×2, getPropertyAttribute ×3, setPropertyAttribute ×2, removePropertyAttribute ×2, getPropertyCondition ×2, setPropertyCondition ×2</li>
 <li><strong>通用属性（5 个）：</strong>getAttribute ×2, setAttribute, removeAttribute, getAction, setAction, getType, setType</li>
@@ -60,14 +60,14 @@ public static string XPathResultItem
 <li><strong>杂项（8 个）：</strong>appendItem, removeItem, getItemByIndex, getItemCount, createPropertyItem, setPropertyItem, getPropertyItem, email, applyStylesheet, newItem ×3, newXMLDocument</li>
 </ul>
 
-<h2>五、内存操作 vs 服务器通信</h2>
+## 五、内存操作 vs 服务器通信
 <p>Item 的方法分为两类：</p>
 <ul>
 <li><strong>仅操作 AML 内存：</strong>所有 get/set/add/remove 方法、isXXX 方法（如 isError、isCollection）</li>
 <li><strong>与服务器通信：</strong>所有 fetchXXX 方法、apply、email、promote、lock/unlockItem</li>
 </ul>
 
-<h2>六、各类形式的判断方法</h2>
+## 六、各类形式的判断方法
 
 ```csharp
 // 判断 Item 的当前形式

@@ -2,12 +2,12 @@
 title: 调试与排错
 ---
 
-<h1>调试与排错</h1>
+# 调试与排错
 <blockquote>
 <p>Aras Innovator 服务端 Method 运行在 IIS 应用池的封闭上下文中，无法使用传统的 Visual Studio 断点调试。本节汇总了<strong>6 种调试策略</strong>和常见错误的排错指南。</p>
 </blockquote>
 
-<h2>一、调试策略总览</h2>
+## 一、调试策略总览
 <table>
 <thead><tr><th>策略</th><th>适用场景</th><th>难度</th></tr></thead>
 <tbody>
@@ -20,8 +20,8 @@ title: 调试与排错
 </tbody>
 </table>
 
-<h2>二、策略详解</h2>
-<h3>2.1 返回值调试</h3>
+## 二、策略详解
+### 2.1 返回值调试
 <p>最简单的方式：在不同位置提前 <code>return</code> 中间结果，逐步缩小问题范围：</p>
 
 ```csharp
@@ -38,7 +38,7 @@ return inn.newResult($"Count={part.getItemCount()}");
 ```
 
 
-<h3>2.2 服务器日志</h3>
+### 2.2 服务器日志
 <p>查看 Aras 服务器日志文件（默认路径）：</p>
 <ul>
 <li><code>C:\Program Files\Aras\Innovator\InnovatorServerLog.txt</code></li>
@@ -59,10 +59,10 @@ try {
 ```
 
 
-<h3>2.3 Action 测试</h3>
+### 2.3 Action 测试
 <p>在 Aras 客户端中创建一个临时 Action，绑定 Method，通过 Action 执行并查看结果。</p>
 
-<h3>2.4 临时 Item 记录</h3>
+### 2.4 临时 Item 记录
 
 ```csharp
 // 创建临时调试记录保存中间状态
@@ -73,7 +73,7 @@ debug = debug.apply();
 ```
 
 
-<h3>2.5 Dump 到文件</h3>
+### 2.5 Dump 到文件
 
 ```csharp
 // 将变量 dump 到临时文件
@@ -83,7 +83,7 @@ System.IO.File.WriteAllText(
 ```
 
 
-<h2>三、常见错误速查</h2>
+## 三、常见错误速查
 <table>
 <thead><tr><th>错误信息</th><th>可能原因</th><th>解决方案</th></tr></thead>
 <tbody>
@@ -98,7 +98,7 @@ System.IO.File.WriteAllText(
 </tbody>
 </table>
 
-<h2>四、Method 编译错误</h2>
+## 四、Method 编译错误
 <p>如果 Method 编译失败，Aras 会在保存时提示错误。此时可以：</p>
 <ol>
 <li>在 Method 编辑器的错误面板查看详细编译错误</li>
@@ -107,7 +107,7 @@ System.IO.File.WriteAllText(
 <li>检查 C# 版本语法兼容性（R37+ 支持 C# 10+，旧版可能是 C# 7）</li>
 </ol>
 
-<h2>五、性能排查</h2>
+## 五、性能排查
 
 ```csharp
 // 在 Method 中测量执行时间

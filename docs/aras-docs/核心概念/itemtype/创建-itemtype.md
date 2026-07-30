@@ -3,7 +3,7 @@ title: 创建ItemType（物料类型）
 ---
 
 <div>
-<h1>创建ItemType（物料类型）   </h1>
+# 创建ItemType（物料类型）
 <p class="Content_body">Innovator 中的每个条目都是一个 ItemType 的实例。创建 ItemType 包括填写其头部属性和选项卡属性。某些属性可能涉及复杂的结构或概念，对于这些属性，您将找到指向相关概念讨论的链接。</p>
 <p class="Procedure_Title">创建 ItemType：</p>
 <!--?rh-list_start class="Numbered_list" level="1" style="list-style: rh-list;

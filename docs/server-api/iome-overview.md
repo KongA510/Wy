@@ -2,10 +2,10 @@
 title: IOME 命名空间概述
 ---
 
-<h1>IOME 命名空间概述</h1>
+# IOME 命名空间概述
 <blockquote><p><strong>Aras.IOME（Innovator Managed Extensions）命名空间提供文件签入/签出的完整管理能力。</strong>包含 CheckinManager、CheckoutManager 两大核心类及完整的事件/委托/异常体系。命名空间：Aras.IOME，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、命名空间类型一览</h2>
+## 一、命名空间类型一览
 <table><thead><tr><th>类别</th><th>类型</th><th>说明</th></tr></thead><tbody>
 <tr><td><strong>核心管理类</strong></td><td><code>CheckinManager</code></td><td>文件签入管理器，支持进度/完成事件</td></tr>
 <tr><td></td><td><code>CheckoutManager</code></td><td>文件签出管理器，支持进度/完成事件</td></tr>
@@ -29,7 +29,7 @@ title: IOME 命名空间概述
 <tr><td></td><td><code>CheckoutManagerFlags</code></td><td>签出行为标志枚举</td></tr>
 </tbody></table>
 
-<h2>二、典型文件操作流程</h2>
+## 二、典型文件操作流程
 
 ```csharp
 using Aras.IOM;
@@ -71,7 +71,7 @@ await checkinMgr.CheckinAsync(partItem);
 ```
 
 
-<h2>三、命名空间导航</h2>
+## 三、命名空间导航
 <table><thead><tr><th>使用场景</th><th>相关类型</th></tr></thead><tbody>
 <tr><td>文件签入</td><td>CheckinManager, CheckinManagerFlags, CheckinCompletedEventArgs, CheckinProgressChangedEventArgs</td></tr>
 <tr><td>文件签出</td><td>CheckoutManager, CheckoutManagerFlags, DownloadFileCompletedEventArgs, DownloadFilesCompletedEventArgs, DownloadFilesProgressChangedEventArgs</td></tr>

@@ -2,10 +2,10 @@
 title: 配置构建器
 ---
 
-<h1>配置构建器</h1>
+# 配置构建器
 <blockquote><p><strong>IOME 文件操作前的配置构建工具。</strong>用于在签入/签出前构建文件的目标 Item 配置和关联结构。命名空间：Aras.IOME，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、类型定义</h2>
+## 一、类型定义
 
 ```csharp
 // IItemConfigurationBuilder — Item 配置构建器接口
@@ -36,7 +36,7 @@ public class ItemConfiguration
 ```
 
 
-<h2>二、代码示例</h2>
+## 二、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -110,7 +110,7 @@ public class CustomConfigurationBuilder : IItemConfigurationBuilder
 ```
 
 
-<h2>三、实践笔记</h2>
+## 三、实践笔记
 <ul>
 <li><strong>多父项场景：</strong>CAD 装配体中一个零件文件可能属于多个装配体，MultiParentConfigurationBuilder 处理这种 n:m 关系</li>
 <li><strong>接口扩展：</strong>实现 IItemConfigurationBuilder 接口可插入自定义配置逻辑</li>

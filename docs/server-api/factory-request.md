@@ -2,12 +2,12 @@
 title: IomFactory / RequestFactory
 ---
 
-<h1>IomFactory / RequestFactory</h1>
+# IomFactory / RequestFactory
 <blockquote>
 <p><strong>IomFactory 和 RequestFactory 是用于创建 Innovator 实例和初始化请求的工厂类。</strong>按照 Aras 最佳实践，不应直接实例化连接和 Innovator 对象，而应通过工厂类创建。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、IomFactory — 创建 Innovator 和连接</h2>
+## 一、IomFactory — 创建 Innovator 和连接
 
 ```csharp
 // 签名
@@ -39,7 +39,7 @@ var inn = IomFactory.CreateInnovator();
 ```
 
 
-<h2>二、RequestFactory — 初始化请求</h2>
+## 二、RequestFactory — 初始化请求
 
 ```csharp
 // 签名
@@ -50,7 +50,7 @@ public class RequestFactory
 ```
 
 
-<h2>三、在服务端 Method 中的特殊性</h2>
+## 三、在服务端 Method 中的特殊性
 
 ```csharp
 // 在服务端 Method 中，不需要使用工厂类
@@ -62,7 +62,7 @@ var inn = this.newInnovator();
 ```
 
 
-<h2>四、完整示例：独立 .NET 客户端</h2>
+## 四、完整示例：独立 .NET 客户端
 
 ```csharp
 using Aras.IOM;
@@ -114,7 +114,7 @@ class Program
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>总是使用 IomFactory：</strong>不要手动 new Innovator() 或 new HttpServerConnection()</li>
 <li><strong>独立应用需要管理连接生命周期：</strong>Login/Logout/Dispose 必须成对调用</li>

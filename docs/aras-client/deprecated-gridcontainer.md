@@ -2,13 +2,13 @@
 title: GridContainer（网格容器）
 ---
 
-<h1>GridContainer（已弃用）</h1>
+# GridContainer（已弃用）
 <blockquote>
 <p><strong>命名空间：</strong><code>Aras.Client.Controls.Public</code></p>
 <p>GridContainer 是 Aras Innovator 客户端中已弃用的表格控件容器类。它提供了完整的表格数据展示与编辑能力，包括行/列管理、单元格编辑、排序、多选、右键菜单、事件绑定以及 XML 数据加载等功能。官方推荐在新项目中使用 CUI Grid 组件替代。</p>
 </blockquote>
 
-<h2>API 成员概览</h2>
+## API 成员概览
 <table>
 <thead>
 <tr>
@@ -507,13 +507,13 @@ title: GridContainer（网格容器）
 </tbody>
 </table>
 
-<h2>API 详情</h2>
+## API 详情
 
 <!-- ====== 构造函数 ====== -->
-<h3>构造函数</h3>
-<h4>GridContainer()</h4>
+### 构造函数
+#### GridContainer()
 <p>创建一个 GridContainer 实例。GridContainer 是表格控件的容器，管理表格的布局、数据和交互。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 通过 clientControlsFactory 创建 GridContainer
@@ -525,11 +525,11 @@ grid.showInputRow(true);
 
 
 <!-- ====== 属性 ====== -->
-<h2>属性详情</h2>
+## 属性详情
 
-<h3>bgColor</h3>
+### bgColor
 <p>获取或设置单元格的默认背景颜色。</p>
-<h4>语法</h4>
+#### 语法
 
 ```javascript
 // 获取
@@ -538,12 +538,12 @@ var color = grid.bgColor;
 grid.bgColor = "#FFFFFF";
 ```
 
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong></p>
 
-<h3>bgInvert</h3>
+### bgInvert
 <p>获取或设置选中行时是否反转背景颜色。默认为 <code>true</code>。</p>
-<h4>语法</h4>
+#### 语法
 
 ```javascript
 // 获取
@@ -552,24 +552,24 @@ var invert = grid.bgInvert;
 grid.bgInvert = true;
 ```
 
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong></p>
 
-<h3>borderGColor</h3>
+### borderGColor
 <p>获取或设置单元格边框颜色。</p>
-<h4>语法</h4>
+#### 语法
 
 ```javascript
 grid.borderGColor = "#CCCCCC";
 var borderColor = grid.borderGColor;
 ```
 
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong></p>
 
-<h3>delimeter</h3>
+### delimeter
 <p>获取或设置分隔符字符。用于多个 ID 列表返回值的分隔。</p>
-<h4>语法</h4>
+#### 语法
 
 ```javascript
 // 设置分隔符为逗号
@@ -577,24 +577,24 @@ grid.delimeter = ",";
 var delim = grid.delimeter;
 ```
 
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong></p>
 
-<h3>font</h3>
+### font
 <p>获取或设置表格的默认文本字体。</p>
-<h4>语法</h4>
+#### 语法
 
 ```javascript
 grid.font = "Arial";
 var currentFont = grid.font;
 ```
 
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong></p>
 
-<h3>rowHeight</h3>
+### rowHeight
 <p>获取或设置默认行高（像素）。默认为 <code>26</code>。</p>
-<h4>语法</h4>
+#### 语法
 
 ```javascript
 // 设置行高为 30 像素
@@ -602,22 +602,22 @@ grid.rowHeight = "30";
 var height = grid.rowHeight;
 ```
 
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong></p>
 
 <!-- ====== 事件 ====== -->
-<h2>事件详情</h2>
+## 事件详情
 
-<h3>gridLinkClick</h3>
+### gridLinkClick
 <p>当用户点击表格中的超链接时触发。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>link</code></td><td>string</td><td>被点击的链接 URL</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(control, "gridLinkClick", function(link) {
@@ -626,9 +626,9 @@ clientControlsFactory.on(control, "gridLinkClick", function(link) {
 ```
 
 
-<h3>gridMenuClick</h3>
+### gridMenuClick
 <p>当用户点击右键菜单中的菜单项时触发。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -637,7 +637,7 @@ clientControlsFactory.on(control, "gridLinkClick", function(link) {
 <tr><td><code>columnIndex</code></td><td>int</td><td>右键点击所在列的索引</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(control, "gridMenuClick", function(menuItem, rowId, columnIndex) {
@@ -648,9 +648,9 @@ clientControlsFactory.on(control, "gridMenuClick", function(menuItem, rowId, col
 ```
 
 
-<h3>gridMenuInit</h3>
+### gridMenuInit
 <p>右键菜单显示之前触发。可以在此事件中动态配置菜单项。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -658,9 +658,9 @@ clientControlsFactory.on(control, "gridMenuClick", function(menuItem, rowId, col
 <tr><td><code>columnIndex</code></td><td>int</td><td>右键点击所在列的索引</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(control, "gridMenuInit", function(rowId, columnIndex) {
@@ -672,9 +672,9 @@ clientControlsFactory.on(control, "gridMenuInit", function(rowId, columnIndex) {
 ```
 
 
-<h3>gridClick</h3>
+### gridClick
 <p>当鼠标指针位于表格单元格上且按下鼠标按钮时触发。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -682,7 +682,7 @@ clientControlsFactory.on(control, "gridMenuInit", function(rowId, columnIndex) {
 <tr><td><code>columnIndex</code></td><td>int</td><td>点击所在列的索引</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(control, "gridClick", function(rowId, columnIndex) {
@@ -691,9 +691,9 @@ clientControlsFactory.on(control, "gridClick", function(rowId, columnIndex) {
 ```
 
 
-<h3>gridDoubleClick</h3>
+### gridDoubleClick
 <p>当双击表格中的任何项时触发。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -701,7 +701,7 @@ clientControlsFactory.on(control, "gridClick", function(rowId, columnIndex) {
 <tr><td><code>columnIndex</code></td><td>int</td><td>双击所在列的索引</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(control, "gridDoubleClick", function(rowId, columnIndex) {
@@ -711,18 +711,18 @@ clientControlsFactory.on(control, "gridDoubleClick", function(rowId, columnIndex
 ```
 
 
-<h3>gridKeyPress</h3>
+### gridKeyPress
 <p>当在表格中按下键盘按键时触发。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>key</code></td><td>Object / KeyboardEvent</td><td>键盘事件对象</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>object</strong></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(control, "gridKeyPress", function(keyEvent) {
@@ -733,9 +733,9 @@ clientControlsFactory.on(control, "gridKeyPress", function(keyEvent) {
 ```
 
 
-<h3>gridXmlLoaded</h3>
+### gridXmlLoaded
 <p>当 XML 内容被加载并解析完成后触发。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(control, "gridXmlLoaded", function() {
@@ -744,9 +744,9 @@ clientControlsFactory.on(control, "gridXmlLoaded", function() {
 ```
 
 
-<h3>gridRowSelect</h3>
+### gridRowSelect
 <p>在任何行被选中之前触发。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -754,7 +754,7 @@ clientControlsFactory.on(control, "gridXmlLoaded", function() {
 <tr><td><code>multi</code></td><td>bool</td><td>是否为多选模式</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(control, "gridRowSelect", function(rowId, multi) {
@@ -763,9 +763,9 @@ clientControlsFactory.on(control, "gridRowSelect", function(rowId, multi) {
 ```
 
 
-<h3>gridEditCell</h3>
+### gridEditCell
 <p>当单元格编辑状态改变时触发。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -774,9 +774,9 @@ clientControlsFactory.on(control, "gridRowSelect", function(rowId, multi) {
 <tr><td><code>columnIndex</code></td><td>int</td><td>编辑单元格所在列索引</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>object</strong></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(control, "gridEditCell", function(type, rowId, columnIndex) {
@@ -786,16 +786,16 @@ clientControlsFactory.on(control, "gridEditCell", function(type, rowId, columnIn
 ```
 
 
-<h3>gridSelectCell</h3>
+### gridSelectCell
 <p>当单元格在 UI 中被选中时触发。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>cell</code></td><td>Aras.Client.Controls.Public.Cell</td><td>被选中的单元格对象</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(control, "gridSelectCell", function(cell) {
@@ -804,9 +804,9 @@ clientControlsFactory.on(control, "gridSelectCell", function(cell) {
 ```
 
 
-<h3>gridSort</h3>
+### gridSort
 <p>当列排序时触发。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -815,7 +815,7 @@ clientControlsFactory.on(control, "gridSelectCell", function(cell) {
 <tr><td><code>savedOrder</code></td><td>bool</td><td>是否保存排序顺序</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 clientControlsFactory.on(control, "gridSort", function(columnIndex, asc, savedOrder) {
@@ -825,11 +825,11 @@ clientControlsFactory.on(control, "gridSort", function(columnIndex, asc, savedOr
 
 
 <!-- ====== 行操作方法 ====== -->
-<h2>行操作方法</h2>
+## 行操作方法
 
-<h3>addRow(newId, text)</h3>
+### addRow(newId, text)
 <p>向表格添加一个新行。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -837,7 +837,7 @@ clientControlsFactory.on(control, "gridSort", function(columnIndex, asc, savedOr
 <tr><td><code>text</code></td><td>string</td><td>行数据字符串，各列值以分隔符分隔</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 添加一行数据
@@ -848,9 +848,9 @@ grid.addRow("row_002", "列1值,列2值,列3值");
 ```
 
 
-<h3>deleteRow(rowId)</h3>
+### deleteRow(rowId)
 <p>删除指定 ID 的行。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -858,9 +858,9 @@ grid.addRow("row_002", "列1值,列2值,列3值");
 </tbody>
 </table>
 
-<h3>removeAllRows()</h3>
+### removeAllRows()
 <p>删除表格中的所有行。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 清空表格
@@ -868,16 +868,16 @@ grid.removeAllRows();
 ```
 
 
-<h3>moveRowUp(rowId) / moveRowDown(rowId)</h3>
+### moveRowUp(rowId) / moveRowDown(rowId)
 <p>将指定行在表格中上移或下移。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>rowId</code></td><td>string</td><td>要移动的行 ID</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 将当前选中行上移
@@ -888,43 +888,43 @@ if (selectedId) {
 ```
 
 
-<h3>getRowId(rowIndex)</h3>
+### getRowId(rowIndex)
 <p>通过行索引获取行 ID（从 0 开始，从上到下）。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>rowIndex</code></td><td>int</td><td>行的索引位置（从 0 开始）</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 行 ID</p>
 
-<h3>getRowsNum()</h3>
+### getRowsNum()
 <p>返回表格中的总行数。</p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>int</strong></p>
 
-<h3>getRowCount()</h3>
+### getRowCount()
 <p>获取表格中实际包含的行数。</p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>int</strong></p>
 
-<h3>isItemExists(rowId)</h3>
+### isItemExists(rowId)
 <p>判断指定 ID 的行是否存在于表格中。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>rowId</code></td><td>string</td><td>要检查的行 ID</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong> — 存在返回 true，否则返回 false</p>
 
-<h3>showInputRow(visible)</h3>
+### showInputRow(visible)
 <p>显示或隐藏输入行。输入行通常位于表格顶部，用于快速添加新数据。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -933,11 +933,11 @@ if (selectedId) {
 </table>
 
 <!-- ====== 单元格操作方法 ====== -->
-<h2>单元格操作方法</h2>
+## 单元格操作方法
 
-<h3>cells(rowId, columnIndex)</h3>
+### cells(rowId, columnIndex)
 <p>获取单元格对象以直接操作其属性。支持特殊行 ID：<code>"header_row"</code>（表头行）和 <code>"input_row"</code>（输入行）。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -945,12 +945,12 @@ if (selectedId) {
 <tr><td><code>columnIndex</code></td><td>int</td><td>列索引</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>Aras.Client.Controls.Public.Cell</strong></p>
 
-<h3>cells2(rowIdInt, columnIndex)</h3>
+### cells2(rowIdInt, columnIndex)
 <p>通过整数行 ID 获取单元格对象以直接操作其属性。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -958,12 +958,12 @@ if (selectedId) {
 <tr><td><code>columnIndex</code></td><td>int</td><td>列索引</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>Aras.Client.Controls.Public.Cell</strong></p>
 
-<h3>getCellValue(rowId, columnIndex) / setCellValue(rowId, columnIndex, value)</h3>
+### getCellValue(rowId, columnIndex) / setCellValue(rowId, columnIndex, value)
 <p>获取或设置指定单元格的值。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -972,7 +972,7 @@ if (selectedId) {
 <tr><td><code>value</code></td><td>string</td><td>（仅 setCellValue）要设置的值</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 获取值
@@ -983,9 +983,9 @@ grid.setCellValue("row_001", 1, "新值");
 ```
 
 
-<h3>editCell(rowId, columnIndex)</h3>
+### editCell(rowId, columnIndex)
 <p>将焦点移到指定单元格并切换到编辑模式。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -993,7 +993,7 @@ grid.setCellValue("row_001", 1, "新值");
 <tr><td><code>columnIndex</code></td><td>int</td><td>列索引</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 编辑第一行第二列的单元格
@@ -1001,9 +1001,9 @@ grid.editCell("row_001", 1);
 ```
 
 
-<h3>cellIsCheckbox(rowId, columnIndex)</h3>
+### cellIsCheckbox(rowId, columnIndex)
 <p>判断指定单元格是否包含复选框。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1011,12 +1011,12 @@ grid.editCell("row_001", 1);
 <tr><td><code>columnIndex</code></td><td>int</td><td>列索引</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong></p>
 
-<h3>cellWasChanged(rowId, columnIndex)</h3>
+### cellWasChanged(rowId, columnIndex)
 <p>判断指定单元格的值在上次编辑中是否被用户修改过。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1024,12 +1024,12 @@ grid.editCell("row_001", 1);
 <tr><td><code>columnIndex</code></td><td>int</td><td>列索引</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong> — 被修改过返回 true，否则返回 false</p>
 
-<h3>setCellCombo(rowId, columnIndex, labels, values)</h3>
+### setCellCombo(rowId, columnIndex, labels, values)
 <p>为指定单元格设置下拉框（ComboBox）选项。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1039,7 +1039,7 @@ grid.editCell("row_001", 1);
 <tr><td><code>values</code></td><td>any</td><td>下拉框对应的值列表</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 在 gridEditCell 事件中动态设置下拉框
@@ -1054,9 +1054,9 @@ clientControlsFactory.on(control, "gridEditCell", function(type, rowId, columnIn
 ```
 
 
-<h3>setCellFont(rowId, columnIndex, value)</h3>
+### setCellFont(rowId, columnIndex, value)
 <p>设置指定单元格的字体。值的格式为：<code>名称-样式-大小</code>，样式可选值：<code>bold</code>、<code>italic</code>、<code>bolditalic</code>。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1065,7 +1065,7 @@ clientControlsFactory.on(control, "gridEditCell", function(type, rowId, columnIn
 <tr><td><code>value</code></td><td>string</td><td>字体字符串，如 "Courier-bold-12"</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 grid.setCellFont("row_001", 0, "Courier-bold-12");
@@ -1073,9 +1073,9 @@ grid.setCellFont("row_002", 1, "Arial-italic-10");
 ```
 
 
-<h3>setCellLink(rowId, columnIndex, value)</h3>
+### setCellLink(rowId, columnIndex, value)
 <p>为指定单元格设置超链接。点击后触发 <code>gridLinkClick</code> 事件。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1085,9 +1085,9 @@ grid.setCellFont("row_002", 1, "Arial-italic-10");
 </tbody>
 </table>
 
-<h3>setCellTextColor(rowId, columnIndex, value)</h3>
+### setCellTextColor(rowId, columnIndex, value)
 <p>设置指定单元格的文字颜色。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1098,16 +1098,16 @@ grid.setCellFont("row_002", 1, "Arial-italic-10");
 </table>
 
 <!-- ====== 列操作方法 ====== -->
-<h2>列操作方法</h2>
+## 列操作方法
 
-<h3>getColumnCount()</h3>
+### getColumnCount()
 <p>获取表格中的列数。</p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>int</strong></p>
 
-<h3>getColumnName(columnIndex) / getColumnIndex(columnName)</h3>
+### getColumnName(columnIndex) / getColumnIndex(columnName)
 <p>列名与列索引之间的相互转换。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1115,24 +1115,24 @@ grid.setCellFont("row_002", 1, "Arial-italic-10");
 <tr><td><code>columnName</code></td><td>string</td><td>列名（getColumnIndex），未找到返回 -1</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> / <strong>int</strong></p>
 
-<h3>getHeaderCol(columnIndex)</h3>
+### getHeaderCol(columnIndex)
 <p>返回指定列的列头标签文本。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>columnIndex</code></td><td>int</td><td>列索引</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong></p>
 
-<h3>setColumnProperties(propStr, columnIndex)</h3>
+### setColumnProperties(propStr, columnIndex)
 <p>配置列的类型和其他属性。这是一个非常重要的方法，用于定义列的编辑行为。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1140,7 +1140,7 @@ grid.setCellFont("row_002", 1, "Arial-italic-10");
 <tr><td><code>columnIndex</code></td><td>int</td><td>列索引</td></tr>
 </tbody>
 </table>
-<h4>属性说明</h4>
+#### 属性说明
 <table>
 <thead><tr><th>属性</th><th>可选值</th><th>说明</th></tr></thead>
 <tbody>
@@ -1152,7 +1152,7 @@ grid.setCellFont("row_002", 1, "Arial-italic-10");
 <tr><td><code>locale</code></td><td>locale_string</td><td>区域设置，如 enUS</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 设置第 0 列为不可编辑文本
@@ -1169,9 +1169,9 @@ grid.setColumnProperties("type=FIELD,sortable=yes,sorttype=string", 3);
 ```
 
 
-<h3>setColumnVisible(columnIndex, visible, columnWidth)</h3>
+### setColumnVisible(columnIndex, visible, columnWidth)
 <p>设置列的可见性。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1181,9 +1181,9 @@ grid.setColumnProperties("type=FIELD,sortable=yes,sorttype=string", 3);
 </tbody>
 </table>
 
-<h3>sort(columnIndex, asc)</h3>
+### sort(columnIndex, asc)
 <p>按指定列升序或降序排列表格。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1191,7 +1191,7 @@ grid.setColumnProperties("type=FIELD,sortable=yes,sorttype=string", 3);
 <tr><td><code>asc</code></td><td>bool</td><td>true 升序，false 降序</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 按第 0 列升序排列
@@ -1202,11 +1202,11 @@ grid.sort(1, false);
 
 
 <!-- ====== 选中操作方法 ====== -->
-<h2>选中操作方法</h2>
+## 选中操作方法
 
-<h3>setSelectedRow(rowId, multi, show)</h3>
+### setSelectedRow(rowId, multi, show)
 <p>在运行时设置选中行。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1215,7 +1215,7 @@ grid.sort(1, false);
 <tr><td><code>show</code></td><td>bool</td><td>是否滚动到该行使其可见</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 单选模式
@@ -1227,49 +1227,49 @@ grid.setSelectedRow("row_002", true, true);
 ```
 
 
-<h3>selectAll() / deselect()</h3>
+### selectAll() / deselect()
 <p>全选或取消选择表格中所有行。</p>
 
-<h3>getSelectedID()</h3>
+### getSelectedID()
 <p>获取当前选中行的 ID。</p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong></p>
 
-<h3>getSelectedCell()</h3>
+### getSelectedCell()
 <p>获取当前选中的单元格对象。</p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>Aras.Client.Controls.Public.Cell</strong></p>
 
-<h3>getSelectedItemIDs(separator)</h3>
+### getSelectedItemIDs(separator)
 <p>获取所有选中行的 ID 列表，以指定分隔符分隔。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>separator</code></td><td>string</td><td>分隔符</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 以分隔符连接的 ID 字符串</p>
 
-<h3>setMultiselect(value) / isMultiselect()</h3>
+### setMultiselect(value) / isMultiselect()
 <p>运行时启用/禁用多选模式，以及查询多选状态。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>value</code></td><td>string</td><td>（setMultiselect）是否启用多选</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p>（isMultiselect）<strong>bool</strong></p>
 
 <!-- ====== 右键菜单方法 ====== -->
-<h2>右键菜单方法</h2>
+## 右键菜单方法
 
-<h3>menuAdd(text, image)</h3>
+### menuAdd(text, image)
 <p>向菜单集合添加一个显示指定文本和图标的菜单项。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1278,15 +1278,15 @@ grid.setSelectedRow("row_002", true, true);
 </tbody>
 </table>
 
-<h3>menuAddSeparator()</h3>
+### menuAddSeparator()
 <p>添加菜单分隔符（显示为 "-"）。</p>
 
-<h3>menuRemoveAll()</h3>
+### menuRemoveAll()
 <p>从菜单项集合中移除所有菜单项对象。通常在 <code>gridMenuInit</code> 事件中使用，先清空再重新构建菜单。</p>
 
-<h3>menuSetEnabled(text, flag)</h3>
+### menuSetEnabled(text, flag)
 <p>设置指定文本的菜单项是否启用。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1295,7 +1295,7 @@ grid.setSelectedRow("row_002", true, true);
 </tbody>
 </table>
 
-<h4>完整菜单示例</h4>
+#### 完整菜单示例
 
 ```javascript
 // 在 gridMenuInit 事件中构建动态右键菜单
@@ -1332,18 +1332,18 @@ clientControlsFactory.on(control, "gridMenuClick", function(menuItem, rowId, col
 
 
 <!-- ====== XML 数据方法 ====== -->
-<h2>XML 数据方法</h2>
+## XML 数据方法
 
-<h3>initXML(xmlString)</h3>
+### initXML(xmlString)
 <p>将 XML 字符串加载到表格中。这是初始化表格最常用的方法，通常配合 <code>aras.getItemTypeForClient</code> 和 <code>getClientItemXML</code> 使用。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>xmlString</code></td><td>string</td><td>XML 字符串</td></tr>
 </tbody>
 </table>
-<h4>XML 结构示例</h4>
+#### XML 结构示例
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1368,9 +1368,9 @@ clientControlsFactory.on(control, "gridMenuClick", function(menuItem, rowId, col
 ```
 
 
-<h3>initXMLRows(xmlDoc) / addXMLRows(xmlDoc)</h3>
+### initXMLRows(xmlDoc) / addXMLRows(xmlDoc)
 <p>从 XML 文档初始化行数据或添加新行。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1378,9 +1378,9 @@ clientControlsFactory.on(control, "gridMenuClick", function(menuItem, rowId, col
 </tbody>
 </table>
 
-<h3>setUserData(rowId, key, value) / getUserData(rowId, key)</h3>
+### setUserData(rowId, key, value) / getUserData(rowId, key)
 <p>设置或获取行级别的额外数据。可用于在行中存储任意自定义数据或标志位。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1389,9 +1389,9 @@ clientControlsFactory.on(control, "gridMenuClick", function(menuItem, rowId, col
 <tr><td><code>value</code></td><td>string</td><td>（可选）要存储的值</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p>（getUserData）<strong>string</strong></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 存储 ItemType 信息
@@ -1403,24 +1403,24 @@ var itemType = grid.getUserData("row_001", "itemType"); // "Part"
 ```
 
 
-<h3>getAllItemIds(separator) / getVisibleItemIDs(separator)</h3>
+### getAllItemIds(separator) / getVisibleItemIDs(separator)
 <p>获取所有行或当前可见行的 ID 列表。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>separator</code></td><td>string</td><td>分隔符</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 以分隔符连接的 ID 字符串</p>
 
 <!-- ====== 差异视图 ====== -->
-<h2>差异视图（Redline）方法</h2>
+## 差异视图（Redline）方法
 
-<h3>loadBaselineXml(xml)</h3>
+### loadBaselineXml(xml)
 <p>加载基准 XML，用于与当前数据进行差异比对。差异视图模式下，变化的单元格会以红色高亮显示。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1428,15 +1428,15 @@ var itemType = grid.getUserData("row_001", "itemType"); // "Part"
 </tbody>
 </table>
 
-<h3>addAllColumnsToDiffView()</h3>
+### addAllColumnsToDiffView()
 <p>将所有列加入差异比对列表。在差异比对列表中的列会在 Redline 视图模式下进行变化检查。</p>
 
-<h3>addColumnToDiffView(columnName)</h3>
+### addColumnToDiffView(columnName)
 <p>将指定列加入差异比对列表。</p>
 
-<h3>removeColumnFromDiffView(columnName)</h3>
+### removeColumnFromDiffView(columnName)
 <p>从差异比对列表中移除指定列。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -1444,7 +1444,7 @@ var itemType = grid.getUserData("row_001", "itemType"); // "Part"
 </tbody>
 </table>
 
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 设置差异比对
@@ -1457,11 +1457,11 @@ grid.addColumnToDiffView("description");
 
 
 <!-- ====== 表格状态方法 ====== -->
-<h2>表格状态方法</h2>
+## 表格状态方法
 
-<h3>disable() / enable()</h3>
+### disable() / enable()
 <p>禁用或启用整个表格。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 数据处理期间禁用表格
@@ -1471,28 +1471,28 @@ grid.enable();
 ```
 
 
-<h3>setEditable(value) / isEditable()</h3>
+### setEditable(value) / isEditable()
 <p>运行时启用或禁用单元格编辑。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>value</code></td><td>bool</td><td>true 允许编辑，false 禁止编辑</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p>（isEditable）<strong>bool</strong> — 编辑是否启用</p>
 
-<h3>requestFocus()</h3>
+### requestFocus()
 <p>将输入焦点设置到控件。</p>
 
-<h3>turnEditOff()</h3>
+### turnEditOff()
 <p>使焦点离开表格单元格，结束编辑状态。</p>
 
 <!-- ====== 完整使用示例 ====== -->
-<h2>完整使用示例</h2>
+## 完整使用示例
 
-<h3>初始化表格并绑定事件</h3>
+### 初始化表格并绑定事件
 
 ```javascript
 // 1. 创建 GridContainer 控件
@@ -1535,7 +1535,7 @@ clientControlsFactory.on(grid, "gridXmlLoaded", function() {
 ```
 
 
-<h3>动态构建表格</h3>
+### 动态构建表格
 
 ```javascript
 // 通过 XML 字符串构建表格

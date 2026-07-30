@@ -2,12 +2,12 @@
 title: CUI 控件体系
 ---
 
-<h1>CUI 控件体系</h1>
+# CUI 控件体系
 <blockquote>
 <p>CUI Controls 是连接<strong>纯 UI 组件</strong>与<strong>CUI 数据定义</strong>的桥梁。根据控件类型，自动选择对应的 JS 实现进行渲染。</p>
 </blockquote>
 
-<h2>一、两层含义</h2>
+## 一、两层含义
 <table>
 <thead><tr><th>概念</th><th>说明</th></tr></thead>
 <tbody>
@@ -16,10 +16,10 @@ title: CUI 控件体系
 </tbody>
 </table>
 
-<h2>二、位置</h2>
+## 二、位置
 <p><code>Innovator/Client/Modules/cui/cuiControls.js</code></p>
 
-<h2>三、公共 API — getControlMetadata()</h2>
+## 三、公共 API — getControlMetadata()
 
 ```javascript
 import getControlMetadata from './cuiControls';
@@ -36,7 +36,7 @@ const metadata = getControlMetadata('ToolbarControl');
 ```
 
 
-<h3>属性详解</h3>
+### 属性详解
 <table>
 <thead><tr><th>属性</th><th>说明</th></tr></thead>
 <tbody>
@@ -47,7 +47,7 @@ const metadata = getControlMetadata('ToolbarControl');
 </tbody>
 </table>
 
-<h2>四、控件类型注册示例</h2>
+## 四、控件类型注册示例
 
 ```javascript
 // cuiControls.js — 控件类型注册中心
@@ -96,7 +96,7 @@ const controlRegistry = {
 ```
 
 
-<h2>五、在 CUI Layout 中的工作流程</h2>
+## 五、在 CUI Layout 中的工作流程
 
 ```text
 CUI Layout.init()
@@ -120,7 +120,7 @@ CUI Layout.init()
 ```
 
 
-<h2>六、自定义控件类型</h2>
+## 六、自定义控件类型
 
 ```javascript
 // 1. 创建自定义控件的初始化函数
@@ -159,7 +159,7 @@ const controlRegistry = {
 ```
 
 
-<h2>七、已有控件类型一览</h2>
+## 七、已有控件类型一览
 <table>
 <thead><tr><th>控件类型 (control_type)</th><th>对应 Web Component</th><th>说明</th></tr></thead>
 <tbody>

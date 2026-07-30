@@ -2,10 +2,10 @@
 title: GrantType 与枚举
 ---
 
-<h1>GrantType 与枚举</h1>
+# GrantType 与枚举
 <blockquote><p><strong>Aras.IOM.OAuth 命名空间中的枚举类型一览。</strong>定义了 OAuth 2.0 认证流程中的授权类型、响应模式、提示模式等。命名空间：Aras.IOM.OAuth，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、GrantType 枚举</h2>
+## 一、GrantType 枚举
 
 ```csharp
 // 认证授权类型 — 决定使用哪种 OAuth 2.0 流程
@@ -21,7 +21,7 @@ public enum GrantType
 ```
 
 
-<h2>二、PromptMode 枚举</h2>
+## 二、PromptMode 枚举
 
 ```csharp
 // 用户交互提示模式
@@ -34,7 +34,7 @@ public enum PromptMode
 ```
 
 
-<h2>三、ResponseMode 枚举</h2>
+## 三、ResponseMode 枚举
 
 ```csharp
 // OAuth 授权响应模式
@@ -46,7 +46,7 @@ public enum ResponseMode
 ```
 
 
-<h2>四、ProtocolType 枚举</h2>
+## 四、ProtocolType 枚举
 
 ```csharp
 // OAuth 协议类型
@@ -57,7 +57,7 @@ public enum ProtocolType
 ```
 
 
-<h2>五、GrantType 选择指南</h2>
+## 五、GrantType 选择指南
 <table><thead><tr><th>场景</th><th>推荐 GrantType</th><th>适用条件</th></tr></thead><tbody>
 <tr><td>服务端自动化脚本</td><td><code>Password</code></td><td>有用户名密码，可安全存储凭据</td></tr>
 <tr><td>Web 应用（用户登录）</td><td><code>AuthorizationCode</code></td><td>浏览器环境，支持 PKCE 安全增强</td></tr>
@@ -67,7 +67,7 @@ public enum ProtocolType
 <tr><td>令牌续期</td><td><code>RefreshToken</code></td><td>已有 Refresh Token，需续期 Access Token</td></tr>
 </tbody></table>
 
-<h2>六、代码示例</h2>
+## 六、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -110,7 +110,7 @@ inn.Login(tokenProvider);
 ```
 
 
-<h2>七、实践笔记</h2>
+## 七、实践笔记
 <ul>
 <li><strong>TokenProviderFactory.Create：</strong>根据 GrantType 自动选择合适的 TokenProvider 实现</li>
 <li><strong>PKCE 支持：</strong>AuthorizationCode 模式内建支持 PKCE（Proof Key for Code Exchange）</li>

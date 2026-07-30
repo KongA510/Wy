@@ -2,10 +2,10 @@
 title: Discovery 与异常
 ---
 
-<h1>Discovery 与异常</h1>
+# Discovery 与异常
 <blockquote><p><strong>OpenID Connect Discovery 文档获取与 OAuth 相关异常处理。</strong>DiscoveryDocumentProvider 自动获取服务器 OAuth 端点配置，OAuthException 提供结构化异常信息。命名空间：Aras.IOM.OAuth，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、DiscoveryDocumentProvider</h2>
+## 一、DiscoveryDocumentProvider
 
 ```csharp
 // DiscoveryDocumentProvider — OIDC 发现文档提供者
@@ -45,7 +45,7 @@ public class ProtocolInfo
 ```
 
 
-<h2>二、OAuthException</h2>
+## 二、OAuthException
 
 ```csharp
 // OAuthException — OAuth 相关异常
@@ -63,7 +63,7 @@ public class OAuthException : Exception
 ```
 
 
-<h2>三、代码示例</h2>
+## 三、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -180,7 +180,7 @@ void HandleOAuthError(Exception ex)
 ```
 
 
-<h2>四、常见 OAuth 错误码</h2>
+## 四、常见 OAuth 错误码
 <table><thead><tr><th>错误码</th><th>含义</th><th>处理建议</th></tr></thead><tbody>
 <tr><td><code>invalid_request</code></td><td>请求参数不合法</td><td>检查 Options 参数</td></tr>
 <tr><td><code>invalid_client</code></td><td>客户端认证失败</td><td>检查 ClientId/证书</td></tr>
@@ -190,7 +190,7 @@ void HandleOAuthError(Exception ex)
 <tr><td><code>server_error</code></td><td>服务器内部错误</td><td>重试或联系管理员</td></tr>
 </tbody></table>
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>缓存发现文档：</strong>Discovery Document 通常不变，可缓存一定时间（如 1 小时），避免每次启动都请求</li>
 <li><strong>回退策略：</strong>发现文档获取失败时，使用硬编码的默认端点路径作为回退</li>

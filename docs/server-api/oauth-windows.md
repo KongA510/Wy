@@ -2,10 +2,10 @@
 title: WindowsTokenProvider
 ---
 
-<h1>WindowsTokenProvider</h1>
+# WindowsTokenProvider
 <blockquote><p><strong>基于 Windows Integrated Authentication 的 OAuth 认证提供者。</strong>使用当前登录的 Windows 域用户身份自动认证，无需用户名密码。命名空间：Aras.IOM.OAuth，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、类定义</h2>
+## 一、类定义
 
 ```csharp
 // WindowsTokenProvider — Windows 集成认证令牌提供者
@@ -29,7 +29,7 @@ public class WindowsTokenProvider : ITokenProvider, ITokenProviderSession
 ```
 
 
-<h2>二、WindowsTokenProviderOptions</h2>
+## 二、WindowsTokenProviderOptions
 
 ```csharp
 // 极简配置 — 仅需 ServerUrl 和 Database
@@ -43,7 +43,7 @@ public class WindowsTokenProviderOptions : TokenProviderOptions
 ```
 
 
-<h2>三、代码示例</h2>
+## 三、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -106,7 +106,7 @@ inn.Login(autoProvider);
 ```
 
 
-<h2>四、完整示例：Windows 服务使用域身份连接</h2>
+## 四、完整示例：Windows 服务使用域身份连接
 
 ```csharp
 using Aras.IOM;
@@ -157,7 +157,7 @@ class ArasWindowsService
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>前提条件：</strong>服务器必须启用 Windows 身份验证，客户端必须加入同一个域（或受信任域）</li>
 <li><strong>零凭据配置：</strong>不需要在代码或配置文件中存储用户名密码——最安全的认证方式之一</li>

@@ -2,12 +2,12 @@
 title: newItem / newResult / newError
 ---
 
-<h1>newItem / newResult / newError</h1>
+# newItem / newResult / newError
 <blockquote>
 <p><strong>Innovator 类提供了三种重载的 newItem 方法、newResult 和 newError 方法，用于创建不同类型的 Item 对象。</strong>命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、newItem() — 无参数</h2>
+## 一、newItem() — 无参数
 
 ```csharp
 // 签名
@@ -19,7 +19,7 @@ var item = inn.newItem();
 
 <p>返回的 Item 可以后续通过 <code>loadAML()</code> 加载 AML 内容。通常用于接收从字符串构建的请求。</p>
 
-<h2>二、newItem(String) — 指定 type</h2>
+## 二、newItem(String) — 指定 type
 
 ```csharp
 // 签名
@@ -37,7 +37,7 @@ var result = part.apply("get");
 <tbody><tr><td><code>type</code></td><td>ItemType 名称，如 "Part"、"Document"、"Method" 等</td></tr></tbody>
 </table>
 
-<h2>三、newItem(String, String) — 指定 type 和 action</h2>
+## 三、newItem(String, String) — 指定 type 和 action
 
 ```csharp
 // 签名
@@ -58,7 +58,7 @@ var result = query.apply(); // 无需再指定 action
 </tbody>
 </table>
 
-<h2>四、newResult(String) — 创建结果 Item</h2>
+## 四、newResult(String) — 创建结果 Item
 
 ```csharp
 // 签名
@@ -73,7 +73,7 @@ return inn.newResult(json);
 ```
 
 
-<h2>五、newError(String) — 创建错误 Item</h2>
+## 五、newError(String) — 创建错误 Item
 
 ```csharp
 // 签名
@@ -87,7 +87,7 @@ if (string.IsNullOrEmpty(name)) {
 ```
 
 
-<h2>六、完整示例：创建与查询</h2>
+## 六、完整示例：创建与查询
 
 ```csharp
 // 服务端 Method 中的典型操作
@@ -117,7 +117,7 @@ return inn.newResult(extractedJsonString);
 ```
 
 
-<h2>七、实践笔记</h2>
+## 七、实践笔记
 <ul>
 <li><strong>推荐 newItem(type, action)：</strong>代码更简洁，减少一次 <code>setAction</code> 调用</li>
 <li><strong>newError 不要吞掉：</strong>服务端返回的错误信息对调试至关重要，<code>newError("系统错误，请联系管理员")</code> 比原样传递更有用</li>

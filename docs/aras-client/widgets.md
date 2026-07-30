@@ -2,17 +2,17 @@
 title: 仪表板 Widget 开发
 ---
 
-<h1>仪表板 Widget 开发</h1>
+# 仪表板 Widget 开发
 <blockquote>
 <p>Widget 是基于 <strong>WidgetLayout</strong> 基类的自定义 CUI Layout。通过定义 Widget Template、关联 Layout 并实现内容渲染，可以创建各种类型的仪表板组件。</p>
 </blockquote>
 
-<h2>一、添加新 Widget 类型 — 完整指南</h2>
+## 一、添加新 Widget 类型 — 完整指南
 
-<h3>Step 1：定义 Widget Type</h3>
+### Step 1：定义 Widget Type
 <p>在 Innovator 中，<strong>Dashboard Widget Types</strong> 是一个 Innovator List，包含客户端代码可以处理的 Widget 类型集合。</p>
 
-<h3>Step 2：关联 Layout 与 Widget Type</h3>
+### Step 2：关联 Layout 与 Widget Type
 <p>在 <code>Modules/dashboard/dashboardWidgetLayouts.ts</code> 中添加映射：</p>
 
 ```typescript
@@ -25,7 +25,7 @@ const widgetLayoutConstructors = {
 ```
 
 
-<h3>Step 3：继承 WidgetLayout 基类</h3>
+### Step 3：继承 WidgetLayout 基类
 
 ```typescript
 import WidgetLayout from './WidgetLayout';
@@ -39,10 +39,10 @@ export default class NewCuiLayout extends WidgetLayout {
 ```
 
 
-<h3>Step 4：定义 Widget 内容</h3>
+### Step 4：定义 Widget 内容
 <p>有两种方式定义 Widget 的内容：</p>
 
-<h4>方式 A：通过 CUI Controls（推荐）</h4>
+#### 方式 A：通过 CUI Controls（推荐）
 <p>像 <code>DashboardGridCuiLayout</code> 那样，通过 <code>cui_WindowSection</code> 定义控件，引擎自动渲染：</p>
 
 ```typescript
@@ -52,7 +52,7 @@ export default class NewCuiLayout extends WidgetLayout {
 ```
 
 
-<h4>方式 B：手动创建 DOM</h4>
+#### 方式 B：手动创建 DOM
 
 ```typescript
 import { bind, wire } from 'hyperhtml';
@@ -94,7 +94,7 @@ export default class NewCuiLayout extends WidgetLayout<NewCuiLayoutState> {
 <strong>⚠️ 不推荐使用 &lt;iframe&gt;</strong> 渲染 Widget 内容，因为 iframe 会破坏仪表板的上下文共享机制。
 </div>
 
-<h2>二、Widget Template 定义</h2>
+## 二、Widget Template 定义
 <p>Widget Template 定义了 Widget 可配置的属性（通过 <code>Dashboard Widget Template Prop</code> 关系）：</p>
 
 ```xml
@@ -128,7 +128,7 @@ export default class NewCuiLayout extends WidgetLayout<NewCuiLayoutState> {
 ```
 
 
-<h2>三、Widget 渲染流程</h2>
+## 三、Widget 渲染流程
 
 ```text
 Dashboard 初始化：
@@ -144,7 +144,7 @@ Dashboard 初始化：
 ```
 
 
-<h2>四、Widget 间通信</h2>
+## 四、Widget 间通信
 <p>通过<strong>上下文共享（Context Sharing）</strong>机制，同一仪表板中的 Widget 可以共享数据：</p>
 
 ```typescript

@@ -3,7 +3,7 @@ title: 输入 ItemType 属性
 ---
 
 <div>
-<h1>输入 ItemType 属性</h1>
+# 输入 ItemType 属性
 <p class="Content_body">ItemType 表单中的属性选项卡包含了该条目的所有属性，包括系统属性。点击 ItemType 表单中的"属性"选项卡，您将看到类似以下的内容：</p>
 <p class="Content_body_indented"><img :src="'/aras-images/program2.jpg'"></p>
 <!--?rh-list_start level="1" an="1" class="rl-p-Figure_indented" style="list-style: rh-list;

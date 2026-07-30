@@ -2,10 +2,10 @@
 title: 操作结果类型
 ---
 
-<h1>操作结果类型</h1>
+# 操作结果类型
 <blockquote><p><strong>IOME 文件操作的结果类型。</strong>UploadResult 和 DownloadResult 封装了文件上传/下载操作的结果信息。命名空间：Aras.IOME，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、UploadResult</h2>
+## 一、UploadResult
 
 ```csharp
 // UploadResult — 单个文件上传结果
@@ -20,7 +20,7 @@ public class UploadResult
 ```
 
 
-<h2>二、DownloadResult</h2>
+## 二、DownloadResult
 
 ```csharp
 // DownloadResult — 单个文件下载结果
@@ -36,7 +36,7 @@ public class DownloadResult
 ```
 
 
-<h2>三、代码示例</h2>
+## 三、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -125,7 +125,7 @@ string FormatSize(long bytes)
 ```
 
 
-<h2>四、实践笔记</h2>
+## 四、实践笔记
 <ul>
 <li><strong>Status 字段：</strong>是 "Success" 或 "Failed" 字符串，不是布尔值，注意区分大小写</li>
 <li><strong>FileId 用途：</strong>上传成功后的 FileId 可用于后续直接引用该文件（如 getFileUrl）</li>

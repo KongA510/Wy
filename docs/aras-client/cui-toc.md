@@ -2,15 +2,15 @@
 title: CUI 目录导航（TOC）
 ---
 
-<h1>CUI 目录导航（TOC）</h1>
+# CUI 目录导航（TOC）
 <blockquote>
 <p>CUI TOC 是 CUI 控件体系中用于创建<strong>树形目录导航</strong>的模块。它根据 CUI 数据定义渲染可展开/折叠的树节点结构，常用于管理系统左侧导航栏、分类树、BOM 结构等场景，支持节点懒加载和动态数据绑定。</p>
 </blockquote>
 
-<h2>一、位置</h2>
+## 一、位置
 <p><code>Innovator/Client/Modules/cui/cuiToc.js</code></p>
 
-<h2>二、公共 API</h2>
+## 二、公共 API
 
 ```javascript
 function cuiToc(
@@ -28,9 +28,9 @@ function cuiToc(
 ```
 
 
-<h2>三、CUI 数据结构</h2>
+## 三、CUI 数据结构
 
-<h3>3.1 控件定义（componentData）</h3>
+### 3.1 控件定义（componentData）
 <p>控件定义中包含三个关键字段：</p>
 
 <table>
@@ -42,7 +42,7 @@ function cuiToc(
 </tbody>
 </table>
 
-<h3>3.2 树节点数据结构</h3>
+### 3.2 树节点数据结构
 <p>每个树节点是一个扁平化对象，通过 <code>parentId</code> 建立父子关系：</p>
 
 
@@ -65,7 +65,7 @@ function cuiToc(
 ```
 
 
-<h3>3.3 TOC 树配置项（configId 对应的内存数据）</h3>
+### 3.3 TOC 树配置项（configId 对应的内存数据）
 
 ```javascript
 // 通过 configId 在 arasTocConfigs 中查找树配置
@@ -89,9 +89,9 @@ const tocConfig = {
 ```
 
 
-<h2>四、完整使用示例</h2>
+## 四、完整使用示例
 
-<h3>4.1 在 CUI Layout 中配置 TOC 控件</h3>
+### 4.1 在 CUI Layout 中配置 TOC 控件
 
 ```javascript
 // CUI 数据 — TOC 控件定义
@@ -111,7 +111,7 @@ const tocControlData = {
 ```
 
 
-<h3>4.2 TOC 初始化逻辑（cuiControls 注册）</h3>
+### 4.2 TOC 初始化逻辑（cuiControls 注册）
 
 ```javascript
 // cuiControls.js — TOC 控件注册
@@ -150,7 +150,7 @@ const controlRegistry = {
 ```
 
 
-<h3>4.3 自定义编辑器中使用 TOC</h3>
+### 4.3 自定义编辑器中使用 TOC
 
 ```javascript
 // 自定义 TOC 编辑器 —— 分类导航面板
@@ -245,7 +245,7 @@ class ClassificationEditor {
 ```
 
 
-<h3>4.4 动态更新 TOC 节点</h3>
+### 4.4 动态更新 TOC 节点
 
 ```javascript
 // 为 TOC 添加自定义节点或更新现有节点
@@ -288,7 +288,7 @@ function filterTocNodes(tocInstance, keyword) {
 ```
 
 
-<h3>4.5 懒加载子节点</h3>
+### 4.5 懒加载子节点
 
 ```javascript
 // TOC 懒加载 —— 点击展开时动态获取子节点
@@ -329,7 +329,7 @@ async function setupLazyLoading(tocElement) {
 ```
 
 
-<h3>4.6 经典场景：BOM 结构树</h3>
+### 4.6 经典场景：BOM 结构树
 
 ```javascript
 // BOM 结构浏览器 —— 工程师最常用的 TOC 场景
@@ -406,7 +406,7 @@ bomBrowser.init();
 ```
 
 
-<h2>五、客户端 Method（点击处理器）</h2>
+## 五、客户端 Method（点击处理器）
 <p>通过 <code>client_method</code> 指定的点击处理函数，可以自定义节点点击后的导航行为：</p>
 
 
@@ -449,7 +449,7 @@ function onClassificationClick(context) {
 ```
 
 
-<h2>六、aras-toc Web Component 属性参考</h2>
+## 六、aras-toc Web Component 属性参考
 
 <table>
 <thead><tr><th>属性</th><th>类型</th><th>说明</th></tr></thead>
@@ -465,7 +465,7 @@ function onClassificationClick(context) {
 </tbody>
 </table>
 
-<h2>七、aras-toc 自定义事件</h2>
+## 七、aras-toc 自定义事件
 
 <table>
 <thead><tr><th>事件名</th><th>detail 内容</th><th>触发时机</th></tr></thead>
@@ -487,7 +487,7 @@ function onClassificationClick(context) {
 <strong>最佳实践：</strong>在自定义编辑器中复用 TOC 时，建议通过 <code>notifyObserver</code> 与布局内其他控件联动，而不是在 <code>node-click</code> 中直接操作 DOM。这样可以保持 CUI 架构的松耦合特性，方便后续扩展和维护。
 </div>
 
-<h2>八、注意事项</h2>
+## 八、注意事项
 <ul>
 <li><strong>TOC 数据由服务端 Method 提供</strong>——默认 Method 为 <code>cui_common_getTocData</code>，自定义结构（如 BOM 树）需单独指定 Method</li>
 <li><strong>树节点是扁平结构</strong>——通过 <code>parentId</code> 字段建立层级关系，而非嵌套对象，这样在大数据量时有更好的性能表现</li>

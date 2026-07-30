@@ -2,10 +2,10 @@
 title: 签入事件体系
 ---
 
-<h1>签入事件体系</h1>
+# 签入事件体系
 <blockquote><p><strong>CheckinManager 的签入进度与完成事件。</strong>通过事件机制监控文件签入过程的进度和结果，实现异步签入操作。命名空间：Aras.IOME，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、事件参数类</h2>
+## 一、事件参数类
 
 ```csharp
 // CheckinProgressChangedEventArgs — 签入进度变化事件参数
@@ -27,7 +27,7 @@ public class CheckinCompletedEventArgs : EventArgs
 ```
 
 
-<h2>二、事件委托</h2>
+## 二、事件委托
 
 ```csharp
 // 签入进度变化委托
@@ -44,7 +44,7 @@ public delegate void CheckinCompletedEventHandler(
 ```
 
 
-<h2>三、CheckinManager 事件</h2>
+## 三、CheckinManager 事件
 
 ```csharp
 public class CheckinManager
@@ -60,7 +60,7 @@ public class CheckinManager
 ```
 
 
-<h2>四、代码示例</h2>
+## 四、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -143,7 +143,7 @@ catch (OperationCanceledException)
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>UI 线程：</strong>事件回调在后台线程执行，更新 UI 需要通过 <code>Dispatcher.Invoke</code>（WPF）或 <code>Control.Invoke</code>（WinForms）</li>
 <li><strong>部分成功：</strong>CheckinCompleted 中即使有 Error，Results 仍可能包含部分成功上传的文件</li>

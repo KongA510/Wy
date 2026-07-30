@@ -3,8 +3,8 @@ title: 创建 BOM（物料清单）
 ---
 
 <div>
-<h1>创建 BOM（物料清单）</h1>
-<h2>填充顶级零件<a class="glossterm" data-rhwidget="ExpandSpot" data-target="glossary">BOM</a><span class="expanding-content" data-targetname="glossary"> </span></h2>
+# 创建 BOM（物料清单）
+## 填充顶级零件<a class="glossterm" data-rhwidget="ExpandSpot" data-target="glossary">BOM</a><span class="expanding-content" data-targetname="glossary"> </span>
 <ol class="Decimal">
 <li>打开选定的零件进行编辑。</li>
 <br>

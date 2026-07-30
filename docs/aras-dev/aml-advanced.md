@@ -2,12 +2,12 @@
 title: AML 高级查询
 ---
 
-<h1>AML 高级查询</h1>
+# AML 高级查询
 <blockquote>
 <p>AML 支持多层级嵌套查询、联合查询（Federation）、属性逻辑组合（AND/OR）、参数化查询等高级特性。</p>
 </blockquote>
 
-<h2>一、多 Item 批量查询</h2>
+## 一、多 Item 批量查询
 <p>一个 AML 文档可以包含多个 <code>&lt;Item&gt;</code> 元素，一次请求完成多次查询：</p>
 
 ```xml
@@ -30,7 +30,7 @@ var result = inn.applyAML(aml);
 ```
 
 
-<h2>二、属性逻辑组合 (AND/OR)</h2>
+## 二、属性逻辑组合 (AND/OR)
 
 ```xml
 <!-- AND 逻辑：多个条件子元素默认就是 AND 关系 -->
@@ -59,7 +59,7 @@ var result = inn.applyAML(aml);
 ```
 
 
-<h2>三、关系查询 (Relationship)</h2>
+## 三、关系查询 (Relationship)
 
 ```xml
 <AML>
@@ -100,7 +100,7 @@ for (int i = 0; i < boms.getItemCount(); i++) {
 ```
 
 
-<h2>四、分页查询</h2>
+## 四、分页查询
 
 ```xml
 <Item type="Part" action="get"
@@ -112,7 +112,7 @@ for (int i = 0; i < boms.getItemCount(); i++) {
 
 <p><strong>注意：</strong>需要同时查询总数以计算总页数（另发一次不带分页的 count 查询）。</p>
 
-<h2>五、属性源（Property Source）</h2>
+## 五、属性源（Property Source）
 <p>支持跨 ItemType 属性引用，避免 SQL JOIN：</p>
 
 ```xml
@@ -126,7 +126,7 @@ for (int i = 0; i < boms.getItemCount(); i++) {
 ```
 
 
-<h2>六、applySQL vs 高级 AML — 选择指南</h2>
+## 六、applySQL vs 高级 AML — 选择指南
 <table>
 <thead><tr><th>场景</th><th>推荐方式</th><th>原因</th></tr></thead>
 <tbody>

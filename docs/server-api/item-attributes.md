@@ -2,12 +2,12 @@
 title: Attribute 操作
 ---
 
-<h1>Attribute 操作</h1>
+# Attribute 操作
 <blockquote>
 <p><strong>Item 提供全面的 Attribute 操作方法，用于操作 Item 节点和属性子元素上的 XML 属性。</strong>包括通用 Attribute 操作、Property Attribute 操作、Action/Type 操作等。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、通用 Item Attribute 操作</h2>
+## 一、通用 Item Attribute 操作
 
 ```csharp
 // getAttribute — 读取 Item 节点上的属性
@@ -33,7 +33,7 @@ item.removeAttribute("temporary_attr");
 ```
 
 
-<h2>二、Property Attribute 操作</h2>
+## 二、Property Attribute 操作
 
 ```csharp
 // getPropertyAttribute — 读取属性子元素的 XML 属性
@@ -56,7 +56,7 @@ public void removePropertyAttribute(string propName, string attrName, string lan
 ```
 
 
-<h2>三、Action 和 Type 操作</h2>
+## 三、Action 和 Type 操作
 
 ```csharp
 // getAction / setAction — 操作类型
@@ -75,7 +75,7 @@ item.setType("Part");
 ```
 
 
-<h2>四、完整示例：构造复杂查询</h2>
+## 四、完整示例：构造复杂查询
 
 ```csharp
 var inn = this.newInnovator();
@@ -101,7 +101,7 @@ var result = query.apply();
 ```
 
 
-<h2>五、常用 Item 级别 Attributes</h2>
+## 五、常用 Item 级别 Attributes
 <table>
 <thead><tr><th>Attribute</th><th>说明</th><th>示例值</th></tr></thead>
 <tbody>
@@ -117,7 +117,7 @@ var result = query.apply();
 </tbody>
 </table>
 
-<h2>六、实践笔记</h2>
+## 六、实践笔记
 <ul>
 <li><strong>setPropertyCondition vs setPropertyAttribute：</strong>两者效果相同，setPropertyCondition 是快捷方式</li>
 <li><strong>select 优化：</strong>始终指定 select 列表，避免返回不需要的属性，大幅提升传输性能</li>

@@ -3,7 +3,7 @@ title: Creating a Poly Item Item Type
 ---
 
 <div>
-<h1>Creating a Poly Item Item Type</h1>
+# Creating a Poly Item Item Type
 <p class="Content_body">Use the following procedure:</p>
 <!--?rh-list_start class="Numbered_list" level="1" style="list-style: rh-list; 
 list-style: rh-list;" ?-->

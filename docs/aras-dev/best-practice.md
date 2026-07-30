@@ -2,12 +2,12 @@
 title: 服务端开发规范
 ---
 
-<h1>服务端开发规范</h1>
+# 服务端开发规范
 <blockquote>
 <p>基于 Aras Innovator 平台特性与团队实践总结的服务端 Method 开发规范，适用于 <strong>2025R / R37+</strong> 版本。</p>
 </blockquote>
 
-<h2>一、命名规范</h2>
+## 一、命名规范
 <table>
 <thead><tr><th>对象</th><th>规范</th><th>示例</th></tr></thead>
 <tbody>
@@ -19,7 +19,7 @@ title: 服务端开发规范
 </tbody>
 </table>
 
-<h2>二、Method 代码结构模板</h2>
+## 二、Method 代码结构模板
 
 ```csharp
 /// <summary>
@@ -64,8 +64,8 @@ finally
 ```
 
 
-<h2>三、数据操作规范</h2>
-<h3>3.1 优先使用 IOM API，而非 AML 字符串</h3>
+## 三、数据操作规范
+### 3.1 优先使用 IOM API，而非 AML 字符串
 
 ```csharp
 // ✅ 推荐：IOM API（类型安全、可读性好）
@@ -78,7 +78,7 @@ string aml = "<AML><Item type='Part' action='get'>...";
 ```
 
 
-<h3>3.2 返回 JSON 而非 XML</h3>
+### 3.2 返回 JSON 而非 XML
 
 ```csharp
 // ✅ 推荐：序列化为 JSON
@@ -92,7 +92,7 @@ return resultItem;
 ```
 
 
-<h3>3.3 使用参数化查询避免 SQL 注入</h3>
+### 3.3 使用参数化查询避免 SQL 注入
 
 ```csharp
 // ✅ 推荐：使用 string.Format 或参数化
@@ -105,7 +105,7 @@ var sql = string.Format(
 ```
 
 
-<h2>四、错误处理规范</h2>
+## 四、错误处理规范
 <table>
 <thead><tr><th>场景</th><th>处理方式</th></tr></thead>
 <tbody>
@@ -117,7 +117,7 @@ var sql = string.Format(
 </tbody>
 </table>
 
-<h2>五、性能规范</h2>
+## 五、性能规范
 <ul>
 <li><strong>避免 N+1 查询</strong>：一次性通过 AML Relationships 获取关联数据，不要在循环中逐条查询</li>
 <li><strong>select 子句</strong>：只提取需要的字段，不要使用默认的 <code>select="*"</code></li>
@@ -126,7 +126,7 @@ var sql = string.Format(
 <li><strong>分页</strong>：大数据量查询时使用 page + pagesize，不要让服务端返回全量数据</li>
 </ul>
 
-<h2>六、日志规范</h2>
+## 六、日志规范
 
 ```csharp
 // 写入 Aras 服务器日志

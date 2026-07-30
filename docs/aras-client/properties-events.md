@@ -2,19 +2,19 @@
 title: 属性事件模型
 ---
 
-<h1>属性事件模型</h1>
+# 属性事件模型
 <blockquote>
 <p>ItemType 的属性（Properties）定义了一个数据模型，每个属性可以拥有自己的<strong>事件（Events）</strong>。事件在数据层面工作，对 HTML DOM 层无感知。</p>
 </blockquote>
 
-<h2>一、核心概念</h2>
+## 一、核心概念
 <p>ItemType 定义描述了模型包含哪些属性。每个属性可以有自己独立的事件处理器。事件执行代码时<strong>没有特定的 UI 上下文</strong>——它只与属性数据（或 Item 数据）交互，不能修改 HTML 层级。</p>
 
 <div class="tip-box">
 <strong>⚠️ 注意</strong>：<strong>Poly ItemType</strong> 的属性不支持事件系统。Poly Item 的事件将映射到其 <strong>PolySource</strong> 上。
 </div>
 
-<h2>二、Poly Item 事件映射</h2>
+## 二、Poly Item 事件映射
 
 ```text
 PolyItem
@@ -26,10 +26,10 @@ PolyItem
 ```
 
 
-<h2>三、Validate 事件（验证）</h2>
+## 三、Validate 事件（验证）
 <p>在<strong>数据写入 Item 之前</strong>、数据送入 Single Store <strong>之前</strong>执行。用于验证值的合法性。</p>
 
-<h3>3.1 返回值结构</h3>
+### 3.1 返回值结构
 
 ```javascript
 // Validate 事件处理器必须返回以下结构：
@@ -41,7 +41,7 @@ PolyItem
 ```
 
 
-<h3>3.2 实战示例</h3>
+### 3.2 实战示例
 
 ```javascript
 // 示例1：零件号格式验证
@@ -81,7 +81,7 @@ function validateDueDate(eventArgs) {
 ```
 
 
-<h3>3.3 不同 UI 控件的错误展示</h3>
+### 3.3 不同 UI 控件的错误展示
 <table>
 <thead><tr><th>UI 控件</th><th>错误展示方式</th></tr></thead>
 <tbody>
@@ -91,7 +91,7 @@ function validateDueDate(eventArgs) {
 </tbody>
 </table>
 
-<h2>四、Change 事件（变更）</h2>
+## 四、Change 事件（变更）
 <p>当属性值发生变化时触发。可以在事件中<strong>修改 Item 中的其他属性值</strong>，但不能操作 HTML 元素。</p>
 
 
@@ -124,7 +124,7 @@ function onQuantityChanged(eventArgs) {
 ```
 
 
-<h2>五、事件生命周期</h2>
+## 五、事件生命周期
 
 ```text
 数据改变
@@ -149,7 +149,7 @@ function onQuantityChanged(eventArgs) {
 ```
 
 
-<h2>六、最佳实践</h2>
+## 六、最佳实践
 <ul>
 <li><strong>验证逻辑集中在 Validate 事件</strong>中，不要在 Change 事件中做验证</li>
 <li><strong>不要在事件中操作 DOM</strong>——事件可能在 Form、Grid 或任何地方执行</li>

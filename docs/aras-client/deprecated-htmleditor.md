@@ -2,13 +2,13 @@
 title: HtmlEditor（HTML 编辑器）
 ---
 
-<h1>HtmlEditor（已弃用）</h1>
+# HtmlEditor（已弃用）
 <blockquote>
 <p><strong>命名空间：</strong><code>Aras.Client.Controls.Public</code></p>
 <p>HTML 富文本编辑器控件。提供编辑区域内容的获取/设置、图片插入、启用/禁用以及事件订阅等功能。该 API 已弃用，建议在新项目中使用替代方案。</p>
 </blockquote>
 
-<h2>成员概览</h2>
+## 成员概览
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -25,19 +25,19 @@ title: HtmlEditor（HTML 编辑器）
 </tbody>
 </table>
 
-<h2>API 详情</h2>
+## API 详情
 
 <!-- ── 构造函数 ── -->
-<h3>constructor()</h3>
+### constructor()
 <p>HtmlEditor 构造函数，创建一个 HtmlEditor 控件实例。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 Aras.Client.Controls.Public.HtmlEditor = function();
 ```
 
-    <h4>示例</h4>
-    
+#### 示例
+
 ```javascript
 // 通过 clientControlsFactory 创建 HtmlEditor 实例
 const htmlEditor = clientControlsFactory.createControl(
@@ -51,20 +51,20 @@ const htmlEditor = clientControlsFactory.createControl(
 <hr />
 
 <!-- ── 内容管理 ── -->
-<h2>内容管理</h2>
+## 内容管理
 
-<h3>getHTMLSource(bodyOnly)</h3>
+### getHTMLSource(bodyOnly)
 <p>获取 HtmlEditor 编辑区域当前的内容。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>bodyOnly</code></td><td><code>bool</code></td><td>为 <code>true</code> 时仅返回 <code>&lt;body&gt;</code> 内部 HTML；为 <code>false</code> 时返回完整 HTML 文档</td></tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p>返回编辑器当前内容的 HTML 字符串。</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 仅获取 body 内部内容（通常用于存储到数据库）
@@ -77,9 +77,9 @@ const fullDocument = htmlEditor.getHTMLSource(false);
 
 <hr />
 
-<h3>setHTMLSource(bodyOnly, source)</h3>
+### setHTMLSource(bodyOnly, source)
 <p>设置 HtmlEditor 编辑区域的内容。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -87,7 +87,7 @@ const fullDocument = htmlEditor.getHTMLSource(false);
 <tr><td><code>source</code></td><td><code>string</code></td><td>要设置的 HTML 源内容</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 设置 body 内容（常用于从数据库加载内容后回填编辑器）
@@ -104,9 +104,9 @@ htmlEditor.setHTMLSource(false, fullContent);
 
 <hr />
 
-<h3>insertImage(src, altText, align, border, hSpace, vSpace)</h3>
+### insertImage(src, altText, align, border, hSpace, vSpace)
 <p>在编辑区域光标位置插入一个 HTML <code>&lt;img&gt;</code> 标签。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -118,7 +118,7 @@ htmlEditor.setHTMLSource(false, fullContent);
 <tr><td><code>vSpace</code></td><td><code>int</code></td><td>图片垂直外边距（像素）</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 插入一张左对齐、无边框、带 10px 间距的图片
@@ -146,18 +146,18 @@ htmlEditor.insertImage(
 <hr />
 
 <!-- ── 状态控制 ── -->
-<h2>状态控制</h2>
+## 状态控制
 
-<h3>setDisabled(value)</h3>
+### setDisabled(value)
 <p>启用或禁用 HtmlEditor 控件。禁用的编辑器内容不可编辑，通常为灰色显示。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>value</code></td><td><code>bool</code></td><td><code>true</code> 禁用编辑器；<code>false</code> 启用编辑器</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 根据权限控制编辑器状态
@@ -178,9 +178,9 @@ async function submitContent() {
 
 <hr />
 
-<h3>set() <em>（已弃用）</em></h3>
+### set() <em>（已弃用）</em>
 <p>已弃用的状态设置方法，仅支持值 <code>"disabled"</code>。请使用 <code>setDisabled()</code> 方法替代。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -194,19 +194,19 @@ async function submitContent() {
 <hr />
 
 <!-- ── 生命周期 ── -->
-<h2>生命周期</h2>
+## 生命周期
 
-<h3>onLoadDeferred(callback) <em>（已弃用）</em></h3>
+### onLoadDeferred(callback) <em>（已弃用）</em>
 <p>注册一个回调函数，在 HtmlEditor 控件加载完成后执行。该方法本质上是 <code>onLoadDeferred.addCallback(callback)</code> 的封装。</p>
 <p>建议在创建控件时使用 <code>initHandler</code> 参数替代，具体用法可参考 <code>HTMLEditorDialog.html</code>。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
 <tr><td><code>callback</code></td><td><code>function</code></td><td>编辑器加载完成时执行的回调函数</td></tr>
 </tbody>
 </table>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 旧方式（已弃用）
@@ -231,25 +231,25 @@ const htmlEditor = clientControlsFactory.createControl(
 <hr />
 
 <!-- ── 事件 ── -->
-<h2>事件</h2>
+## 事件
 
-<h3>Event:onBlur</h3>
+### Event:onBlur
 <p>编辑器失去焦点时触发。当用户点击编辑器外部区域或 Tab 切换到其他控件时触发。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 clientControlsFactory.on(control, "onBlur", onBlurHandler);
 ```
 
-    <h4>参数</h4>
-    <table>
-      <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td><em>无参数</em></td><td><em>-</em></td><td>该事件处理函数不接收额外参数</td></tr>
-      </tbody>
-    </table>
-    <h4>示例</h4>
-    
+#### 参数
+<table>
+<thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td><em>无参数</em></td><td><em>-</em></td><td>该事件处理函数不接收额外参数</td></tr>
+</tbody>
+</table>
+#### 示例
+
 ```javascript
 // 绑定失去焦点事件
 clientControlsFactory.on(htmlEditor, "onBlur", function() {
@@ -263,23 +263,23 @@ clientControlsFactory.on(htmlEditor, "onBlur", function() {
 
 <hr />
 
-<h3>Event:onChange</h3>
+### Event:onChange
 <p>编辑器内容发生变更时触发。用户在编辑区域键入文字、删除内容、粘贴或格式化操作后触发，回调函数会接收变更后的新内容。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 clientControlsFactory.on(control, "onChange", onChangeHandler);
 ```
 
-    <h4>参数</h4>
-    <table>
-      <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td><code>newContent</code></td><td><code>string</code></td><td>变更后编辑区域的 HTML 内容</td></tr>
-      </tbody>
-    </table>
-    <h4>示例</h4>
-    
+#### 参数
+<table>
+<thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td><code>newContent</code></td><td><code>string</code></td><td>变更后编辑区域的 HTML 内容</td></tr>
+</tbody>
+</table>
+#### 示例
+
 ```javascript
 // 监听内容变更，如实现脏标记
 let isDirty = false;
@@ -302,23 +302,23 @@ function beforeClose() {
 
 <hr />
 
-<h3>Event:onAfterPaste</h3>
+### Event:onAfterPaste
 <p>在编辑器内完成粘贴操作后触发。可用于对粘贴的内容进行后处理，如清除内联样式、过滤不安全的标签等。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 clientControlsFactory.on(control, "onAfterPaste", onAfterPasteHandler);
 ```
 
-    <h4>参数</h4>
-    <table>
-      <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td><em>无参数</em></td><td><em>-</em></td><td>该事件处理函数不接收额外参数</td></tr>
-      </tbody>
-    </table>
-    <h4>示例</h4>
-    
+#### 参数
+<table>
+<thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td><em>无参数</em></td><td><em>-</em></td><td>该事件处理函数不接收额外参数</td></tr>
+</tbody>
+</table>
+#### 示例
+
 ```javascript
 // 粘贴后清理格式
 clientControlsFactory.on(htmlEditor, "onAfterPaste", function() {
@@ -342,7 +342,7 @@ function sanitizeHtml(html) {
 <hr />
 
 <!-- ── 完整使用示例 ── -->
-<h2>完整使用示例</h2>
+## 完整使用示例
 <p>以下示例演示了如何创建 HtmlEditor、设置初始内容、绑定事件并管理编辑器的完整生命周期：</p>
 
 ```javascript

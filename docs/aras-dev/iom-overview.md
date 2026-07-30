@@ -2,15 +2,15 @@
 title: IOM 总览与架构
 ---
 
-<h1>IOM 总览与架构</h1>
+# IOM 总览与架构
 <blockquote>
 <p><strong>Innovator Object Model (IOM)</strong> 是 Aras Innovator 平台的核心编程框架。IOM 连接客户端、服务端和应用层，为开发者提供统一的 API 来操作 PLM 数据。</p>
 </blockquote>
 
-<h2>一、IOM 是什么</h2>
+## 一、IOM 是什么
 <p>IOM（Innovator Object Model）是一套面向对象的 API，封装了 Aras Innovator 数据库中 <strong>ItemType</strong> 的 CRUD 操作。无论是浏览器端 JavaScript 还是服务端 C#，开发者都通过 IOM 操作 Aras 数据。</p>
 
-<h2>二、IOM 三层架构</h2>
+## 二、IOM 三层架构
 <table>
 <thead><tr><th>层级</th><th>运行环境</th><th>语言</th><th>典型用途</th></tr></thead>
 <tbody>
@@ -20,7 +20,7 @@ title: IOM 总览与架构
 </tbody>
 </table>
 
-<h2>三、核心对象关系</h2>
+## 三、核心对象关系
 
 ```text
 ┌──────────────────────────────────────────────┐
@@ -47,7 +47,7 @@ title: IOM 总览与架构
 ```
 
 
-<h2>四、命名空间速查</h2>
+## 四、命名空间速查
 <table>
 <thead><tr><th>命名空间</th><th>用途</th></tr></thead>
 <tbody>
@@ -58,7 +58,7 @@ title: IOM 总览与架构
 </tbody>
 </table>
 
-<h2>五、代码调用链：从前端到后端</h2>
+## 五、代码调用链：从前端到后端
 
 ```text
 浏览器 JS                      IIS 服务端                      SQL Server
@@ -75,7 +75,7 @@ top.aras
 ```
 
 
-<h2>六、版本变更</h2>
+## 六、版本变更
 <table>
 <thead><tr><th>版本</th><th>主要变更</th></tr></thead>
 <tbody>

@@ -2,10 +2,10 @@
 title: 上传事件体系
 ---
 
-<h1>上传事件体系</h1>
+# 上传事件体系
 <blockquote><p><strong>文件上传相关的事件参数与处理。</strong>包含单文件上传完成、多文件上传进度和完成事件。命名空间：Aras.IOME，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、事件参数类</h2>
+## 一、事件参数类
 
 ```csharp
 // UploadFileCompletedEventArgs — 单文件上传完成
@@ -42,7 +42,7 @@ public class UploadFilesProgressChangedEventArgs : EventArgs
 ```
 
 
-<h2>二、UploadResult</h2>
+## 二、UploadResult
 
 ```csharp
 // UploadResult — 单个文件上传结果
@@ -57,7 +57,7 @@ public class UploadResult
 ```
 
 
-<h2>三、事件委托</h2>
+## 三、事件委托
 
 ```csharp
 public delegate void UploadFileCompletedEventHandler(
@@ -74,7 +74,7 @@ public delegate void UploadFilesProgressChangedEventHandler(
 ```
 
 
-<h2>四、代码示例</h2>
+## 四、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -154,7 +154,7 @@ string FormatBytes(long bytes)
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>BytesUploaded/TotalBytes：</strong>提供精确的字节级进度，适合大文件上传时显示详细进度</li>
 <li><strong>单文件 vs 多文件：</strong>签入多个文件时 UploadFiles* 事件触发，单个小文件可能只触发 UploadFileCompleted</li>

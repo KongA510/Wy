@@ -2,12 +2,12 @@
 title: 文件管理
 ---
 
-<h1>文件管理</h1>
+# 文件管理
 <blockquote>
 <p><strong>Item 提供完整的文件管理方法。</strong>包括物理文件附件、文件流上传/下载、Vault 检出等。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、文件上传</h2>
+## 一、文件上传
 
 ```csharp
 // attachPhysicalFile(String) — 附加物理文件
@@ -32,7 +32,7 @@ public void setFilePropertyViaStream(string propertyName, string fileName, Strea
 ```
 
 
-<h2>二、文件下载</h2>
+## 二、文件下载
 
 ```csharp
 // fetchFileProperty(String, FetchFileMode) — 下载文件
@@ -51,7 +51,7 @@ item.checkout(@"C:\temp\checkout\");
 ```
 
 
-<h2>三、getFileName / setFileName（已废弃）</h2>
+## 三、getFileName / setFileName（已废弃）
 
 ```csharp
 // [Obsolete] getFileName
@@ -61,7 +61,7 @@ item.checkout(@"C:\temp\checkout\");
 ```
 
 
-<h2>四、完整示例</h2>
+## 四、完整示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -93,7 +93,7 @@ for (int i = 0; i < files.getItemCount(); i++) {
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>大文件使用流：</strong>attachPhysicalFileViaStream 对超大文件更友好</li>
 <li><strong>文件路径是服务器端路径：</strong>服务端 Method 中的文件路径是服务器本地路径</li>

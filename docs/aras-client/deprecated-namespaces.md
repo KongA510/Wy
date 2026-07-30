@@ -2,16 +2,16 @@
 title: 命名空间总览
 ---
 
-<h1>已弃用 API — 命名空间总览</h1>
+# 已弃用 API — 命名空间总览
 <blockquote>
 <p>该章节介绍了 Aras Innovator 客户端中<strong>已弃用（Deprecated）</strong>的 JavaScript API 命名空间。这些 API 是旧版客户端框架的遗留代码，已被新的 <strong>CUI（可配置用户界面）框架</strong>和 <strong>Web Components 组件库</strong>替代。</p>
 <p>编写新代码时应优先使用 CUI API（Layout、Controls、Toolbar、Grid）和 Web Components（aras-grid、aras-toolbar、aras-menu），仅在维护旧代码时参考本页内容。</p>
 </blockquote>
 
-<h2>一、命名空间：Aras.Client.Controls.Public</h2>
+## 一、命名空间：Aras.Client.Controls.Public
 <p>旧版客户端控件 API，包含 Grid、Toolbar、HtmlEditor、Vault 等底层控件。这些控件在 11.0-14.x 版本中被广泛使用，但已被新的 CUI 框架和 Web Components 替代。</p>
 
-<h3>1.1 类列表</h3>
+### 1.1 类列表
 <table>
 <thead><tr><th>类名</th><th>说明</th><th>迁移建议</th></tr></thead>
 <tbody>
@@ -58,10 +58,10 @@ title: 命名空间总览
 </tbody>
 </table>
 
-<h2>二、命名空间：Aras.Modules.CMF.Public</h2>
+## 二、命名空间：Aras.Modules.CMF.Public
 <p>CMF（Configurable Molding Form）框架的公共 API。CMF 是 Aras 的旧版表单引擎，采用树形架构的文档模型。该框架已被 CUI 完全取代。</p>
 
-<h3>2.1 CMF 架构概念</h3>
+### 2.1 CMF 架构概念
 <p>CMF 文档是一棵树形结构，包含以下核心概念：</p>
 <ul>
 <li><strong>Element（元素）</strong>：树中的一个节点</li>
@@ -71,7 +71,7 @@ title: 命名空间总览
 <li><strong>Factory（工厂）</strong>：使用"工厂方法"模式创建 CMF 类实例</li>
 </ul>
 
-<h3>2.2 类列表</h3>
+### 2.2 类列表
 <table>
 <thead><tr><th>类名</th><th>说明</th><th>迁移建议</th></tr></thead>
 <tbody>
@@ -113,7 +113,7 @@ title: 命名空间总览
 </tbody>
 </table>
 
-<h2>三、迁移时间线</h2>
+## 三、迁移时间线
 <table>
 <thead><tr><th>版本</th><th>API 状态</th></tr></thead>
 <tbody>

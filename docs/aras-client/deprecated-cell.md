@@ -2,13 +2,13 @@
 title: Cell（单元格）
 ---
 
-<h1>Cell（已弃用）</h1>
+# Cell（已弃用）
 <blockquote>
 <p><strong>命名空间：</strong><code>Aras.Client.Controls.Public</code></p>
 <p>Cell 对象表示 Grid 中的一个单元格，例如通过 <code>GridContainer</code> 的 <code>cells</code> 方法返回。提供了一系列方法用于获取和设置单元格的样式、值、编辑状态等属性。此 API 已被弃用，建议使用新的 CUI 框架替代。</p>
 </blockquote>
 
-<h2>API 成员概览</h2>
+## API 成员概览
 <table>
 <thead>
 <tr>
@@ -171,32 +171,32 @@ title: Cell（单元格）
 </tbody>
 </table>
 
-<h2>API 详情</h2>
+## API 详情
 
-<h3>constructor()</h3>
+### constructor()
 <p>构造函数，创建 Cell 实例。通常不需要直接调用，Cell 对象由 <code>GridContainer.cells()</code> 等方法返回。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 Aras.Client.Controls.Public.Cell = function();
 ```
 
-    <h4>参数</h4>
-    <p><em>无参数信息</em></p>
-    <h4>返回值</h4>
-    <p><em>新创建的 Cell 实例</em></p>
-    <hr />
+#### 参数
+<p><em>无参数信息</em></p>
+#### 返回值
+<p><em>新创建的 Cell 实例</em></p>
+<hr />
 
-    <h3>基础单元格操作</h3>
+### 基础单元格操作
 
-    <h4>getValue()</h4>
-    <p>获取单元格的值。通常返回存储在单元格中的原始数据值。</p>
-    <h4>参数</h4>
-    <p><em>无参数</em></p>
-    <h4>返回值</h4>
-    <p>单元格的值，类型取决于列定义。</p>
-    <h4>示例</h4>
-    
+#### getValue()
+<p>获取单元格的值。通常返回存储在单元格中的原始数据值。</p>
+#### 参数
+<p><em>无参数</em></p>
+#### 返回值
+<p>单元格的值，类型取决于列定义。</p>
+#### 示例
+
 ```javascript
 // 获取 GridContainer 中指定行的单元格值
 var grid = top.aras.uiFindWindowEx(window, 'grid');
@@ -206,9 +206,9 @@ console.log(value);
 ```
 
 
-<h4>setValue(value)</h4>
+#### setValue(value)
 <p>设置单元格的值。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -225,9 +225,9 @@ console.log(value);
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 设置单元格值
@@ -246,13 +246,13 @@ function onEditCell(rowId, column, type, value, cell) {
 ```
 
 
-<h4>getText()</h4>
+#### getText()
 <p>获取单元格中用户可见的文本内容。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 单元格中显示的文本</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var cell = grid.cells(rowId, "name");
@@ -262,15 +262,15 @@ top.aras.AlertInfo("当前选中行的名称: " + text);
 
 <hr />
 
-<h3>行列信息</h3>
+### 行列信息
 
-<h4>getRowId()</h4>
+#### getRowId()
 <p>获取当前单元格所在行的 ID。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 行 ID</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 遍历单元格获取行 ID
@@ -280,13 +280,13 @@ console.log("行ID: " + rowId);
 ```
 
 
-<h4>getColumnIndex()</h4>
+#### getColumnIndex()
 <p>获取当前单元格所在列的索引（从 0 开始）。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>int</strong> — 列索引</p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 var cell = grid.cells(rowId, columnName);
@@ -295,33 +295,33 @@ console.log("列索引: " + colIndex);
 ```
 
 
-<h4>getBounds()</h4>
+#### getBounds()
 <p>获取单元格的边界信息（位置和尺寸）。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无信息提供</em></p>
 
-<h4>getRowSpan()</h4>
+#### getRowSpan()
 <p>获取单元格的行跨度。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无信息提供</em></p>
 <hr />
 
-<h3>样式与格式</h3>
+### 样式与格式
 
-<h4>getBgColor()</h4>
+#### getBgColor()
 <p>获取当前单元格的背景颜色。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 颜色值（例如 <code>"#ffffff"</code> 或 <code>"red"</code>）</p>
 
-<h4>setBgColor(value)</h4>
+#### setBgColor(value)
 <p>设置单元格的背景颜色。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -338,19 +338,19 @@ console.log("列索引: " + colIndex);
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
 
-<h4>getTextColor()</h4>
+#### getTextColor()
 <p>获取当前单元格的文字颜色。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 文字颜色值</p>
 
-<h4>setTextColor(color)</h4>
+#### setTextColor(color)
 <p>设置单元格文字颜色。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -367,19 +367,19 @@ console.log("列索引: " + colIndex);
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
 
-<h4>getFont()</h4>
+#### getFont()
 <p>获取当前单元格的字体设置。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>string</strong> — 返回 <code>"fontName-fontStyle-fontSize"</code> 格式的字体字符串</p>
 
-<h4>setFont(font)</h4>
+#### setFont(font)
 <p>设置当前单元格的字体。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -396,31 +396,31 @@ console.log("列索引: " + colIndex);
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
 
-<h4>getCellStyle()</h4>
+#### getCellStyle()
 <p>获取当前单元格的 CSS 样式对象。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>object</strong> — 包含 CSS 样式属性的对象</p>
 
-<h4>getHorAlign()</h4>
+#### getHorAlign()
 <p>获取单元格的水平对齐方式。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无信息提供</em></p>
 
-<h4>setHorAlign()</h4>
+#### setHorAlign()
 <p>设置单元格的水平对齐方式。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无信息提供</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无信息提供</em></p>
 
-<h4>样式操作综合示例</h4>
+#### 样式操作综合示例
 
 ```javascript
 function onEditCell(rowId, column, type, value, cell) {
@@ -445,29 +445,29 @@ function onEditCell(rowId, column, type, value, cell) {
 
 <hr />
 
-<h3>复选框操作</h3>
+### 复选框操作
 
-<h4>isCheckbox()</h4>
+#### isCheckbox()
 <p>判断当前单元格是否包含复选框。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong> — 若为复选框单元格则返回 <code>true</code></p>
 
-<h4>isChecked()</h4>
+#### isChecked()
 <p>获取单元格复选框的选中状态。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong> — 选中返回 <code>true</code>，未选中返回 <code>false</code></p>
 
-<h4>setChecked()</h4>
+#### setChecked()
 <p>设置单元格复选框的选中状态。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无信息提供</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无信息提供</em></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 检查并操作复选框单元格
@@ -483,18 +483,18 @@ if (cell.isCheckbox()) {
 
 <hr />
 
-<h3>编辑状态管理</h3>
+### 编辑状态管理
 
-<h4>isEditable()</h4>
+#### isEditable()
 <p>判断单元格是否可编辑。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong> — 可编辑返回 <code>true</code></p>
 
-<h4>setEditable(value)</h4>
+#### setEditable(value)
 <p>设置单元格是否可编辑。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -511,23 +511,23 @@ if (cell.isCheckbox()) {
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
 
-<h4>isEdited()</h4>
+#### isEdited()
 <p>判断单元格当前是否处于编辑状态（即用户正在编辑该单元格）。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong> — 处于编辑状态返回 <code>true</code></p>
 
-<h4>wasChanged()</h4>
+#### wasChanged()
 <p>判断用户在上次编辑期间是否修改了单元格的值。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><strong>bool</strong> — 若值被修改返回 <code>true</code>，否则返回 <code>false</code></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 编辑状态管理示例
@@ -549,11 +549,11 @@ function onEditCell(rowId, column, type, value, cell) {
 
 <hr />
 
-<h3>编辑器配置</h3>
+### 编辑器配置
 
-<h4>setEditType(editTypeInt, dropDownStyleInt)</h4>
+#### setEditType(editTypeInt, dropDownStyleInt)
 <p>设置单元格编辑器类型。通常在 <code>onEditCell</code> 事件的 <code>type=0</code> 阶段调用，用于在同一列的不同单元格中使用不同的编辑器类型。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -575,12 +575,12 @@ function onEditCell(rowId, column, type, value, cell) {
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
 
-<h4>setCombo(labels, values)</h4>
+#### setCombo(labels, values)
 <p>动态填充当前单元格的下拉框选项。标签和值使用 Grid 的分隔符分隔。在 <code>onEditCell</code> 事件的 <code>type=0</code> 阶段调用。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -602,9 +602,9 @@ function onEditCell(rowId, column, type, value, cell) {
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 // 动态设置下拉框编辑器
@@ -624,9 +624,9 @@ function onEditCell(rowId, column, type, value, cell) {
 ```
 
 
-<h4>setListId(listId)</h4>
+#### setListId(listId)
 <p>设置列表 ID，用于将单元格关联到 Aras 系统中的 List 定义。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -643,9 +643,9 @@ function onEditCell(rowId, column, type, value, cell) {
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
-<h4>示例</h4>
+#### 示例
 
 ```javascript
 function onEditCell(rowId, column, type, value, cell) {
@@ -659,11 +659,11 @@ function onEditCell(rowId, column, type, value, cell) {
 
 <hr />
 
-<h3>高级操作</h3>
+### 高级操作
 
-<h4>setLink(link)</h4>
+#### setLink(link)
 <p>将单元格的值设置为可点击的链接形式。</p>
-<h4>参数</h4>
+#### 参数
 <table>
 <thead>
 <tr>
@@ -680,25 +680,25 @@ function onEditCell(rowId, column, type, value, cell) {
 </tr>
 </tbody>
 </table>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无</em></p>
 
-<h4>initXml()</h4>
+#### initXml()
 <p>初始化单元格的 XML 配置。这是一个内部方法，通常不需要手动调用。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无参数</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无信息提供</em></p>
 
-<h4>setInputHelperIcon()</h4>
+#### setInputHelperIcon()
 <p>设置单元格输入框旁的辅助图标。</p>
-<h4>参数</h4>
+#### 参数
 <p><em>无信息提供</em></p>
-<h4>返回值</h4>
+#### 返回值
 <p><em>无信息提供</em></p>
 <hr />
 
-<h3>完整示例：OnEditCell 事件处理</h3>
+### 完整示例：OnEditCell 事件处理
 
 ```javascript
 // 综合使用 Cell API 的 onEditCell 事件处理

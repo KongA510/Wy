@@ -2,7 +2,7 @@
 title: 添加列
 ---
 
-<h1>项目计划模板 — 添加自定义列（以 cn_state 项目阶段为例）</h1>
+# 项目计划模板 — 添加自定义列（以 cn_state 项目阶段为例）
 <p>
 在 Aras Innovator 的项目计划（Project Plan）甘特图网格中，默认只显示系统内置列（N、Project Tree、Predecessor、Duration 等）。
 若需在网格中<strong>新增自定义属性列</strong>（如 <code>cn_state</code> 项目阶段），需按特定顺序修改 <strong>6 个文件</strong>，
@@ -14,7 +14,7 @@ title: 添加列
 且若为 List 类型属性，对应的 List 值已在 Aras 中配置好。</p>
 </blockquote>
 
-<h2>修改顺序总览</h2>
+## 修改顺序总览
 <table>
 <thead>
 <tr><th>顺序</th><th>文件</th><th>类型</th><th>多语系</th><th>作用</th></tr>
@@ -29,7 +29,7 @@ title: 添加列
 </tbody>
 </table>
 
-<h2>⚠️ List 类型列的 edit 属性与 list id 对应规则</h2>
+## ⚠️ List 类型列的 edit 属性与 list id 对应规则
 <p>
 当新增列为 <strong>List 下拉选择</strong>类型时，<code>template.xsl</code> 中 <code>&lt;column&gt;</code> 的
 <code>edit="COMBO:N"</code> 中的 <strong>N 必须与 <code>&lt;list id="N"&gt;</code> 的 id 严格对应</strong>。
@@ -51,7 +51,7 @@ title: 添加列
 <code>id="2"</code> → cn_state。<strong>新增 list 时 id 必须递增且不与已有冲突。</strong>
 </p>
 
-<h2>第 1 步：projectGridLayoutXML（多语系）</h2>
+## 第 1 步：projectGridLayoutXML（多语系）
 <p>
 该 Preference 控制项目计划网格中<strong>每列的位置、宽度和标签</strong>。
 在 <code>&lt;Relationships&gt;</code> 末尾追加新的 <code>PM_ProjectGridLayout</code> 关系项。
@@ -73,7 +73,7 @@ title: 添加列
 ```
 
 
-<h2>第 2 步：query.xml（多语系）</h2>
+## 第 2 步：query.xml（多语系）
 <p>
 该 Preference 定义<strong>编辑模式</strong>下加载项目树时的 AML 查询。
 需在 <code>Activity2</code> 的 <code>select</code> 属性中加入新字段名，否则编辑时该列无数据。
@@ -99,7 +99,7 @@ title: 添加列
 ```
 
 
-<h2>第 3 步：queryTemplate.xml（多语系）</h2>
+## 第 3 步：queryTemplate.xml（多语系）
 <p>
 该 Preference 定义<strong>模板模式</strong>（从模板创建项目时）的 AML 查询。
 同样需在 <code>Activity2</code> 的 <code>select</code> 中加入新字段。
@@ -121,12 +121,12 @@ title: 添加列
 ```
 
 
-<h2>第 4 步：template.xsl（编辑模式渲染）</h2>
+## 第 4 步：template.xsl（编辑模式渲染）
 <p>
 该 XSL 控制<strong>编辑模式</strong>下网格的 HTML 渲染。需修改 <strong>4 处</strong>：
 </p>
 
-<h3>4.1 &lt;thead&gt; — 添加列头</h3>
+### 4.1 &lt;thead&gt; — 添加列头
 
 ```xml
 <thead>
@@ -139,7 +139,7 @@ title: 添加列
 ```
 
 
-<h3>4.2 &lt;list&gt; — 注册 List 下拉数据源</h3>
+### 4.2 &lt;list&gt; — 注册 List 下拉数据源
 <p>
 若新列为 List 下拉类型，需在 <code>&lt;columns&gt;</code> 之前声明 <code>&lt;list&gt;</code>。
 <strong>id 值必须唯一且递增</strong>，后续 <code>&lt;column edit="COMBO:N"&gt;</code> 中的 N 引用此 id。
@@ -159,7 +159,7 @@ title: 添加列
 ```
 
 
-<h3>4.3 &lt;columns&gt; — 添加列定义</h3>
+### 4.3 &lt;columns&gt; — 添加列定义
 <p>
 <code>edit="COMBO:2"</code> 中的 <strong>2</strong> 对应上方 <code>&lt;list id="2"&gt;</code>。
 若为普通文本列则不需要 edit 属性；若为布尔列则 <code>edit="boolean"</code>。
@@ -175,7 +175,7 @@ title: 添加列
 ```
 
 
-<h3>4.4 getACT 模板 — Activity2 行数据单元格</h3>
+### 4.4 getACT 模板 — Activity2 行数据单元格
 <p>
 在 <code>mode="getACT"</code> 模板的 <code>&lt;tr&gt;</code> 末尾（Attach 列之后）添加 <code>&lt;td&gt;</code>：
 </p>
@@ -193,12 +193,12 @@ title: 添加列
 但 <code>template.xsl</code> 的 getWBS 模板中<strong>也不需要加空 td</strong>（与 wbs_branch.xsl 不同）。
 </p>
 
-<h2>第 5 步：wbs_branch.xsl（只读模式渲染）</h2>
+## 第 5 步：wbs_branch.xsl（只读模式渲染）
 <p>
 该 XSL 控制<strong>只读/查看模式</strong>下网格的渲染。需修改 <strong>2 处</strong>：
 </p>
 
-<h3>5.1 getWBS 模板 — WBS Element 行添加空 td</h3>
+### 5.1 getWBS 模板 — WBS Element 行添加空 td
 <p>
 只读模式中 WBS 行和 Activity 行<strong>共用同一组列</strong>，因此 WBS 行必须添加<strong>空的</strong>
 <code>&lt;td name="cn_state"/&gt;</code> 占位，否则列会错位。
@@ -214,7 +214,7 @@ title: 添加列
 ```
 
 
-<h3>5.2 getACT 模板 — Activity2 行数据单元格</h3>
+### 5.2 getACT 模板 — Activity2 行数据单元格
 
 ```xml
 <!-- 在 getACT 模板的 Attach td 之后 -->
@@ -228,13 +228,13 @@ title: 添加列
 ```
 
 
-<h2>第 6 步：Project_CloneProjectOrTemplate（C# 系统方法）</h2>
+## 第 6 步：Project_CloneProjectOrTemplate（C# 系统方法）
 <p>
 该服务器方法负责<strong>克隆/复制项目或模板</strong>时逐节点重建 WBS 和 Activity2。
 若不在此处添加新属性的拷贝逻辑，克隆后的项目将<strong>丢失</strong>该字段值。需修改 <strong>2 处</strong>：
 </p>
 
-<h3>6.1 Activity2 克隆 — setProperty 拷贝值</h3>
+### 6.1 Activity2 克隆 — setProperty 拷贝值
 <p>
 在 <code>ProjectTreeActivity2Item</code> 构造函数中，<code>deliv_type</code> 赋值之后添加：
 </p>
@@ -248,7 +248,7 @@ this.item.setProperty("cn_state", source.getProperty("cn_state"));
 ```
 
 
-<h3>6.2 WBS 查询 AML 模板 — select 加入新属性</h3>
+### 6.2 WBS 查询 AML 模板 — select 加入新属性
 <p>
 在 <code>ProjectTreeWbsItem</code> 类的 <code>GET_EXIST_WBS_AML_TEMPLATE</code> 常量中，
 <code>Activity2</code> 的 <code>select</code> 属性末尾追加新字段，确保克隆时能<strong>查询到</strong>该值：
@@ -268,7 +268,7 @@ private const string GET_EXIST_WBS_AML_TEMPLATE = "<AML>" +
 ```
 
 
-<h2>修改检查清单</h2>
+## 修改检查清单
 <table>
 <thead>
 <tr><th>检查项</th><th>文件</th><th>状态</th></tr>
@@ -288,24 +288,24 @@ private const string GET_EXIST_WBS_AML_TEMPLATE = "<AML>" +
 </tbody>
 </table>
 
-<h2>效果图</h2>
+## 效果图
 <p>修改完成后，项目计划网格中将显示新增的「项目阶段」列，支持下拉选择：</p>
 <img :src="'/pm-images/add-column-effect.png'" alt="项目计划添加列效果图" style="max-width:100%;border:1px solid #e5e7eb;border-radius:8px;margin:16px 0;" />
 
-<h2>常见问题</h2>
-<h3>Q: 为什么修改后列不显示？</h3>
+## 常见问题
+### Q: 为什么修改后列不显示？
 <p>
 检查以下几点：① projectGridLayoutXML 的 position 是否与已有列冲突；
 ② query.xml / queryTemplate.xml 的 select 是否遗漏新字段；
 ③ template.xsl 的 thead 列数与 columns 定义数是否一致；
 ④ 浏览器缓存 — 清除缓存后重试。
 </p>
-<h3>Q: List 下拉为空？</h3>
+### Q: List 下拉为空？
 <p>
 确认 <code>&lt;list id="N" name="xxx"&gt;</code> 的 <code>name</code> 与 Aras 中 List 的 name 完全一致，
 且 <code>&lt;column edit="COMBO:N"&gt;</code> 的 N 与 list id 匹配。
 </p>
-<h3>Q: 克隆项目后新列值为空？</h3>
+### Q: 克隆项目后新列值为空？
 <p>
 检查 <code>Project_CloneProjectOrTemplate</code> 中是否同时完成了 setProperty 拷贝和 AML select 查询两处修改。
 </p>

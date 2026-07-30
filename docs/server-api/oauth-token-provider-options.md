@@ -2,10 +2,10 @@
 title: TokenProviderOptions 体系
 ---
 
-<h1>TokenProviderOptions 体系</h1>
+# TokenProviderOptions 体系
 <blockquote><p><strong>所有 OAuth TokenProvider 的配置选项基类及派生类。</strong>每种认证方式有对应的 Options 类，用于构造 TokenProvider 时传递参数。命名空间：Aras.IOM.OAuth，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、Options 类继承树</h2>
+## 一、Options 类继承树
 
 ```csharp
 // 基类 — 所有 Options 的公共字段
@@ -66,7 +66,7 @@ public class JwtBearerClientAssertionProviderOptions : TokenProviderOptions
 ```
 
 
-<h2>二、ClientAssertionOptions</h2>
+## 二、ClientAssertionOptions
 
 ```csharp
 // 用于生成客户端断言的配置
@@ -80,7 +80,7 @@ public class ClientAssertionOptions
 ```
 
 
-<h2>三、NavigationOptions</h2>
+## 三、NavigationOptions
 
 ```csharp
 // 浏览器导航选项（Authorization Code 流程）
@@ -95,7 +95,7 @@ public class NavigationOptions
 ```
 
 
-<h2>四、代码示例</h2>
+## 四、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -176,7 +176,7 @@ inn.Login(TokenProviderFactory.Create(GrantType.AuthorizationCode, jwtOpts));
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>ServerUrl 和 Database 必填：</strong>所有 Options 都需要提供这两个基本参数</li>
 <li><strong>类型安全：</strong>每个 Options 类只包含对应认证方式需要的字段，避免配置混乱</li>

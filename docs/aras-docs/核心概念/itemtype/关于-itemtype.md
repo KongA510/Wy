@@ -6,7 +6,7 @@ title: 关于 ItemType（物料类型）
 
 
 
-<h1>关于 ItemType（物料类型）</h1>
+# 关于 ItemType（物料类型）
 <p class="Content_body"><span style="font-weight: bold;">ItemType（物料类型）</span>是 Aras Innovator 管理的业务对象。它是由此创建的条目的模板或定义。用面向对象编程的术语来说，ItemType 类似于类定义。由此创建的条目就是类的实例。</p>
 <p class="Content_body">Aras Innovator 中几乎所有的内容都通过 ItemType 来定义。ItemType 定义了：</p>
 <ul style="list-style: disc;">
@@ -39,7 +39,7 @@ title: 关于 ItemType（物料类型）
 <p class="Bulleted_list" style="margin-left: 50px;"><span class="rls-1-Bullet_list"><span style="font-family: 'Microsoft Sans Serif';">●</span></span><a href="#" class="internal-doc-link">可以添加</a></p>
 <p class="Bulleted_list" style="margin-left: 50px;"><span class="rls-1-Bullet_list"><span style="font-family: 'Microsoft Sans Serif';">●</span></span>权限</p>
 <p class="Bulleted_list" style="margin-left: 50px;"><span class="rls-1-Bullet_list"><span style="font-family: 'Microsoft Sans Serif';">●</span></span>报表</p>
-<h2>ItemType 报表</h2>
+## ItemType 报表
 <p class="Content_body">有两个实用的报表用于汇总 ItemType 定义。当在主网格中选中某个 ItemType 时，您可以从目录中选择"报表"来访问它们，也可以在 ItemType 窗口中点击"报表"选项卡来访问。</p>
 <p class="Bulleted_list" style="text-indent: 24px;"><span class="rls-1-Bullet_list" style="font-family: 'Microsoft Sans Serif';">●</span><a id="ItemType_Definition_Report" name="ItemType_Definition_Report"></a><span class="Bold">ItemType 定义报表</span>汇总了表单内容、所有非核心属性以及其他所有关系选项卡的内容。</p>
 <p class="Bulleted_list" style="text-indent: 24px;"><span class="rls-1-Bullet_list" style="font-family: 'Microsoft Sans Serif';">●</span><a id="ItemType_Permission_Report" name="ItemType_Permission_Report"></a> <span class="Bold">ItemType 权限报表</span>汇总了所有权限信息，显示谁可以获取、更新、删除和更改权限。</p>

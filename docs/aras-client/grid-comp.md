@@ -2,12 +2,12 @@
 title: Grid 组件
 ---
 
-<h1>Grid 表格组件</h1>
+# Grid 表格组件
 <blockquote>
 <p><strong>aras-grid</strong> 是 Aras 客户端最核心的 Web Component，用于动态数据的展示和编辑。支持虚拟滚动、批量更新、冻结列、自定义格式化器和编辑器等高级特性。</p>
 </blockquote>
 
-<h2>一、文件结构</h2>
+## 一、文件结构
 <p>源码位于 <code>Innovator/Client/Modules/components/grid/</code>：</p>
 <table>
 <thead><tr><th>文件</th><th>说明</th></tr></thead>
@@ -24,7 +24,7 @@ title: Grid 组件
 </tbody>
 </table>
 
-<h2>二、支持的特性</h2>
+## 二、支持的特性
 <ul>
 <li>✅ <strong>虚拟滚动</strong>（Virtual Scrolling）</li>
 <li>✅ <strong>批量更新</strong>（Batch Updates）</li>
@@ -34,9 +34,9 @@ title: Grid 组件
 <li>✅ <strong>搜索行</strong>（Search Row）</li>
 </ul>
 
-<h2>三、公共 API</h2>
+## 三、公共 API
 
-<h3>3.1 构造与渲染</h3>
+### 3.1 构造与渲染
 
 ```javascript
 const grid = new Grid(domElement, {
@@ -54,7 +54,7 @@ await grid.render();
 ```
 
 
-<h3>3.2 列数据管理（head）</h3>
+### 3.2 列数据管理（head）
 
 ```javascript
 // head — HeadWrap 对象
@@ -80,7 +80,7 @@ grid.head.delete('col_id');
 ```
 
 
-<h3>3.3 行数据管理（rows）</h3>
+### 3.3 行数据管理（rows）
 
 ```javascript
 // rows — RowsWrap 对象
@@ -117,7 +117,7 @@ grid.rows.delete('row_1');
 ```
 
 
-<h3>3.4 设置管理（settings）</h3>
+### 3.4 设置管理（settings）
 
 ```javascript
 // 冻结前两列
@@ -143,7 +143,7 @@ grid.settings.focusedCell = {
 ```
 
 
-<h3>3.5 退出编辑模式</h3>
+### 3.5 退出编辑模式
 
 ```javascript
 // 强制退出编辑模式
@@ -151,7 +151,7 @@ grid.cancelEdit();
 ```
 
 
-<h2>四、完整应用示例</h2>
+## 四、完整应用示例
 
 ```javascript
 // BOM 表格完整示例

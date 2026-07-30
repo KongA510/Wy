@@ -2,10 +2,10 @@
 title: ArasItemNodeList
 ---
 
-<h1>ArasItemNodeList</h1>
+# ArasItemNodeList
 <blockquote><p><strong>ArasItemNodeList 是 Aras.IOM 内部的 Item 节点集合类。</strong>用于管理 Item 的 XML 子节点列表，实现了 IEnumerable 接口可 foreach 遍历。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、类定义</h2>
+## 一、类定义
 
 ```csharp
 // ArasItemNodeList — Item XML 节点列表
@@ -22,7 +22,7 @@ public class ArasItemNodeList : IEnumerable
 ```
 
 
-<h2>二、获取方式</h2>
+## 二、获取方式
 
 ```csharp
 var inn = this.newInnovator();
@@ -44,7 +44,7 @@ foreach (Item child in nodeList)
 ```
 
 
-<h2>三、代码示例</h2>
+## 三、代码示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -83,7 +83,7 @@ foreach (Item child in result.nodeList)
 ```
 
 
-<h2>四、实践笔记</h2>
+## 四、实践笔记
 <ul>
 <li><strong>nodeList vs getItemByIndex：</strong>两者通常等价，<code>getItemByIndex(i)</code> 内部也依赖 nodeList。日常开发推荐使用 <code>getItemByIndex</code> 和 <code>getItemCount</code> 组合</li>
 <li><strong>Count 属性：</strong>等同于 <code>getItemCount()</code></li>

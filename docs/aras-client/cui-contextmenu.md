@@ -2,15 +2,15 @@
 title: CUI 右键菜单
 ---
 
-<h1>CUI 右键菜单</h1>
+# CUI 右键菜单
 <blockquote>
 <p>CUI Context Menu 与其他 CUI 控件工作方式一致，根据提供的 CUI 数据在指定位置初始化<strong>右键菜单组件</strong>。菜单支持多层嵌套结构和动态可见性计算。</p>
 </blockquote>
 
-<h2>一、位置</h2>
+## 一、位置
 <p><code>Innovator/Client/Modules/cui/cuiContextMenu.js</code></p>
 
-<h2>二、公共 API</h2>
+## 二、公共 API
 
 ```javascript
 function cuiContextMenu(
@@ -24,7 +24,7 @@ function cuiContextMenu(
 ```
 
 
-<h2>三、CUI 数据结构</h2>
+## 三、CUI 数据结构
 <p>CUI Context Menu 的数据包含两个语义组：</p>
 
 <table>
@@ -35,7 +35,7 @@ function cuiContextMenu(
 </tbody>
 </table>
 
-<h3>3.1 单层菜单项</h3>
+### 3.1 单层菜单项
 
 ```javascript
 // 普通菜单项 — 没有子菜单
@@ -57,7 +57,7 @@ function cuiContextMenu(
 ```
 
 
-<h3>3.2 嵌套菜单项（父菜单）</h3>
+### 3.2 嵌套菜单项（父菜单）
 
 ```javascript
 // 父菜单项 — 有子菜单
@@ -88,9 +88,9 @@ function cuiContextMenu(
 ```
 
 
-<h2>四、完整使用示例</h2>
+## 四、完整使用示例
 
-<h3>4.1 网格右键菜单</h3>
+### 4.1 网格右键菜单
 
 ```javascript
 // Grid 右键菜单插件
@@ -134,7 +134,7 @@ const gridContextMenuPlugin = {
 ```
 
 
-<h3>4.2 直接创建 Context Menu</h3>
+### 4.2 直接创建 Context Menu
 
 ```javascript
 import { cuiContextMenu } from './cui/cuiContextMenu';
@@ -165,7 +165,7 @@ showCustomMenu(300, 200, {
 ```
 
 
-<h3>4.3 on_init_handler — 动态控制菜单项可见性</h3>
+### 4.3 on_init_handler — 动态控制菜单项可见性
 
 ```javascript
 // 客户端 Method: initPopupItemInItemsGrid
@@ -196,7 +196,7 @@ function initPopupItemInItemsGrid(context) {
 ```
 
 
-<h2>五、注意事项</h2>
+## 五、注意事项
 <ul>
 <li><strong>不是所有 CUI Context Menu 都通过 CUI Layout 初始化</strong>——部分菜单仍由特定代码手动触发</li>
 <li><code>show()</code> 前会自动计算可见菜单项，如果所有项都不可见，方法直接返回</li>

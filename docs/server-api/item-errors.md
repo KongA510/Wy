@@ -2,10 +2,10 @@
 title: 错误处理
 ---
 
-<h1>Item 错误处理</h1>
+# Item 错误处理
 <blockquote><p><strong>检查和获取 Item 的错误信息。</strong>当 AML 操作失败时，返回的 Item 包含错误详情，通过这些方法可提取错误码、消息、来源等。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、方法签名</h2>
+## 一、方法签名
 
 ```csharp
 // 判断是否为错误
@@ -27,7 +27,7 @@ public void setErrorWho(string who)
 ```
 
 
-<h2>二、参数说明</h2>
+## 二、参数说明
 <table><thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead><tbody>
 <tr><td><code>code</code></td><td>String</td><td>错误代码</td></tr>
 <tr><td><code>detail</code></td><td>String</td><td>错误详细描述</td></tr>
@@ -36,7 +36,7 @@ public void setErrorWho(string who)
 <tr><td><code>who</code></td><td>String</td><td>触发错误的用户</td></tr>
 </tbody></table>
 
-<h2>三、代码示例</h2>
+## 三、代码示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -107,7 +107,7 @@ else
 ```
 
 
-<h2>四、常见错误码</h2>
+## 四、常见错误码
 <table><thead><tr><th>错误码</th><th>含义</th></tr></thead><tbody>
 <tr><td><code>"0"</code></td><td>无错误（正常）</td></tr>
 <tr><td><code>"1"</code></td><td>一般错误</td></tr>
@@ -117,7 +117,7 @@ else
 <tr><td><code>"1004"</code></td><td>重复记录</td></tr>
 </tbody></table>
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>总是先检查 isError：</strong>在访问 Item 属性前务必调用 <code>isError()</code>，避免在错误对象上调用 getProperty 导致异常</li>
 <li><strong>服务器方法中使用 newError：</strong>通过 <code>inn.newError("CODE")</code> 创建标准错误结构，再设置详细信息</li>

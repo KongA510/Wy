@@ -2,10 +2,10 @@
 title: JwtBearerClientAssertionProvider
 ---
 
-<h1>JwtBearerClientAssertionProvider</h1>
+# JwtBearerClientAssertionProvider
 <blockquote><p><strong>基于 JWT Bearer 客户端断言的认证提供者。</strong>使用私钥签名 JWT 作为客户端身份凭据进行 OAuth 认证，是企业级应用中最新的安全认证模式。命名空间：Aras.IOM.OAuth，程序集：IOM.dll（15.0.1）。</p></blockquote>
 
-<h2>一、类定义</h2>
+## 一、类定义
 
 ```csharp
 // JwtBearerClientAssertionProvider — JWT Bearer 断言提供者
@@ -22,7 +22,7 @@ public class JwtBearerClientAssertionProvider : IClientAssertionProvider
 ```
 
 
-<h2>二、相关类型</h2>
+## 二、相关类型
 
 ```csharp
 // 配置选项
@@ -51,7 +51,7 @@ public class ClientAssertion
 ```
 
 
-<h2>三、代码示例</h2>
+## 三、代码示例
 
 ```csharp
 using Aras.IOM;
@@ -107,7 +107,7 @@ var inn = IomFactory.CreateInnovator();
 ```
 
 
-<h2>四、JWT 断言结构</h2>
+## 四、JWT 断言结构
 
 ```csharp
 // 生成的 JWT Payload（未签名前）类似：
@@ -124,7 +124,7 @@ var inn = IomFactory.CreateInnovator();
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>私钥安全：</strong>签名证书的私钥是核心安全资产，应存储在 HSM 或 Windows 证书存储中</li>
 <li><strong>短有效期：</strong>客户端断言的 Lifetime 通常设为 5 分钟以内，减少被重放攻击的风险</li>

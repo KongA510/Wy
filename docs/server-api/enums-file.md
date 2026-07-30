@@ -2,12 +2,12 @@
 title: FetchFileMode / UrlType / VaultUrlType
 ---
 
-<h1>FetchFileMode / UrlType / VaultUrlType</h1>
+# FetchFileMode / UrlType / VaultUrlType
 <blockquote>
 <p><strong>Aras.IOM 命名空间定义了三个关键枚举，用于文件操作和 URL 获取。</strong>命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、FetchFileMode 枚举</h2>
+## 一、FetchFileMode 枚举
 
 ```csharp
 // 文件获取模式的标志枚举
@@ -26,7 +26,7 @@ item.fetchFileProperty("related_id", FetchFileMode.Default);
 
 <p>该枚举是 Flags 类型，可以组合多种模式（如指定下载后是否校验、是否覆盖等）。</p>
 
-<h2>二、UrlType 枚举</h2>
+## 二、UrlType 枚举
 
 ```csharp
 public enum UrlType
@@ -41,7 +41,7 @@ string thumbUrl = inn.getFileUrl(fileId, UrlType.Thumbnail);
 ```
 
 
-<h2>三、VaultUrlType 枚举</h2>
+## 三、VaultUrlType 枚举
 
 ```csharp
 public enum VaultUrlType
@@ -55,7 +55,7 @@ string url = inn.getFileUrl(fileId, UrlType.Download, VaultUrlType.Default);
 ```
 
 
-<h2>四、完整示例</h2>
+## 四、完整示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -78,7 +78,7 @@ fileItem.fetchFileProperty("related_id", FetchFileMode.Default);
 ```
 
 
-<h2>五、实践笔记</h2>
+## 五、实践笔记
 <ul>
 <li><strong>Thumbnail 仅对图像类文件有效：</strong>对于非图像文件，缩略图 URL 可能返回通用图标</li>
 <li><strong>VaultUrlType 通常在多 Vault 服务器上使用：</strong>单 Vault 环境使用 Default 即可</li>

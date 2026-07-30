@@ -2,13 +2,13 @@
 title: Tree（CMF 树搜索）
 ---
 
-<h1>Tree（已弃用）</h1>
+# Tree（已弃用）
 <blockquote>
 <p><strong>命名空间：</strong><code>Aras.Modules.CMF.Public</code></p>
 <p>用于在 CMF 文档中搜索元素的类。CMF 文档采用树形架构。</p>
 </blockquote>
 
-<h2>API 成员概览</h2>
+## API 成员概览
 <table>
 <thead><tr><th>成员</th><th>类型</th><th>说明</th></tr></thead>
 <tbody>
@@ -17,37 +17,37 @@ title: Tree（CMF 树搜索）
 </tbody>
 </table>
 
-<h2>API 详情</h2>
+## API 详情
 
-<h3>constructor()</h3>
+### constructor()
 <p>构造函数。创建一个 Tree 实例，用于在 CMF 文档的树形结构中搜索元素。通常由 CMF 框架内部调用，开发者在自定义代码中通过 <code>inArgs.tree</code> 获取已创建的实例。</p>
-<h4>签名</h4>
+#### 签名
 
 ```javascript
 Aras.Modules.CMF.Public.Tree = function();
 ```
 
-    <h4>参数</h4>
-    <p><em>文档未提供参数信息。</em></p>
-    <h4>返回值</h4>
-    <p><em>文档未提供返回值信息。</em></p>
+#### 参数
+<p><em>文档未提供参数信息。</em></p>
+#### 返回值
+<p><em>文档未提供返回值信息。</em></p>
 
-    <h3>findElementWithBinding()</h3>
-    <p>在 CMF 文档树中查找指定类型（<code>elementType</code>）的元素，该元素需包含对指定 ID（<code>boundItemId</code>）的业务对象项的引用。此方法常用于在 CMF 表单中定位与特定数据项关联的界面元素。</p>
-    <h4>参数</h4>
-    <p><em>文档未提供参数信息。根据示例代码推断，该方法接受以下参数：</em></p>
-    <table>
-      <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td><code>elementType</code></td><td>string</td><td>要查找的 CMF 元素类型名称</td></tr>
-        <tr><td><code>boundItemId</code></td><td>string</td><td>绑定的业务对象项 ID</td></tr>
-      </tbody>
-    </table>
-    <h4>返回值</h4>
-    <p><strong>Aras.Modules.CMF.Public.Element</strong> — 返回匹配的 CMF Element 对象。如果未找到匹配项，返回 <code>undefined</code>。</p>
+### findElementWithBinding()
+<p>在 CMF 文档树中查找指定类型（<code>elementType</code>）的元素，该元素需包含对指定 ID（<code>boundItemId</code>）的业务对象项的引用。此方法常用于在 CMF 表单中定位与特定数据项关联的界面元素。</p>
+#### 参数
+<p><em>文档未提供参数信息。根据示例代码推断，该方法接受以下参数：</em></p>
+<table>
+<thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td><code>elementType</code></td><td>string</td><td>要查找的 CMF 元素类型名称</td></tr>
+<tr><td><code>boundItemId</code></td><td>string</td><td>绑定的业务对象项 ID</td></tr>
+</tbody>
+</table>
+#### 返回值
+<p><strong>Aras.Modules.CMF.Public.Element</strong> — 返回匹配的 CMF Element 对象。如果未找到匹配项，返回 <code>undefined</code>。</p>
 
-    <h4>示例</h4>
-    
+#### 示例
+
 ```javascript
 // 查找绑定到特定业务对象项的 CMF 元素
 var cmfElement = inArgs.tree.findElementWithBinding(
@@ -57,7 +57,7 @@ var cmfElement = inArgs.tree.findElementWithBinding(
 ```
 
 
-<h4>实际应用示例</h4>
+#### 实际应用示例
 
 ```javascript
 // 示例1：在表单加载时查找与当前 Part 关联的字段元素

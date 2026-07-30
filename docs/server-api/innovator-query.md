@@ -2,12 +2,12 @@
 title: getItemById / getItemByKeyedName / getItemInDom
 ---
 
-<h1>getItemById / getItemByKeyedName</h1>
+# getItemById / getItemByKeyedName
 <blockquote>
 <p><strong>Innovator 提供了三个便捷查询方法，允许按 ID、keyed_name 或从 XML 文档中查找 Item。</strong>命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、getItemById(String, String)</h2>
+## 一、getItemById(String, String)
 
 ```csharp
 // 签名
@@ -33,7 +33,7 @@ if (part != null && !part.isError()) {
 <p><strong>返回值：</strong><code>Item</code> — 匹配的 Item；如果未找到，返回一个 error Item 或空 Item。</p>
 <p><strong>内部实现：</strong>该方法内部构造一个 <code>action="get"</code> 的 AML，设置 <code>id</code> 属性并执行 apply。</p>
 
-<h2>二、getItemByKeyedName(String, String)</h2>
+## 二、getItemByKeyedName(String, String)
 
 ```csharp
 // 签名
@@ -55,7 +55,7 @@ var user = inn.getItemByKeyedName("User", "admin");
 <p><strong>返回值：</strong><code>Item</code> — 匹配的 Item。</p>
 <p><strong>注意事项：</strong>keyed_name 字段在 Aras 数据模型中默认是唯一的，但可通过配置修改。如果存在多条匹配，只返回第一条。</p>
 
-<h2>三、getItemInDom(XmlDocument)</h2>
+## 三、getItemInDom(XmlDocument)
 
 ```csharp
 // 签名
@@ -66,7 +66,7 @@ public Item getItemInDom(XmlDocument doc)
 ```
 
 
-<h2>四、getItemById vs newItem+apply 对比</h2>
+## 四、getItemById vs newItem+apply 对比
 <table>
 <thead><tr><th>方式</th><th>代码量</th><th>控制度</th><th>适用</th></tr></thead>
 <tbody>
@@ -75,7 +75,7 @@ public Item getItemInDom(XmlDocument doc)
 </tbody>
 </table>
 
-<h2>五、完整示例</h2>
+## 五、完整示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -97,7 +97,7 @@ var detail = query.apply();
 ```
 
 
-<h2>六、实践笔记</h2>
+## 六、实践笔记
 <ul>
 <li><strong>getItemById 是快捷方法：</strong>内部实现等价于 newItem + apply，但无法自定义 select 列表</li>
 <li><strong>keyed_name 大小写敏感：</strong>Aras 中的 keyed_name 通常是区分大小写的</li>

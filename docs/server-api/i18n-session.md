@@ -2,12 +2,12 @@
 title: I18NSessionContext
 ---
 
-<h1>I18NSessionContext</h1>
+# I18NSessionContext
 <blockquote>
 <p><strong>I18NSessionContext 代表客户端会话的国际化上下文。</strong>定义会话使用的 locale、时区等，并提供本地化格式和 AML neutral 格式之间的转换方法。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、概述</h2>
+## 一、概述
 <p>每个客户端会话都有一个 I18NSessionContext 实例。它决定了：</p>
 <ul>
 <li>会话的语言/区域设置</li>
@@ -21,7 +21,7 @@ title: I18NSessionContext
 <li>日期在 AML 中必须<strong>始终</strong>以会话时区呈现</li>
 </ul>
 
-<h2>二、获取会话上下文</h2>
+## 二、获取会话上下文
 
 ```csharp
 // 通过 Innovator 获取
@@ -34,7 +34,7 @@ var ctx2 = innovator.getI18NSessionContext();
 ```
 
 
-<h2>三、格式转换</h2>
+## 三、格式转换
 
 ```csharp
 // ConvertToNeutral — 将本地化格式转为 AML neutral 格式
@@ -58,7 +58,7 @@ string localFloat2 = ctx.ConvertFromNeutral(neutralFloat2, "float");
 ```
 
 
-<h2>四、数据类型支持</h2>
+## 四、数据类型支持
 <table>
 <thead><tr><th>类型</th><th>AML Neutral 格式</th><th>示例</th></tr></thead>
 <tbody>
@@ -68,7 +68,7 @@ string localFloat2 = ctx.ConvertFromNeutral(neutralFloat2, "float");
 </tbody>
 </table>
 
-<h2>五、完整示例</h2>
+## 五、完整示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -95,7 +95,7 @@ for (int i = 0; i < result.getItemCount(); i++) {
 ```
 
 
-<h2>六、多语言属性的处理</h2>
+## 六、多语言属性的处理
 
 ```csharp
 // 多语言字段在 AML 中通过 xml:lang 属性区分
@@ -109,7 +109,7 @@ item.setProperty("description", "中文文本", "zh");
 ```
 
 
-<h2>七、实践笔记</h2>
+## 七、实践笔记
 <ul>
 <li><strong>日期格式必须 neutral：</strong>在 AML 中传递日期时务必先用 ConvertToNeutral 转换，否则服务器解析可能出错</li>
 <li><strong>浮点数格式：</strong>同样需要 neutral 格式，避免千位分隔符导致的解析错误</li>

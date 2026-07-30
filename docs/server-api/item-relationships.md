@@ -2,12 +2,12 @@
 title: 关系操作
 ---
 
-<h1>关系操作</h1>
+# 关系操作
 <blockquote>
 <p><strong>Item 提供完整的关系操作方法。</strong>包括创建/移除 Relationships 节点、获取关系Item、设置关联项等。命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、添加和创建关系</h2>
+## 一、添加和创建关系
 
 ```csharp
 // addRelationship(Item) — 将传入 Item 作为关系添加
@@ -28,7 +28,7 @@ related.setProperty("related_id", childPartId);
 ```
 
 
-<h2>二、获取关系</h2>
+## 二、获取关系
 
 ```csharp
 // getRelationships() — 获取所有关系
@@ -46,7 +46,7 @@ public string getRelatedItemID()
 ```
 
 
-<h2>三、removeRelationship / setRelatedItem</h2>
+## 三、removeRelationship / setRelatedItem
 
 ```csharp
 // removeRelationship(Item) — 移除关系
@@ -57,7 +57,7 @@ public void setRelatedItem(Item relatedItem)
 ```
 
 
-<h2>四、fetchRelationships — 从服务器拉取关系</h2>
+## 四、fetchRelationships — 从服务器拉取关系
 
 ```csharp
 // fetchRelationships(type)
@@ -75,7 +75,7 @@ part.fetchRelationships("Part BOM", "id,related_id,quantity");
 ```
 
 
-<h2>五、完整示例</h2>
+## 五、完整示例
 
 ```csharp
 var inn = this.newInnovator();
@@ -111,7 +111,7 @@ for (int i = 0; i < boms.getItemCount(); i++) {
 ```
 
 
-<h2>六、实践笔记</h2>
+## 六、实践笔记
 <ul>
 <li><strong>createRelationship vs addRelationship：</strong>createRelationship 在 Item 内部创建新节点；addRelationship 将已有 Item 附加为关系</li>
 <li><strong>fetchRelationships 是服务器调用：</strong>与 getRelationships（仅内存操作）不同，fetch 会发起 HTTP 请求</li>

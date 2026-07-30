@@ -2,12 +2,12 @@
 title: API 概览
 ---
 
-<h1>API 概览</h1>
+# API 概览
 <blockquote>
 <p>Aras Innovator 客户端 API 分为四大领域：<strong>Core（核心）</strong>、<strong>CUI（可配置用户界面）</strong>、<strong>Components（组件）</strong>和 <strong>Dashboards（仪表板）</strong>。</p>
 </blockquote>
 
-<h2>一、Core（核心层）</h2>
+## 一、Core（核心层）
 <p>核心模块位于 <code>Innovator/Client/Modules/core/</code>，提供客户端运行的基础服务：</p>
 <ul>
 <li><strong>网络请求管理</strong>—— 与服务端的 AML 通信</li>
@@ -16,10 +16,10 @@ title: API 概览
 <li><strong>状态管理</strong>—— Single Item Store（单向数据流）</li>
 </ul>
 
-<h2>二、CUI（可配置用户界面引擎）</h2>
+## 二、CUI（可配置用户界面引擎）
 <p>文件位于 <code>Innovator/Client/Modules/cui/</code>，这是客户端架构的核心创新：</p>
 
-<h3>2.1 设计理念</h3>
+### 2.1 设计理念
 <p>界面不由"硬编码"布局定义，而是由<strong>结构化的控件定义模型</strong>组成，这些模型组合在<strong>布局（Layout）</strong>中。好处：</p>
 <ul>
 <li>无需编码即可根据业务目标修改 UI</li>
@@ -27,7 +27,7 @@ title: API 概览
 <li>控件间具有正确的顺序、嵌套和关联关系</li>
 </ul>
 
-<h3>2.2 三大组成部分</h3>
+### 2.2 三大组成部分
 <table>
 <thead><tr><th>组件</th><th>职责</th><th>文档</th></tr></thead>
 <tbody>
@@ -37,7 +37,7 @@ title: API 概览
 </tbody>
 </table>
 
-<h2>三、Components（纯 UI 组件库）</h2>
+## 三、Components（纯 UI 组件库）
 <p>文件位于 <code>Innovator/Client/Modules/components/</code>，提供<strong>不绑定业务上下文</strong>的可复用组件：</p>
 <table>
 <thead><tr><th>组件</th><th>类型</th><th>说明</th></tr></thead>
@@ -52,7 +52,7 @@ title: API 概览
 </tbody>
 </table>
 
-<h2>四、Dashboards（仪表板）</h2>
+## 四、Dashboards（仪表板）
 <p>文件位于 <code>Innovator/Client/Modules/dashboards/</code>，支持显示带有多个 Widget 的仪表板：</p>
 <ul>
 <li><strong>Grid Widget</strong> — 表格数据展示</li>
@@ -62,7 +62,7 @@ title: API 概览
 <li><strong>Context Sharing</strong> — Widget 间数据共享</li>
 </ul>
 
-<h2>五、架构全景图</h2>
+## 五、架构全景图
 
 ```text
 Aras 客户端架构层次

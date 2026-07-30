@@ -2,12 +2,12 @@
 title: 自定义编辑器开发
 ---
 
-<h1>自定义编辑器开发</h1>
+# 自定义编辑器开发
 <blockquote>
 <p>通过标准 CUI 模型，可以为任意 ItemType 创建<strong>自定义编辑器（Custom Editor）</strong>，类似 CWS 编辑器、Query Builder 等。</p>
 </blockquote>
 
-<h2>一、整体流程</h2>
+## 一、整体流程
 
 ```text
 开发自定义编辑器的四大步骤：
@@ -20,7 +20,7 @@ title: 自定义编辑器开发
 ```
 
 
-<h2>二、Step 1：创建视图内容</h2>
+## 二、Step 1：创建视图内容
 <p>首先创建 <code>.cshtml</code> 文件定义编辑器的 HTML 内容。必须扩展标准 ItemView 布局：</p>
 
 
@@ -51,7 +51,7 @@ title: 自定义编辑器开发
 <strong>💡 关键</strong>：根元素的 <code>switcher-pane-id</code> 属性必须与对应的 <strong>CUI Button 的名称</strong>一致，Switcher 通过此属性确定显示哪个内容。
 </div>
 
-<h3>文件存储位置</h3>
+### 文件存储位置
 <table>
 <thead><tr><th>场景</th><th>路径</th></tr></thead>
 <tbody>
@@ -60,7 +60,7 @@ title: 自定义编辑器开发
 </tbody>
 </table>
 
-<h2>三、Step 2：创建自定义 View 类</h2>
+## 三、Step 2：创建自定义 View 类
 <p>创建继承自 <code>DefaultItemWindowView</code> 的 JS 类，重写 <code>getViewUrl</code> 方法：</p>
 
 
@@ -83,7 +83,7 @@ class AppCustomEditorItemWindowView extends DefaultItemWindowView {
 ```
 
 
-<h2>四、Step 3：创建 OnShowItem 事件处理器</h2>
+## 四、Step 3：创建 OnShowItem 事件处理器
 <p>创建客户端 Method，在 <code>OnShowItem</code> 时触发，负责创建 View 实例并显示：</p>
 
 
@@ -106,7 +106,7 @@ return window.ModulesManager.using([
 <code>inArgs</code> — 传入参数（含 Item 数据、上下文信息）
 </div>
 
-<h2>五、Step 4：扩展 ItemType 添加 CUI 元素</h2>
+## 五、Step 4：扩展 ItemType 添加 CUI 元素
 <p>在目标 ItemType 上添加 <code>CommandBarSection</code> 和 <code>CommandBarButton</code>，为编辑器添加 Sidebar 标签页：</p>
 
 
@@ -139,7 +139,7 @@ return window.ModulesManager.using([
 ```
 
 
-<h2>六、完整示例：BOM 可视化编辑器</h2>
+## 六、完整示例：BOM 可视化编辑器
 
 ```javascript
 // BOMVisualEditorItemWindowView.js
@@ -182,7 +182,7 @@ return window.ModulesManager.using([
 ```
 
 
-<h2>七、注意事项</h2>
+## 七、注意事项
 <ul>
 <li><code>switcher-pane-id</code> 必须与 CUI Button 的 <code>additional_data.switcher_pane_id</code> 一致</li>
 <li>View URL 路径不要包含 <code>.cshtml</code> 扩展名</li>

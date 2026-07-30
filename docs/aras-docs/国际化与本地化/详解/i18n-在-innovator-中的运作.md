@@ -3,7 +3,7 @@ title: Innovator中国际化与本地化的工作原理
 ---
 
 <div data-condition="Others:NewFor91">
-<h1>国际化和本地化行为</h1>
+# 国际化和本地化行为
 <p class="Procedure_Title"><b style="font-weight: bold;">当用户登录时</b></p>
 <p class="Content_body">Aras Innovator 客户端会检查客户端设置和服务器变量，并建立会话上下文（Session Context），该上下文将一直使用到会话结束。Aras Innovator 会判断客户端文化是否为数据库中的某个区域设置（Locale）。</p>
 <p class="Content_body">Aras Innovator 会判断企业时区（CorporateTimeZone）是否已设置：</p>

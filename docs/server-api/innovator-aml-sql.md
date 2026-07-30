@@ -2,12 +2,12 @@
 title: applyAML / applySQL / applySQLWithParameters
 ---
 
-<h1>applyAML / applySQL</h1>
+# applyAML / applySQL
 <blockquote>
 <p><strong>Innovator 提供三个核心方法来直接与服务器通信：applyAML、applySQL 和 applySQLWithParameters。</strong>命名空间：Aras.IOM，程序集：IOM.dll（15.0.1）。</p>
 </blockquote>
 
-<h2>一、applyAML(String)</h2>
+## 一、applyAML(String)
 
 ```csharp
 // 签名
@@ -29,7 +29,7 @@ if (result.isError()) {
 </table>
 <p><strong>返回值：</strong><code>Item</code> — 服务器响应，其 dom 属性包含返回的 AML</p>
 
-<h2>二、applySQL(String)</h2>
+## 二、applySQL(String)
 
 ```csharp
 // 签名
@@ -57,7 +57,7 @@ if (!result.isError()) {
 <li><strong>不要在 SQL 中拼接用户输入！</strong>使用 <code>applySQLWithParameters</code> 代替</li>
 </ul>
 
-<h2>三、applySQLWithParameters(String, ...)</h2>
+## 三、applySQLWithParameters(String, ...)
 
 ```csharp
 // 签名
@@ -77,7 +77,7 @@ var result = inn.applySQLWithParameters(sql, "P-%", "Released");
 </tbody>
 </table>
 
-<h2>四、applyAML vs newItem().apply()</h2>
+## 四、applyAML vs newItem().apply()
 <table>
 <thead><tr><th>方式</th><th>优点</th><th>适用场景</th></tr></thead>
 <tbody>
@@ -87,7 +87,7 @@ var result = inn.applySQLWithParameters(sql, "P-%", "Released");
 </table>
 <p>两种方式底层效果完全一致，构建的 AML 最终通过 <code>IServerConnection</code> 发送到服务器。</p>
 
-<h2>五、SQL 与 AML 的选择</h2>
+## 五、SQL 与 AML 的选择
 <table>
 <thead><tr><th>场景</th><th>推荐方式</th></tr></thead>
 <tbody>
@@ -100,7 +100,7 @@ var result = inn.applySQLWithParameters(sql, "P-%", "Released");
 </tbody>
 </table>
 
-<h2>六、完整示例</h2>
+## 六、完整示例
 
 ```csharp
 // 场景：查询指定用户名下所有已发布零件
@@ -133,7 +133,7 @@ var result3 = inn.applyAML(aml);
 ```
 
 
-<h2>七、实践笔记</h2>
+## 七、实践笔记
 <ul>
 <li><strong>SQL 权限：</strong>服务端 Method 默认只有只读 SQL 权限，需要写权限需在 Method 属性中设置</li>
 <li><strong>SQL 注入：</strong>永远不要用字符串拼接用户输入构建 SQL，使用 applySQLWithParameters</li>
