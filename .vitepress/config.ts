@@ -40,6 +40,7 @@ function buildIntegrationSidebar(): any[] {
 }
 
 const categoryTree: any[] = [
+  { text: '🏠 首页', link: '/' },
   { text: '📖 系统操作手册', link: '/aras-docs/index' },
   { text: '🔧 服务端文档', link: '/server-api/index' },
   { text: '🔧 客户端文档', link: '/aras-client/index' },
