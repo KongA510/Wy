@@ -19,28 +19,34 @@ function buildSidebar(nodes: ArasDocNode[]): any[] {
   })
 }
 
+/** 客户集成子树：按客户分组，每组下挂概览 + 接口文档 */
+function buildIntegrationItems(): any[] {
+  return integrationMenu.map(group => {
+    const meta = customerMeta[group.id]
+    return {
+      text: group.name,
+      collapsed: false,
+      items: [
+        ...(meta ? [{ text: `${group.name} 概览`, link: group.path }] : []),
+        ...buildSidebar(group.children || [])
+      ]
+    }
+  })
+}
+
 function buildIntegrationSidebar(): any[] {
   return [
     {
       text: '🔌 客户集成',
       link: '/integration/index',
-      items: integrationMenu.map(group => {
-        const meta = customerMeta[group.id]
-        return {
-          text: group.name,
-          collapsed: false,
-          items: [
-            ...(meta ? [{ text: `${group.name} 概览`, link: group.path }] : []),
-            ...buildSidebar(group.children || [])
-          ]
-        }
-      })
+      collapsed: false,
+      items: buildIntegrationItems()
     }
   ]
 }
 
+/** 根级分类树（首页入口已移至顶栏，树中不再放首页） */
 const categoryTree: any[] = [
-  { text: '🏠 首页', link: '/' },
   { text: '📖 系统操作手册', link: '/aras-docs/index' },
   { text: '🔧 服务端文档', link: '/server-api/index' },
   { text: '🔧 客户端文档', link: '/aras-client/index' },
@@ -52,7 +58,12 @@ const categoryTree: any[] = [
       { text: '项目管理', link: '/pm/index' }
     ]
   },
-  { text: '🔌 客户集成', link: '/integration/index' },
+  {
+    text: '🔌 客户集成',
+    link: '/integration/index',
+    collapsed: false,
+    items: buildIntegrationItems()
+  },
   {
     text: '💡 技术笔记',
     collapsed: true,
@@ -67,7 +78,7 @@ const categoryTree: any[] = [
 export default defineConfig({
   srcDir: 'docs',
   title: 'Kong.A 知识库',
-  description: 'Kong.A 个人技术知识库',
+  description: 'Kong.A 个人技术知识库 — Aras PLM / .NET / 前端 / 客户集成',
   lang: 'zh-CN',
   lastUpdated: true,
   cleanUrls: true,
@@ -78,6 +89,7 @@ export default defineConfig({
     logo: undefined,
     siteTitle: 'Kong.A 知识库',
     nav: [
+      { text: '首页', link: '/' },
       { text: '关于', link: '/about' }
     ],
     sidebar: {
